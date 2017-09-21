@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-保理合同查看</title>    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/new.css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!--<script src="js/jquery-1.11.1.min.js"></script>-->
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <script src="js/content-list.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/fileinput.min.js"></script>
+    <link href="js/plugin/uploadify/uploadify.css" rel="stylesheet">
+    <script src="js/plugin/uploadify/jquery.uploadify.js"></script>
+    <script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/plugin/jquery.validate.js"></script>
+    <script src="js/plugin/validate-extend.js"></script>
+    <style>
+
+        fieldset {
+            padding: .35em 1.5em .75em;
+            margin: 0 2px;
+            border: 2px solid #dee1e1;
+        }
+        legend {
+            padding: .5em;
+            border: 0;
+            width: auto;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .form .row {
+            margin-top: 0;
+        }
+        .g-wrap {
+            margin: 50px auto 0 auto;
+            overflow: hidden;
+            padding-bottom: 1px;
+        }
+
+        .container {
+            width: 970px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .m-left {
+            margin: 0;
+            padding-top: 40px;
+        }
+
+        .m-left .ml-head, .m-left .ml-btn {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .m-right {
+            min-height: 700px;
+        }
+		p {
+				text-indent: 35px
+			}
+			
+			
+			.biaoti {
+				text-align: center;
+			}
+			.plr30 {
+				padding-left:30px;
+				padding-right:30px;
+			}
+			.blht-dzht{
+				padding-top: 50px;
+			}
+			.form-horizontal .control-label {
+            padding-right: 0;
+        }
+			
+    </style>
+</head>
+
+<body>
+
+<div class="middle row form-group">
+    <div class="middle-left col-xs-3">
+        <div class="ml-head">
+            保理合同
+        </div>
+        <div class="ml-btn">
+            <span class="jbxx">合同信息</span>
+        </div>
+        <div class="ml-btn">
+            <span class="jbxx">合同要素</span>
+        </div>
+        <div class="ml-btn">
+            <span class="jbxx">合同附件</span>
+        </div>
+        <div class="ml-btn">
+            <span class="jbxx">电子合同</span>
+        </div>
+        <div class="ml-btn">
+            <span class="jbxx">流贷合同</span>
+        </div>
+    </div>
+
+
+    <div class="form middle-right col-xs-9 form-horizontal" id="blhtcss">
+        <form class="form mt0" id="blhtForm">
+            <div class="jc biaodan">
+                <div class="addlist htxx">
+                    <!--Added-->
+                    <fieldset>
+                        <legend>基本信息</legend>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">保理合同代码</label>
+                                    <div class="col-md-8">
+                                        <input type="text" value="" readonly class="form-control" name="xydm" id="xydm"
+                                               placeholder="合同代码由系统生成" onmouseover="this.title=this.value">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 warning">
+                                    <label for="" class="col-md-4 control-label">保理合同编号</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" value="" placeholder="请输入保理合同编号" name="xybh" id="xybh" onmouseover="this.title=this.value">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6 warning">
+                                    <label for="" class="col-md-4 control-label">融资客户</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control warning" name="rzkhmc" id="rzkhmc" onmouseover="this.title=this.value">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 warning">
+                                    <label for="" class="col-md-4 control-label">核心企业</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control warning" name="hxqykhmc" id="hxqykhmc">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">业务品种</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" id="ywpz" name="ywpz" dic-type="B1040"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">占用额度类型</label>
+                                    <div class="col-md-8">
+                                        <select name="edlx" class="form-control" id="edlx" dic-type="B1041"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">产品模式</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" name="cpms" id="cpms" dic-type="B1045"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">融资比例/支付对价比例(%)</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control rzbl" value="" name="rzbl" placeholder="如80%，请输入80" id="rzbl">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">账期（天数）</label>
+                                    <div class="col-md-8">
+                                        <input type="text" value="" class="form-control" id="zq" placeholder="如3天，请输入3" name="zq" maxlength="4">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">宽限期（天数）</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class=" form-control" value="" id="kxq" placeholder="如3天，请输入3" name="kxq" maxlength="4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">货币种类</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" name="hbzl" id="hbzl" dic-type="B1056"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">应收账款转让净额（元）</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control yszk" value="" data-type="currency" maxlength="15"
+                                               id="yszkzrje" name="yszkzrje">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">融资金额（元）</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control rzje" type="text" value="" data-type="currency" maxlength="15"
+                                               name="ckje" id="ckje">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <!--融资企业结算账号-->
+                                    <label for="" class="col-md-4 control-label">企业结算账号</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" value="" id="jszh" name="jszh">
+                                        <!--<button type="button" class="zhls" id="zhls"> </button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">融资企业结算账户名称</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control rzje" type="text" value="" maxlength="26"
+                                               name="jszhhm" id="jszhhm" maxlength="64">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">融资企业结算账户开户行</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" value="" id="jszhkhh" name="jszhkhh" maxlength="64">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6 warning">
+                                    <label for="" class="col-md-4 control-label">回款账户类型</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" name="hkzhlx" dic-type="B1057" dic-blank=" "
+                                                id="hkzhlx">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">回款账号</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="hkzh" id="hkzh" maxlength="26">
+                                       <!-- <button type="button" class="zhls" id="zhlsHkzh"> </button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6 warning">
+                                    <label for="htrq" class="col-md-4 control-label">合同日期</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group date form_date" data-date=""
+                                             data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+                                             data-link-format="yyyy-mm-dd">
+                                            <input type="text" class="form-control startTime" name="htrq" id="htrq">
+                                            <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="col-xs-6 warning">
+                                    <label for="htdqr" class="col-md-4 control-label">合同到期日</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group date form_date" data-date=""
+                                             data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+                                             data-link-format="yyyy-mm-dd">
+                                            <input type="text" class="form-control endTime" name="htdqr">
+                                            <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <input type="hidden" name="htzt">
+                        </div>
+                    </fieldset>
+                    <!--Added-->
+                    <fieldset>
+                        <legend>保理费信息</legend>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">保理费收取方式</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" name="sqfs" id="sqfs" dic-type="B10481"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label class="control-label col-md-4">扣取方式</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control ms" name="kqfs" id="kqfs" dic-type="B1049"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">保理费计算方式</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control ms" name="blfjsfs" id="blfjsfs" dic-type="B10502"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">保理费费率(%)</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control ms" value="" placeholder="如80%，请输入80" name="blffl" id="blffl"  maxlength="6">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">固定费用（元）</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control ms" value="" data-type="currency"
+                                               name="gdfy" id="gdfy" maxlength="18">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">其它费用（元）</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control ms" value="" data-type="currency"
+                                               name="qtfy" id="qtfy" maxlength="18">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>融资利率信息</legend>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">融资利率(%)</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" value="" placeholder="如80%，请输入80" name="rzlv" id="rzlv"  maxlength="6">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label class="control-label col-md-4">逾期利率上浮比率(%)</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" placeholder="如80%，请输入80" value="" name="yqlvsfbl" id="yqlvsfbl" maxlength="6">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">利息收取方式</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" name="lxsqfs" id="lxsqfs" dic-type="B1051"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>其它信息</legend>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="" class="col-xs-2 control-label">备注</label>
+                                    <div class="col-xs-10">
+                                        <textarea class="form-control" rows="2" placeholder="字数不能超过300字" name="bz" id="bz" maxlength="300"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="bottom_footer col-xs-12 form-group text-center u-btn" style="margin-top: 50px; margin-bottom: -45px;">
+                            <a class="btn btn-default btn_query" href="javascript:history.go(-1);">返回 </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="biaodan" style="display: none">
+            <!-- <p>编号：<input type="text" class="" name="tzsbh" form="htysForm" size="4" maxlength="4"/> 年
+                   <input type="text" class="" name="tzsbh1" form="htysForm" size="4" maxlength="10"/>
+                     字 <input type="text" class="" name="tzsbh2" form="htysForm" size="4" maxlength="10"/> 号
+                  </p> -->
+            <br/>
+            <p class="bold">鉴于甲方拟采用信用销售方式向 公司（以下简称“买方”）：</p>
+            <p><input type="radio" name="a" value="1">　销售　<input type="text" maxlength="20" class="xyxsfs"/>（货物名称）和/或
+            <p>
+            <p><input type="radio" name="a" value="2">　提供　<input type="text" maxlength="20" class="xyxsfs"/>（服务名称）和/或
+            <p>
+            <input type="radio" name="a" value="3">　进行　<input type="text" maxlength="20" class="xyxsfs"/>（交易名称）（上述内容统称为交易），并拟利用乙方提供的国内反向保理业务，为明确双方权利义务，经协商一致，特订立本合同。
+<hr/>
+            <p>
+                <form class="plr30 row" id="htysForm">
+                    <input type="hidden" name="xyxsfs">
+                    <input type="hidden" name="xsfsmc">
+                    <p class="bold">第十五条 融资利率与计结息</p>
+                    <p class="bold">（一）相关解释条款</p>
+                <!--    <h3>第十五条 融资利率与计结息</h3>
+                    <h4>（一）相关解释条款</h4>-->
+            <p>1、“央行人民币贷款基准利率”指中国人民银行公布的当日人民币贷款基准利率。</p>
+            <p>2、“央行人民币存款基准利率”指中国人民银行公布的当日人民币存款基准利率。</p>
+            <p>3、“LPR”指由全国银行间同业拆借中心基于报价行自主报出的最优贷款利率计算并发布的当日贷款基础利率。</p>
+            <p>4、“SHIBOR”指由全国银行间同业拆借中心计算并发布的当日上海银行间同业拆放利率。</p>
+            <p>5、“LIBOR”指T-2日伦敦金融市场银行间拆借利率,币种包括美元、欧元、日元等。其中，“T”为融资实际发放日，“T-2”为融资实际发放日的前二个工作日，下同。</p>
+            <p>6、“HIBOR”指T-2日香港金融市场银行间港币拆借利率。</p>
+            <p class="bold">（二）关于融资利率与利息计收条款</p>
+            <!--<h4>（二）关于融资利率与利息计收条款</h4>-->
+            <p class="bold">1、融资利率</p>
+            <p class="bold">（1）定价基准利率按下列第
+                <select name="jzlvydfs" class="djjzlv" id="jzlvydfs">
+                    <option value="1">壹</option>
+                    <option value="2">贰</option>
+                    <option value="3">叁</option>
+                    <option value="4">肆</option>
+                    <option value="5">伍</option>
+                    <option value="6">陆</option>
+                </select>
+                种约定执行：
+            </p>
+            <p>（壹）央行人民币贷款基准利率 <input type="text" maxlength="2" class="djjzlv_qx"/> 期限档次。</p>
+            <p>（贰）央行人民币存款基准利率 <input type="text" maxlength="2" class="djjzlv_qx"/> 期限档次。</p>
+            <p>（叁）LPR <input type="text" maxlength="2" class="djjzlv_qx"/> 期限档次。</p>
+            <p>（肆）SHIBOR <input type="text" maxlength="2" class="djjzlv_qx"/> 期限档次。</p>
+            <p>（伍）LIBOR <input type="text" maxlength="2" class="djjzlv_qx"/> 期限档次。</p>
+            <p>（陆）HIBOR <input type="text" maxlength="2" class="djjzlv_qx"/> 期限档次。</p>
+            <p class="bold">（2）融资利率定价公式按下列第
+                <select name="rzlvdjgsfs" class="rzlv" id="rzlvdjgsfs">
+                    <option value="1">壹</option>
+                    <option value="2">贰</option>
+                </select>
+                执行：
+            </p>
+            <p>（壹）融资利率=定价基准利率+ <input type="text" maxlength="32" data-type="currency" class="rzlv_qx"/> %。</p>
+            <p>（贰）融资利率=定价基准利率× <input type="text" maxlength="32" data-type="currency" class="rzlv_qx"/> 。</p>
+
+            <p class="bold">（3）融资利率（指年利率，下同）按下列第
+                <select name="rzlvfs" id="">
+                    <option value="1">壹</option>
+                    <option value="2">贰</option>
+                    <option value="3">叁</option>
+                </select>
+                种约定执行：
+            </p>
+            <p>（壹）固定利率。根据实际发放日定价基准利率和定价公式确定融资利率，融资期间利率不变。</p>
+            <p>（贰）浮动利率。根据实际发放日和利率调整日定价基准利率和定价公式确定融资利率。利率调整日按以下第
+                <select name="fdlvfs">
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                </select>
+                种方式执行：
+            </p>
+            <p>A、浮动周期为
+                <input type="text" name="fdlvfszq" id="" value="" maxlength="8" class=""/>
+                （月/季/半年/年/其他周期），自融资实际发放日起每满一个周期的对应日为合同利率调整日，当月无对应日的以该月最后一天为对应日；</p>
+            <p>B、 融资期间，如遇基准利率调整，不再通知甲方。</p>
+            <p>（叁）其他利率方式： <input type="text" name="qtlvfs" id="qtlvfs" maxlength="50"></p>
+            <p>&nbsp;&nbsp;（4）本合同项下分次使用的融资对应的定价基准利率，应以每次融资实际发放日（或利率调整日，如有）的基准利率为确定标准。</p>
+            <p>&nbsp;&nbsp;（5）本合同项下发放的融资，如遇国家取消基准利率或者市场不再公布基准利率，乙方有权根据同期的国家利率政策，按照公平诚信的原则，并参照行业惯例、利率状况等因素，重新确定融资利率后通知甲方。甲方有异议的，应与乙方协商。自乙方发出通知之日起五个工作日内协商不成的，乙方有权提前收贷，甲方应当立即清偿剩余的融资本息。 </p>
+
+            <p class="bold">2、融资利息偿还方式</p>
+            <p>（1）融资利息的计算。本外币融资本金自乙方根据本合同约定划至甲方账户之日起开始计息。融资每日应计利息=当日融资余额×日利率。日利率与年利率的换算按照中国人民银行规定和国际惯例执行。</p>
+            <p class="bold">（2）融资利息偿还方式按下列第
+                <select name="rzlvchfs" class="lxchfs" id="rzlvchfs">
+                    <option value="1">壹</option>
+                    <option value="2">贰</option>
+                    <option value="3">叁</option>
+                </select>
+                种约定执行：
+            </p>
+            <p>（壹）本合同融资约定每 <input type="text" name="" id="" value="" maxlength="10" class="lxchfs_qx"/>　
+                （月/季末月/半年末月/年末月/其他周期）的20日为结息日，甲方应在结息日次日向乙方支付当期融资利息，在融资到期日结清其余本息。</p>
+            <p>（贰）自融资实际发放日起每满 <input type="text" name="" id="" value="" maxlength="10" class="lxchfs_qx"/>
+                （月/季/半年/年/其他周期）的对应日（当月无对应日的以该月最后一天为对应日）的前一日为结息日，甲方应在结息日次日向乙方支付当期融资利息，在融资到期日支付最后一期利息。</p>
+            <p>（叁）其他偿还方式：<input type="text" name="qtchfs" maxlength="50" class=""/></p>
+
+            <p class="bold">3、罚息和复利</p>
+            <p>（1）如甲方未按本合同约定的用途使用融资，乙方有权对被挪用的融资计收罚息，罚息利率为融资利率上浮
+                <input type="" name="fxlv1" id="" maxlength="10" value=""/> ％；
+                甲方未按期还款且又未就展期事宜与乙方达成协议，即融资逾期的，乙方有权对逾期的融资计收罚息，罚息利率为融资利率上浮
+                <input type="" name="fxlv2" id="" maxlength="10" value=""/>
+                ％；对未按时支付的利息，乙方有权按本合同约定的融资逾期罚息利率计收复利。同一笔融资既逾期又未按合同约定用途使用的，罚息利率按较高者计算。</p>
+            <p>（2）融资利率采用固定利率的，则罚息利率也为固定利率；融资利率采用浮动利率的，则罚息利率也为浮动利率，其浮动周期与融资利率浮动周期一致。</p>
+            <p>（3）罚息和复利的计收方式按照本合同约定的融资利息偿还方式执行。</p>
+            <p class="bold">4、保理费</p>
+            <p>本合同保理费按根据应收账款净额的 <input type="" name="blfsqb" maxlength="6" id="" data-type="currency" value=""/> ％收取。</p>
+
+            <p class="bold">5、利息及费用支付方式，选择
+                <select name="lxfyzffs">
+                    <option value="1">（1）</option>
+                    <option value="2">（2）</option>
+                </select></p>
+
+            <p>（1）甲方支付利息及费用
+                <select name="jfzffs">
+                    <option value="1">乙方向甲方发放融资款项时，逐笔扣收融资利息和费用；</option>
+                    <option value="2">乙方在收到买方付款时，逐笔扣收融资利息和费用；</option>
+                    <option value="3">乙方从甲方下述账户中主动扣收：</option>
+                </select>
+            </p>
+
+            <p>开户银行：<input type="text" id="jszhkhh_htys" disabled="disabled" maxlength="30"/></p>
+            <p>户名：<input type="text" id="jszh_htys" disabled="disabled" maxlength="30"/></p>
+            <p>账号：  <input type="text" name="" id="jszhhm_htys" disabled="disabled" maxlength="30"/></p>
+            <p> （2）买方支付：即  <input type="text" id="cdblf" disabled="disabled"> 承担保理费。</p>
+                <p> <select name="mfzffs">
+                    <option value="1">买方到期向乙方支付保理费；</option>
+                    <option value="2">买方授权乙方从下述账户中主动扣收：</option>
+                </select>
+            </p>
+            <p>开户银行：<input type="text" name="" id="hkzhkhh_htys" value="" disabled="disabled" maxlength="30"/></p>
+            <p>户名：<input type="text" name="" id="hkzhhm_htys" value="" disabled="disabled" maxlength="30"/></p>
+            <p>账号：  <input type="text" name="" id="hkzh_htys" value="" disabled="disabled" maxlength="30"/></p>
+
+           <!-- <p><label for="">开户银行：</label><input type="text" name="" id="" value="" disabled="disabled"/></p>
+            <p><label for="">户名：</label><input type="text" name="" id="" value="" disabled="disabled"/></p>
+            <p><label for="">账号： </label><input type="text" name="" id="" value="" disabled="disabled"/></p>-->
+
+            <p>6、实际业务操作中，如果上述融资金额、期限、利率与借款借据、凭证不一致的，以借款借据、凭证记载的为准。</p>
+            <p>7、乙方向甲方提供除流动资金贷款外融资方式的，融资款的发放及计息方式由双方另行签订具体融资合同进行约定，具体融资合同为本合同的分合同。</p>
+
+            <!--28 29 30条-->
+            <hr/>
+            <h3 class="biaoti">法律适用、争议解决</h3>
+            <p>第二十八条 本合同的订立、效力、解释、履行及争议的解决均适用中华人民共和国法律。</p>
+            <p>第二十九条 在合同履行过程中发生争议，可以通过协商解决；</p>
+            <p class="bold">协商不成，按以下第
+                <select name="zyjjfs" class="" id="zyjjfs">
+                    <option value="1">（壹）</option>
+                    <option value="2">（贰）</option>
+                </select>
+                种方式解决；
+            </p>
+            <p>（壹）向甲方所在地人民法院起诉。<input type="hidden" class=""></p>
+            <p>（贰）提交 <input type="" name="zcwyh" id="zcwyh" value="" maxlength="30" class=""/> 仲裁委员会（仲裁地点为 
+            <input type="" maxlength="30" name="zcdd"  id="zcdd"  value=""/>
+                ），按照申请仲裁时该会现行有效的仲裁规定进行仲裁。仲裁裁决是终局的，对双方均有约束力。</p>
+            <p>第三十条 在争议期间，本合同不涉及争议部分的条款仍须履行。</p>
+            <hr/>
+            <div class="row">
+                <div class="bottom_footer col-xs-12 form-group text-center u-btn">
+                    <a class="btn btn-default btn_query" href="javascript:history.go(-1);">返回 </a>
+                </div>
+            </div>
+            <input type="hidden" name="xydm" id="htys_xydm">
+            <input type="hidden" name="id">
+            </form>
+        </div>
+        <div class="biaodan" style="display: none"> <!--合同附件需修改-->
+            <div class="addlist htfj">
+                 <form action="" id="bcxxForm">
+		            <input type="hidden" name="ywbh">
+		            <input type="hidden" name="ywlx" value="0012">
+		        </form>
+                <div class="search_result row">
+                    <table class="table table-bordered table-hover" style="margin-top: 50px;">
+                        <thead>
+                        <tr>
+                            <th>文件名称</th>
+                            <th>详情</th>
+                            <th>上传时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div id="kkpager"></div>
+                </div>
+            </div>
+        </div>
+        <div class="biaodan" style="display: none"> <!--电子合同需修改-->
+            <div class="addlist">
+                <div class="operate">
+                </div>
+                <div class="search_result row">
+                    <table class="table table-bordered table-hover dzht" style="margin-top: 50px;">
+                        <thead>
+                        <tr>
+                            <th>合同名称</th>
+                            <th>生成日期</th>
+                            <th dic-type="B1079">在线签约状态</th>
+                            <th width="250">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+         <div class="biaodan" style="display: none"> <!--电子合同需修改-->
+            <div class="addlist">
+                <div class="operate">
+                </div>
+                <div class="search_result row">
+                    <table class="table table-bordered table-hover ldht" style="margin-top: 50px;">
+                        <thead>
+                        <tr>
+                            <th>合同名称</th>
+                            <th>生成日期</th>
+                            <th width="250">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <form class="form-horizontal row" action="#" id="wjForm">
+            <div class="aleatF">
+                <div class="aleat">
+                    <img class="over" src="img/sc.png"/>
+                    <!--<input type="" name="" id="" value="" />-->
+                    <textarea class="textlist" name="" rows="2" cols="40" placeholder="请输入文件说明..."></textarea>
+                    <input id="file" name="file" type="file" multiple="multiple">
+                </div>
+            </div>
+        </form>
+        <form action="" id="dzheForm">
+            <input type="hidden" name="ywbh">
+            <input type="hidden" name="wjlx">
+            <input type="hidden" name="tzslx">
+        </form>
+        <form action="" id="ldhtFormSe">
+            <input type="hidden" name="ywbh">
+            <input type="hidden" name="wjlx">
+            <input type="hidden" name="tzslx">
+        </form>
+    </div>
+    <!--收款结算流水Modal-->
+    <div id="zhlsModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+            <div class="search_input m-content" >
+				<form class="form-horizontal row" id="zhlsFrom" role="form">
+							<div class="row form-group">
+								<div class="col-xs-6 warning">
+									<label for="" class="col-md-4 control-label">起始日期</label>
+									<div class="col-md-8">
+										<div class="input-group date form_date" data-date=""
+											data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+											data-link-format="yyyy-mm-dd">
+											<input type="text" class="form-control" name="qsrq">
+											<span class="input-group-addon"><span
+												class="glyphicon glyphicon-calendar"></span></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-6 warning">
+									<label for="" class="col-md-4 control-label">到期日期</label>
+									<div class="col-md-8">
+										<div class="input-group date form_date" data-date=""
+											data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+											data-link-format="yyyy-mm-dd">
+											<input type="text" class="form-control" name="dqrq">
+											<span class="input-group-addon"><span
+												class="glyphicon glyphicon-calendar"></span></span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="text-center col-xs-12">
+								<a id="zhlsBtn" class="btn_query btn btn-default">查询</a>
+							</div>
+							<input type="hidden" name="jszh" id="zhlsjszh">
+						</form>
+					</div>
+       <div class="container-fluid">
+              <div class="row search_result">
+	            <table class="table table-bordered table-hover skjsls" >
+	                <thead>
+	                    <tr>
+	                        <th>交易日期</th>
+	                        <th>交易时间</th>
+	                        <th dic-type="B1076">借贷标记</th>
+	                        <th>交易金额</th>
+	                        <th>账户余额</th>
+	                        <th>对方账户代号</th>
+	                        <th>对方账户名称</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                </tbody>
+            </table>
+        </div>
+         </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+	$(function(){
+		$(".jc :input").attr("disabled","disabled");
+		$(".ys :input").attr("disabled","disabled");
+        var tab = locationObj.getParams().tab;
+        if (tab) {
+            var i = parseInt(tab);
+            $(".ml-btn").removeClass("mlbtn-bg");
+            $(".ml-btn").eq(i).addClass("mlbtn-bg");
+            $(".biaodan").css("display", "none");
+            $(".biaodan").eq(i).css("display", "block");
+        }
+		var xydm = locationObj.getParams().xydm;
+		requestObj.ajaxServer(
+				requestObj.address.findOneblht,
+				{"xydm" : xydm},
+				function(data) {
+					 pluginObj.setFormValueById(data.body);
+                     $("[name=htrq]").val(formatDateStr(data.body.htrq));
+                     $("[name=htdqr]").val(formatDateStr(data.body.htdqr));
+                     $("#jszhkhh_htys").val(data.body.jszhkhh);
+                     $("#jszhhm_htys").val(data.body.jszh);
+                     $("#jszh_htys").val(data.body.jszhhm);
+                     $("#cdblf").val(data.body.hxqykhmc);
+                     $("#hkzhkhh_htys").val(data.body.hkzhkhh);
+                     $("#hkzhhm_htys").val(data.body.hkzhhm);
+                     $("#hkzh_htys").val(data.body.hkzh);
+                     $("#yszkzrje").val(numberToCurrency(data.body.yszkzrje));
+                     $("#gdfy").val(numberToCurrency(data.body.gdfy));
+                     $("#qtfy").val(numberToCurrency(data.body.qtfy));
+                     $("#ckje").val(numberToCurrency(data.body.ckje));
+                     $("#rzbl").val(data.body.rzbl);
+                     $("#blffl").val(data.body.blffl);
+                     $("#rzlv").val(data.body.rzlv);
+                     $("#yqlvsfbl").val(data.body.yqlvsfbl);
+                     $("#hkzhhm").val(data.body.hkzhhm);
+                     $("#hkzhkhh").val(data.body.hkzhkhh);
+				},
+				function() {}
+			)
+		// 加载合同附件
+		showHtfjList(xydm);
+		
+		showDzheList(xydm);
+		showLdhtList(xydm);
+		// 加载合同附件
+		function showHtfjList(xydm){
+			// 点击合同附件后调用方法
+			//$(".jbxx").eq(2).click(function() {
+				scWj();
+			//});
+			function scWj(){
+				$("#bcxxForm input[name='ywbh']").val(xydm);
+				requestObj.searchServer(
+					requestObj.address.wjscList,
+					"bcxxForm",
+					htfjFun
+					);
+			}
+			function htfjFun(data) {
+				 requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+	             requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+	             requestObj.initPager(
+	                     requestObj.address.wjscList,
+	                     htfjFun
+	             );
+				var wjList = data.body.data;
+				$(".htfj tbody").empty();
+				for(var i = 0; i < wjList.length; i++) {
+					$(".htfj tbody").append(
+						"<tr>" +
+						"<td>" + wjList[i].wjmc + "</td>" +
+						"<td>" + wjList[i].ext1 + "</td>" +
+						"<td>" + formatDateStr(wjList[i].crsj) + "</td>" +
+						"<td><a href='"+ requestObj.port+"common/file.do?q="+ wjList[i].id +"'>下载</a> <a href='javascript:void(0)' onclick='delwj(\"" + wjList[i].id + "\",this)'>删除</a></td>" +
+						"</tr>"
+					);
+				}
+			}
+		}
+
+		// 加载电子合同
+		function showDzheList(xydm){
+			// 点击电子合同调用方法
+			dzht();
+			function dzht(){
+				$("#dzheForm input[name='ywbh']").val(xydm);
+				$("#dzheForm input[name='wjlx']").val("0013");
+	            $("#dzheForm input[name='tzslx']").val("00");
+				requestObj.searchServer(
+					requestObj.address.dzhtList,
+					"dzheForm",
+					dzhtFun
+					);
+			}
+			function dzhtFun(data) {
+				 requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+	             requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+	             requestObj.initPager(
+	                     requestObj.address.dzhtList,
+	                     dzhtFun
+	             );
+				var dzList = data.body.data;
+				$(".dzht tbody").empty();
+				for(var i = 0; i < dzList.length; i++) {
+					$(".dzht tbody").append(
+						"<tr>" +
+						"<td>" + dzList[i].htmc + "</td>" +
+						"<td>" + formatDateStr(dzList[i].scsj) + "</td>" +
+						"<td>" + dzList[i].zxqyzt + "</td>" +
+						"<td> "+ isXz(dzList[i].wjid) +  
+						isQz(dzList[i].wjid,dzList[i].ywbh,dzList[i].id,dzList[i].zxqyzt) +
+						isTb(dzList[i].wjid, dzList[i].tzsbh, dzList[i].zxqyzt) +
+						"</tr>"
+					);
+				}
+			}
+		}
+		// 加载电子合同
+		function showLdhtList(xydm){
+			// 点击电子合同调用方法
+			ldht();
+			function ldht(){
+				$("#dzheForm input[name='ywbh']").val(xydm);
+				$("#dzheForm input[name='wjlx']").val("0014");
+	            $("#dzheForm input[name='tzslx']").val("01");
+				requestObj.searchServer(
+					requestObj.address.dzhtList,
+					"dzheForm",
+					dzhtFun
+					);
+			}
+			function dzhtFun(data) {
+				 requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+	             requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+	             requestObj.initPager(
+	                     requestObj.address.dzhtList,
+	                     dzhtFun
+	             );
+				var dzList = data.body.data;
+				$(".ldht tbody").empty();
+				for(var i = 0; i < dzList.length; i++) {
+					$(".ldht tbody").append(
+						"<tr>" +
+						"<td>流动资金贷款合同</td>" +
+						"<td>" + formatDateStr(dzList[i].scsj) + "</td>" +
+						"<td> "+ isXz(dzList[i].wjid) +  
+						"</tr>"
+					);
+				}
+			}
+		}
+		function isXz(wjid){
+			if(wjid){
+                return "<a href='" + requestObj.port + "common/file.do?q=" + wjid + "'>下载</a> <a target= '_blank' href='" + requestObj.port + "common/filePreview.do?q=" + wjid + "'>预览</a>";
+			}else{
+				return "";
+			}
+		}
+		function isQz(wjid,ywbh,id,zt){
+			if (wjid && zt == 2) {
+                // 1 已录入 2 待客户签约  3 待银行签约 4 已签约 
+                	return "<a href='javascript:void(0)' onclick='tzsqz(\"" + wjid + "\",\"" + ywbh + "\",\"" + id + "\")'>签章</a> <a href='javascript:void(0)' onclick='rzkhqz(\"" + "1" + "\",\"" + id + "\")'>拒绝签章</a>";
+            } else {
+                return "";
+            }
+		}
+		 function isTb(wjid, tzsbh, zt) {
+             if (wjid) {
+                 // 1 已录入 2 待客户签约  3 待银行签约 4 已签约 
+	                if(zt == 3 || zt == 4){
+	                	return "<a href='javascript:void(0)' onclick='tzsUpdate(\"" + wjid + "\",\"" + tzsbh + "\")'>更新</a>";
+	                }else{
+						return "";
+		                }
+             } else {
+                 return "";
+             }
+         }
+
+		//文件上传
+		$("#file").upload(requestObj.address.bbxxuploadfile, {
+			 ywlx : "0012"
+		}, function(file, id) {
+			if(file.type.toLowerCase() == '.jpg') {
+				$("#dis").html("上传成功:<img src='" + requestObj.port + "common/file.do?q=" + id + "' width=100 height=100>");
+			} else {
+				$("#dis").html("上传成功，文件名:" + file.name);
+			}
+		});
+		$("#smbc").click(function(){
+			var fs = [];
+			var files = $("#wjForm").getData().file;
+			if(!files){
+				pluginObj.alert("","请选择文件！");
+				return;
+			}
+			// 验证文件个数
+			if(!isArray(files)){
+				if(files == ""){
+					pluginObj.alert("","请等待文件上传完成！")
+					return;
+				}
+				fs[0] = files;
+			}else{
+				fs = files;
+			}
+			// 判断文件是否全部已上传
+			for(var i = 0; i < fs.length; i++){
+				if(fs[i] == ""){
+					pluginObj.alert("","请等待文件上传成功！")
+					return;
+				}
+			}
+			requestObj.ajaxServer(
+          		 requestObj.address.saveHtfj,
+          		 {
+              		"xydm" : $("input[name='xydm']").val(),
+          			"files" : fs,
+          			"xxsm" : $(".textlist").val()
+              		 },
+          		 function(data){
+		          		pluginObj.alert("","操作成功！");
+		          		$("#file-queue").empty();
+		          		$(".textList").val("");
+		          		$(".aleatF").hide();
+	             },
+          		 function(){}
+	        )
+		});
+		
+		function isArray(arg) {
+		    if (typeof arg === 'object') {
+		        return Object.prototype.toString.call(arg) === '[object Array]';
+		    }
+		    return false;
+		}
+
+
+
+		// 合同要素页面显示
+		function initHtys(){
+			htysPage("djjzlv","rzlvqxdc");
+			htysPage("rzlv","rzlvfdz");
+			htysPage("lxchfs","hxfs");
+		}
+		initHtys();
+		
+		var htysXydm = locationObj.getParams().xydm;
+		requestObj.ajaxServer(
+				requestObj.address.findOnehtys,
+				{"xydm" : htysXydm},
+				function(data) {
+					var htys = data.body.data[0];
+					pluginObj.setFormValueById(htys);
+					initHtys();
+					pluginObj.setFormValueByName(htys);
+					xsfsModify(htys.xyxsfs,htys.xsfsmc);
+				},
+				function() {}
+			)
+
+		
+	
+		/* $(".djjzlv").change(function(){
+			htysPage("djjzlv","rzlvqxdc");
+		});
+		$(".rzlv").change(function(){
+			htysPage("rzlv","rzlvfdz");
+		});
+		$(".lxchfs").change(function(){
+			htysPage("lxchfs","hxfs");
+		}); */
+		
+		// 合同要素页面
+		function htysPage(sel,name){
+			var lx = parseInt($("." + sel).val());
+			$("." + sel + "_qx").attr("disabled","disabled");
+			$("." + sel + "_qx").removeAttr("name");
+			$("." + sel + "_qx").eq(lx-1).removeAttr("disabled");
+			$("." + sel + "_qx").eq(lx-1).attr("name",name);
+		}
+
+		// 甲方拟采用信用销售方式向 公司
+		/* $("[name=a]").change(function(){
+			xsFun();
+		}); */
+
+		function xsFun(){
+			var fsName = document.getElementsByName("a");
+			for(var i = 0;i < fsName.length; i++){
+				 if(fsName[i].checked){
+					$(".xyxsfs").attr("disabled","disabled");
+					$(".xyxsfs").eq(i).removeAttr("disabled");
+					$("[name=xyxsfs]").val(i + 1);
+					$("[name=xsfsmc]").val($(".xyxsfs").eq(i).val());
+				}
+			}
+		}
+
+		// 获得信用方式值
+		function xsfsModify(xyxsfs,xsfsmc){
+			var fs = parseInt(xyxsfs);
+			$("[name=a]").eq(fs-1).attr("checked","checked");
+			$(".xyxsfs").attr("disabled","disabled");
+			$(".xyxsfs").eq(fs-1).removeAttr("disabled");
+			$(".xyxsfs").eq(fs-1).val(xsfsmc);
+		}
+
+		
+		// 调整页面高度
+	    $(".jbxx").click(function(){
+	    	autoHeight();
+	    	$(".aleatF").hide();
+		});
+	    $(".add").click(function() {
+			$(".aleatF").show();
+		})
+		$(".over").click(function() {
+			$(".aleatF").hide();
+		})
+		
+	});
+
+	// 删除文件
+	function delwj(id,a){
+		pluginObj.comfire("是否确认删除？",function(){
+			requestObj.ajaxServer(
+					 requestObj.address.deletewj,
+					 {
+						"id" : id
+				  		 },
+					 function(data){
+						//pluginObj.alert("","删除成功！");
+						$(a).parent().parent().remove();
+						pluginObj.alert("","删除成功");
+					},
+					function(){}
+			)
+			},function(){return false});
+	}
+	function savewj(ywbh,id,htmc){
+		requestObj.ajaxServer(
+				 requestObj.address.jrjgsaveTzs,
+				 {
+					"id" : id,
+					"ywbh" : ywbh,
+					"htmc" : htmc + ".pdf"
+			  		 },
+				 function(data){
+			  			pluginObj.alert("","操作成功");
+			  			location = "blht.htmlSxy?type=modify&tab=3&xydm=" + ywbh;
+				},
+				function(){}
+		)
+	}
+	 function rzkhqz(zt,id){
+  	   requestObj.ajaxServer(
+                 requestObj.address.updateTzsb,
+                 {
+                     "id": id,
+                     "zxqyzt": zt
+                 },
+                 function (data) {
+                    pluginObj.alert("", "操作成功");
+                    location = "blht.html"+ location.search +"&v=APP_VER&tab=3";
+                 },
+                 function () {
+                 }
+         )
+  }
+	function tzsqz(wjid,ywbh,id){
+		requestObj.ajaxServer(
+				 requestObj.address.dzhtQz,
+				 {
+					"id" : id,
+					"ywbh" : ywbh,
+					"wjid" : wjid
+			  		 },
+				 function(data){
+			  			pluginObj.alert("","操作成功");
+			  			location = "blhtSxy.html?v=APP_VER&type=modify&tab=3&xydm=" + ywbh;
+				},
+				function(){}
+		)
+
+	}
+	function tzsUpdate(wjid, tzsbh) {
+        requestObj.ajaxServer(
+                requestObj.address.updateTszByYTJ,
+                {
+                    "tzsbh": tzsbh,
+                    "wjid": wjid
+                },
+                function (data) {
+                   pluginObj.alert("", "操作成功");
+                   location = "blht.html"+ location.search +"&tab=3&v=APP_VER";
+                },
+                function () {
+                }
+        )
+
+    }
+</script>
+ <script>
+	$().ready(function() {
+		$("#htysForm").validate({
+			rules : {
+				tzsbh : {
+					required : true,
+					maxlength : 16
+				},
+				tzsbh1 : {
+					required : true,
+					maxlength : 16
+				},
+				tzsbh2 : {
+					required : true,
+					number : true
+				}
+			},
+		});
+
+});
+	</script>
+</body>
+</html>

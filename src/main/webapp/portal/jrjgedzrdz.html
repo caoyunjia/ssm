@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-额度管理-上下游授信额度准入</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <link href="css/select2.min.css" rel="stylesheet">
+    <script src="js/select2.min.js"></script>
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <script src="js/plugin/kkpager.min.js"></script>
+</head>
+<body>
+<div class="container m-content">
+    <form class="form form-horizontal" action="#" id="searchFrom">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">客户名称</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="qymc" name="qymc">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">客户类型</label>
+                <div class="col-md-8">
+                     <select class="form-control " id="khlx" name="khlx" dic-type="B1004" dic-blank=" ">
+                        <option vlaue=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                    <select class="form-control " id="zt" name="zt" dic-type="B1029" dic-blank=" ">
+                        <option vlaue=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">申请日期</label>
+                <div class="col-md-8">
+                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+                         data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" id="crsj" name="crsj"/>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center col-xs-12">
+                <a id="save" class="btn btn-default btn_query">查询</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="search_result container">
+   <div class="row">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>申请编号</th>
+                <th dic-type="B1038">客户类型</th>
+                <th>企业名称</th>
+                <th>申请日期</th>
+                <th dic-type="B1029">状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="kkpager"></div>
+    </div>
+</div>
+
+</body>
+<script>
+    //初始化日期插件
+    dataPiker();
+    //关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+    //    $(document).off('click.bs.dropdown.data-api');
+    //自动展开
+    $('.nav .dropdown').mouseenter(function () {
+        $(this).addClass('open');
+    });
+    //自动关闭
+    $('.nav .dropdown').mouseleave(function () {
+        $(this).removeClass('open');
+    });
+
+    $(function () {
+        requestObj.searchServer(
+                requestObj.address.zxjgedzrdz,
+                "searchFrom",
+                successFun
+        );
+        //进入页面默认查询数据
+        //给查询按钮绑定查询事件
+        $("#save").click(function () {
+            // alert("123");
+            requestObj.searchObj.postData.pageIndex = "1";
+            requestObj.searchServer(
+                    requestObj.address.zxjgedzrdz,
+                    "searchFrom",
+                    successFun
+            );
+        });
+        function successFun(data) {
+            requestObj.searchObj.totalPage = data.body.totalPageNo;//总页码
+            requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+            requestObj.initPager(
+                    requestObj.address.zxjgedzrdz,
+                    successFun
+            );
+            $(".table-bordered tbody").empty();
+            var listVo = data.body.data;
+            for (var i = 0; i < listVo.length; i++) {
+                $(".table-bordered tbody").append(
+                        "<tr><td>" + listVo[i].sqbh + "</td>" +
+                        "<td>" + rq(listVo[i].khlx) + "</td>" +
+                        "<td>" + rq(listVo[i].qymc) + "</td>" +
+                        "<td>" + formatDateStr8(listVo[i].crsj) + "</td>" +
+                        "<td>" + listVo[i].zt + "</td>" +
+                        "<td>" +
+                        "<a href='mymessage.html?khh=" + listVo[i].khh + "'>企业详情</a>&nbsp;&nbsp;" + spzt(listVo[i].zt,listVo[i].id,listVo[i].sqbh,listVo[i].khlx) +"</td>" +
+                        "</tr>"
+                )
+            }
+        }
+
+    })
+    function spzt(zt,id,sqbh,khlx){
+		if(zt == 01){
+			return "<a href='jrjgedzrsh.html?bussId=" + id + "&sqbh=" + sqbh + "&khlx=" + khlx + "'>审批</a>";
+		}
+		return "";
+    }
+
+    //01已录入未提交  02	已提交审核  03已审核通过  04已退回   05已拒绝否决
+
+    function rq(rq) {
+        if (!rq) {
+            return "";
+        }
+        return rq;
+    }
+
+ /*    function zt(zt) {
+        if (zt == 01) {
+            return "已录入未提交";
+        }
+        if (zt == 02) {
+            return "已提交审核";
+        }
+        if (zt == 03) {
+            return "已审核通过";
+        }
+        if (zt == 04) {
+            return "已退回";
+        }
+        if (zt == 05) {
+            return "已拒绝否决";
+        }
+    } */
+</script>
+
+</html>

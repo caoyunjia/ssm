@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-个人中心</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+
+    <!--jinlong css-->
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <style type="text/css">
+    	.form-control{padding:0px 5px;}
+    	.loada{
+    		width: 100px;
+		    line-height: 30px;
+		    display: inline-block;
+		    text-align: center;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    background: #DEECC2;
+    	}
+        .btn_query{
+            line-height: 37px;
+        }
+        .btn_query1{
+            line-height: 37px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container m-content">
+    <form class="form-horizontal row" action="#" style="" method="post" enctype="multipart/form-data" id="cwbbForm">
+        <div class="form-group row">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">客户名称</label>
+                <div class="col-md-8">
+                    <span id="khmc" style="vertical-align: -webkit-baseline-middle;"></span>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">类型</label>
+                <div class="col-md-8">
+                    <select class="form-control"  dic-type="B1015" dic-selected=" "  name="bb" id="bb" disabled="disabled">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">年份</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="nf" placeholder="" name="nf" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">季度</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="jd" name="jd"  dic-type="B1013" dic-selected=" " disabled="disabled">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+           <div class="col-xs-6">
+                <label class="col-md-4 control-label">报表类型</label>
+                <div class="col-md-8">
+                    <select class="form-control"  name="bbmb" id="bbmb" dic-type="B1014" dic-selected=" " disabled="disabled">
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-sm-4 control-label">报表名称</label>
+               <div class="col-md-8">
+                    <input type="test" class="form-control"  placeholder="" id="bbmc" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-xs-3 loadingbtn">
+                     <a href="javascript:void(0)" data-id="" class="btn_query1 btn btn-default xz" id="xiazai1" style="width:220px"><img src="img/dqwz.png" style="width:20px; height:20px;"/>1234资产负债表</a>
+                </div>
+                <div class="col-xs-3 loadingbtn">
+                     <a href="javascript:void(0)" data-id="" class="btn_query1 btn btn-default xz" id="xiazai2" style="width:220px"><img src="img/dqwz.png" style="width:20px; height:20px;"/>1234利润表</a>
+                </div>
+                <div class="col-xs-3 loadingbtn">
+                     <a href="javascript:void(0)" data-id="" class="btn_query1 btn btn-default xz" id="xiazai3" style="width:220px"><img src="img/dqwz.png" style="width:20px; height:20px;"/>1245现金流量表</a>
+                </div>
+                <div class="col-xs-3 loadingbtn">
+                     <a href="javascript:void(0)" data-id="" class="btn_query1 btn btn-default xz" id="xiazai4" style="width:220px"><img src="img/dqwz.png" style="width:20px; height:20px;"/>2345补充信息表</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a type="button" href="javascript:history.go(-1)" id="" class="btn_query btn btn-default">返回</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function(){
+        //初始化日期插件
+        dataPiker();
+        var id = locationObj.getParams().id;
+        var khh = locationObj.getParams().khh;
+        if(khh == "undefined"){
+			khh = "";
+        }
+        requestObj.ajaxServer(
+          		 requestObj.address.findCwbbAndWj,
+          		 {
+					"id" : id
+              		 },
+          		 function(data){
+                  		var cwbb = data.body.cwbbvo;
+                  		var wjlist = data.body.wjlist;
+                  		$("#bbmc").val(cwbb.bbmc); 
+                  		$("#nf").val(cwbb.nf); 
+                  		$("#bbmb").val(cwbb.bbmb);
+                  		$("#jd").val(cwbb.jd);
+                  		$("#bb").val(cwbb.bb);
+                  		$("#xiazai1").html(wjlist[0].wjmc);
+                  		$("#xiazai1").attr("data-id",wjlist[0].id);
+                  		$("#xiazai2").html(wjlist[1].wjmc);
+                  		$("#xiazai2").attr("data-id",wjlist[1].id);
+                  		$("#xiazai3").html(wjlist[2].wjmc);
+                  		$("#xiazai3").attr("data-id",wjlist[2].id);
+                  		$("#xiazai4").html(wjlist[3].wjmc);
+                  		$("#xiazai4").attr("data-id",wjlist[3].id);
+                  		
+	             },
+          		 function(){}
+        )
+        
+        // 得到客户名称findKhmc
+        requestObj.ajaxServer(
+          		 requestObj.address.findKhmc,
+          		 {
+						"khh" : khh
+              		 },
+          		 function(data){
+          			$("#khmc").html(data.body.qymc);
+	             },
+          		 function(){}
+        )
+        
+        $(".xz").click(function(){
+            var id = $(this).data("id");
+            if(!id){
+				return;
+            }
+            $(this).attr("href",requestObj.port+"common/file.do?q="+id);
+	        });
+    });
+    
+    //关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+    //    $(document).off('click.bs.dropdown.data-api');
+    //自动展开
+    $('.nav .dropdown').mouseenter(function(){
+        $(this).addClass('open');
+    });
+    //自动关闭
+    $('.nav .dropdown').mouseleave(function(){
+        $(this).removeClass('open');
+    });
+</script>
+</body>
+</html>

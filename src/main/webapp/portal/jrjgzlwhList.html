@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-核心企业查看</title>
+    <!-- Bootstrap -->
+    <link href="css/select2.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <script src="js/plugin/jquery.validate.js"></script>
+    <script src="js/plugin/validate-extend.js"></script>
+</head>
+
+<body>
+	<body>
+	<div class="search_input container m-content" >
+		<form class="form-horizontal row" id="searchFrom" role="form" onsubmit="return false;">
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">企业名称</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="qymc" name="qymc">
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">公司类型</label>
+					<div class="col-md-8">
+						<select class="form-control" id="gslx" name="gslx" dic-type="B1010" dic-blank=" ">
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<button type="button" id="searchBtn" class="btn_query btn btn-default">查询</button>
+				</div>
+			</div>
+			<input type="hidden" name="glxx_gllx" value="03">
+			<input type="hidden" name="glxx_glkhh" value="glxx_glkhh">
+		</form>
+	</div>
+
+	<div class="container" id="">
+		<form class="row form" action="#" id="FormId">
+			<!-- <div class="operate">
+				<a href="hxqyAddSxy.html?v=APP_VER" class="more">新增</a>
+			</div> -->
+			<div class="search_result">
+				<table class="table-bordered" style="width:100%;">
+					<thead>
+					<tr>
+						<th>企业名称</th>
+						<th>法定代表人</th>
+						<th dic-type="B1010">公司类型</th>
+						<th>注册资本（元）</th>
+						<!-- <th>基本户账号</th> -->
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				<div id="kkpager"></div>
+			</div>
+		</form>
+	</div>
+</body>
+<script>
+    $(document).ready(function () {
+    requestObj.searchServer(
+	        requestObj.address.findGlxxVo,
+	        "searchFrom",
+	        successFun
+	);
+  //给查询按钮绑定查询事件
+    $("#searchBtn").click(function(){
+        requestObj.searchObj.postData.pageIndex = "1";
+        requestObj.searchServer(
+                requestObj.address.findGlxxVo,
+                "searchFrom",
+                successFun
+        );
+    });
+
+	function successFun(data){
+		 requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+         requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+         requestObj.initPager(
+                 requestObj.address.findGlxxVo,
+                 successFun
+         ); 
+		$(".table-bordered tbody").empty();
+		var list = data.body.data;
+		for(var i = 0; i < list.length; i++){
+    		 $(".table-bordered tbody").append(
+                 "<tr><td>" + list[i].qymc  + "</td>" +
+                 "<td>" + list[i].fddbr + "</td>" +
+                 "<td>" + list[i].gslx + "</td>" +
+                 "<td>" + list[i].zczb + "</td>" +
+                 "<td><a href='sxyzlck.html?khh=" + list[i].khh + "'>查看</a> <a href='jrjgxgqyzl.html?khh=" + list[i].khh + "&add=2'>修改</a> </td>" +
+                 "</tr>"
+             )
+		}
+	}
+    //初始化日期插件
+    dataPiker(); 
+    //关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+    //    $(document).off('click.bs.dropdown.data-api');
+    //自动展开
+    $('.nav .dropdown').mouseenter(function () {
+        $(this).addClass('open');
+    });
+    //自动关闭
+    $('.nav .dropdown').mouseleave(function () {
+        $(this).removeClass('open');
+    });
+});
+</script>
+
+<script>
+	$().ready(function() {
+		/*$("#formId").validate({
+			rules : {
+				sxed : {
+					number : true
+				},
+				edbh : {
+					maxlength : 32
+				}
+			},
+		});*/
+
+		
+
+		});
+	</script>
+
+
+</html>

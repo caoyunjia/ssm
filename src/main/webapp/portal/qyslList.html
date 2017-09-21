@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-业务办理-企业受理</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/new.css?v=APP_VER"/>
+    <link rel="stylesheet" type="text/css" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+</head>
+<body>
+	<div class="search_input container m-content">
+    <form class="form-horizontal form" id="searchFrom" role="form" onsubmit="return false;">
+        <div class="row form-group">
+            <div class=" col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                    <select name="zt" class="form-control" id="zt" dic-type="B1078" dic-blank=" ">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class=" col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">融资方名称</label>
+                <div class="col-md-8">
+                    <input name="rzfmc" class="form-control" id="rzfmc"  dic-blank=" "/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a id="searchBtn" class="btn btn-default btn_query">查询</a>
+            </div>
+        </div>
+    </form>
+</div>
+	<div class="container" id="">
+			<form class="row form" action="#" id="FormId">
+				<div class="search_result">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+		                        <th>申请编号</th>
+		                        <th>受理编号</th>
+		                        <th>融资方名称</th>
+		                        <th>法定代表人</th>
+		                        <th dic-type="B1078" >状态</th>
+		                        <th>与核心企业年交易额(元)</th>
+		                        <th>操作</th>
+		                    </tr>
+						</thead>
+						<tbody id="slxx">
+                		</tbody>
+					</table>
+				<div id="kkpager"></div>
+				</div>
+			</form>
+		</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+
+<script type="text/javascript">
+//查询额度信息
+$(document).ready(function(){
+    //初始化日期插件
+    dataPiker();
+    requestObj.searchServer(
+            requestObj.address.jsySLzrsl,
+           "searchFrom",
+            successFun
+    );
+  //进入页面默认查询数据
+    function successFun(data){
+    	requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+        requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+        requestObj.initPager(
+                requestObj.address.jsySLzrsl,
+                successFun
+            );
+		$("#slxx").empty();
+		var listVo = data.body.data;
+        for(var i = 0 ; i < listVo.length ; i ++ ){
+            $("#slxx").append(
+                    "<tr><td>" + noNull(listVo[i].sqbh) + "</td>" +
+                    "<td>" + noNull(listVo[i].slbh) + "</td>" +
+                    "<td>" + noNull(listVo[i].rzfmc) + "</td>" +
+                    "<td>" + noNull(listVo[i].fddbr) + "</td>" +
+                    "<td>" + noNull(listVo[i].zt) + "</td>" +
+                    "<td>" + numberToCurrency(listVo[i].yhxqynjye) + "</td>" +
+                    "<td>"
+                    + slzt(listVo[i].zt,listVo[i].slbh)+
+                    "</tr>")
+        }
+    }
+    function slzt(zt,slbh){
+			if(zt==0){
+				return "<a href='qyslxq.html?slbh="+ slbh +"'>详情</a><a href='qyslsp.html?slbh="+ slbh +"'>受理</a></td>";
+				}else{
+					return "<a href='qyslxq.html?slbh="+ slbh +"'>详情</a></td>";
+				}
+        }
+
+    $("#searchBtn").click(function () {
+    	$("#searchFrom").submit(false);
+		if(!$('#searchFrom').valid()){
+			return;
+		}
+        requestObj.searchObj.postData.pageIndex = "1";
+        requestObj.searchServer(
+                requestObj.address.jsySLzrsl,
+               "searchFrom",
+                successFun
+        );
+    });
+
+    //飞空验证
+    function noNull(sj){
+    	if(!sj){
+    		return "";
+    	}
+    	return sj;
+    }    
+});
+</script>
+
+</body>
+</html>

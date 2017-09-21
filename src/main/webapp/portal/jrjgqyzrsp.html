@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-额度管理-核心企业授信额度查看-审批详情</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+		<script src="js/plugin/jquery.validate.js"></script>
+    	<script src="js/plugin/validate-extend.js"></script>
+	</head>
+	<body>
+		<div class="container m-content">
+			<form class="form-horizontal row" action="#" id="formId">
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-xs-4 control-label">申请编号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" readonly="readonly" id="sqbh" name="sqbh" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-xs-4 control-label">客户号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" readonly="readonly" id="khh" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-xs-4 control-label">企业名称</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" readonly="readonly" id="qymc" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-xs-4 control-label">申请日期</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" readonly="readonly" id="crsj" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-md-4 control-label">额度生效日期</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" readonly="readonly" id="edsxrq" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-md-4 control-label">额度结束日期</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" readonly="readonly" id="edjsri" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-xs-4 control-label">授信额度(元)</label>
+						<div class="col-md-8">
+							<input type="text"  class="form-control" id="zrje" data-type="currency" name="zrje" maxlength="20">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-12">
+						<label class="col-md-2 control-label">审批意见</label>
+						<div class="col-md-10 pl10">
+						<textarea type="textArea" class="form-control" placeholder="字数不能超过100字" maxlength="100" id="spyj" name="spyj" ></textarea>
+					</div>
+				</div>
+			</div>
+				
+
+				<div class="text-center col-xs-12" style="margin-top: 30px; margin-bottom: 50px;">
+					<a href="#" type="button" id="searchBtn" class="btn_query btn btn-default">返回</a>
+					<a type="submit" class="btn_query btn btn-default" onclick="shxx('03')">复核通过</a>
+					<a type="submit"class="btn_query btn btn-default" onclick="shxx('04')">复核不通过&nbsp;</a>
+				</div>
+			</form>
+		</div>
+
+		<script>
+			var taskId = "";
+			var bussId = "";
+			$(document).ready(function() {
+				//初始化日期插件
+				dataPiker();
+				taskId = locationObj.getParams().taskId;
+				bussId = locationObj.getParams().bussId;
+				// 得到客户名称findKhmc
+				requestObj.ajaxServer(
+					requestObj.address.findzrxx, {
+						"id": bussId
+					},
+					function(data) {
+						$("#khh").val(data.body.khh);
+						$("#sqbh").val(data.body.sqbh);
+						$("#qymc").val(data.body.qymc);
+						$("#edsxrq").val(formatDateStr(data.body.edsxrq));
+						$("#edjsri").val(formatDateStr(data.body.edjsri));
+						$("#zrje").val(numberToCurrency(data.body.zrje));
+						$("#crsj").val(formatDateStr8(data.body.crsj));
+					},
+					function() {}
+				)
+				$("#searchBtn").click(function(){
+	        	history.go(-1);
+
+			});
+			});
+
+			function shxx(lx) {
+				if(lx == "03"){
+					$("#formId").submit(false);
+					if(!$('#formId').valid()){
+						return;
+					}
+					shxxFun(lx);
+				}
+				if(lx == "04"){
+					pluginObj.comfire("确认该企业准入复核不通过？",function(){
+						 shxxFun(lx);
+					 },function(){
+						 
+					});
+				}
+				
+			}
+			function shxxFun(lx){
+				
+				requestObj.ajaxServer(
+					requestObj.address.jsyqyzrfh,
+					 {
+						"id": bussId,
+						"sqbh": $("#sqbh").val(),
+						"zt": lx,
+						"taskId":taskId,
+						"zrje": $("#zrje").val(),
+						"edsxrq": $("#edsxrq").val(),
+						"edjsri": $("#edjsri").val(),
+						"spyj": $("#spyj").val()
+					},
+					function(data) {
+						pluginObj.alert("","操作成功");
+						location = "jrjgsy.html?v=APP_VER";
+					},
+					function() {}
+				)
+			}
+
+		 $().ready(function() {
+	    	  $("#formId").validate({
+	    	    rules: {
+	    	      spyj: {
+	    	    	required: true,
+	    	    	maxlength: 300
+	    	      }
+	    	    },
+	    	});
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-还款结果确认</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container m-content">
+    <form class="form form-horizontal" action="#" id="formId">
+        <div class="row form-group">
+            <div class=" col-xs-6">
+                <label class="col-md-4 control-label">融资申请编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="rzsqbh" name="rzsqbh" placeholder=""
+                           readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资金额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="rzje" name="rzje" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class=" col-xs-6">
+                <label class="col-md-4 control-label">放款金额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="fkje" name="fkje" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">放款日期</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="fkrq" name="fkrq" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">金融机构名称</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="jrjgmc" name="jrjgmc" placeholder=""
+                           readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-md-4 control-label">核心企业名称</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="hxqymc" name="hxqymc" placeholder=""
+                           readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">利率(%)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="lv" name="lv" readonly="readonly" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资期限(天)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="rzqx" name="rzqx" readonly="readonly" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">还款金额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="je" name="je" readonly="readonly" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">还款日期</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="hkrq" readonly="readonly" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center col-xs-12">
+                <a href="javascript:void(0)" class="btn btn-default btn_query" onclick="history.go(-1)">返回</a>
+            	<a id="save" class="btn btn-default btn_query">确认</a>
+            </div>
+        </div>
+    </form>
+</div>
+<form id="searchFrom">
+    <input type="hidden" name="" id="cwbbLx" value="">
+</form>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+
+<script>
+    $(document).ready(function () {
+        //初始化日期插件
+        var id = id = locationObj.getParams().id;
+        dataPiker();
+        requestObj.ajaxServer(
+                requestObj.address.jrjghkjgxx,
+                {
+                    "id": id
+                },
+                function (data) {
+                    $("#rzsqbh").val(data.body.rzsqrq);
+                    $("#rzje").val(numberToCurrency(data.body.rzje));
+                    $("#fkje").val(numberToCurrency(data.body.fkxxVo.fkje));
+                    $("#fkrq").val(formatDateStr8(data.body.fkxxVo.fkrq));
+                    $("#jrjgmc").val(data.body.jrjgmc);
+                    $("#hxqymc").val(data.body.hxqykhmc);
+                    $("#lv").val(data.body.lv);
+                    $("#rzqx").val(data.body.rzqx);
+                    $("#je").val(numberToCurrency(data.body.je));
+                    $("#hkrq").val(formatDateStr8(data.body.hkrq));
+                },
+                function () {
+                }
+        );
+
+        $("#save").click(function () {
+            requestObj.ajaxServer(
+                    requestObj.address.jrjghkjgqrUpdate,
+                    {
+                        "id": id,
+                        "zt": "03"
+                    },
+                    function (data) {
+                        pluginObj.alert("","操作成功！")
+                        location = "jrjghkjgqr.html?v=APP_VER";
+                    },
+                    function () {
+                    }
+            );
+
+        });
+    });
+
+</script>
+</body>
+</html>

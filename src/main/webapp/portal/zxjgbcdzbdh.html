@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-融资管理-补充电子保单号</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/new.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+		<script src="js/plugin/jquery.validate.js"></script>
+    	<script src="js/plugin/validate-extend.js"></script>
+	</head>
+	<body>
+		<div class=" container m-content">
+			<form class="form-horizontal row"  id="searchFrom" role="form" onsubmit="return false;">
+				<div class="row form-group">
+                	<div class="col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">融资申请编号</label>
+						<div class="col-md-8">
+							<input class="form-control" id="sqbh" name="sqbh" type="text" maxlength="8" placeholder="" readonly="readonly">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">客户名称</label>
+						<div class="col-md-8">
+							<input class="form-control" id="khh" name="khh" type="text" maxlength="8" placeholder="" readonly="readonly">
+						</div>
+					</div>
+            	</div>
+				<div class="row form-group">
+                	<div class=" col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">核心企业客户名称</label>
+						<div class="col-md-8">
+							<input class="form-control" id="hxqykhh" name="hxqykhh" type="text" maxlength="8" placeholder="" readonly="readonly">
+						</div>
+					</div>
+					<div class=" col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">融资金额(元)</label>
+						<div class="col-md-8">
+							<input class="form-control" id="rzje" name="rzje" type="text" data-type="currency" maxlength="8" placeholder="" readonly="readonly">
+						</div>
+					</div>
+            	</div>
+				<div class="row form-group">
+                	<div class=" col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">承保金额(元)</label>
+						<div class="col-md-8">
+							<input class="form-control" id="cbje" name="cbje" type="text" data-type="currency" maxlength="8" placeholder="" readonly="readonly">
+						</div>
+					</div>
+					<div class=" col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">电子保单号</label>
+						<div class="col-md-8">
+							<input class="form-control" id="dzbdh" name="dzbdh" type="text" maxlength="8" placeholder="">
+						</div>
+					</div>
+            	</div>
+				<div class="text-center col-xs-12">
+					<a id="save1" class="btn_query btn btn-default">确认修改</a>
+					<a id="save" class="btn_query btn btn-default" onclick="history.go(-1)">返回</a>
+				</div>
+			</form>
+		</div>
+		<form id="searchFrom">
+			<input type="hidden" name="" id="cwbbLx" value="">
+		</form>
+		<script>
+			$(document).ready(function() {
+				//判断是否为超管
+				var postData1 = {}
+				requestObj.ajaxServer(requestObj.address.jsyqueryLx, postData1, function(data, postData1) {
+						if(data.body.data[0].lx == 1) {
+							$("#sp").prop("hidden", false);
+						} else {
+							$("#sp").prop("hidden", true);
+						}
+					})
+					//初始化日期插件
+				dataPiker();
+				var vo = locationObj.getParams();
+				var sqbh = vo.sqbh;
+				$("#sqbhid").val(sqbh);
+				requestObj.ajaxServer(
+					requestObj.address.jsySqRzsqYszkxxOn, {
+						"sqbh": sqbh
+					},
+					function(data) {
+						$("#sqbh").val(data.body.sqbh);
+						$("#khh").val(data.body.qymc);
+						$("#hxqykhh").val(data.body.hxqykhmc);
+						$("#rzje").val(numberToCurrency(data.body.rzje));
+						$("#cbje").val(numberToCurrency(data.body.cbje));
+						$("#dzbdh").val(data.body.dzbdh);
+					}
+				);
+				$("#save1").click(function() {
+					$("#searchFrom").submit(false);
+					if(!$('#searchFrom').valid()){
+						return;
+					}
+					requestObj.ajaxServer(
+							requestObj.address.jsyKhBdxxUpdate, {
+								"sqbh": $("#sqbh").val(),
+								"dzbdh": $("#dzbdh").val(),
+								"pageSize": 10,
+								"pageIndex": 1
+							},
+							function(data) {
+								pluginObj.alert("", "操作成功");
+								location="zxjgrzxxcx.html?v=APP_VER"
+							},
+							successFun
+						)
+						//requestObj.searchObj.postData.pageIndex = "1";
+				});
+				var successFun = function(data, postData) {};
+			});
+			//关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+			//    $(document).off('click.bs.dropdown.data-api');
+			//自动展开
+			$('.nav .dropdown').mouseenter(function() {
+				$(this).addClass('open');
+			});
+			//自动关闭
+			$('.nav .dropdown').mouseleave(function() {
+				$(this).removeClass('open');
+			});
+		</script>
+		 <script>
+	$().ready(function() {
+		$("#searchFrom").validate({
+			rules : {
+				dzbdh : {
+					required : true,
+					maxlength : 32
+				}
+			},
+		});
+
+		});
+	</script>
+	</body>
+</html>

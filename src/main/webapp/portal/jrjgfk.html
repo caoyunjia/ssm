@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-融资申请查询/办理</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body style="padding-bottom: 70px">
+<div class="container m-content">
+    <form class="form form-horizontal" action="#" id="formId" style="">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label" >申请编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="sqbh" name="sqbh" readonly="readonly" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">核心企业</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="hxqykhmc"  name="hxqykhmc" readonly="readonly" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">客户名称</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="qymc" name="qymc" readonly="readonly" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资产品</label>
+                <div class="col-md-8">
+                	<select name="rzcp" class="form-control" id="rzcp" dic-type="B1039" dic-blank=" " disabled="disabled" readonly></select>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">应收账款总笔数</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="fpzs" name="fpzs" readonly="readonly" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-md-4 control-label">应收账款总金额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="yszkje" name="yszkje" data-type="currency" readonly="readonly" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-md-4 control-label">申请金额(元)</label>
+                 <div class="col-md-8">
+                    <input type="text" class="form-control" id="sqje" name="sqje" data-type="currency" readonly="readonly" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">承保金额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="cbje" data-type="currency" name="cbje" placeholder="" readonly="readonly" >
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class=" col-xs-6">
+                <label class="col-md-4 control-label">融资金额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="rzje" data-type="currency" name="rzje" readonly="readonly" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">利率(%)</label>
+                <div class="col-md-8">
+                      <input type="text" class="form-control" id="lv" placeholder="" readonly="readonly" readonly="readonly" value="">
+                      <!--<input type="text" class="form-control" id="KHXKZH" placeholder="" >-->
+
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">期限(天)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="rzqx" name="rzqx" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">增信机构</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="zxjgmc" name="zxjgmc" readonly="readonly" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+           <div class="col-xs-6">
+                <label class="col-md-4 control-label">已放款金额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="yfkje" data-type="currency" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6 isfk" style="display: none">
+                <label class="col-md-4 control-label">放款日期</label>
+                <div class="col-md-8">
+                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" id="fksj" name="fksj" />
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+             <div class="col-xs-6 isfk" style="display: none">
+                <label class="col-md-4 control-label">放款金额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="fkje" data-type="currency" name="fkje"  readonly placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6 isfk" style="display: none">
+                <label class="col-md-4 control-label">下柜编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="xgbh" name="xgbh" placeholder="" >
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+        	<div class="col-xs-6 isfk" style="display: none">
+                <label class="col-md-4 control-label">主合同额度（元）</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="hted" name="hted" data-type="currency" placeholder="" >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+ 		<div class="text-center col-xs-12">
+ 			<a class="btn btn-default btn_query" href="javascript:void(0)" onclick="history.go(-1)">返回</a>
+            <a id="save" class="btn btn-default btn_query isfk" style="display: none">放款</a>
+        </div>
+        </div>
+        <input type="hidden" id="khh">
+        <input type="hidden" id="mobile">
+        <input type="hidden" id="fkid">
+        <input type="hidden" id="glxybh">
+    </form>
+</div>
+<!--信息确认-->
+<div id="xgxxConfirm" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content"></div>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<script src="js/plugin/kkpager.min.js"></script>
+<script>
+var sqbh = locationObj.getParams().sqbh;
+    $(document).ready(function(){
+    	//$(".isfk").hide();
+        //初始化日期插件
+        dataPiker();
+        requestObj.ajaxServer(
+                requestObj.address.jsySqRzsqVOById,
+                {
+                    "sqbh" : sqbh,
+                },
+                function(data){
+                    var rzje = data.body.rzje;
+                    var fkje = data.body.fkje;
+                    var flag = data.body.flag;
+                    $("#sqbh").val(data.body.sqbh);
+                    $("#hxqykhmc").val(data.body.hxqykhmc);
+                    $("#qymc").val(data.body.qymc);
+                    $("#rzcp").val(data.body.rzcp);
+                    $("#fpzs").val(data.body.fpzs);
+                    $("#yszkje").val(numberToCurrency(data.body.yszkje));
+                    $("#sqje").val(numberToCurrency(data.body.sqje));
+                    $("#lv").val(data.body.lv);
+                    $("#rzje").val(numberToCurrency(rzje));
+                    $("#cbje").val(numberToCurrency(data.body.cbje));
+                    $("#rzqx").val(data.body.rzqx);
+                    $("#zxjgmc").val(!data.body.zxjgmc ? "无" : data.body.zxjgmc);
+					$("#yfkje").val(numberToCurrency(fkje));
+					$("#fkje").val(numberToCurrency(rzje));
+					$("#khh").val(data.body.khh);
+					$("#glxybh").val(data.body.glxybh);
+					$("#mobile").val(data.body.mobile);
+					if(flag=="0"){
+						$(".isfk").show();
+					}
+					isFk();
+                },
+                function(){}
+        );
+	function isFk(){
+        $("#save").click(function(){
+        	var glht = $("#glxybh").val();
+    		if(!glht){
+    			pluginObj.alert("","该融资申请未关联保理合同，无法完成放款，请确认！");
+    			return;
+    		}
+        	$("#formId").submit(false);
+			if(!$('#formId').valid()){
+				return;
+			}	
+		pluginObj.comfire("请确认信息是否输入正确！<br>放款时间：【" + $("#fksj").val() + "】<br>下柜编号：【"+ $("#xgbh").val() +"】<br>主合同额度：【"+ $("#hted").val() +"元】",function(){
+        	requestObj.ajaxServer(
+                    requestObj.address.jsySqRzsqfkdj,
+                    {
+                        "sqbh" : sqbh,
+                        "fkje" : $("#fkje").val(),
+                        "fksj" : $("#fksj").val(),
+                        "xgbh" : $("#xgbh").val(),
+                        "hted" : $("#hted").val()
+                    },
+                    function(data){
+                        if(!data.body){
+    						pluginObj.alert("","已超出融资金额！");
+                        }else{
+                        	//pluginObj.alert("","放款成功！");
+                        	//location = 'xgxxConfirmModal.html?v=APP_VER';
+                        	$("#fkid").val(data.body.id);
+                        	$("#xgxxConfirm").modal({
+                                remote:'./xgxxConfirmModal.html?v=APP_VER',
+                                backdrop:'static'
+                            });
+                        }
+                    },
+                    function(){}
+            );
+		},function(){});
+
+      });
+	}
+
+ });
+    
+    $('#xgxxConfirm').on('shown.bs.modal', function () {
+        var fkje = $("#fkje").val();
+        var qymc = $("#qymc").val();
+        var xgbh = $("#xgbh").val();
+        var rzkhh = $("#khh").val();
+        var fkid = $("#fkid").val();
+        var glxybh = $("#glxybh").val();
+        //根据下柜编号获取支付方式
+        requestObj.ajaxServer(
+                requestObj.address.getXgxxDetail,
+                {
+                    "id": xgbh
+                },
+                function (data) {
+                    var xgVO = data.body;
+                    $("#fkzflx").val(xgVO.fkzflx);
+                }
+        );
+        //根据申请编号获取保理合同信息
+        requestObj.ajaxServer(
+                requestObj.address.findOneblht,
+                {
+                    "xydm": glxybh
+                },
+                function (data) {
+                    var blhtVO = data.body;
+                    $("#jszh").val(blhtVO.jszh);
+                    $("#skrmc").val(blhtVO.skrmc);
+                    $("#skrzh").val(blhtVO.skrzh);
+                }
+        );  
+           
+        $("#xfkje").val(numberToCurrency(fkje));
+        $("#rzqy").val(qymc);
+        $(this).find("form").validate({           
+            rules: {
+                verifyCode: {
+                    required: true,
+                    minlength: 6
+                },
+                picVC : {
+					required : true
+				}
+            },
+            messages: {
+                verifyCode: {
+                    required: "请输入验证码",
+                    minlength: "验证码长度是6位"
+                },
+                picVC : {
+					required : ""
+				}
+            }
+        });
+
+        //下柜信息确认
+        $("#submit").click(function () {
+            if (!$('#xgxxForm').valid()) {
+                return;
+            }
+            var fkzflx = $("#fkzflx").val();
+            if(fkzflx==1){
+            	pluginObj.alert("","暂不支持委托支付");
+            	return;
+            	//$(".isxs").show();//支持委托支付
+            }
+            requestObj.ajaxServer(
+                    requestObj.address.jsySqRzsqfk,
+                    {
+						"xgbh":xgbh,
+						"sqbh":sqbh,
+						"khh":rzkhh,
+						"fkje":fkje,
+						"fkid":fkid
+                    },
+                    function (data) {
+                        pluginObj.alert("", "放款成功");
+                        window.location = "jrjgrzsqcx.html?v=APP_VER";
+                    },
+                    function () {
+                        pluginObj.alert("", "放款失败！")
+                    }
+            );
+        });
+        $("#cancel").click(function(){
+			window.location="jrjgrzsqcx.html?v=APP_VER";
+        });
+        // 银行卡格式  四位数字后加一个空格
+       /*  $(function () {
+            var oT = document.getElementById('zh');
+            oT.onkeyup = function () {
+                this.value = this.value.replace(/\s/g, '').replace(/(\d{4})(?=\d)/g, "$1 ");
+            };
+        }); */
+    });
+    //发送短信验证码
+    function sendSmsRealName() {
+        var $this = $(this);
+        if ($this.data("disable")) {
+            return;
+        }
+        var mobile = $("#mobile").val();
+        var picVC = $("#picVC").val();
+        if (!picVC) {
+            pluginObj.alert("", "请输入图片验证码！")
+            return "";
+        }
+        var time = 30;
+        var origtext = $("#sendValidCode").text();
+        //发送等待
+        requestObj.ajaxServer(requestObj.address.sendSmsRealName, {dlzh: mobile}, function (data) {
+            $("#sendValidCode").text("发送成功(" + time + "秒)");
+            $("#sendValidCode").attr("disabled", true);
+            var t = setInterval(function () {
+                $("#sendValidCode").text("发送成功(" + (--time) + "秒)");
+            }, 1000);
+            setTimeout(function () {
+                clearInterval(t);
+                $("#sendValidCode").text(origtext);
+                $("#sendValidCode").attr("disabled", false);
+            }, time * 1000);
+        });
+    }
+</script>
+<script type="text/javascript">
+		 $().ready(function() {
+	    	  $("#formId").validate({
+	    	    rules: {
+	    	      fkje: {
+	    	        required: true,
+	    	        number:true,
+	    	        min:0.01
+	    	      },
+	    	      fksj: {
+	    	        required: true,
+	    	        isDate : true
+	    	      },
+	    	      xgbh: {
+		    	        required: true
+		    	  },
+		    	  hted:{
+		    		  required: true,
+		    		  number:true,
+		    		  min:0.01
+			   	  }
+	    	    }
+	    	});
+			});	
+		</script>
+</body>
+</html>

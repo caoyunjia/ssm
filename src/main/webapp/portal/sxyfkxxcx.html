@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-上下游-放款信息查询</title>
+
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <!-- HTML5 shim and Respond.js for IE6 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+</head>
+<body>
+<div class="container m-content">
+    <!--放款信息查询-->
+    <form class="form-horizontal">
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">融资申请编号</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">核心企业名称</label>
+                    <div class="col-md-8">
+                        <select name="" id="" class="form-control">
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                <select class="form-control" id="zt" name="zt" dic-type="B1027" dic-blank=" ">
+                    <option vlaue=""></option>
+                </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button class="btn_query btn btn-default">查询</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--客户查询列表-->
+    <div class="container m-content info_list search_result">
+        <form class="form row">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>融资申请编号</th>
+                    <th>融资金额(元)</th>
+                    <th>放款金额(元)</th>
+                    <th>放款日期</th>
+                    <th>核心企业名称</th>
+                    <th>金融机构名称</th>
+                    <th dic-type="B1026">状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody class="data_table" id="#fkxx">
+                </tbody>
+            </table>
+        </form>
+
+        <ul class="news_list"></ul>
+        <div id="kkpager"></div>
+    </div>
+
+
+<script>
+    $(document).ready(function () {
+    	 // 放款信息查询
+        requestObj.searchServer(
+                requestObj.address.jsyFkFind,
+               "searchFrom",
+                successFun
+        );
+      //进入页面默认查询数据
+        function successFun(data){
+    		$("#fkxx").empty();
+    		var listVo = data.body.data;
+            for(var i = 0 ; i < listVo.length ; i ++ ){
+                $("#fkxx").append(
+                        "<tr><td>" + listVo[i].rzsqbh + "</td>" +
+                        "<td>" + listVo[i].fkje + "</td>" +
+                        "<td>" + listVo[i].fkje + "</td>" +
+                        "<td>" + listVo[i].gxsj + "</td>" +
+                        "<td>" + listVo[i].fkrq + "</td>" +
+                        "<td>" + listVo[i].hxqykhh + "</td>" +
+                        "<td>" + listVo[i].jrjgmc + "</td>" +
+                        "<td>" + listVo[i].zt + "</td>" +
+                        "<td>"
+                        +"<a href='sxyfkxxcx.html?id="+ listVo[i].id +"'>查看</a>&nbsp;&nbsp;<a href='sxyfxxxcxsqhk.html?fkid="+ listVo[i].id +"'> 申请还款 </a>&nbsp;<a href='sxyfxxxcxhkls.html?fkid="+ listVo[i].id +"'> 还款流水 </a></td>" +
+                        "</tr>"
+                )
+            }
+        }
+        
+        var pageObj = {
+            pno: 1,//当前页
+            total: 2,//总页码
+            totalRecords: 12//总记录数目
+        };
+        //初始化日期插件
+        dataPiker();
+        //发送请求，请求第一页数据 todo
+        (function () {
+            $.ajax({
+                url: "test/guideList.json",
+                dataType: "json",
+                success: function (data) {
+                    pageObj.pno = 1;
+                    pageObj.total = data.total;
+                    pageObj.totalRecords = data.totalRecords;
+                    console.log(JSON.stringify(data));
+
+                    $(".data_table").find('tbody').empty();
+                    //  alert(data.list[0].length);
+                    for (var j = 0; j < data.list[0].length; j++) {
+                        var liELe = "<tr><td>1</td><td>系统管理员</td><td>企业名称</td><td>2015-02-25 15:11:22</td><td>后台测试</td><td>添加&nbsp减少&nbsp删除</td></tr>";
+                        $(".data_table").append(liELe);
+                    }
+                    initPager();
+                }
+            });
+        })();
+
+        //生成分页控件
+        function initPager() {
+            kkpager.generPageHtml({
+                isShowFirstPageBtn: false,
+                isShowLastPageBtn: false,
+                isGoPage: false,
+                pno: pageObj.pno,
+                mode: 'click', //设置为click模式
+                //总页码
+                total: pageObj.total,
+                //总数据条数
+                totalRecords: pageObj.totalRecords,
+                //点击页码、页码输入框跳转、以及首页、下一页等按钮都会调用click
+                //适用于不刷新页面，比如ajax
+                click: function (n) {
+                    //处理完后可以手动条用selectPage进行页码选中切换 todo
+//                    $.ajax({
+//                        url:"test/new.json",
+//                        dataType:"json",
+//                        success: function(data){
+//                            console.log(JSON.stringify(data));
+//                            $(".news_list").empty();
+//                            for(var i = 0 ; i < data.list.length ; i ++ ){
+//                                var liELe = "<li><a href='newsDetail.html?id=" + data.list[i].idNo +  "'>" + data.list[i].titleText + "</a><span>" + data.list[i].time + "</span></li>";
+//                                $(".news_list").append(liELe);
+//                            }
+//                            kkpager.selectPage(n);
+//                        }
+//                    });n
+
+                    $.ajax({
+                        url: "test/guideList.json",
+                        dataType: "json",
+                        success: function (data) {
+                            pageObj.pno = n;
+                            pageObj.total = data.total;
+                            pageObj.totalRecords = data.totalRecords;
+                            console.log(JSON.stringify(data));
+                            $(".data_table").empty();
+                            for (var j = 0; j < data.list[n - 1].length; j++) {
+                                var liELe = "<tr><td>1</td><td>系统管理员</td><td>企业名称</td><td>2015-02-25 15:11:22</td><td>后台测试</td><td>添加&nbsp减少&nbsp删除</td></tr>";
+                                // var item = "<tr><td>"+data.list[n-1]+"</td>"+"</tr>";
+                                $(".data_table").append(liELe);
+                            }
+                        }
+                    });
+                    kkpager.selectPage(n);
+
+
+                }
+
+            });
+        }
+    });
+</script>
+</body>
+</html>

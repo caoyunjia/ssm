@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>及时雨-订单维护</title>
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+<link href="css/new.css?v=APP_VER" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/select2.min.css" />
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+	    <script src="js/html5shiv.min.js"></script>
+	    <script src="js/respond.min.js"></script>
+	    <![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+</head>
+
+<body>
+
+	<div class="container m-content">
+		<form class="form-horizontal row" action="#" id="formId" method="post"
+			enctype="multipart/form-data">
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label class="col-md-4 control-label">发票号</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control cd32" id="fph" name="fph"
+							placeholder="">
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label class="col-md-4 control-label">发票代码</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control cd32" id="fpdm" name="fpdm"
+							placeholder="">
+					</div>
+				</div>
+
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="ssxq" class="col-md-4 control-label">核心企业客户名称</label>
+					<div class="col-md-8">
+						<select class="form-control" id="JYFW" name="hxqykhh">
+						</select>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="ssxq" class="col-md-4 control-label">融资方角色</label>
+					<div class="col-md-8">
+						<select class="form-control" id="rzfjs" name="rzfjs"
+							dic-type="B1022" dic-blank=" ">
+							<option vlaue=""></option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label class="col-md-4 control-label">交易对手名称</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control cd32" id="jydsmc"
+							name="jydsmc" placeholder="">
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label class="col-md-4 control-label">发票金额(元)</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control zjyz" name="fpje"
+							data-type="currency" id="fpje" placeholder="">
+						<!-- <input type="hidden"  name="fpje" placeholder=""> -->
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="CLRQ" class="col-md-4 control-label">发票日期</label>
+					<div class="col-md-8">
+						<div class="input-group date form_date" data-date=""
+							data-date-format="yyyymmdd" data-link-field="dtp_input2"
+							data-link-format="yyyy-mm-dd">
+							<input class="form-control rqyz" size="16" type="text" id="kprq"
+								name="kprq" /> <span class="input-group-addon"><span
+								class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label class="col-md-4 control-label">合同编号</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control cd32" id="htbh" name="htbh"
+							placeholder="">
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label class="col-md-4 control-label">税额(元)</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="se" name="se"
+							data-type="currency" placeholder="">
+						<!-- <input type="hidden"   name="se" placeholder=""> -->
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label class="col-md-4 control-label">税率(%)</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="sl" name="sl"
+							placeholder="">
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label class="col-md-4 control-label">纳税识别码</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control cd32" id="nssbm"
+							name="nssbm" placeholder="">
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label class="col-md-4 control-label">发票扫描件</label>
+					<div class="col-sm-6">
+						<input type="hidden" name="wjid" id="wjid">
+						<input type="file" class="form-control" id="file"
+							name="file" style="display: none;" onchange="change();">
+						<input type="text" class="form-control" id="fileName"
+							name="fileName" readonly="readonly"
+							onclick="file.click();">
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-primary" id="selectFile"
+							onclick="file.click();">浏览</button>
+					</div>
+				</div>
+			</div>
+			<div class="text-center col-xs-12">
+				<a id="save" class="btn_query btn btn-default">确认</a> <a id=""
+					class="btn btn-default btn_query" onclick="history.go(-1)">返回</a>
+			</div>
+			<input type="hidden" id="id" name="id"> <input type="hidden"
+				id="rzfkhhid" name="rzfkhh">
+		</form>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/select2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="js/common.js?v=APP_VER"></script>
+	<script src="js/plugin/jquery.validate.js"></script>
+	<script src="js/plugin/validate-extend.js"></script>
+	<script>
+		$(document).ready(
+				function() {
+					//获取业务编号
+					var ywbh = locationObj.getParams().id;
+					function showMenu(wj) {
+						if (wj != null || wj.length > 0) {
+							var wjid = wj[0].id;
+							var wjmc = wj[0].wjmc;
+							$("#fileName").val(wjmc);
+							$("#wjid").val(wjid);
+						} else {
+							//上传文件
+							$("#fileName").val("未上传文件");		
+						}
+
+					}
+					//通过业务编号查找是否有文件
+					requestObj.ajaxServer(requestObj.address.jsyQueryWjsc, {
+						"pageSize" : 10,
+						"pageIndex" : 1,
+						"ywbh" : ywbh,
+						"ywlx" : "1"
+					}, function(data) {
+						var HtVo = data.body.data;
+						//根据是否有文件,显示不同的样式
+						showMenu(HtVo);
+					});
+
+					//进入页面默认查询数据
+					requestObj.ajaxServer(requestObj.address.getHxqy, {
+						"pageSize" : 10,
+						"pageIndex" : 1,
+						"khgxlx" : "01"
+					},
+
+					function(data) {
+						var listVO = data.body.data;
+						$("#JYFW").append("<option value=''></option>");
+						for (var i = 0; i < listVO.length; i++) {
+							$("#JYFW").append(
+									"<option value='"+listVO[i].khh+"'>"
+											+ listVO[i].cyfVo.qymc
+											+ "</option>");
+						}
+					});
+					//判断非空
+					function noNull(sj) {
+						if (!sj) {
+							return "";
+						}
+						return sj;
+					}
+					//初始化日期插件
+					dataPiker();
+					var vo = locationObj.getParams();
+					var id = vo.id;
+
+					function ztfun(zt) {
+						if (zt == 01) {
+							return "暂存";
+						}
+						if (zt == 02) {
+							return "生效";
+						}
+						if (zt == 03) {
+							return "已融资";
+						}
+						if (zt == 04) {
+							return "已核销";
+						}
+					}
+					requestObj.ajaxServer(
+							requestObj.address.jsyKhyszkSearchone, {
+								"id" : id
+							}, function(data, postData) {
+								pluginObj.setFormValueByName(data.body);
+							}, function() {
+							});
+					/* $("#JYFW").change(function(){
+						var jydsmc=$("#JYFW").find("option:selected").text();
+						$("#jydsmc").val(jydsmc);
+					}); */
+					//修改
+					$("#save").click(
+							function() {
+								if (!$('#formId').valid()) {
+									return;
+								}
+								var fpje = $("#fpje").val();
+								var se = $("#se").val();
+								if (!fpje) {
+									pluginObj.alert("", "请输入发票金额");
+									return;
+								}
+								if (!se) {
+									pluginObj.alert("", "请输入税额");
+									return;
+								}
+								$("[name='fpje']").val(fpje);
+								$("[name='se']").val(se);
+								$("#formId").uploadFile(
+										requestObj.address.jsyKhYszkupdate,
+										function() {
+											pluginObj.alert("", "操作成功")
+											location = "yszklb.html?v=APP_VER"
+										}, function() {
+											pluginObj.alert("", "操作失败")
+										})
+								//requestObj.searchObj.postData.pageIndex = "1";
+							});
+					var successFun = function(data, postData) {
+					};
+				});
+
+		//关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+		//    $(document).off('click.bs.dropdown.data-api');
+		//自动展开
+		$('.nav .dropdown').mouseenter(function() {
+			$(this).addClass('open');
+		});
+		//自动关闭
+		$('.nav .dropdown').mouseleave(function() {
+			$(this).removeClass('open');
+		});
+	</script>
+	<script>
+		$().ready(function() {
+			$("#formId").validate({
+				rules : {
+					fph : {
+						required : true,
+						maxlength : 32
+					},
+					fpdm : {
+						required : true,
+						maxlength : 32
+					},
+					hxqykhh : {
+						required : true,
+					},
+					jydsmc : {
+						required : true,
+						maxlength : 32
+					},
+					kprq : {
+						required : true,
+						isDate : true
+					},
+					htbh : {
+						required : true,
+						maxlength : 32
+					},
+					rzfjs : {
+						required : true,
+						maxlength : 32
+					},
+					fpje : {
+						required : true,
+						maxlength : 32
+					},
+					sl : {
+						required : true,
+						range : [ 0, 100 ]
+					},
+					se : {
+						required : true,
+						range : [ 0, 100 ]
+					},
+					nssbm : {
+						required : true,
+						maxlength : 32
+					}
+				}
+			});
+		});
+							function change(){  
+    					$("#fileName").val($("#file").val());
+					}  
+	</script>
+</body>
+
+</html>

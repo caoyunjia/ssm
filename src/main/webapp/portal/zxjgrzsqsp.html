@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-增信机构-融资申请审批</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+	<link href="css/select2.min.css" rel="stylesheet" >
+
+</head>
+<body>
+  <div class="container m-content" >
+        <form class="form-horizontal row" id="searchFrom" role="form" onsubmit="return false;">
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="ssxq" class="col-md-4 control-label">申请编号</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="sqbh" name="sqbh">
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="hyfl" class="col-md-4 control-label">核心企业</label>
+                    <div class="col-md-8">
+                        <select class="form-control" id="hxqykhh" name="hxqykhh">
+                            <option vlaue=""></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="hyfl" class="col-md-4 control-label">客户名称</label>
+                    <div class="col-md-8">
+                        <select class="form-control" id="qymc" name="qymc">
+                            <option vlaue=""></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+					<label for="hyfl" class="col-md-4 control-label">融资金额(元)</label>
+					<div class="col-md-8">
+						<div class="col-45">
+							<input class="form-control" data-type="currency" id="sqjes" name="sqjes" type="text" placeholder="">
+							</select>
+						</div>
+						<div class="col-10">
+							<p class="form-control-static">-</p>
+						</div>
+						<div class="col-45">
+							<input class="form-control" data-type="currency" id="sqjee" name="sqjee" type="text" placeholder="">
+						</div>
+					</div>
+				</div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="hyfl" class="col-md-4 control-label">当前状态</label>
+                    <div class="col-md-8">
+                        <select class="form-control" id="dqzt" name="dqzt" dic-type="B1034" dic-blank=" ">
+                            <option vlaue=""></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center col-xs-12">
+                <a id="searchBtn" class="btn_query btn btn-default">查询</a>
+            </div>
+        </form>
+    </div>
+<div class="container" id="">
+    <form class="row form" action="#"  id="FormId">
+    <div class="operate">
+		<!-- <a href="sxyrzsqcx.html?v=APP_VER" class="more">发起</a> -->
+	</div>
+	<div class="search_result">
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>申请编号</th>
+					<th>企业名称</th>
+					<th>申请日期</th>
+					<th>金融机构</th> 
+					<th dic-type="B1039">融资产品</th>
+					<th>融资金额(元)</th>
+					<th>核心企业</th>
+					<th dic-type="B1034">当前状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<div id="kkpager" style="padding-left: 30px"></div>
+	</div>
+</form>
+</div>
+ 	<script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+<script>
+    $(document).ready(function(){
+    			//判断是否为超管
+				var postData1={
+				}
+				requestObj.ajaxServer(requestObj.address.jsyqueryLx,postData1,function(data,postData){
+				if(data.body.data[0].lx==1){
+						$("#sp").prop("hidden",false);
+				}else{
+					$("#sp").prop("hidden",true);
+				}
+			})
+        //初始化日期插件
+        dataPiker();
+        requestObj.searchServer(
+                requestObj.address.jsySqrzsqList,
+               "searchFrom",
+                successFun
+        );
+      
+    //进入页面默认查核心企业数据
+      requestObj.ajaxServer(
+          requestObj.address.getHxqy,
+            {"pageSize":10,
+            "pageIndex":1,
+            "khgxlx":'02'
+            },
+            function(data){
+              var listVO = data.body.data;
+              //alert(JSON.stringify(data.body));
+              for(var i = 0; i < listVO.length; i++){
+                 $("#hxqykhh").append(
+					"<option value='"+listVO[i].khh+"'>"+listVO[i].cyfVo.qymc+"</option>"
+                 );
+              }
+             }
+      );
+      //给查询按钮绑定查询事件
+        $("#searchBtn").click(function(){
+           // alert("123");
+            requestObj.searchObj.postData.pageIndex = "1";
+            requestObj.searchServer(
+                    requestObj.address.jsySqrzsqList,
+                    "searchFrom",
+                    successFun
+            );
+        });
+    	function successFun(data){
+    		 requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+             requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+             requestObj.initPager(
+                     requestObj.address.jsySqrzsqList,
+                     successFun
+             );
+    		$(".table-bordered tbody").empty();
+    		var listVo = data.body.data;
+    		var operation ;
+    		var dqzt ;
+            for(var i = 0 ; i < listVo.length ; i ++ ){
+                if(listVo[i].dqzt=='02'){
+                	operation = "<td><a href='jrjgrzspck1.html?sqbh="+ listVo[i].sqbh +"&rzcp="+listVo[i].rzcp+"'>查看</a>";
+    				operation += "<a href='javascript:void(0)' onclick='sptz(\""+ listVo[i].rzcp +"\",\""+ listVo[i].sqbh +"\")'>审批</a></td>";
+            	}else{
+            		operation = "<td><a href='jrjgrzspck1.html?sqbh="+ listVo[i].sqbh +"&rzcp="+listVo[i].rzcp+"'>查看</a></td>";
+                }
+                $(".table-bordered tbody").append(
+                        "<tr><td>" + listVo[i].sqbh + "</td>" +
+                        "<td>" + listVo[i].qymc + "</td>" +
+                        "<td>" + formatDateStr8(listVo[i].sqrq) + "</td>" +
+                        "<td>" + listVo[i].jrjgmc + "</td>" + 
+                        "<td>" + listVo[i].rzcp + "</td>" +
+                        "<td>" + numberToCurrency(listVo[i].rzje) + "</td>" +
+                        "<td>" + listVo[i].hxqykhmc + "</td>" +
+                        "<td>" + listVo[i].dqzt + "</td>" +
+                        operation +
+                        "</tr>"
+                )
+            }
+        }
+    });
+    //提交至金融机构审批
+    function tjJrjgSp(sqbh){
+    	requestObj.ajaxServer(
+                requestObj.address.zxjgRzspSubmit,
+                {
+                    "sqbh" : sqbh
+                },
+                function(data){
+                    //pluginObj.alert("","审批已通过");
+                    pluginObj.alert("","已提交金融机构审批");
+                    window.location.href = './zxjgrzsqsp.html?v=APP_VER';
+
+                }
+        )
+    }
+
+  //查看时根据融资产品不同跳转不同页面
+    function rzlx(rzcp,sqbh){
+		if(rzcp == '01'){
+			location = "jrjgrzspck2.html?sqbh=" + sqbh;
+		}
+		if(rzcp == '02'){
+			location = "jrjgrzspck1.html?sqbh=" + sqbh;
+		}
+    }
+  	//审批时根据融资产品不同跳转不同页面
+  	function sptz(rzcp,sqbh){
+		if(rzcp == '01'){
+			location = "zxjgrzsp.html?sqbh=" + sqbh;
+		}
+		if(rzcp == '02'){
+			location = "zxjgrzsp1.html?sqbh=" + sqbh;
+		}
+    }
+
+    //关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+    //    $(document).off('click.bs.dropdown.data-api');
+    //自动展开
+    $('.nav .dropdown').mouseenter(function(){
+        $(this).addClass('open');
+    });
+    //自动关闭
+    $('.nav .dropdown').mouseleave(function(){
+        $(this).removeClass('open');
+    });
+    
+</script>
+</body>
+</html>

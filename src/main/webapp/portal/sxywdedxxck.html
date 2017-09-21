@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>及时雨-上下游-放款信息查询-申请还款</title>
+
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="js/plugin/kkpager_green.css" />
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/new.css">
+<!-- HTML5 shim and Respond.js for IE6 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+	<div class="container m-content">
+		<!--放款信息查询-->
+		<form class="form-horizontal  load">
+			<div id="wrap_file row" style="">
+				<!-- <div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">客户号</label>
+						<div class="col-md-8">
+							<label for="" class="control-label" id="khh"></label>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">企业名称</label>
+						<div class="col-md-8">
+							<label for="" class="control-label" id="qymc"></label>
+						</div>
+					</div>
+				</div> -->
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">额度编号</label>
+						<div class="col-md-8">
+							<label for="" class="control-label" id="edbh"></label>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="" class="col-md-4 control-label">额度有效日期</label>
+						<div class="col-md-8">
+							<label for="" class="control-label" id="yxrq"></label>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">额度失效日期</label>
+						<div class="col-md-8">
+							<label for="" class="control-label" id="sxrq"></label>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="" class="col-md-4 control-label">总额度(元)</label>
+						<div class="col-md-8">
+							<label for="" class="control-label" id="sxzed"></label>
+						</div>
+
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="" class="col-md-4 control-label">已用额度(元)</label>
+						<div class="col-md-8">
+							<label for="" class="control-label" id="yyed"></label>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="" class="col-md-4 control-label">剩余额度(元)</label>
+						<div class="col-md-8">
+							<label for="" class="control-label" id="syed"></label>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="" class="col-md-4 control-label">授信机构代码</label>
+						<div class="col-md-8">
+							<label for="" class="control-label" id="sxkhh"></label>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="" class="col-md-4 control-label">额度类型</label>
+						<div class="col-md-8">
+							<label for="" class="control-label" id="edlx"></label>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="" class="col-md-4 control-label">授信机构名称</label>
+						<div class="col-md-8">
+							<label for="" class="control-label" id="sxjgmc"></label>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="" class="col-md-4 control-label">状态</label>
+						<div class="col-md-8">
+							<label for="" class="control-label" id="zt"></label>
+						</div>
+					</div>
+				</div>
+				<!--<div style="text-align: center;margin-top: 40px">-->
+				<!--<a href="javascript:history.go(-1);">返回</a>-->
+				<!--&nbsp;&nbsp;-->
+				<!--&lt;!&ndash;<button class="button2">取消</button>&ndash;&gt;-->
+				<!--</div>-->
+				<div class="row">
+					<div class="text-center col-xs-12">
+						<a href="javascript:history.go(-1);"
+							class="btn_query btn btn-default">返回</a>
+					</div>
+				</div>
+			</div>
+		</form>
+
+	</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+	<script>
+		$(document).ready(function() {
+			var id = "";
+			id = locationObj.getParams().id;
+			requestObj.ajaxServer(requestObj.address.jsykhedxxById, {
+				"id" : id
+			}, function(data) {
+				$("#khh").html(data.body.khh);
+				$("#qymc").html(data.body.qymc);
+				$("#edbh").html(data.body.edbh);
+				$("#sxrq").html(Tools.formatData(data.body.sxrq, "date"));
+				$("#yxrq").html(Tools.formatData(data.body.yxrq, "date"));
+				$("#sxzed").html(numberToCurrency(data.body.sxzed));
+				$("#yyed").html(numberToCurrency(data.body.yyed));
+				$("#syed").html(numberToCurrency(data.body.syed));
+
+				$("#sxkhh").html(data.body.sxkhh);
+				$("#edlx").html(lxfun(data.body.edlx));
+				$("#sxjgmc").html(data.body.sxjgmc);
+				$("#zt").html(ztfun(data.body.zt));
+			}, function() {
+			})
+		});
+		//状态：00：已录入未提交01：已提交未生效；02：已提交生效03：已失效04：已使用
+		function ztfun(zt) {
+			if (zt == 01) {
+				return "未生效";
+			}
+			if (zt == 02) {
+				return "已生效";
+			}
+			if (zt == 03) {
+				return "已冻结";
+			}
+		}
+		function lxfun(edlx) {
+			if (edlx == 01) {
+				return "授信额度";
+			}
+			if (edlx == 02) {
+				return "承保额度";
+			}
+			if (edlx == 03) {
+				return "授信额度";
+			}
+			if (edlx == 04) {
+				return "承包额度";
+			}
+		}
+	</script>
+</body>
+</html>

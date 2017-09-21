@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-账户维护</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/new.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+		<!-- <script src="js/jquery.js"></script> -->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+	</head>
+
+	<body>
+		<div class="container m-content">
+			<form class="form-horizontal row" action="#" id="formId">
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">登录账号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="dlzh" name="dlzh" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">客户号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="khh" name="khh" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">状态</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="zt" name="zt" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">类型</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="lx" name="lx" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">创建时间</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="crsj" name="crsj" placeholder="">
+						</div>
+					</div>
+				</div>
+
+				<div class="text-center col-xs-12">
+					<a id="save" href="sxyzhwh.html?v=APP_VER" class="btn_query btn btn-default">返回</a>
+				</div>
+				<input type="hidden" id="khddxxid" name="id">
+			</form>
+		</div>
+		<script>
+			$(document).ready(function() {
+				$("input").attr("readonly", "readonly");
+				//初始化日期插件
+				dataPiker();
+				var vo = locationObj.getParams();
+				var id = vo.id;
+				requestObj.ajaxServer(
+					requestObj.address.jsyKhZhQuery, {
+						"pageSize": 10,
+						"pageIndex": 1,
+						"id": id
+					},
+					function(data, postData) {
+						$("#dlzh").val(data.body.data[0].dlzh),
+							$("#khh").val(data.body.data[0].khh),
+							$("#zhmc").val(data.body.data[0].zhmc),
+							$("#zt").val(ztfun(data.body.data[0].zt)),
+							$("#lx").val(lxfun(data.body.data[0].lx)),
+							$("#crsj").val(Tools.formatData(data.body.data[0].crsj, "date")),
+							$("#crr").val(data.body.data[0].crr),
+							$("#gxsj").val(Tools.formatData(data.body.data[0].gxsj, "date")),
+							$("#gxr").val(data.body.data[0].gxr)
+					},
+					function fail() {}
+				);
+
+				function lxfun(lx) {
+					if(lx == 1) {
+						return "超级管理员";
+					} else if(lx == 2) {
+						return "普通用户";
+					} else {
+						return lx;
+					}
+				}
+
+				function ztfun(zt) {
+					if(zt == 00) {
+						return "未生效";
+					}
+					if(zt == 01) {
+						return "正常";
+					}
+					if(zt == 02) {
+						return "冻结";
+					}
+					if(zt == 03) {
+						return "无效";
+					}
+				}
+			});
+
+			//关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+			//    $(document).off('click.bs.dropdown.data-api');
+			//自动展开
+			$('.nav .dropdown').mouseenter(function() {
+				$(this).addClass('open');
+			});
+			//自动关闭
+			$('.nav .dropdown').mouseleave(function() {
+				$(this).removeClass('open');
+			});
+		</script>
+	</body>
+
+</html>

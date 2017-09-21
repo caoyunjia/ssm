@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-增信机构-征信查看下载</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/new.css" />
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+		<link rel="stylesheet" href="js/plugin/kkpager_green.css" />
+		<script src="js/plugin/kkpager.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<!--<script src="../resources/select2/js/select2.min.js"></script>-->
+		<script src="js/common.js?v=APP_VER"></script>
+		<link rel="stylesheet" type="text/css" href="css/new.css" />
+	</head>
+
+	<body>
+
+		<div class="container m-content">
+			<form class="form-horizontal row  " id="searchFrom" role="form" onsubmit="return false;">
+				<div class="row  form-group">
+					<div class=" col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">客户名称</label>
+						<div class="col-md-8">
+							<!--<input class="form-control" id="qymc" name="qymc" type="text" maxlength="8" placeholder="">-->
+							<select name="" class="form-control" id="qymc">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+					<!--<div class=" col-xs-6">
+					<label for="hyfl" class="col-sm-4 control-label">生成时间：</label>
+					<div class="col-sm-3">
+						<div class="input-group date form_date" data-date="" data-date-format="yyyymmdd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+							<input class="form-control" size="16" type="text" id="crsj" name="crsj" />
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+					<div class="col-sm-2" style="text-align: center">
+						<p class="form-control-static">-</p>
+					</div>
+					<div class="col-sm-3">
+						<div class="input-group date form_date" data-date="" data-date-format="yyyymmdd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+							<input class="form-control" size="16" type="text" id="crsj1" name="crsj1" />
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+				</div>-->
+					<div class="col-xs-6">
+						<label for="hyfl" class="col-md-4 control-label">生成时间</label>
+						<div class="col-md-8">
+							<div class="col-45">
+								<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+									<input class="form-control" size="16" type="text" id="crsj" name="crsj" />
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								</div>
+							</div>
+							<div class="col-10">
+								<p class="form-control-static">-</p>
+							</div>
+							<div class="col-45">
+								<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+									<input class="form-control" size="16" type="text" id="crsj1" name="crsj1" />
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="text-center col-xs-12">
+					<button type="button" id="searchBtn" class="btn_query btn btn-default">查询</button>
+				</div>
+
+			</form>
+		</div>
+		<div class="container" id="">
+			<form class="row form" action="#" id="FormId">
+				<div class="search_result">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>客户号</th>
+								<th>客户名称</th>
+								<th>报告标题</th>
+								<th>生成时间</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<div id="kkpager"></div>
+				</div>
+			</form>
+		</div>
+
+		<form id="searchFrom">
+			<input type="hidden" name="" id="cwbbLx" value="">
+		</form>
+
+		<script>
+			$(document).ready(function() {
+				//初始化日期插件
+				dataPiker();
+				document.getElementById("searchFrom").reset();
+				requestObj.searchServer(
+					requestObj.address.jsyWjsc,
+					"searchFrom",
+					successFun
+				);
+				//进入页面默认查询数据
+			      requestObj.ajaxServer(
+			          requestObj.address.getHxqyf,
+			            {
+			        	"pageSize":10,
+			            "pageIndex":1,
+			            "khgxlx":"04"
+			            },
+			            function(data){
+			              var listVO = data.body.data;
+			              //pluginObj.alert (JSON.stringify(data.body));
+			              for(var i = 0; i < listVO.length; i++){
+			                 $("#qymc").append(
+								"<option value='"+listVO[i].glkhh+"'>"+listVO[i].cyfVo.qymc+"</option>"
+			                 );
+			              }
+			             }
+			      );
+
+				//给查询按钮绑定查询事件
+				$("#searchBtn").click(function() {
+					// alert("123");
+					requestObj.searchObj.postData.pageIndex = "1";
+					requestObj.searchServer(
+						requestObj.address.jsyWjsc,
+						"searchFrom",
+						successFun
+					);
+				});
+
+				function successFun(data) {
+					requestObj.searchObj.totalPage = data.body.totalPageNo; //总页码
+					requestObj.searchObj.recordsTotal = data.body.totalCount; //总记录数目
+					requestObj.initPager(
+						requestObj.address.jsyWjsc,
+						successFun
+					);
+					$(".table-bordered tbody").empty();
+					var listVo = data.body.data;
+					for(var i = 0; i < listVo.length; i++) {
+						$(".table-bordered tbody").append(
+							"<tr><td>" + noNull(listVo[i].ywbh) + "</td>" +
+							"<td>" + noNull(listVo[i].qymc) + "</td>" +
+							"<td>" + noNull(listVo[i].wjmc) + "</td>" +
+							"<td>" + formatDateStr8(listVo[i].crsj) + "</td>" +
+							"<td>" +
+							"<a href='" + requestObj.port + "common/file.do?q=" + listVo[i].id + "'>下载</a>" +
+							"</td>" +
+							"</tr>"
+						)
+					}
+				}
+			});
+			//判断是否为空
+			function noNull(sj) {
+				if(!sj) {
+					return "";
+				}
+				return sj;
+			};
+			//关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+			//    $(document).off('click.bs.dropdown.data-api');
+			//自动展开
+			$('.nav .dropdown').mouseenter(function() {
+				$(this).addClass('open');
+			});
+			//自动关闭
+			$('.nav .dropdown').mouseleave(function() {
+				$(this).removeClass('open');
+			});
+		</script>
+	</body>
+
+</html>

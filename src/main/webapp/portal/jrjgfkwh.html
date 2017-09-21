@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-付款维护</title>
+
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <link href="css/select2.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE6 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container m-content">
+    <form class="form form-horizontal" id="searchForm" role="form" onsubmit="return false;">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资申请编号</label>
+                <div class="col-md-8">
+                    <input name="sqbh" id="sqbh" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">核心企业名称</label>
+                <div class="col-md-8">
+                    <input name="hxqykhmc" id="hxqykhmc" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">状态</label>
+               <div class="col-md-8">
+                    <select class="form-control" id="dqzt" name="dqzt" dic-type="B1034" dic-blank=" ">
+                        <option vlaue=""></option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button class="btn_query btn btn-default" id="searchBtn">查询</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="container" id="">
+    <form class="form row" action="#" id="FormId">
+        <div class="search_result">
+            <table class="table-bordered table table-hover">
+                <thead>
+            <tr>
+                <th>融资申请编号</th>
+                <th>融资金额</th>
+                <th>放款金额</th>
+                <th>放款日期</th>
+                <th>核心企业名称</th>
+                <th dic-type="B1034">状态</th>
+                <th width="150">操作</th>
+           </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div id="kkpager"></div>
+        </div>
+    </form>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+    	//初始化日期插件
+        dataPiker();
+        requestObj.searchServer(
+                requestObj.address.jsyKhFkxxWh,
+                "FormId",
+                successFun
+        );
+
+        //进入页面查询数据
+      	/* requestObj.ajaxServer(
+		          requestObj.address.getHxqy,
+		            {"pageSize":10,
+		            "pageIndex":1,
+		            "khgxlx":'03'
+		            },
+		            function(data){
+		              var listVO = data.body.data;
+		              //alert(JSON.stringify(data.body));
+		              for(var i = 0; i < listVO.length; i++){
+		                 $("#hxqykhh").append(
+							"<option value='"+ listVO[i].khh +"'>"+listVO[i].cyfVo.qymc+"</option>"
+		                 );
+		              }
+		             }
+		      ); */
+       //给查询按钮绑定查询事件
+        $("#searchBtn").click(function(){
+        	requestObj.searchObj.postData.pageIndex = "1";
+            requestObj.searchServer(
+                    requestObj.address.jsyKhFkxxWh,
+                    "searchForm",
+                    successFun
+            );
+        });
+        function successFun(data) {
+        	requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+            requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+            requestObj.initPager(
+                requestObj.address.jsyKhFkxxWh,
+                successFun
+            );
+            $(".table-bordered tbody").empty();
+            var list = data.body.data;
+            for (var i = 0; i < list.length; i++){
+                $(".table-bordered tbody").append(
+                        "<tr>" +
+                        "<td><a href='jrjgfkxxck.html?sqbh=" + list[i].sqbh + "'>" + noNull(list[i].sqbh) + "</a></td>" +
+                        "<td>" + numberToCurrency(list[i].rzje) + "</td>" +
+                        "<td>" + numberToCurrency(list[i].fkje) + "</td>" +
+                        "<td>" + noNull(Tools.formatData(list[i].fksj, "date")) + "</td>" +
+                        "<td><a title='"+ list[i].hxqykhmc +"' href='sxyzlck.html?khh=" + list[i].hxqykhh + "'>" + noNull(list[i].hxqykhmc) + "</a></td>" +
+                        "<td>" + noNull(list[i].dqzt) + "</td>" +
+                        "<td><a href='jrjgfkwhhkxx.html?sqbh=" + list[i].sqbh + "'>付款登记</a><a href='jrjgwhfkls.html?sqbh=" + list[i].sqbh + "'>付款流水</a></td>" +
+                        "</tr>"
+                )
+            }
+
+        }
+
+    });
+     //飞空验证
+       function noNull(sj){
+   		if(!sj){
+   			return "";
+   		}
+   		return sj;
+       }
+</script>
+</body>
+</html>

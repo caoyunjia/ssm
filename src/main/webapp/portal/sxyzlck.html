@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-融资客户-我的信息</title>
+    <!-- Bootstrap -->
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+	<link rel="stylesheet" type="text/css" href="css/new.css?v=APP_VER"/>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.min.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<!--<script src="js/jquery-1.11.1.min.js"></script>-->
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="js/common.js?v=APP_VER"></script>
+	<script src="js/content-list.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/select2.min.js"></script>
+	<script src="js/plugin/kkpager.min.js"></script>
+	<link href="js/plugin/uploadify/uploadify.css" rel="stylesheet">
+	<script src="js/plugin/uploadify/jquery.uploadify.js"></script>
+	<script src="js/plugin/jquery.validate.js"></script>
+    <script src="js/plugin/validate-extend.js"></script>
+</head>
+
+<body>
+<!--中间内容部分-->
+<div class="middle row form-group">
+	<div class="middle-left col-xs-3">
+		<div class="ml-head">
+			企业详细信息
+		</div>
+		<div class="ml-btn">
+			<span class="jbxx">基本资料</span>
+		</div>
+		<div class="ml-btn">
+			<span class="jbxx">法人资料</span>
+		</div>
+		<div class="ml-btn">
+			<span class="jbxx">财务资料</span>
+		</div>
+		<div class="ml-btn">
+			<span class="jbxx">财务报表</span>
+		</div>
+		<div class="ml-btn">
+			<span class="jbxx">补充信息</span>
+		</div>
+	</div>
+	<div class="middle-right col-xs-9" id="sxyzlckcss">
+		<div class=" biaodan">
+			<div class="addlist jbclwh ">
+				<!-- <div class="mr-head">
+					<h4>基本资料</h4>
+				</div> -->
+				<form class="form-horizontal row" action="#" id="jcxxForm">
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">客户号</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="KHH" name="khh" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">企业名称</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="QYMC" name="qymc" placeholder=""onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">公司类型</label>
+							<div class="col-md-8">
+								<select class="form-control"  id="GSLX" name="gslx" dic-type="B1010" dic-selected=" "onmouseover="this.title=this.value" >
+								</select>
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">注册资本（元）</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control zjyz" id="ZCZB" name="zczb" placeholder=""onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label for="CLRQ" class="col-md-4 control-label">营业期限起</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control rqyz" type="text" id="YYQX" name="yyqx" placeholder=""onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label for="CLRQ" class="col-md-4 control-label">营业期限止</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control rqyz" type="text" id="YYQXZ" name="yyqxz" placeholder=""onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">实收资本（元）</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control zjyz" id="SSZB" name="sszb" placeholder=""onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">营业执照号码</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd32" id="YYZZHM" name="yyzzhm" placeholder=""onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">经营范围</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd128" id="JYFW" name="jyfw" placeholder=""onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">组织机构代码</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd32" id="ZZJGDM" name="zzjgdm" placeholder=""onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">开户许可证号</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd32" id="KHXKZH" name="khxkz" placeholder=""onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">机构信用代码证代码</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd32" id="JGXYDMZDM" name="jgxydmzdm" placeholder=""onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">税务登记证号</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd32" id="SWDJZH" name="swdjzh" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">贷款卡号码</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd32" id="DKKHM" name="dkkhm" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">基本户开立银行</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd128" id="JBHKLYH" name="jbhklyh" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">基本户账号</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd32" id="JBHZH" name="jbhzh" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">注册地址</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd128" id="ZCDZ" name="zcdz" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">办公地址</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd128" id="BGDZ" name="bgdz" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">联系人</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd16" id="lxr" name="lxr" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">所在城市</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd128" id="szcs" name="szcs" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">联系地址</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd128" id="lxdz" name="lxdz" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">提醒邮箱</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control txyx" id="txyx" name="txyx" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">联系电话</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control lxdh" id="lxdh" name="lxdh" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">联系手机</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control lxsj" id="lxsj" name="lxsj" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">备注</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" maxlength="100" id="KZ1" name="kz1" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12" style="margin-top: 15px; margin-bottom: -45px;">
+							<a href="javascript:void(0)" class="btn_query btn btn-default" onclick="history.go(-1)">返回</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class=" biaodan" style="display: none">
+			<div class="addlist frclwh ">
+				<form class="form-horizontal row" action="#" id="frForm">
+					<input type="hidden" class="form-control" id="frId" name="id" placeholder="">
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">客户号</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="FRKHH" name="khh" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">法定代表人</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control sfzh" id="FRXMIn" name="xm" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">身份证号</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control sfzh" id="FRSFZH" name="sfzh" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label for="ssxq" class="col-md-4 control-label">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
+							<div class="col-md-8">
+								<select class="form-control frxb" id="FRXB" name="xb" dic-type="B1011" dic-selected=" ">
+								</select>
+							</div>
+						</div>
+
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label for="CLRQ" class="col-md-4 control-label">出生日期</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control rqyz" type="text" id="FRCSRQ" name="csrq" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">签发机关</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd128" id="FRQFJG" name="qfjg" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label for="CLRQ" class="col-md-4 control-label">有效期限起</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control rqyz" id="FRYXQXQ" name="yxqxq" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label for="CLRQ" class="col-md-4 control-label">有效期限止</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control rqyz" id="FRYXQXZ" name="yxqxz" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">电话号码</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control lxdh" id="FRDHHM" name="dhhm" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">目前住址</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd128" id="FRMQZZ" name="mqzz" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					  	<div class="row form-group">
+								<div class="col-xs-6">
+									<label class="col-md-4 control-label">证件住址</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control cd128" id="FRZJZZ" name="zjzz" placeholder="" onmouseover="this.title=this.value" >
+									</div>
+								</div>
+							</div>
+						<input type="hidden" name="lx" id="frcwlx" />
+					<div class="row">
+						<div class="col-xs-12" style="margin-top: 15px; margin-bottom: -45px;">
+							<a href="javascript:void(0)" class="btn_query btn btn-default" onclick="history.go(-1)">返回</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class=" biaodan" style="display: none">
+			<div class="addlist cwzlwh ">
+				<form class="form-horizontal row" action="#" id="cwForm">
+					<input type="hidden" class="form-control" id="cwId" name="id" placeholder="">
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">客户号</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="CWKHH" name="khh" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">财务代表人</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="CWXMIn" name="xm" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">身份证号</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control sfzh" id="CWSFZH" name="sfzh" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="">
+								<label for="ssxq" class="col-md-4 control-label">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
+								<div class="col-md-8">
+									<select class="form-control frxb" id="CWXB" name="xb" dic-type="B1011" dic-selected=" " onmouseover="this.title=this.value" >
+								</select>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label for="CLRQ" class="col-md-4 control-label">出生日期</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control rqyz" id="CWCSRQ" name="csrq" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">签发机关</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd128" id="CWQFJG" name="qfjg" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label for="CLRQ" class="col-md-4 control-label">有效期限起</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control rqyz" id="CWYXQXQ" name="yxqxq" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label for="CLRQ" class="col-md-4 control-label">有效期限止</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control rqyz" id="CWYXQXZ" name="yxqxz" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+
+
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">电话号码</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control lxdh" id="CWDHHM" name="dhhm" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">目前住址</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd128" id="CWMQZZ" name="mqzz" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+					<div class="col-xs-6">
+							<label class="col-md-4 control-label">证件住址</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control cd128" id="CWZJZZ" name="zjzz" placeholder="" onmouseover="this.title=this.value" >
+							</div>
+						</div>
+						</div>
+						<!--<input type="hidden" name="lx" id="frcwlx1" />-->
+					<div class="row">
+						<div class="col-xs-12" style="margin-top: 15px; margin-bottom: -45px;">
+							<a href="javascript:void(0)" class="btn_query btn btn-default" onclick="history.go(-1)">返回</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class=" biaodan" style="display: none">
+			<div class="addlist ">
+				<form class="form-horizontal row" action="#">
+					<div class="search_result" style="margin-top: 5px;">
+						<table class="table-bordered" style="width:100%;" id="cwbb">
+							<thead>
+							<tr>
+								<th>报表名称</th>
+								<th dic-type="B1015">报表</th>
+								<th dic-type="B1014">报表模板</th>
+								<th>年份</th>
+								<th dic-type="B1013">季度</th>
+								<th>创建时间</th>
+								<th>创建人</th>
+								<th>操作</th>
+							</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+					<div id="kkpager" class="kkpager"></div>
+				</form>
+			</div>
+		</div>
+		<form class="form-horizontal row" action="#" id="wjscForm">
+				<div class=" biaodan" style="display: none">
+					<div class="addlist ">
+							<div class="search_result" style="margin-top: 5px;">
+								<!--<button id="scbcxx" class="btn btn-default" type="button">上传</button>-->
+								<table class="table-bordered" style="width:100%;" id="wjtable">
+									<thead>
+										<tr>
+											<th>文件类型</th>
+											<th>详情</th>
+											<th>上传时间</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td>营业执照 </td>
+										<td><span class="yyzz">--</span></td>
+										<td><span class="yyzz">--</span></td>
+										<td>
+										<form action="" id="yyzz" method="post" enctype="multipart/form-data" >
+											<span class="yyzz">--</span>
+											<input type="hidden" name="ywlx" value="0007">
+											<input type="hidden" name="ywbh" value="">
+										</form></td>
+									</tr>
+									<tr>
+										<td>组织机构代码证 </td>
+										<td><span class="zzjgdmz">--</span></td>
+										<td><span class="zzjgdmz">--</span></td>
+										<td>
+										<form action="" id="zzjgdmz" method="post" enctype="multipart/form-data" >
+											<span class="zzjgdmz">--</span>
+											<input type="hidden" name="ywlx" value="0008">
+											<input type="hidden" name="ywbh" value="">
+										</form></td>
+									</tr>
+									<tr>
+										<td>税务登记证 </td>
+										<td><span class="swdjz">--</span></td>
+										<td><span class="swdjz">--</span></td>
+										<td>
+										<form action="" id="swdjz" method="post" enctype="multipart/form-data" >
+											<span class="swdjz">--</span>
+											<input type="hidden" name="ywlx" value="0009">
+											<input type="hidden" name="ywbh" value="">
+										</form></td>
+									</tr>
+									<tr>
+										<td>机构信用代码证 </td>
+										<td><span class="jgxydmz">--</span></td>
+										<td><span class="jgxydmz">--</span></td>
+										<td>
+										<form action="" id="jgxydmz" method="post" enctype="multipart/form-data" >
+											<span class="jgxydmz">--</span>
+											<input type="hidden" name="ywlx" value="0010">
+											<input type="hidden" name="ywbh" value="">
+										</form></td>
+									</tr>
+									<tr>
+										<td>贷款卡业务相关</td>
+										<td><span class="dkywxg">--</span></td>
+										<td><span class="dkywxg">--</span></td>
+										<td>
+										<form action="" id="dkywxg" method="post" enctype="multipart/form-data" >
+											<span class="dkywxg">--</span>
+											<input type="hidden" name="ywlx" value="0011">
+											<input type="hidden" name="ywbh" value="">
+										</form>
+										</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+					</div>
+				</div>
+				</form>
+		<div class=" biaodan" style="display: none">
+			<div class="addlist ">
+
+			</div>
+		</div>
+			<form action="" id="bcxxForm">
+				<input type="hidden" name="ywbh">
+			</form>
+			<form id="searchFrom">
+			<input type="hidden" name="khh" id="khhid" value="">
+			</form>
+	</div>
+</div>
+    <script>
+        $("#qrxy_btn").click(function () {
+            $("#qrxy").hide();
+        });
+    </script>
+
+<script>
+
+    $(document).ready(function(){
+        //初始化日期插件
+        dataPiker();
+        var khh= locationObj.getParams().khh;
+        	 requestObj.ajaxServer(
+               		 requestObj.address.findSxyJcxx,
+                        {
+                          "khh" : khh
+                            },
+                        function(data){
+							$("#QYMC").val(data.body.qymc);
+							$("#FDDBR").val(data.body.fddbr);
+							$("#GSLX").val(data.body.gslx);
+							$("#ZCZB").val(numberToCurrency(data.body.zczb));
+							$("#SSZB").val(numberToCurrency(data.body.sszb));
+							$("#YYQX").val(formatDateStr8(data.body.yyqx));
+							$("#JYFW").val(data.body.jyfw);
+							$("#YYZZHM").val(data.body.yyzzhm);
+							$("#KHXKZH").val(data.body.khxkz);
+							$("#ZZJGDM").val(data.body.zzjgdm);
+							$("#SWDJZH").val(data.body.swdjzh);
+							$("#JGXYDMZDM").val(data.body.jgxydmzdm);
+							$("#DKKHM").val(data.body.dkkhm);
+							$("#JBHKLYH").val(data.body.jbhklyh);
+							$("#JBHZH").val(data.body.jbhzh);
+							$("#ZCDZ").val(data.body.zcdz);
+							$("#BGDZ").val(data.body.bgdz);
+							$("#KHH").val(data.body.khh);
+							$("#KZ1").val(data.body.kz1);
+							$("#lxsj").val(data.body.lxsj);
+							$("#lxdh").val(data.body.lxdh);
+							$("#lxdz").val(data.body.lxdz);
+							$("#lxr").val(data.body.lxr);
+							$("#szcs").val(data.body.szcs);
+							$("#txyx").val(data.body.txyx);
+
+                        },
+                        function(){}
+                 );
+        	  $(".jbclwh input").attr("readonly","readonly");
+        	  $("#GSLX").attr("disabled","disabled");
+			  $("#jbSave").click(function(){
+				 	$("#jcxxForm").submit(false);
+					if($("#jbSave").html() == "修改"){
+						$(".jbclwh input").removeAttr("readonly");
+						$("#GSLX").removeAttr("disabled");
+						$("#jbSave").html("保存");
+					}else{
+						if(!$('#jcxxForm').valid()){
+							return;
+						}
+						 requestObj.ajaxServer(
+			               		 requestObj.address.modifySxyJcxx,
+			               		 requestObj.packRequest(decodeURIComponent($("#jcxxForm").serialize(),true)),
+			               		 function(data){
+			               			//pluginObj.alert("","修改成功！");
+			               			$("#jbSave").html("修改");
+			               			$(".jbclwh input").attr("readonly","readonly");
+			               		 	$("#GSLX").attr("disabled","disabled");
+			               		 	pluginObj.alert("","修改成功");
+					             },
+			               		 function(){}
+			             )
+					}
+			  });
+
+
+    var frInt = 0;
+    var cwInt = 0;
+    // 点击展开法人资料页面后调用方法
+    $(".jbxx").eq(1).click(function(){
+    	var actionLx = requestObj.address.modifySxyFrCw;
+        if(frInt > 0){
+			return;
+        }
+        frInt++;
+    		 requestObj.ajaxServer(
+               		 requestObj.address.findSxyFrCw,
+                        {
+                            "lx":"01",
+                            "khh" : khh
+                            },
+                        function(data){
+                        	if(data.body == null){
+                        		$("#frcwlx").val("01");
+								$("#FRKHH").val(khh);
+								actionLx = requestObj.address.jcxxFrSave;
+								return;
+							}
+                            $("#frId").val(data.body.id);
+							$("#FRSFZH").val(data.body.sfzh);
+							$("#sfsmrz").val(data.body.sfsmrz);
+							$("#zh").val(data.body.zh);
+							$("#FRXMIn").val(data.body.xm);
+							$("#FRXB").val(data.body.xb);
+							$("#FRCSRQ").val(formatDateStr(data.body.csrq));
+							$("#FRQFJG").val(data.body.qfjg);
+							$("#FRYXQXQ").val(formatDateStr(data.body.yxqxq));
+							$("#FRYXQXZ").val(formatDateStr(data.body.yxqxz));
+							$("#FRZJZZ").val(data.body.zjzz);
+							$("#FRMQZZ").val(data.body.mqzz);
+							$("#FRDHHM").val(data.body.dhhm);
+							$("#FRKHH").val(data.body.khh);
+                        },
+                        function(){}
+                 );
+
+
+        	  $(".frclwh input").attr("readonly","readonly");
+        	  $("#FRXB").attr("disabled","disabled");
+    });
+
+    $(".jbxx").click(function(){
+    	autoHeight();
+    });
+    // 点击展开财务资料页面后调用方法
+    $(".jbxx").eq(2).click(function(){
+    	var actionLx = requestObj.address.modifySxyFrCw;
+    	if(cwInt > 0){
+			return;
+        }
+        cwInt++;
+   		 requestObj.ajaxServer(
+              		 requestObj.address.findSxyFrCw,
+                       {
+                           "lx":"02",
+                           "khh" : khh
+                           },
+                       function(data){
+                        	if(data.body == null){
+   								$("#frcwlx1").val("02");
+   								$("#CWKHH").val(khh);
+   								actionLx = requestObj.address.jcxxFrSave;
+   								return;
+   							}
+                        	$("#cwId").val(data.body.id);
+   							$("#CWSFZH").val(data.body.sfzh);
+   							$("#CWXMIn").val(data.body.xm);
+   							$("#CWXB").val(data.body.xb);
+   							$("#CWCSRQ").val(formatDateStr(data.body.csrq));
+   							$("#CWQFJG").val(data.body.qfjg);
+   							$("#CWYXQXQ").val(formatDateStr(data.body.yxqxq));
+   							$("#CWYXQXZ").val(formatDateStr(data.body.yxqxz));
+   							$("#CWZJZZ").val(data.body.zjzz);
+   							$("#CWMQZZ").val(data.body.mqzz);
+   							$("#CWDHHM").val(data.body.dhhm);
+   							$("#CWKHH").val(data.body.khh);
+                       },
+                       function(){}
+                );
+       	  $(".cwzlwh input").attr("readonly","readonly");
+       	  $("#CWXB").attr("disabled","disabled");
+    });
+
+    // 点击展开财务报表页面后调用方法
+     $(".jbxx").eq(3).click(function(){
+        	 $("#khhid").val(khh);
+    		   requestObj.searchServer(
+    	                requestObj.address.cwbbXx,
+    	                "searchFrom",
+    	                cwbbxxFun
+    		   );
+    });
+	// 显示财务报表信息列表
+    function cwbbxxFun(data){
+    	requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+    	requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+    	requestObj.initPager(
+    		requestObj.address.cwbbXx,
+    		cwbbxxFun
+ 		);
+	    var cwList = data.body.data;
+	    $("#cwbb tbody").empty();
+   	    for(var i = 0; i < cwList.length; i++){
+   	    	$("#cwbb tbody").append(
+				"<tr>"+
+				"<td>"+ cwList[i].bbmc +"</td>"+
+				"<td>"+ cwList[i].bb +"</td>"+
+				"<td>"+ cwList[i].bbmb +"</td>"+
+				"<td>"+ cwList[i].nf +"</td>"+
+				"<td>"+ cwList[i].jd +"</td>"+
+				"<td>"+ formatDateStr(cwList[i].crsj) +"</td>"+
+				"<td>"+ cwList[i].crr +"</td>"+
+				"<td><a href='cwbbckym.html?id="+ cwList[i].id +"&khh="+ khh +"'>查看</a></td>"+
+				"</tr>"
+			);
+		}
+	}
+
+  // 点击补充信息页面后调用方法
+		$(".jbxx").eq(4).click(function() {
+			scbcxx();
+			showZj();
+		});
+		function scbcxx(){
+			$("#bcxxForm input").val(khh);
+			requestObj.searchServer(
+				requestObj.address.wjscBcxx,
+				"bcxxForm",
+				bcxxFun
+				);
+		}
+
+		// 显示补充信息列表
+		function bcxxFun(data) {
+			 requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+          requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+          requestObj.initPager(
+                  requestObj.address.wjscBcxx,
+                  bcxxFun
+          );
+			var wjList = data.body.data;
+			$(".qtxx").remove();
+			for(var i = 0; i < wjList.length; i++) {
+				$("#wjtable tbody tr").eq(4).after(
+					"<tr class='qtxx'>" +
+					"<td>" + cutString(wjList[i].wjmc,16) + "</td>" +
+					"<td>" + wjList[i].xxsm + "</td>" +
+					"<td>" + formatDateStr8(wjList[i].crsj) + "</td>" +
+					"<td><a href='"+ requestObj.port+"common/file.do?q="+ wjList[i].id +"'>下载</a></td>" +
+					"</tr>"
+				);
+			}
+		}
+
+		// 显示补充信息里面其他的证件
+		function showZj(){
+			$("#bcxxForm input").val(khh);
+			requestObj.searchServer(
+				requestObj.address.wjscZj,
+				"bcxxForm",
+				zjFun
+				);
+		}
+		function zjFun(data) {
+			 requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+             requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+             requestObj.initPager(
+                     requestObj.address.wjscZj,
+                     zjFun
+             );
+			var wjList = data.body.data;
+			for(var i = 0; i < wjList.length; i++) {
+				var crsj = formatDateStr8(wjList[i].crsj);
+				var wjmc = cutString(wjList[i].wjmc,16);
+				var wjxz = "<a href='"+ requestObj.port+"common/file.do?q="+ wjList[i].id +"'>下载</a>";
+				if(wjList[i].ywlx == "0007"){
+					$(".yyzz").eq(0).html("已上传");
+					$(".yyzz").eq(1).html(crsj);
+					$(".yyzz").eq(2).html(wjxz);
+				}
+				if(wjList[i].ywlx == "0008"){
+					$(".zzjgdmz").eq(0).html("已上传");
+					$(".zzjgdmz").eq(1).html(crsj);
+					$(".zzjgdmz").eq(2).html(wjxz);
+				}
+				if(wjList[i].ywlx == "0009"){
+					$(".swdjz").eq(0).html("已上传");
+					$(".swdjz").eq(1).html(crsj);
+					$(".swdjz").eq(2).html(wjxz);
+				}
+				if(wjList[i].ywlx == "0010"){
+					$(".jgxydmz").eq(0).html("已上传");
+					$(".jgxydmz").eq(1).html(crsj);
+					$(".jgxydmz").eq(2).html(wjxz);
+				}
+				if(wjList[i].ywlx == "0011"){
+					$(".dkywxg").eq(0).html("已上传");
+					$(".dkywxg").eq(1).html(crsj);
+					$(".dkywxg").eq(2).html(wjxz);
+				}
+			}
+		}
+
+		// 截取字符
+		function cutString(str, len) {
+		    //length属性读出来的汉字长度为1
+		    if(str.length*2 <= len) {
+		        return str;
+		    }
+		    var strlen = 0;
+		    var s = "";
+		    for(var i = 0;i < str.length; i++) {
+		        s = s + str.charAt(i);
+		        if (str.charCodeAt(i) > 128) {
+		            strlen = strlen + 2;
+		            if(strlen >= len){
+		                return s.substring(0,s.length-1) + "...";
+		            }
+		        } else {
+		            strlen = strlen + 1;
+		            if(strlen >= len){
+		                return s.substring(0,s.length-2) + "...";
+		            }
+		        }
+		    }
+		    return s;
+		}
+		
+
+
+
+    });
+
+
+var tabs = $(".middle-left .search .container");
+tabs.click(function(){
+	$(".middle-left .search .container").removeClass("red");
+	$(this).addClass("red");
+	$(".middle-right .biaodan").hide().eq(tabs.index(this)).show();
+})
+	function isArray(arg) {
+	    if (typeof arg === 'object') {
+	        return Object.prototype.toString.call(arg) === '[object Array]';
+	    }
+	    return false;
+	}
+
+
+//关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+	//    $(document).off('click.bs.dropdown.data-api');
+	//自动展开
+	$('.nav .dropdown').mouseenter(function() {
+		$(this).addClass('open');
+	});
+	//自动关闭
+	$('.nav .dropdown').mouseleave(function() {
+		$(this).removeClass('open');
+	});
+</script>
+</body>
+</html>

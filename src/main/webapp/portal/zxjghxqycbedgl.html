@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-增信机构-核心企业承保额度管理</title>
+<!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <link href="css/select2.min.css" rel="stylesheet" >
+
+    <!--jinlong css-->
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+
+	</head>
+
+	<body>
+		<div class="container m-content">
+			<form class="form-horizontal row" action="#" id="formId">
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">核心企业名称</label>
+						<div class="col-md-8">
+							<select class="form-control" id="hxqykhh" name="khh" >
+								<option vlaue=""></option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">状态</label>
+						<div class="col-md-8">
+							<select class="form-control " id="zt" name="zt" dic-type="B1019" dic-blank=" ">
+								<option vlaue=""></option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					 <div class="col-xs-6">
+                    <label for="hyfl" class="col-md-4 control-label">授信额度(元)</label>
+                    <div class="col-md-8">
+                        <div class="col-45">
+                            <input class="form-control jeq" id="sxzed" name="sxzed" type="text"  placeholder="">
+                            </select>
+                        </div>
+                        <div class="col-10" style="text-align: center"><p class="form-control-static">-</p></div>
+                        <div class="col-45">
+                            <input class="form-control jez" id="sxzed2" name="sxzed2" type="text"  placeholder="">
+                        </div>
+                    </div>
+                </div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">额度编号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="edbh" name="edbh" placeholder="">
+						</div>
+					</div>
+				</div>
+
+				<div class="text-center col-xs-12">
+					<a id="save" class="btn_query btn btn-default">查询</a>
+				</div>
+			</form>
+		</div>
+
+		<div class="container" id="">
+			<form class="row form" action="#" id="FormId">
+				<div class="search_result">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>核心企业名称</th>
+								<th>额度编号</th>
+								<th>额度生效日期</th>
+								<th>额度结束日期</th>
+								<th>承购额度(元)</th>
+								<th dic-type="B1019">状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<div id="kkpager"></div>
+				</div>
+			</form>
+		</div>
+
+		<form id="searchFrom">
+			<input type="hidden" name="" id="cwbbLx" value="">
+		</form>
+	</body>
+	<script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <script src="js/plugin/jquery.validate.js"></script>
+    <script src="js/plugin/validate-extend.js"></script>
+	<script>
+		$(document).ready(function() {
+			//进入页面默认查询数据
+		      requestObj.ajaxServer(
+		          requestObj.address.getHxqy,
+		            {"pageSize":10,
+		            "pageIndex":1,
+		            "khgxlx":"02"
+		            },
+		            function(data){
+		              var listVO = data.body.data;
+		              //alert(JSON.stringify(data.body));
+		              for(var i = 0; i < listVO.length; i++){
+		                 $("#hxqykhh").append(
+							"<option value='"+listVO[i].khh+"'>"+listVO[i].cyfVo.qymc+"</option>"
+		                 );
+		              }
+		             }
+		      );
+			
+				var successFun = function(data, postData) {
+					requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+		             requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+		             requestObj.initPager(
+		                     requestObj.address.jsyQrySxed,
+		                     successFun
+		             );
+					var cwList = data.body.data;
+					$(".table-bordered tbody").empty();
+					for(var i = 0; i < cwList.length; i++) {
+						$(".table-bordered tbody").append(
+							"<tr>" +
+							"<td><a title='"+ cwList[i].qymc +"' href='sxyzlck.html?khh=" + cwList[i].khh + "&type=2'>" + Tools.formatData(cwList[i].qymc) + "</a></td>" +
+							"<td><a title='"+ cwList[i].edbh +"' href='zxjgedglxxqyxq.html?id=" + cwList[i].id + "&type=2'>" + Tools.formatData(cwList[i].edbh) + "</a></td>" +
+							"<td>" + Tools.formatData(cwList[i].yxrq, "date") + "</td>" +
+							"<td>" + Tools.formatData(cwList[i].sxrq, "date") + "</td>" +
+							"<td>" + numberToCurrency(cwList[i].sxzed) + "</td>" +
+							"<td>" + Tools.formatData(cwList[i].zt) + "</td>" +
+							"<td><a href='edls.html?khh=" + cwList[i].khh + "'> 流水 </a> <a href='zxjgedglsxycbedgledtz.html?id=" + cwList[i].id + "'>调整</a></td>" +
+							"</tr>"
+						);
+					}
+				}
+				var postData = {
+						"qylx": "01",
+						"pageSize": requestObj.searchObj.postData.pageSize,
+						"pageIndex": requestObj.searchObj.postData.pageIndex
+					}
+					//页面初始化
+				requestObj.ajaxServer(requestObj.address.jsyQrySxed, postData, successFun)
+					//查询按钮点击事件
+				$("#save").click(function() {
+					$("#formId").submit(false);
+					if(!$('#formId').valid()){
+						return;
+					}
+					var postData2 = {
+						"khh": $("#hxqykhh").val(),
+						"sxzed": $("#sxzed").val(),
+						 "sxzed2": $("#sxzed2").val(),
+						"edbh": $("#edbh").val(),
+						"zt": $("#zt").val(),
+						"qylx": "01",
+						"pageSize": requestObj.searchObj.postData.pageSize,
+						"pageIndex": requestObj.searchObj.postData.pageIndex
+					}
+					requestObj.ajaxServer(
+						requestObj.address.jsyQrySxed,
+						postData2,
+						successFun
+					);
+				});
+			})
+			//初始化日期插件
+		dataPiker();
+		//关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+		//    $(document).off('click.bs.dropdown.data-api');
+		//自动展开
+		$('.nav .dropdown').mouseenter(function() {
+			$(this).addClass('open');
+		});
+		//自动关闭
+		$('.nav .dropdown').mouseleave(function() {
+			$(this).removeClass('open');
+		});
+	</script>
+		<script>
+	$().ready(function() {
+		$("#formId").validate({
+			rules : {
+				sxzed : {
+					number : true
+				},
+				edbh : {
+					maxlength : 32
+				}
+			},
+		});
+
+		});
+	</script>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-账户维护</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="css/new.css" />
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.min.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+		<!-- <script src="js/jquery.js"></script> -->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+	</head>
+	<body>
+		<div class="container m-content">
+			<form class="form-horizontal" action="#" id="formId" style="padding: 40px">
+				<input type="hidden" class="" name="id">
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">账户</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" disabled="disabled" name="zh" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">账户户名</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" name="zhhm" disabled="disabled" placeholder="">
+						</div>
+					</div>
+
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">账户开户行</label>
+						<div class="col-md-8">
+							 <input type="text" class="form-control" name="zhkhh"  disabled="disabled" placeholder="">
+						</div>
+					</div>
+						<div class="col-xs-6">
+						<label class="col-md-4 control-label">账户类型</label>
+						<div class="col-md-8">
+							<select class="form-control" style="width:100%;margin-left:0px"  name="zhlx" disabled="disabled" dic-type="B1057" dic-blank=" "
+                                                id="zhlx">
+                                        </select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<a id="" href="javascript:history.go(-1)" class="btn_query btn btn-default">返回</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+
+		<script>
+			$(document).ready(function() {
+				//初始化日期插件
+				dataPiker();
+				var id = locationObj.getParams().id;
+				requestObj.ajaxServer(
+					requestObj.address.jsygetZhgl, {
+						"id": id
+					},
+					function(data, postData) {
+						 pluginObj.setFormValueByName(data.body);
+					},
+					function fail() {}
+				);
+			});
+
+			//关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+			//    $(document).off('click.bs.dropdown.data-api');
+			//自动展开
+			$('.nav .dropdown').mouseenter(function() {
+				$(this).addClass('open');
+			});
+			//自动关闭
+			$('.nav .dropdown').mouseleave(function() {
+				$(this).removeClass('open');
+			});
+		</script>
+	</body>
+
+</html>

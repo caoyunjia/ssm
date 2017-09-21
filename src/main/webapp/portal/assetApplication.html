@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-订单维护</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+    <link href="css/select2.min.css" rel="stylesheet" >
+
+    <!--jinlong css-->
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+</head>
+<body>
+<div class="container  m-content">
+    <form class="form-horizontal row" action="#" id="formId">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">订单编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control cd16" id="ddbh" name="ddbh" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">核心企业客户名称</label>
+                <div class="col-md-8">
+                <select class="form-control fkyz" id="hxqykhh" name="hxqykhh" >
+                 </select>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-md-4 control-label ">订单发起时间</label>
+                <div class="col-md-8">
+                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control rqyz startTime" size="16" type="text" name="ddfqsj" id="CLRQ" name="CLRQ" />
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_input3" value="" />
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-md-4 control-label">订单确认时间</label>
+                <div class="col-md-8">
+                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control rqyz endTime" size="16" type="text" id="ddqrsj" name="ddqrsj" />
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_input3" value="" />
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">总金额（元）</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control zjyz" data-type="currency" id="ZZJGDM" name="zje" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">物流提供商</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control cd64" id="SWDJZH" name="wltgs" placeholder="" maxlength="14">
+                </div>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">物流单号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control cd32" id="JGXYDMZDM" name="wldh" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">运费（元）</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control zjyz" data-type="currency" data-type="currency" id="DKKHM" name="yf" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-md-4 control-label">付款时间</label>
+                <div class="col-md-8">
+                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control rqyz startTime2" size="16" type="text" id="fksj" name="fksj" />
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_input3" value="" />
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-md-4 control-label">收货时间</label>
+                <div class="col-md-8">
+                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control rqyz endTime2" size="16" type="text" id="shsj" name="shsj" />
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_input3" value="" />
+                </div>
+            </div>
+        </div>
+         <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资方角色</label>
+                <div class="col-md-8">
+                 <select class="form-control fkyz" id="rzfjs" name="rzfjs" dic-type="B1022" dic-blank=" ">
+                                    <option vlaue=""></option>
+                 </select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">交易对手名称</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control cd32" id="jydsmc" name="jydsmc"  >
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">货品名称</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control cd128" id="YYZZHM" name="hpmc" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                 <select class="form-control" id="zt" name="zt" dic-type="B1023" disabled="disabled">
+                                    <option vlaue="01"></option>
+                 </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a  id="save" class="btn_query btn btn-default">保存</a>
+            	<a id="" href="javascript:history.go(-1)" class="btn_query btn btn-default">返回</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="searchFrom">
+    <input type="hidden" name="" id="cwbbLx" value="">
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<script>
+    $(document).ready(function(){
+        //初始化日期插件
+        dataPiker();
+   
+  //进入页面默认查询数据
+    requestObj.ajaxServer(
+        requestObj.address.getHxqy,
+          {"pageSize":10,
+          "pageIndex":1,
+          "khgxlx":"01"
+          },
+          function(data){
+            var listVO = data.body.data;
+            //alert(JSON.stringify(data.body));
+             $("#hxqykhh").append(
+            		   "<option value=''></option>")
+            for(var i = 0; i < listVO.length; i++){
+               $("#hxqykhh").append(
+					"<option value='"+listVO[i].khh+"'>"+listVO[i].cyfVo.qymc+"</option>"
+               );
+            }
+           }
+    );
+    });
+   /*  $("#hxqykhh").change(function(){
+    	var jydsmc=$("#hxqykhh").find("option:selected").text();
+    	$("#jydsmc").val(jydsmc);
+
+    }); */
+
+    $("#save").click(function add(){
+    	$("#formId").submit(false);
+		if(!$('#formId').valid()){
+			return;
+		}
+    requestObj.ajaxServer(
+      		 requestObj.address.jsyKhDdxxSave,
+      		 requestObj.packRequest(decodeURIComponent($("#formId").serialize().replace(/\+/g," "),true)),
+      		 function(data){
+      			pluginObj.alert("","保存成功");
+				location="ddlb.html?v=APP_VER";
+            },
+      		 function(){
+        		 }
+    )
+    });
+</script>
+    <script>
+	$().ready(function() {
+		$("#formId").validate({
+			rules : {
+				ddbh : {
+					required : true,
+					maxlength : 32
+				},
+				ddqrsj : {
+					required : true,
+					isDate : true,
+					compareDate:true
+				},
+				ddfqsj : {
+					required : true,
+					isDate : true,
+					compareDate:true
+				},
+				hxqykhh : {
+					required : true,
+				},
+				zje : {
+					required : true,
+					number : true
+				},
+				wltgs : {
+					required : true,
+					maxlength : 32
+				},
+				wldh : {
+					required : true,
+					maxlength : 32
+				},
+				yf : {
+					required : true,
+					number : true
+				},
+				shsj : {
+					required : true,
+					isDate : true,
+					compareDate2:true
+				},
+				fksj : {
+					required : true,
+					isDate : true,
+					compareDate2:true
+				},
+				khxkz : {
+					required : true,
+					maxlength : 32
+				},
+				rzfjs : {
+					required : true,
+				},
+				jydsmc : {
+					required : true,
+					maxlength : 32
+				},
+				hpmc : {
+					required : true,
+					maxlength : 64
+				}
+			},
+			messages: {
+				ddqrsj : {
+					compareDate : "订单确认时间必须大于订单发起时间"
+				},
+				ddfqsj : {
+					compareDate : "订单确认时间必须大于订单发起时间"
+				},
+				shsj : {
+					compareDate2 : "收货时间必须大于付款时间"
+				},
+				fksj : {
+					compareDate2 : "收货时间必须大于付款时间"
+				}
+			}
+
+			});
+	});
+</script>
+</body>
+</html>

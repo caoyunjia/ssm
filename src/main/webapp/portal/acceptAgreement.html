@@ -1,0 +1,94 @@
+<style>
+/*首次改密码确认协议公用*/
+#bg_lvjing, #qrxy_lvjing {
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+}
+
+#qrxy_content {
+	box-shadow: inset 4px 4px 4px #a5c5c7, inset -4px -4px 4px #a5c5c7;
+	border: 2px solid #a5c5c7;
+	width: 600px;
+	position: fixed;
+	background: #fff;
+	margin-top: -200px;
+	margin-left: -300px;
+	top: 50%;
+	left: 50%;
+	height: 400px;
+	background-image: url("img/jiaobiaoyouxialv.png"),url("img/jiaobiaozuoshanglv.png");
+	background-repeat: no-repeat;
+	background-position: right bottom,left top;
+
+}
+
+
+
+
+#XGMM .clear label, #qrxy .clear label {
+	font-size: 16px;
+	color: red
+}
+
+#XGMM .clear:after, #qrxy .clear:after {
+	content: ",";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+}
+
+/*核心企业首次同意协议确认基本信息样式*/
+#qrxy {
+	z-index: 999;
+	line-height: 30px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+#qrxy_content {
+	padding-top: 60px;
+	margin-top: -275px;
+}
+.form-horizontal {
+		padding-top: 0;
+	}
+</style>
+<div id="qrxy" style="display:">
+	<div id="qrxy_lvjing"></div>
+	<div id="qrxy_content">
+		<form id="fp_qrxy_form" class="form form-horizontal">
+			<div class="row form-group">
+				<div class="col-xs-8 col-xs-offset-2 ">
+					<label for="" class="control-label col-xs-4">企业名称</label>
+					<div class="col-xs-8">
+						<input class="form-control" name="entname" type="text" placeholder="企业名称" readonly>
+					</div>
+				</div>
+				<div class="col-xs-2"></div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-8 col-xs-offset-2">
+					<label for="" class="control-label col-md-4">邮箱</label>
+					<div class="col-md-8">
+						<input class="form-control" type="text" placeholder="请输入邮箱" name="email" >
+					</div>
+				</div>
+				<div class="col-xs-2"></div>
+			</div>
+			<div class="row form-group">
+					<div class="col-xs-11 col-xs-offset-1 text-center">
+						<input  type="checkbox" name="acceptAgreement" id="acceptAgreement"><label for="acceptAgreement" class="u-qrxy">&nbsp;<a target="_blank" href="registAgreement.html?v=APP_VER">本人已阅读相关协议</a></label>
+					</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<button class="btn btn-default btn_query" id="qrxy_btn" type="submit">确认</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

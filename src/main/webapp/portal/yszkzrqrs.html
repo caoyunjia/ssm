@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-应收账款转让确认书</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="css/new.css" />
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+		<!--<script src="js/jquery-1.11.1.min.js"></script>-->
+		<link rel="stylesheet" href="js/plugin/kkpager_green.css" />
+		<script src="js/plugin/kkpager.min.js"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+		<script src="js/content-list.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fileinput.min.js"></script>
+		<link href="js/plugin/uploadify/uploadify.css" rel="stylesheet">
+		<script src="js/plugin/uploadify/jquery.uploadify.js"></script>
+		<script src="js/plugin/kkpager.min.js"></script>
+		<script src="js/plugin/jquery.validate.js"></script>
+		<script src="js/plugin/validate-extend.js"></script>
+		<style>
+			.container {
+				width: 970px;
+				padding-left: 0;
+				padding-right: 0;
+			}
+			
+			
+			p {
+				text-indent: 2em;
+				line-height: 3;
+			}
+			
+			.pd20{
+				padding: 20px;
+			}
+			.header h2{
+				text-align: center;
+			}
+			.header span{
+				float: right;
+			}
+			.tab{
+				width: 100%;
+			}
+			.tab th,.tab td{
+				padding: 5px 10px;
+			}
+			.time{
+				width: 50px;
+			}
+			input{
+				border:0;
+				border-bottom: 1px solid #000000;
+				outline:none;
+				padding-left: 5px;
+			}
+			label.error {
+				position: absolute;
+				margin-left: -77px;
+				margin-top: -15px;
+			}
+			input.error {
+				border-top:none;
+				border-left: none;
+				border-right:none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container m-content">
+			<div class="form-group pd20" style="">
+				<form  id="yszkConfirmForm">
+				<div class="header clearfix">
+					<h2>应收账款转让确认书</h2>
+					<span>编号:<input type="" name="sqbh" id="sqbh" value="" /></span>
+				</div>
+				<p>致：<input type="text" id="yhfh" name="yhfh" />：</p>
+				<p> 我司已经收到贵单位于 <input class="time" type="" name="hyear" id="hyear" />   年 <input class="time" type="" name="hmonth" id="hmonth" />   月<input class="time" type="" name="hday" id="hday" />    日向我司发出的编号为 <input type="" name="bh" id="bh" />          的《应收账款转让通知书》。我司知悉贵行为该通知书所述发票项下应收账款债权的合法受让人，卖方已按该通知书上所述的商务合同履约，我司保证将于该通知书所述应收账款的到期日无条件地将发票项下款项付至贵行指定的账户（账号：<input type="" name="yhzh" id="yhzh" />            ）。我司与卖方的商业纠纷或争议将不影响我司对贵行的付款，该笔应收账款不能用来抵销、反诉、赔偿损失、对销账目、担保或做其它扣减等。</p>
+				<p class="clearfix"><span class="pull-right">（签字盖章）</span></p>
+				<p class="clearfix"><span class="pull-right"> <input class="time" type="" name="year" id="year" />   年 <input class="time" type="" name="month" id="month" />   月<input class="time" type="" name="day" id="day" />    日</span></p>
+				<input type="hidden" id="xybh">
+				<input type="hidden" id="xydm">
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="text-center col-xs-12" >
+				<!-- <span class="btn btn-default btn_query" id="xzAyl"></span> -->
+				<a  class="btn btn-default btn_query" href="javascript:void(0)" id="yszkxz" style="display:none">下载</a>
+				<a target="_blank" class="btn btn-default btn_query" href="javascript:void(0)" id="yszkyl" style="display:none">预览</a>
+				<a target="_blank" class="btn btn-default btn_query" href="javascript:void(0)" id="yszkqz" style="display:none">签章</a>
+            	<a  class="btn btn-default btn_query" href="javascript:void(0)"  id="yszkConfirmHt">生成合同</a>
+            	<a  class="btn btn-default btn_query" href="javascript:void(0)" onclick="history.go(-1)">返回</a>
+        	</div>
+        </div>
+	</body>
+	<script>
+		$().ready(function (){
+			autoHeight();
+			var sqbh = locationObj.getParams().sqbh;
+			var qymc = decodeURI(locationObj.getParams().qymc);
+			var khh = locationObj.getParams().khh;
+			requestObj.ajaxServer(
+	                requestObj.address.jsyYszkConfirm,
+	                {
+						"sqbh":sqbh
+			        },
+	                function (data) {
+		                $("#yhfh").val(data.body.yhfh);
+		                $("#xybh").val(data.body.xybh);
+		                $("#xydm").val(data.body.xydm);
+		                var xydm = data.body.xydm;
+		                if(xydm){
+		                	isWj(xydm);
+			            }
+		                idGlblht(xydm);
+		                
+	                }
+	        );
+			function idGlblht(xydm){
+				$("#yszkConfirmHt").click(function(){
+					if(!xydm){
+						pluginObj.alert("", "该融资申请未关联保理合同！");
+						return;
+					}
+					$("#yszkConfirmForm").submit(false);
+					if(!$('#yszkConfirmForm').valid()){
+						return;
+					} 
+					var ffAddData = $("#yszkConfirmForm").getData(); //JSON.stringify(ffAddDataJson);
+					var xydm = $("#xydm").val();
+					var xybh = $("#xybh").val();
+					ffAddData.xybh = xybh;
+					ffAddData.xydm = xydm;
+					 requestObj.ajaxServer(
+		                        requestObj.address.jsyYszkConfirmAdd,
+		                        ffAddData,
+		                        function (data) {
+		                        	pluginObj.alert("", "操作成功");
+		                        	location = "yszkzrqrs.html?sqbh="+sqbh;
+		                        },
+		                        function () {
+		                        }
+		             )
+				});
+				}
+			
+			
+			function isWj(ywbh){
+				requestObj.ajaxServer(
+		                requestObj.address.jsyQueryWjsc,
+		                {
+		                    "ywbh": ywbh,
+		                    "ywlx":'0016',
+		                    "pageSize": 10,
+		                    "pageIndex": 1
+		                },
+		                function (data) {
+		                	wjList = data.body.data;
+		                	if(wjList.length> 0 && wjList[0].id){
+		                		$("#yszkxz").show();
+		                        $("#yszkxz").attr("href",requestObj.port+"common/file.do?q="+  wjList[0].id);
+		                        $("#yszkyl").show();
+		                        $("#yszkyl").attr("href",requestObj.port+"common/filePreview.do?q="+  wjList[0].id);
+		                        $("#yszkqz").show();
+		                        $("#yszkqz").attr("onclick","tzsqz(\""+ wjList[0].id +"\",\""+ wjList[0].ywbh +"\")");
+		                        
+								/* $("#xzAyl").html(
+									"<a href='" + requestObj.port+"common/file.do?q="+  wjList[0].id +"'>下载</a> " + 
+									"<a href='javascript:void(0)' onclick='tzsqz(\""+ wjList[0].id +"\",\""+ wjList[0].ywbh +"\")'>签章</a> " + 
+									"<a target= '_blank' href='" + requestObj.port+"common/filePreview.do?q="+  wjList[0].id +"'>预览</a>"
+								); */
+			                } 
+		                }
+		        );
+			}
+		});
+		function tzsqz(wjid, ywbh) {
+			window.location.href = "yszkzrqrsqz.html?wjid="+wjid+"&ywbh="+ywbh;
+	    }
+	    $("#yszkConfirmForm").validate({
+	    	rules : {
+	    		sqbh : {
+					required : true,
+				},
+				hyear :{
+					required : true,
+					digits : true
+				},
+				hmonth :{
+					required : true,
+					digits : true
+				},
+				hday :{
+					required : true,
+					digits : true
+				},
+				bh : {
+					required : true,
+				},
+				yhzh : {
+					required : true,
+					digits : true
+				},
+				year :{
+					required : true,
+					digits : true
+				},
+				month :{
+					required : true,
+					digits : true
+				},
+				day :{
+					required : true,
+					digits : true
+				}
+			},
+//			errorPlacement:function (error, ele) {
+//				$()
+//			}
+		});
+	</script>
+</html>

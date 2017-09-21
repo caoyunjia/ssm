@@ -1,0 +1,77 @@
+<style>
+    label.error {
+        position: absolute;
+        left: 0;
+    }
+
+    #verifyCode + label.error {
+
+        margin-top: 34px;
+    }
+</style>
+
+<div class="smrz">
+    <form action="#" class="form form-horizontal" id="smrzForm">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label"><nobr>持卡人姓名</nobr></label>
+                <br><br>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="hm" name="hm" maxlength="20" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label"><nobr>卡号</nobr></label>
+                <br><br>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="zh" name="zh" maxlength="27" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label"><nobr>帐户类型</nobr></label>
+                <br><br>
+                <div class="col-md-8">
+                    <select name="zhlx" id="zhlx" class="form-control" dic-blank=" ">
+                        <option value="DEBIT">储蓄卡</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label"><nobr>预留手机号</nobr></label>
+                <br><br>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" maxlength="11" name="lxfs" id="lxfs"
+                           value=""/>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label"><nobr>身份证号</nobr></label>
+                <br><br>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="sfzh" id="sfzh" value="" maxlength="18"/>
+                </div>
+            </div>
+            <div class="col-xs-6 isAcc" style="display:none">
+                <label class="col-md-4 control-label"><nobr>手机验证码</nobr></label>
+                <br><br>
+                <div class="col-md-8" id="smrzdxyzm">
+                    <div style="float:left;margin-left:10px"><input type="text" class="form-control" id="verifyCode" name="verifyCode"
+                                                   maxlength="6"/></div>
+                    <div style="float:left"><a class="btn btn-primary col-45 pl0 pr0 text-center" href="javascript:void(0)" id="sendValidCode"
+                                               onclick="sendSmsRealName()">获取验证码</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <a class="btn btn_query isAcc" style="display:none" id="submit">提交</a>
+                <!--<a href="javascript:void(0)" class="btn btn_query" id="submit" >确认</a>-->
+                <a href="javascript:void(0)" class="btn btn_query " data-dismiss='modal'>返回</a>
+            </div>
+        </div>
+    </form>
+</div>

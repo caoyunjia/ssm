@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-付款维护信息详情</title>
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <!-- HTML5 shim and Respond.js for IE6 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body >
+<div class="container m-content">
+    <!--放款信息查询-->
+    <form class="form-horizontal">
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">融资申请编号</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label" id="sqbh"></label>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">融资金额(元)</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label" id="rzje"></label>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">放款金额(元)</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label" id="fkje"></label>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">放款日期</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label" id="fkrq"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">金融机构名称</label>
+                   <div class="col-md-8"> <label for="" class="control-label" id="jrjgmc"></label>
+                   </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">核心企业名称</label>
+              <div class="col-md-8"><label for="" class="control-label" id="hxqymc"></label></div>
+
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">状态</label>
+                   <div class="col-md-8"> 
+                   <label for="" class="control-label" id="dqzt" dic-type="B1034"></label>
+                   </div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="javascript:history.go(-1);" class="btn_query btn btn-default">返回</a>
+            </div>
+        </div>
+
+    </form>
+  </div>
+ <script src="js/jquery.min.js"></script>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script>
+    $(document).ready(function () {
+    	var sqbh=locationObj.getParams().sqbh;
+    	requestObj.ajaxServer(
+         		 requestObj.address.jsySqRzsqVOById,
+         		 {
+						"sqbh" : sqbh
+             		 },
+         		 function(data){
+             		
+         			$("#sqbh").html(data.body.sqbh);
+         			$("#rzje").html(numberToCurrency(data.body.rzje));
+         			$("#fkje").html(numberToCurrency(data.body.fkje));
+         			$("#fkrq").html(formatDateStr(data.body.fksj));
+         			$("#jrjgmc").html(data.body.jrjgmc);
+         			$("#hxqymc").html(data.body.hxqykhmc);
+         			$("#dqzt").html(ztfun(data.body.dqzt));
+	             },
+         		 function(){}
+       )
+    });
+    function ztfun(dqzt){
+
+        //融资申请表 状态 00 已录入未提交 01及时与审批中 02-增信机构审批中 03-及时雨复核中 04-金融机构审批中  05-审批通过 06-审批拒绝
+        if(dqzt==00){
+        	return "已录入未提交";
+            }
+        if(dqzt==01){
+        	return "及时与审批中";
+            }
+        if(dqzt==02){
+        	return "增信机构审批中";
+            }
+        if(dqzt==03){
+        	return "及时雨复核中";
+            }
+        if(dqzt==04){
+        	return "金融机构审批中";
+            }
+        if(dqzt==05){
+        	return "审批通过";
+            }
+        if(dqzt==06){
+        	return "审批拒绝";
+            }
+          } 
+</script>
+</body>
+</html>

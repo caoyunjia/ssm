@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-债权转让书</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="css/new.css" />
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+		<!--<script src="js/jquery-1.11.1.min.js"></script>-->
+		<link rel="stylesheet" href="js/plugin/kkpager_green.css" />
+		<script src="js/plugin/kkpager.min.js"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+		<script src="js/content-list.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fileinput.min.js"></script>
+		<link href="js/plugin/uploadify/uploadify.css" rel="stylesheet">
+		<script src="js/plugin/uploadify/jquery.uploadify.js"></script>
+		<script src="js/plugin/kkpager.min.js"></script>
+		<script src="js/plugin/jquery.validate.js"></script>
+		<script src="js/plugin/validate-extend.js"></script>
+		<style>
+			
+			.container {
+				width: 970px;
+				padding-left: 0;
+				padding-right: 0;
+			}
+			
+			
+			p {
+				text-indent: 35px
+			}
+			
+			.pd20{
+				padding: 20px;
+			}
+			.header h2{
+				text-align: center;
+			}
+			.header span{
+				float: right;
+			}
+			.tab{
+				width: 930px !important;
+			}
+			.tab th,.tab td{
+				padding: 5px 10px;
+			}
+			input{
+				border:0;
+				border-bottom: 1px solid #000000;
+				outline:none;
+				padding-left: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container m-content">
+			<div class="form-group pd20" style="">
+			<form class="row" id="zqzrsForm">
+				<div class="header clearfix">
+					<h2>债权转让书</h2>
+					<span>编号:<input type="" name="sqbh" id="sqbh" placeholder="请手动输入编号" /></span>
+				</div>
+				<p>致：<input type="text" id="yhfh" name="yhfh" />：</p>
+				<p>根据贵行与我司签署的第		<input type="" name="bh" id="bh"  />	号《国内反向保理业务合同》，我司将以下发票项下应收账款无条件、不可撤销地转让贵行，贵行已取代我司成为应收账款的合法受让人。只有   <input type="text" id="qymc" name="qymc" />  （买方）对贵行付款方能解除其在本发票项下对我司的债务。</p>
+				<p>如在有关应收账款到期日贵行未能取得全额付款，我司须采取一切必要的行动协助贵行取得有关应收账款项下未付款项，这些行动包括但不限于：应贵行要求，代表贵行追偿或起诉，或允许贵行以我司的名义追偿或起诉，或授权贵行接替我司进行追偿、起诉、以债权人身份参加有关债务人的破产或清算程序，或采取其他任何为追讨有关应收账款项下未付款项所必须的行动。</p>
+				<table class="tab" border="1px" cellspacing="" cellpadding="">
+					<thead>
+						<tr>
+							<th>商务合同名称</th>
+							<th>商务合同编号</th>
+							<th>发票日期</th>
+							<th>发票号</th>
+							<th>应收账款净额(元)</th>
+							<th>货物/服务描述</th>
+							<th>到期日</th>
+							<th>备注</th>
+						</tr>
+					</thead>
+					<tbody id="grid_body"></tbody>
+				</table>
+				<p class="clearfix"><span class="pull-right">（签字盖章）</span></p>
+				<p class="clearfix"><span class="pull-right"> <input class="time" type="" name="year" id="year" />   年 <input class="time" type="" name="month" id="month" />   月<input class="time" type="" name="day" id="day" />    日</span></p>
+			</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="text-center col-xs-12" >
+				<!-- <span class="btn btn-default btn_query" id="xzAyl"></span> -->
+				<a  class="btn btn-default btn_query" href="javascript:void(0)" id="zqzrsxz" style="display:none">下载</a>
+				<a target="_blank" class="btn btn-default btn_query" href="javascript:void(0)" id="zqzrsyl" style="display:none">预览</a>
+				<a target="_blank" class="btn btn-default btn_query" href="javascript:void(0)" id="zqzrsqz" style="display:none">签章</a>
+            	<a  class="btn btn-default btn_query" href="javascript:void(0)"  id="zqzrrsHt">生成合同</a>
+            	<a  class="btn btn-default btn_query" href="javascript:void(0)" onclick="history.go(-1)">返回</a>
+        	</div>
+        </div>
+        <input type="hidden" id="xydm">
+	</body>
+	<script>
+		$().ready(function(){
+			autoHeight();
+			var sqbh = locationObj.getParams().sqbh;
+			var qymc = decodeURI(locationObj.getParams().qymc);
+			var khh = locationObj.getParams().khh;
+			$("#qymc").val(qymc);
+			requestObj.ajaxServer(
+	                requestObj.address.jsyYszkTzs,
+	                {
+	                    "sqbh": sqbh,
+	                    "khh":khh,
+	                    "pageSize": 10,
+	                    "pageIndex": 1
+	                },
+	                function (data) {
+		                $("#bh").val(data.body.bh);
+		                $("#yhfh").val(data.body.yhfh);
+		                $("#xydm").val(data.body.xydm);
+		                var xydm = data.body.xydm;
+		                if(xydm){
+		                	isWj(xydm);
+			            }
+		                idGlblht();
+	                	//pluginObj.setFormValueById(data.body);
+	                	var yszkList = data.body.yszkVO;
+	                	if(yszkList!=null&&yszkList.length>0){
+	                		$(".tab tbody").empty();
+	                		for(var i = 0; i< yszkList.length; i++){
+								$(".tab tbody").append(
+									"<tr><td><input type='' id='swhtmc' />"+notNo(yszkList[i].swhtmc)+"</td>"+
+									"<td><input type='' id='swhtbh' />"+notNo(yszkList[i].swhtbh)+"</td>"+
+									"<td id='fprq'>"+formatDateStr(yszkList[i].fprq)+"</td>"+
+									"<td id='fph'>"+notNo(yszkList[i].fph)+"</td>"+
+									"<td id='yszkje'>"+numberToCurrency(yszkList[i].yszkje)+"</td>"+
+									"<td id='fwms'>"+notNo(yszkList[i].fwms)+"</td>"+
+									"<td id='dqr'>"+formatDateStr(yszkList[i].dqr)+"</td>"+
+									"<td id='demo'>"+notNo(yszkList[i].demo)+"</td></tr>"
+							    )
+			                }
+		                }
+	                	
+	                }
+	        );
+			// 空的数据转换
+			function notNo(data){
+				if(!data){
+					return "";
+				}
+				return data;
+			}
+			function idGlblht(){
+			$("#zqzrrsHt").click(function(){
+				var xydm = $("#xydm").val();
+				if(!xydm){
+					pluginObj.alert("", "该融资申请未关联保理合同！");
+					return;
+				}
+				$("#zqzrsForm").submit(false);
+				if(!$('#zqzrsForm').valid()){
+					return;
+				} 
+				//1.首先获取表单信息
+				var ffAddData = $("#zqzrsForm").getData(); //JSON.stringify(ffAddDataJson);
+				//2.其次获取应收账款信息（应收账款信息可能为多条）
+				var fpList = new Array();//创建一个对象
+				var tableObj = $("#grid_body").find("tr");
+				for(var i = 0 ; i < tableObj.length ; i ++){
+					var tempObj = {};
+					tempObj.swhtmc = $("#swhtmc").val();
+					tempObj.swhtbh = $("#swhtbh").val();
+					tempObj.fprq = $("#fprq").text();
+					tempObj.fph = $("#fph").text();
+					tempObj.yszkje = $("#yszkje").text();
+					tempObj.fwms = $("#fwms").text();
+					tempObj.dqr = $("#dqr").text();
+					tempObj.demo = $("#demo").text();
+					fpList.push(tempObj);
+				}
+				ffAddData.xydm=xydm;
+				ffAddData.yszkVO=fpList;
+				 requestObj.ajaxServer(
+	                        requestObj.address.jsyZqzrsAdd,
+	                        ffAddData,
+	                        function (data) {
+	                        	pluginObj.alert("", "操作成功");
+	                        	location = "rzzqzrs.html?sqbh="+sqbh+"&khh="+khh+"&qymc="+qymc;
+	                        },
+	                        function () {
+	                        }
+	             )
+			});
+			}
+			function isWj(ywbh){
+				requestObj.ajaxServer(
+		                requestObj.address.jsyQueryWjsc,
+		                {
+		                    "ywbh": ywbh,
+		                    "ywlx":'0015',
+		                    "pageSize": 10,
+		                    "pageIndex": 1
+		                },
+		                function (data) {
+		                	wjList = data.body.data;
+		                	if(wjList.length>0){
+		                		$("#zqzrsxz").show();
+		                        $("#zqzrsxz").attr("href",requestObj.port+"common/file.do?q="+  wjList[0].id);
+		                        $("#zqzrsyl").show();
+		                        $("#zqzrsyl").attr("href",requestObj.port+"common/filePreview.do?q="+  wjList[0].id);
+		                        $("#zqzrsqz").show();
+		                        $("#zqzrsqz").attr("onclick","tzsqz(\""+ wjList[0].id +"\",\""+ wjList[0].ywbh +"\")");
+								/* $("#xzAyl").html(
+									"<a href='" + requestObj.port+"common/file.do?q="+  wjList[0].id +"'>下载</a> " + 
+									"<a href='javascript:void(0)' onclick='tzsqz(\""+ wjList[0].id +"\",\""+ wjList[0].ywbh +"\")'>签章</a> " + 
+									"<a target= '_blank' href='" + requestObj.port+"common/filePreview.do?q="+  wjList[0].id +"'>预览</a>"
+								); */
+			                } 
+		                }
+		        );
+			}
+		});
+		
+		   function tzsqz(wjid, ywbh) {
+			  window.location.href = "rzzqzrsqz.html?wjid="+wjid+"&ywbh="+ywbh;
+		    }
+		   $("#zqzrsForm").validate({
+		    	rules : {
+		    		sqbh : {
+						required : true,
+					},
+					year :{
+						required : true,
+						digits : true
+					},
+					month :{
+						required : true,
+						digits : true
+					},
+					day :{
+						required : true,
+						digits : true
+					}
+				},
+			});
+	</script>
+</html>

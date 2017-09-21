@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-融资管理-保单信息维护功能-订单查看</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.min.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="js/plugin/kkpager_green.css" />
+		<script src="js/plugin/kkpager.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+		<link rel="stylesheet" type="text/css" href="css/new.css" />
+	</head>
+
+	<body>
+
+		<div class="container ">
+			<form class="form-horizontal row" action="#" id="formId" style="padding-top: 80px;">
+				<div class="row form-group">
+					<div class=" col-xs-6">
+						<label class="col-md-4 control-label">申请编号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="sqbh" name="sqbh" placeholder="" readonly="readonly">
+						</div>
+					</div>
+					<div class=" col-xs-6">
+						<label class="col-md-4 control-label">核心企业</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="hxqykhh" name="hxqykhh" placeholder="" readonly="readonly">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class=" col-xs-6">
+						<label class="col-md-4 control-label">客户名称</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="khh" name="khh" placeholder="" readonly="readonly">
+						</div>
+					</div>
+					<div class=" col-xs-6">
+						<label class="col-md-4 control-label">融资产品</label>
+						<div class="col-md-8">
+							<select type="text" class="form-control" disabled="disabled" id="rzcp" name="rzcp" placeholder="" dic-type="B1039" readonly="readonly"></select>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class=" col-xs-6">
+						<label class="col-md-4 control-label">应收账款总笔数</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="fpzs" name="fpzs" placeholder="" readonly="readonly">
+						</div>
+					</div>
+					<div class=" col-xs-6">
+						<label for="CLRQ" class="col-md-4 control-label">应收账款总金额(元)</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="yszkje" name="yszkje" placeholder="" readonly="readonly">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class=" col-xs-6">
+						<label for="hyfl" class="col-md-4 control-label">申请金额(元)</label>
+						<div class="col-md-8">
+							<input class="form-control" id="sqje" name="sqje" type="text" maxlength="8" readonly="readonly" placeholder="">
+							</select>
+						</div>
+					</div>
+					<div class=" col-xs-6">
+						<label class="col-md-4 control-label">承保金额(元)</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="cbje" name="cbje" readonly="readonly" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class=" col-xs-6">
+						<label class="col-md-4 control-label">融资金额(元)</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="rzje" name="rzje" placeholder="" readonly="readonly">
+						</div>
+					</div>
+					<div class=" col-xs-6">
+						<label class="col-md-4 control-label">利率（%）</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="lv" name="lv" placeholder="" readonly="readonly">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class=" col-xs-6">
+						<label class="col-md-4 control-label">期限（天）</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="rzqx" name="rzqx" placeholder="" readonly="readonly">
+						</div>
+					</div>
+					<div class=" col-xs-6">
+						<label class="col-md-4 control-label">增信机构</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="zxjg" name="zxjg" placeholder="" readonly="readonly">
+						</div>
+					</div>
+				</div>
+				<!--  <div class="row form-group">
+            <div class=" col-xs-6">
+                <label class="col-md-4 control-label">审批意见</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="spyj" name="spyj" placeholder="" readonly="readonly" >
+                </div>
+            </div>
+        </div> -->
+
+			</form>
+		</div>
+		<div class="container" id="">
+			<form class="row form" action="#" id="">
+				<div class="search_result">
+					<table class="table-bordered table1" style="width:100%;">
+						<thead>
+							<tr>
+								<th>订单号</th>
+								<th>货品名称</th>
+								<th>总金额</th>
+								<th>融资客户</th>
+								<th>核心企业</th>
+								<th>订单发起时间</th>
+								<th>订单确认时间</th>
+								<th>交易对手</th>
+								<th dic-type="B1023">状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<div id="kkpager" style="padding-left: 30px"></div>
+				</div>
+				<div class="search_result">
+				<table class="table-bordered table2" style="width:100%;">
+					<thead>
+						<tr>
+							<th>发票号</th>
+							<th>发票代码</th>
+							<th>融资客户</th>
+							<th>核心企业</th>
+							<th>发票金额</th>
+							<th>发票日期</th>
+							<th>交易对手</th>
+							<th dic-type="B1023">状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				<div id="kkpager2" class="kkpager" style="padding-left: 30px"></div>
+			</div>
+			</form>
+		</div>
+
+		<form id="searchFrom">
+			<input type="hidden" name="sqbh" id="sqbhId" value="">
+		</form>
+
+		<script>
+			$(document).ready(function() {
+				//判断是否为超管
+				var postData1 = {}
+				requestObj.ajaxServer(requestObj.address.jsyqueryLx, postData1, function(data, postData1) {
+						if(data.body.data[0].lx == 1) {
+							$("#sp").prop("hidden", false);
+						} else {
+							$("#sp").prop("hidden", true);
+						}
+					})
+				//进入页面默认查询数据
+			      requestObj.ajaxServer(
+			          requestObj.address.getHxqy,
+			            {"pageSize":10,
+			            "pageIndex":1,
+			            },
+			            function(data){
+			              var listVO = data.body.data;
+			              //alert(JSON.stringify(data.body));
+			              for(var i = 0; i < listVO.length; i++){
+			                 $("#hxqykhh").append(
+								"<option value='"+listVO[i].glkhh+"'>"+listVO[i].cyfVo.qymc+"</option>"
+			                 );
+			              }
+			             }
+			      );
+			      requestObj.ajaxServer(
+				          requestObj.address.getHxqyf,
+				            {"pageSize":10,
+				            "pageIndex":1,
+				            "khgxlx":'01'
+				            },
+				            function(data){
+				              var listVO = data.body.data;
+				              //alert(JSON.stringify(data.body));
+				              for(var i = 0; i < listVO.length; i++){
+				                 $("#khh").append(
+									"<option value='"+listVO[i].glkhh+"'>"+listVO[i].cyfVo.qymc+"</option>"
+				                 );
+				              }
+				             }
+				      );
+
+				//初始化日期插件
+				dataPiker();
+				var vo = locationObj.getParams();
+				var sqbh = vo.sqbh;
+				$("#sqbhId").val(sqbh);
+				requestObj.ajaxServer(
+					requestObj.address.jsySqRzsqYszkxxOn, {
+						"sqbh": sqbh
+					},
+					function(data) {
+						$("#sqbh").val(data.body.sqbh);
+						$("#hxqykhh").val(data.body.hxqykhmc);
+						$("#khh").val(data.body.qymc);
+						$("#rzcp").val(data.body.rzcp);
+						$("#fpzs").val(data.body.fpzs);
+						$("#yszkje").val(numberToCurrency(data.body.yszkje));
+						$("#sqje").val(numberToCurrency(data.body.sqje));
+						$("#cbje").val(numberToCurrency(data.body.cbje));
+						$("#rzje").val(numberToCurrency(data.body.rzje));
+						$("#lv").val(data.body.lv);
+						$("#rzqx").val(data.body.rzqx);
+						$("#zxjg").val(data.body.zxjgmc);
+						// $("#spyj").val(data.body.spyj);
+					}
+				);
+				requestObj.searchServer(
+					requestObj.address.findRzsqDdxx,
+					"searchFrom",
+					successFun
+				);
+
+				function successFun(body) {
+					requestObj.searchObj.totalPage = body.body.totalPageNo; //总页码
+					requestObj.searchObj.recordsTotal = body.body.totalCount; //总记录数目
+					requestObj.initPager(
+						requestObj.address.findRzsqDdxx,
+						successFun
+					);
+					$(".table1 tbody").empty();
+					var listVo = body.body.data;
+					for(var i = 0; i < listVo.length; i++) {
+						$(".table1 tbody").append(
+							"<tr><td>" + noNull(listVo[i].ddbh) + "</td>" +
+							"<td>" + noNull(listVo[i].hpmc) + "</td>" +
+							"<td>" + numberToCurrency(listVo[i].zje) + "</td>" +
+							"<td>" + noNull(listVo[i].sxykhmc) + "</td>" +
+							"<td>" + noNull(listVo[i].hxqykhmc) + "</td>" +
+							"<td>" + formatDateStr8(listVo[i].ddfqsj) + "</td>" +
+							"<td>" + formatDateStr8(listVo[i].ddqrsj) + "</td>" +
+							"<td>" + noNull(listVo[i].jydsmc) + "</td>" +
+							"<td>" + noNull(listVo[i].zt) + "</td>" +
+							"<td>" +
+							"<a href=zxjgrzsqddxq.html?id=" + listVo[i].id + ">查看</a>" + "&nbsp;&nbsp;" +
+							"</td>" +
+							"</tr>"
+						)
+					}
+				};
+				requestObj.searchServer(
+					requestObj.address.jsySqRzsqYszkxxDown,
+					"searchFrom",
+					successFunTo
+				);
+
+				function successFunTo(body) {
+					requestObj.searchObj.totalPage = body.body.totalPageNo; //总页码
+					requestObj.searchObj.recordsTotal = body.body.totalCount; //总记录数目
+					requestObj.initPager(
+						requestObj.address.jsySqRzsqYszkxxDown,
+						successFun,
+						"kkpager2"
+					);
+					$(".table2 tbody").empty();
+					var listVo = body.body.data;
+					for(var i = 0; i < listVo.length; i++) {
+						$(".table2 tbody").append(
+							"<tr><td>" + noNull(listVo[i].fph) + "</td>" +
+							"<td>" + noNull(listVo[i].fpdm) + "</td>" +
+							"<td>" + noNull(listVo[i].rzfkhmc) + "</td>" +
+							"<td>" + noNull(listVo[i].hxqykhhmc) + "</td>" +
+							"<td>" + numberToCurrency(listVo[i].fpje) + "</td>" +
+							"<td>" + formatDateStr8(listVo[i].kprq) + "</td>" +
+							"<td>" + noNull(listVo[i].jydsmc) + "</td>" +
+							"<td>" + noNull(listVo[i].zt) + "</td>" +
+							"<td>" +
+							"<a href=zxjgrzsqyszkxq.html?id=" + listVo[i].id + ">查看</a>" + "&nbsp;&nbsp;" +
+							"</td>" +
+							"</tr>"
+						)
+					}
+				};
+			});
+			//判断是否为空
+			function noNull(sj) {
+				if(!sj) {
+					return "";
+				}
+				return sj;
+			};
+			//关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+			//    $(document).off('click.bs.dropdown.data-api');
+			//自动展开
+			$('.nav .dropdown').mouseenter(function() {
+				$(this).addClass('open');
+			});
+			//自动关闭
+			$('.nav .dropdown').mouseleave(function() {
+				$(this).removeClass('open');
+			});
+		</script>
+	</body>
+
+</html>

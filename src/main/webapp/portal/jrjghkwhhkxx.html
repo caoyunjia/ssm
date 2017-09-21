@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-还款维护-还款信息</title>
+
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <!-- HTML5 shim and Respond.js for IE6 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container m-content">
+    <!--<form class="form form-horizontal" id="searchForm"> -->
+	<form class="form form-horizontal" id="searchForm" style="padding-bottom:80px">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资申请编号</label>
+                <div class="col-md-8">
+                    <label for="" class="control-label" id="rzsqbh"></label>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资金额(元)</label>
+                <div class="col-md-8">
+                     <label for="" class="control-label" id="rzje"></label>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资开始日期</label>
+                <div class="col-md-8">
+                       <label for="" class="control-label" id="rzksrq"></label>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="" class="control-label col-md-4">融资结束日期</label>
+                <div class="col-md-8">
+                <label for="" class="control-label" id="rzjsrq"></label>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">申请日期</label>
+                <div class="col-md-8">
+                    <label for="" class="control-label" id="sqrq"></label>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="control-label col-md-4">已还款本金金额（元）</label>
+                <div class="col-md-8">
+                    <label for="" class="control-label" id="hkzje"></label>
+                </div>
+            </div>
+         </div>
+            <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">还款方式</label>
+                <div class="col-md-8">
+                    <select for="" class="form-control" id="hkfs" dic-type="B1054" dic-blank=" "></select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">还款币种</label>
+                <div class="col-md-8">
+                    <select for="" class="form-control" id="hkbz" dic-type="B1056" dic-blank=" "></select>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">本次还款归还本金金额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control bjje" id="bcghbjje"  name="bcghbjje" data-type="currency">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">本次还款归还利息金额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control lxje" id="bcghlxje"  name="bcghlxje" data-type="currency">
+                </div>
+            </div>
+
+        </div>
+      	<div class="row form-group">
+            <div class="col-xs-6">
+                <label for="" class="control-label col-md-4">还款日期</label>
+                <div class="col-md-8">
+                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+                         data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" id="hkrq" name="hkrq"/>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">还款金额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control hkje bjlx" id="je" name="je" data-type="currency">
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-12">
+               <button type="button" class="btn_query btn btn-default button1">提交申请</button>
+                <a href="javascript:void(0)" class="btn_query btn btn-default" onclick="history.go(-1)">返回</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<script>
+    $(document).ready(function () {
+    	var fkid = locationObj.getParams().fkid;
+        dataPiker();
+        requestObj.ajaxServer(
+                requestObj.address.jrjgwhhkxx,
+                {
+                    "id":fkid
+                },
+                function(data){
+                    $("#rzsqbh").html(data.body.rzsqrq);
+                    $("#rzje").html(numberToCurrency(data.body.rzje));
+                    $("#rzksrq").html(formatDateStr(data.body.rzksrq));
+                    $("#rzjsrq").html(formatDateStr(data.body.rzjsrq));
+                    $("#sqrq").html(formatDateStr(data.body.sqrq));
+                    $("#hkzje").html(formatDateStr(data.body.hkzje));
+                },
+                function(){}
+        );
+
+        $(".button1").click(function(){
+        	if (!$('#searchForm').valid()) {
+                return;
+            }
+          	 requestObj.ajaxServer(
+                       requestObj.address.jrjgwhhkxxsp,
+                       {
+                           "hkrq":$("#hkrq").val(),
+                           "bcghbjje":$("#bcghbjje").val(),
+                           "bcghlxje":$("#bcghlxje").val(),
+                           "hkfs":$("#hkfs").val(),
+                           "hkbz":$("#hkbz").val(),
+                           "fkid":fkid,
+                           "je" : $("#je").val()
+                       },
+                       function(data){
+                           if(!data.body){
+   							pluginObj.alert("","维护失败！")
+                           }else{
+                           	 pluginObj.alert("","还款维护成功！")
+      	                      	location = "jrjghkwh.html?v=APP_VER";
+                           }
+                       },
+                       function(){}
+               );
+
+          });
+
+        
+    })
+</script>
+<script type="text/javascript">
+$("#searchForm").validate({
+    rules: {
+        je: {
+        	required: true,
+        	min:0.01,
+        	capital: true
+        },
+        bcghbjje: {
+        	required: true,
+        	min:0.01,
+        	capital: true
+        },
+        bcghlxje: {
+        	required: true,
+        	capital: true
+        },
+        hkrq: {
+        	required: true,
+        	isDate: true
+        }
+    }
+});</script>
+</body>
+</html>

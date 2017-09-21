@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-上下游-放款信息查询-申请还款</title>
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <!-- HTML5 shim and Respond.js for IE6 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body >
+<div class="container m-content">
+    <!--放款信息查询-->
+    <form class="form-horizontal">
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">融资申请编号</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label" id="rzbh"></label>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">融资金额(元)</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label" id="rzje"></label>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">放款金额(元)</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label" id="fkje"></label>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">放款日期</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label" id="fkrq"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">金融机构名称</label>
+                   <div class="col-md-8"> <label for="" class="control-label" id="jrjgmc"></label>
+                   </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">核心企业名称</label>
+              <div class="col-md-8"><label for="" class="control-label" id="hxqymc"></label>
+              </div>
+
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">状态</label>
+                   <div class="col-md-8"> <label for="" class="control-label" id="zt"></label>
+                   </div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="javascript:history.go(-1);" class="btn_query btn btn-default">返回</a>
+            </div>
+        </div>
+
+    </form>
+  </div>
+ <script src="js/jquery.min.js"></script>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script>
+    $(document).ready(function () {
+        var id="";
+        id=locationObj.getParams().id;
+    	requestObj.ajaxServer(
+         		 requestObj.address.syfkxxck,
+         		 {
+						"id" : id
+             		 },
+         		 function(data){
+             		
+         			$("#rzbh").html(data.body.rzsqrq);
+         			$("#rzje").html(numberToCurrency(data.body.rzje));
+         			$("#fkje").html(numberToCurrency(data.body.fkje));
+         			$("#fkrq").html(formatDateStr8(data.body.fkrq));
+         			$("#jrjgmc").html(data.body.jrjgmc);
+         			$("#hxqymc").html(data.body.hxqykhmc);
+         			$("#zt").html(ztfun(data.body.zt));
+	             },
+         		 function(){}
+       )
+    });
+    function ztfun(zt){
+        if(zt==01){
+        	return "已登记待放款";
+            }
+        if(zt==02){
+        	return "已成功放款";
+            }
+        if(zt==03){
+        	return "放款失败";
+            }
+        if(zt==04){
+        	return "部分还款";
+            }
+        if(zt==05){
+        	return "已还清";
+            }
+          }
+</script>
+</body>
+</html>

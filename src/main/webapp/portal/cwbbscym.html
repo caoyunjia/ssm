@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-</title>
+    <link href="css/fileinput.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+ 
+    <!--jinlong css-->
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <script src="js/fileinput.min.js"></script>
+	<link href="js/plugin/uploadify/uploadify.css" rel="stylesheet">
+	<script src="js/plugin/uploadify/jquery.uploadify.js"></script>
+	<script src="js/plugin/jquery.validate.js"></script>
+    <script src="js/plugin/validate-extend.js"></script>
+</head>
+<body>
+<div class="container m-content">
+    <form class="form-horizontal row" id="formId">
+        <div class="form-group row">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">客户名称</label>
+                <div class="col-md-8">
+                    <span id="khmc" style="vertical-align: -webkit-baseline-middle;"></span>
+                </div>
+            </div>
+            <div class="col-xs-6">
+               <label class="col-md-4 control-label">类型</label>
+                <div class="col-md-8">
+                    <select class="form-control"  dic-type="B1015" dic-blank=" " name="bb" id="bb">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">年份</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="nf" placeholder="" name="nf">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">季度</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="jd" name="jd"  dic-type="B1013" dic-blank=" ">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+           <div class="col-xs-6">
+                <label class="col-md-4 control-label">报表类型</label>
+                <div class="col-md-8">
+                    <select class="form-control"  name="bbmb" id="bbmb" dic-type="B1014" dic-blank=" ">
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-sm-4 control-label">报表名称</label>
+               <div class="col-md-8">
+                    <input class="form-control" type="test" class=""  placeholder="" name="bbmc" id="bbmc">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+			<div onsubmit="return false;">
+				<div class="col-xs-6">
+					<label class="col-md-4 control-label">文件</label>
+					<div class="col-md-8">
+						<input id="file" name="file" type="file" multiple="multiple">
+					</div>
+				</div>
+
+				<div class="col-xs-6">
+					<label class="col-md-4 control-label"> </label>
+					<div class="col-md-8" id="dis"></div>
+				</div>
+			</div>
+		</div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <a type="button" id="btn" class="btn_query btn btn-default">确认</a>
+                <a type="button" href="javascript:history.go(-1)" id="btnRe" class="btn_query btn btn-default">返回</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function(){
+
+        //初始化日期插件
+        dataPiker();
+        var khh= locationObj.getParams().khh;
+        var add= locationObj.getParams().add;
+        if(add == 1){
+			$("#btnRe").attr("href","mymessage.html?khh=" + khh);
+        }
+        if(typeof(khh)=="undefined"){ 
+			khh = "";
+        }
+        $(":file").upload(requestObj.address.bbxxuploadfile, {
+			 ywlx : "0005"
+		}, function(file, id) {
+			autoHeight();
+		});
+		$("#btn").click(function() {
+			$("#formId").submit(false);
+			if(!$('#formId').valid()){
+				return;
+			}
+			// 报表类型校验
+			var files = $("form").getData().file;
+			// 验证文件个数
+			if(!isArray(files)){
+				pluginObj.alert("","保存失败，必须选择四个文件");
+				return;
+			}
+			if(files.length != 4){
+				pluginObj.alert("","保存失败，必须选择四个文件");
+				return;
+			}
+			// 判断文件是否全部已上传
+			for(var i = 0; i < files.length; i++){
+				if(files[i] == ""){
+					pluginObj.alert("","请等待文件上传完成")
+					return;
+				}
+			}
+
+			 requestObj.ajaxServer(
+	          		 requestObj.address.savecwbb,
+	          		 {
+	          			"khh" : khh,
+	          			"bb" : $("#bb").val(),
+	          			"nf" : $("#nf").val(),
+	          			"jd" : $("#jd").val(),
+	          			"bbmb" : $("#bbmb").val(),
+	          			"bbmc" : $("#bbmc").val(),
+	          			"wjid1" : files[0],
+	          			"wjid2" : files[1],
+	          			"wjid3" : files[2],
+	          			"wjid4" : files[3]
+	              		 },
+	          		 function(data){
+	    	          	if(data.body.info == "000000"){
+	    	          		pluginObj.alert("","操作成功！");
+	    	          		if(add==1){
+	    	          			location = "mymessage.html?khh=" + khh;
+	    	          			return;
+			    	        }
+		          			history.go(-1);
+		          			return;
+		    	        }
+		    	        pluginObj.alert("",data.body.wj + "：" + data.body.info)
+		             },
+	          		 function(){}
+	        )
+		});
+
+
+        // 得到客户名称findKhmc
+        requestObj.ajaxServer(
+          		 requestObj.address.findKhmc,
+          		 {
+          			"khh":khh
+              		 },
+          		 function(data){
+          			$("#khmc").html(data.body.qymc);
+	             },
+          		 function(){}
+        )
+
+        // 选中年报后  季度禁用
+        $("#jd").attr("disabled","disabled");
+        $("#bb").change(function(){
+        	bblx();
+        });
+    });
+
+	function isArray(arg) {
+	    if (typeof arg === 'object') {
+	        return Object.prototype.toString.call(arg) === '[object Array]';
+	    }
+	    return false;
+	}
+
+
+    function bblx(){
+    	if($("#bb").val() == 1){
+			$("#jd").attr("disabled","disabled");
+			$("#jd").val("");
+		}
+		if($("#bb").val() == 2){
+			$("#jd").removeAttr("disabled");
+		}
+    }
+    //关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+    //    $(document).off('click.bs.dropdown.data-api');
+    //自动展开
+    $('.nav .dropdown').mouseenter(function(){
+        $(this).addClass('open');
+    });
+    //自动关闭
+    $('.nav .dropdown').mouseleave(function(){
+        $(this).removeClass('open');
+    });
+</script>
+<script type="text/javascript">
+	$().ready(function() {
+		$("#formId").validate({
+			rules : {
+				nf : {
+					required : true,
+					number : true,
+					maxlength : 4
+				},
+				bbmc : {
+					required : true,
+					maxlength : 16
+				},
+				bbmb : {
+					required : true
+				},
+				bb : {
+					required : true
+				},
+				jd : {
+					required : true
+				}
+			},
+		});
+
+		});
+	</script>
+</body>
+</html>

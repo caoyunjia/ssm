@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+    <!-- jedisPoolConfig -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!-- 设置最大连接数 -->
+        <property name="maxTotal" value="100"></property>
+        <!-- 设置最大阻塞时间，记住是毫秒数milliseconds -->
+        <property name="maxWaitMillis" value="1000"></property>
+        <!-- 设置空间连接 -->
+        <property name="maxIdle" value="10"></property>
+    </bean>
+    <bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool">
+        <constructor-arg index="0" ref="jedisPoolConfig"/>
+        <constructor-arg index="1">
+            <list>
+                <bean class="redis.clients.jedis.JedisShardInfo">
+                    <!-- <constructor-arg index="0" value="127.0.0.1" type="String"/> -->
+                    <constructor-arg index="0" value="192.168.85.135" type="java.lang.String"/>
+                    <constructor-arg index="1" value="6739"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+
+
+</beans>

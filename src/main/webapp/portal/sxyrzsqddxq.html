@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-上下游-融资申请订单详情</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+		<link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+	</head>
+
+	<body>
+
+<div class="container m-content">
+	<form class="form-horizontal row" action="#" id="formId">
+				<div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">订单编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="ddbh"  name="ddbh" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资方角色</label>
+                <div class="col-md-8">
+                    <select type="text" class="form-control" id="rzfjs" name="rzfjs" dic-type="B1022" placeholder="" readonly></select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">核心企业</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="hxqykhh" name="hxqykhh" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-sm-4 control-label">订单发起时间</label>
+                <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" name="ddfqsj" id="ddfqsj" readonly="readonly"/>
+                    <input type="hidden" id="dtp_input3" value="" />
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-sm-4 control-label">订单确认时间</label>
+                <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" id="ddqrsj" name="ddqrsj" readonly="readonly" />
+                    <input type="hidden" id="dtp_input3" value="" />
+                </div>
+            </div>
+               <div class="col-xs-6">
+                <label class="col-md-4 control-label">交易对手</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="jydsmc" name="jydsmc" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-sm-4 control-label">收货时间</label>
+                <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" id="shsj" name="shsj" readonly="readonly"/>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">货品名称</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="hpmc" name="hpmc" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">总金额（元）</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="zje" name="zje" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                    <select type="text" class="form-control" id="zt" name="zt" placeholder="" dic-type="B1023" readonly="readonly">
+                    </select> 
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">物流单号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="wldh" name="wldh" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">合同编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="fksj" name="fksj" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">运费（元）</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="yf" name="yf" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">物流提供商</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="wltgs" name="wltgs" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+		<div class="text-center col-xs-12">
+			<a id="save" class="btn_query btn btn-default" onclick="history.go(-1)">返回</a>
+		</div>
+	</form>
+</div>
+
+<form id="searchFrom">
+	<input type="hidden" name="" id="cwbbLx" value="">
+</form>
+
+		<script>
+		$(document).ready(function(){
+
+			 //判断非空
+			 function noNull(sj){
+					if(!sj){
+						return "";
+					}
+					return sj;
+			    }
+		        //初始化日期插件
+		        dataPiker();
+		    var vo= locationObj.getParams();
+		    var id= vo.id;
+		        requestObj.ajaxServer(
+		                requestObj.address.jsyKhDdxxSearchone,
+		                {
+							"id":id
+		                    },
+		                function(data,postData){
+		                    	$("#rzfkhh").val(noNull(data.body.rzfkhh)),
+		                    	$("#id").val(noNull(data.body.id)),
+		                    	$("#rzfjs").val(noNull(data.body.rzfjs)),
+		                    	$("#jydsmc").val(noNull(data.body.jydsmc)),
+		                    	$("#hxqykhh").val(noNull(data.body.hxqykhmc)),
+		                    	$("#ddbh").val(noNull(data.body.ddbh)),
+		                    	$("#ddfqsj").val(noNull(data.body.ddfqsj)),
+		                    	$("#ddqrsj").val(noNull(data.body.ddqrsj)),
+		                    	$("#hpmc").val(noNull(data.body.hpmc)),
+		                    	$("#zje").val(noNull(data.body.zje)),
+		                    	$("#wldh").val(noNull(data.body.wldh)),
+		                    	$("#shsj").val(noNull(data.body.shsj)),
+		                    	$("#fksj").val(noNull(data.body.fksj)),
+		                    	$("#yf").val(noNull(data.body.yf)),
+		                    	$("#wltgs").val(noNull(data.body.wltgs)),
+		                    	$("#zt").val(noNull(data.body.zt)),
+		                    	$("#crr").val(noNull(data.body.crr)),
+		                    	$("#crsj").val(noNull(data.body.crsj)),
+		                    	$("#gxr").val(noNull(data.body.gxr)),
+		                    	$("#gxsj").val(noNull(data.body.gxsj))
+		                },
+		                function fail(){}
+		        );
+				var successFun = function(data,postData){
+		 		 	pluginObj.alert("","成功");
+				};
+		});
+		</script>
+	</body>
+
+</html>

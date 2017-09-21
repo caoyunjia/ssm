@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-融资申请查询/办理</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <style>
+        #dytzs .modal-lg{
+            padding-top: 150px;
+        }
+    </style>
+</head>
+<body>
+<div class="search_input container m-content">
+    <form class="form-horizontal form" id="searchFrom" role="form" onsubmit="return false;">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="hxqykhh" class="col-md-4 control-label">核心企业名称</label>
+                <div class="col-md-8">
+                    <input name="hxqykhmc" class="form-control" id="hxqykhmc" />
+                </div>
+            </div>
+            <div class=" col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                    <select name="dqzt" class="form-control" id="dqzt" dic-type="B1034" dic-blank=" ">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-6">
+                <label for="khh" class="col-md-4 control-label">客户名称</label>
+                <div class="col-md-8">
+                    <input name="qymc" class="form-control" id="qymc" />
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="hyfl" class="col-md-4 control-label">申请金额(元)</label>
+                <div class="col-md-8">
+                    <div class="col-45">
+                        <input class="form-control jeq" id="sqjes" name="sqjes" type="text" data-type="currency" placeholder="">
+                        </select>
+                    </div>
+                    <div class="col-10"><p class="form-control-static">-</p></div>
+                    <div class="col-45">
+                        <input class="form-control jez" id="sqjee" name="sqjee" type="text" data-type="currency" placeholder="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a id="searchBtn" class="btn btn-default btn_query">查询</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container" id="">
+    <form class="form row" action="#" id="FormId">
+        <div class="search_result">
+            <table class="table-bordered table table-hover">
+                <thead>
+                <tr>
+                    <th>申请编号</th>
+                    <th>客户名称</th>
+                    <th>核心企业</th>
+                    <th>申请日期</th>
+                    <th>申请金额(元)</th>
+                    <th dic-type="B1039">融资产品</th>
+                    <th>增信机构</th>
+                    <th dic-type="B1034">状态</th>
+                    <th width='260'>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div id="kkpager"></div>
+        </div>
+    </form>
+</div>
+<!---->
+<div id="dytzs" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" id="dytzscss">
+            <div class="smrz">
+                <form action="#" class="form form-horizontal" id="dytzsForm">
+                    <div class="row form-group">
+                        <div class="col-xs-4">
+                              <div class="col-md-8" id="yszkzrtzscm8">
+                                 <input type="radio" class="tzs" name="tzs" id="yszkzrtzs" value="./yszkzrtzs.html?v=APP_VER"><label for="yszkzrtzs"><nobr>应收账款转让通知书</nobr></label>
+                              </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="col-md-8" id="yszkzrqrscm8">
+                                <input type="radio" class="tzs" name="tzs" id="yszkzrqrs" value="./yszkzrqrs.html?v=APP_VER"><label for="yszkzrqrs"><nobr>应收账款转让确认书</nobr></label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                              <div class="col-md-8" id="zqzrscm8">
+                                 <input type="radio" class="tzs" name="tzs" id="zqzrs" value="./rzzqzrs.html?v=APP_VER"><label for="zqzrs">债权转让书</label>
+                              </div>
+                        </div>
+                     </div>
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <a href="javascript:void(0)" class="btn btn_query" data-dismiss='modal' id="tzsConfirm" >确认</a>
+                            <a href="javascript:void(0)" class="btn btn_query " data-dismiss='modal'>返回</a>
+                        </div>
+                    </div>
+                    <input type="hidden" id="yszksqbh"><input type="hidden" id="jqymc"><input type="hidden" id="yszkkhh">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<script>
+var flag;
+    $(document).ready(function () {
+        //判断是否为超管
+        var postData1 = {}
+        requestObj.ajaxServer(requestObj.address.jsyqueryLx, postData1, function (data, postData1) {
+            if (data.body.data[0].lx == 1) {
+                $("#sp").prop("hidden", false);
+            } else {
+                $("#sp").prop("hidden", true);
+            }
+        })
+        //初始化日期插件
+
+        dataPiker();
+
+        requestObj.searchServer(
+                requestObj.address.jrjgsyRzFind,
+                "searchFrom",
+                successFun
+        );
+        //进入页面默认查询数据
+        //给查询按钮绑定查询事件
+        $("#searchBtn").click(function () {
+        	$("#searchFrom").submit(false);
+			if(!$('#searchFrom').valid()){
+				return;
+			}
+            requestObj.searchObj.postData.pageIndex = "1";
+            requestObj.searchServer(
+                    requestObj.address.jrjgsyRzFind,
+                    "searchFrom",
+                    successFun
+            );
+        });
+        //进入页面默认查询数据
+    /*     requestObj.ajaxServer(
+                requestObj.address.getHxqy,
+                {
+                    "pageSize": 10,
+                    "pageIndex": 1,
+                    "khgxlx": '03'
+                },
+                function (data) {
+                    var listVO = data.body.data;
+                    //alert(JSON.stringify(data.body));
+                    for (var i = 0; i < listVO.length; i++) {
+                        $("#hxqykhh").append(
+                                "<option value='" + listVO[i].khh + "'>" + listVO[i].cyfVo.qymc + "</option>"
+                        );
+                    }
+                }
+        );
+        requestObj.ajaxServer(
+                requestObj.address.getHxqyf,
+                {
+                    "pageSize": 10,
+                    "pageIndex": 1,
+                    "khgxlx": '05'
+                },
+                function (data) {
+                    var listVO = data.body.data;
+                    //alert(JSON.stringify(data.body));
+                    for (var i = 0; i < listVO.length; i++) {
+                        $("#khh").append(
+                                "<option value='" + listVO[i].glkhh + "'>" + listVO[i].cyfVo.qymc + "</option>"
+                        );
+                    }
+                }
+        ); */
+        function successFun(data) {
+            requestObj.searchObj.totalPage = data.body.totalPageNo;//总页码
+            requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+            requestObj.initPager(
+                    requestObj.address.jrjgsyRzFind,
+                    successFun
+            );
+            $(".table-bordered tbody").empty();
+            var listVo = data.body.data;
+            var operation;
+            var dqzt;
+            var fkPage = "jrjgfk.html";
+           	// (最新状态)  融资申请表 状态 00 已录入未提交 01及时与审批中 02-增信机构审批中 03-及时雨复核中 04-金融机构审批中  05-审批通过 06-审批拒绝
+            for (var i = 0; i < listVo.length; i++) {
+                if(!listVo[i].glxybh){
+                	fkPage = "jrjgfkNoblht.html";
+                }
+            	operation = "<td>";
+            	 if (listVo[i].dqzt == '04' && listVo[i].sfsd != 1) {
+                     operation += "<a href='jrjgrzsp1.html?rzcp="+listVo[i].rzcp+"&bussId="+listVo[i].sqbh+"'>审批</a>";
+                 } else if (listVo[i].dqzt == '05') {
+                     operation += "<a href='"+ fkPage +"?sqbh=" + listVo[i].sqbh + "'>放款登记</a>";
+                 }
+                operation += "<a href='javascript:void(0)' onclick='dytzs(\""+listVo[i].sqbh+"\",\""+listVo[i].qymc+"\",\""+listVo[i].khh+"\")'>打印通知书</a>";
+                if(listVo[i].glxybh){
+                	operation +="<a href='jrjgfkxx.html?sqbh="+listVo[i].sqbh+"'>放款信息</a>";
+                }
+                $(".table-bordered tbody").append(
+                        "<tr><td><a href='jrjgrzspck1.html?rzcp="+listVo[i].rzcp+"&sqbh="+listVo[i].sqbh+"'>" + listVo[i].sqbh + "</a></td>" +
+                        "<td><a title='"+ listVo[i].qymc +"' href='sxyzlck.html?khh=" + listVo[i].khh + "'>" + listVo[i].qymc + "</a></td>" +
+                        "<td><a title='"+ listVo[i].hxqykhmc +"' href='sxyzlck.html?khh=" + listVo[i].hxqykhh + "'>" + listVo[i].hxqykhmc + "</a></td>" +
+                        "<td>" + formatDateStr(listVo[i].sqrq) + "</td>" +
+                        "<td>" + numberToCurrency(listVo[i].sqje) + "</td>" +
+                        "<td>" + listVo[i].rzcp + "</td>" +
+                        "<td>" + noNull(listVo[i].zxjgmc) + "</td>" +
+                        "<td>" + listVo[i].dqzt + "</td>" +
+                        operation + "</td>" +
+                        "</tr>"
+                )
+            }
+        }
+    });
+  //判断非空
+    function noNull(sj){
+		if(!sj){
+			return "无";
+		}
+		return sj;
+    }
+    //查看时根据融资产品不同跳转不同页面
+    function rzlx(rzcp, sqbh) {
+        if (rzcp == '01') {
+            location = "jrjgrzspck2.html?sqbh=" + sqbh;
+        }
+        if (rzcp == '02') {
+            location = "jrjgrzspck1.html?sqbh=" + sqbh;
+        }
+    }
+    //审批时根据融资产品不同跳转不同页面
+    function sptz(rzcp, sqbh) {
+        if (rzcp == '01') {
+            location = "jrjgrzsp2.html?sqbh=" + sqbh;
+        }
+        if (rzcp == '02') {
+            location = "jrjgrzsp1.html?sqbh=" + sqbh;
+        }
+    }
+  //复核时根据融资产品不同跳转不同页面
+    function sptz1(rzcp, sqbh) {
+        if (rzcp == '01') {
+            location = "jrjgrzfh2.html?sqbh=" + sqbh;
+        }
+        if (rzcp == '02') {
+            location = "jrjgrzfh1.html?sqbh=" + sqbh;
+        }
+    }
+    function dytzs(sqbh,qymc,khh) {
+        $("#dytzs").modal();
+        $("#yszksqbh").val(sqbh);
+        $("#jqymc").val(qymc);
+        $("#yszkkhh").val(khh);
+    }
+    $("#tzsConfirm").click(function(){
+        var sqbh = $("#yszksqbh").val();
+        var qymc = $("#jqymc").val();
+        var khh = $("#yszkkhh").val();
+    	var radioObj = $('.tzs');
+    	var l = radioObj.length;
+    	for(var i = 0;i<l;i++){
+    	  if(radioObj[i].checked){
+    	    //console.log('第'+i+'个radio选中'+radioObj[i].value);
+    	    window.location.href = radioObj[i].value+'&sqbh='+sqbh+'&qymc='+qymc+'&khh='+khh;
+    	  }
+    	}
+     });
+    
+</script>
+	<script>
+	$().ready(function() {
+		$("#searchFrom").validate({
+			rules : {
+				sqjes : {
+					number : true
+				},
+				sqjee : {
+					number : true
+				},
+				sqbh : {
+					maxlength : 32
+				}
+			},
+		});
+
+		});
+	</script>
+
+</body>
+</html>

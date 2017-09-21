@@ -1,0 +1,257 @@
+/*侧边栏*/
+.cblan{
+	width: 50px;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	right: 0;
+	background: rgb(38,51,65);
+	z-index: 9999;
+}
+.cblan a,.cblan span{
+	color: white;
+}
+.cblan span.rmgyl{
+	font-size: 20px;
+}
+
+.cblan ul li a div{
+	text-align: center;
+}
+.cblan ul li a{
+	list-style: none;
+	display: block;
+	height: 55px;
+	cursor: pointer;
+}
+.cblan ul li a:hover{
+	background: #2c95c4;
+	text-decoration: none;
+}
+.cblan .close-top{
+	margin-bottom: 10px;
+	border-top: 1px solid #264959;
+}
+.cblan .close-top a{
+	display: block;
+	width: 50px;
+	height: 46px;
+	line-height: 46px;
+	text-decoration: none;
+	cursor: pointer;
+}
+.cblan .close-top a:hover{
+	text-decoration: none;
+	background: #2c95c4;
+}
+.cblan .close-top{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+.cblan .close-top div{
+	text-align: center;
+}
+.cblan .close-top div span{
+	font-size: 24px;
+}
+.cblan .photo{
+	margin-top: 100px;
+	height: 50px;
+}
+.cblan .photo img{
+	max-height: 40px;
+	max-width: 40px;
+	border: 1px solid #ddd;
+	border-radius: 40px;
+	margin-left: 5px;
+}
+.cblan ul{
+	margin-top: 80px;
+}
+.cblan .blan-current{
+	position: relative;
+	background: #2c95c4;
+}
+.cblan .blan-current::before{
+	content: "";
+	position: absolute;
+	top: 20px;
+	border-left: 7px solid #fff;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+}
+.zkcblan{
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	display: none;
+	z-index: 9999;
+}
+.zkcblan span{
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	width: 50px;
+	text-align: center;
+	font-size: 24px;
+	color: #fff;
+	cursor: pointer;
+	background: #143341;
+	border-radius: 5px;
+}
+.zkcblan span:hover{
+	background: #2c95c4;
+	color: white;
+}
+.cblan-detail{
+	display: none;
+}
+.detail-yyi{
+	position: fixed;
+	top: 0;
+	right: 50px;
+	overflow: auto;
+	background: white;
+	width: 270px;
+	height: 100%;
+	z-index: 9999;
+	border-radius: 5px 0 0 5px;
+	border-left: 1px solid #ddd;
+}
+.detail-yyi .line-yuan{
+	border-left: 1px solid #ddd;
+	position: relative;
+}
+.detail-yyi .line-yuan span.yuan{
+	display: inline-block;
+	width: 24px ;
+	background: #ddd;
+	height: 11px;
+	position: absolute;
+	top: 45%;
+	left: -6px;
+	background: url("../images/yuan2.png") no-repeat left center;
+}
+.detail-yyi .yjing-list{
+	padding: 6px 0 10px 0;
+	border-bottom: 1px dashed #ddd;
+}
+.detail-yyi .yjing-list .rwlist{
+	color: #666;
+	margin: 4px 0;
+}
+.detail-yyi .yjing-list .rwlist:hover{
+	color: #2c95c4;
+}
+.detail-yyi .yjing-list .rwlist.hasmes{
+	color: #dd7947;
+}
+.detail-yyi .yjing-list .rwlist.hasmes:hover{
+	color: #dd7947;
+}
+.detail-yyi dt{
+	border-bottom: 1px solid #ddd;
+}
+.detail-yyi dd{
+	padding: 15px 0 20px 0;
+	border-bottom: 1px dashed #ddd;
+}
+.detail-yyi dt div h4,.detail-yyi dt span{
+	display: block;
+	padding: 0;
+	margin: 0;
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+	color: #666;
+}
+.detail-yyi dt span{
+	cursor: pointer;
+}
+.detail-yyi dt span:hover{
+	color: #dc5e1f;
+}
+.detail-yyi .circle{
+	display: inline-block;
+	height: 60px;
+	line-height: 60px;
+	width: 60px;
+	text-align: center;
+	color: #2c95c4;
+	background: url("../images/circle.png") no-repeat;
+}
+.detail-yjing{
+	position: fixed;
+	top: 285px;
+	right: 50px;
+	background: white;
+	height: 55px;
+	line-height: 55px;
+	border-radius: 5px 0 0 5px;
+	border: 1px solid #edc53c;
+	border-right: none;
+	padding: 0 20px;
+	font-size: 16px;
+}
+
+/*lhr0906*/
+.detail-xdao{
+	position: fixed;
+	top: 0;
+	right: 50px;
+	height: 100%;
+	width: 340px;
+	background: white;
+	z-index: 9999;
+	border-left: 1px solid #ddd;
+	border-radius: 5px 0 0 5px;
+	overflow: auto;
+}
+.detail-xdao dt{
+	border-bottom: 1px solid #ddd;
+}
+.detail-xdao dt div h4, .detail-xdao dt span{
+	display: block;
+	padding: 0;
+	margin: 0;
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+	color: #666;
+}
+.detail-xdao dt span{
+	cursor: pointer;
+}
+.detail-xdao dt span:hover{
+	color: #dc5e1f;
+}
+.detail-xdao dd{
+	padding: 0 0 0 20px;
+}
+.detail-xdao dd div{
+	padding-bottom: 10px;
+	margin: 0 20px 0 0;
+	border-bottom: 1px dashed #ddd;
+}
+.detail-xdao dd h4{
+	font-size: 16px;
+	line-height: 30px;
+	color: #2c95c4;
+}
+.detail-xdao dd h4 span{
+	font-size: 16px;
+	color: #2c95c4;
+}
+.detail-xdao dd h5{
+	color: #2c95c4;
+	padding-left: 5px;
+}
+.detail-xdao dd a{
+	display: inline-block;
+	padding: 5px 10px;
+	color: #333;
+}
+.detail-xdao dd a:hover{
+	color: #2c95c4;
+}

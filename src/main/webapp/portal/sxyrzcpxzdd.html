@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-上下游融资查询-订单</title>
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <!-- HTML5 shim and Respond.js for IE6 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container m-content sqdd">
+        <form class="row" id="searchFrom" role="form" onsubmit="return false;">
+            <!--订单信息-->
+            <div class="tab-pane fade in active tabChild" id="ddxx" style="margin-bottom: 40px">
+                <div class="search_result">
+                    <table class="table table-bordered table-hover" id="ddTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>订单号</th>
+                            <th>货品名称</th>
+                            <th>总金额(元)</th>
+                            <!-- <th>融资客户</th> -->
+                            <th>核心客户</th>
+                            <th>订单发起时间</th>
+                            <th>订单确认时间</th>
+                            <th>交易对手</th>
+                            <th dic-type="B1023">状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade in active tabChild">
+                <div class="search_result">
+                    <table class="table table-bordered table-hover" id="yszkTable2">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>发票号</th>
+                    <th>发票代码</th>
+                    <!-- <th>融资客户名称</th> -->
+                    <th>核心企业</th>
+                    <th>发票金额(元)</th>
+                    <th>发票日期</th>
+                    <th>交易对手</th>
+                    <th dic-type="B1023">状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+                </div>
+                <div class="row">
+                    <div class="text-center col-xs-12" style="margin-bottom: 5px">
+                    	 <a  href="javascript:history.go(-1);" class="btn_query btn btn-default">上一步</a>
+                        <a href="javascript:void(0)" id="next3" class="btn_query btn btn-default" onclick="nextStep3()">下一步</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container m-content rzsqjg" style="display:none">
+        <!--融资详情-->
+        <form action="" class="form-horizontal row tabChild" id="rzsq">
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">申请编号</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="sqbh" name="sqbh"  placeholder="" readonly>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="hxqykhmc" class="col-md-4 control-label">核心企业</label>
+                    <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" id="hxqykhmc" name="hxqykhh" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="fpzs" class="col-md-4 control-label">应收账款总笔数／订单总笔数</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="fpzs" name="fpzs" placeholder="" readonly>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="yszkje" class="col-md-4 control-label">应收账款(元)／订单总额(元)</label>
+                    <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" id="yszkje" data-type="currency" name="yszkje" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <!-- <div class="col-xs-6">
+                    <label class="col-md-4 control-label">金融机构名称</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="jrjg" name="jrjg" placeholder="">
+                    </div>
+                </div> -->
+                <div class="col-xs-6">
+                    <label for="clsj" class="col-md-4 control-label">申请金额(元)</label>
+                    <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" data-ty data-type="currency" id="sqje" name="sqje"/>
+                    </div>
+                </div>
+                <input type="hidden" id="rzje">
+                <input type="hidden" id="rzbl">
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                	<a  href="javascript:void(0);" onclick="next2()" class="btn_query btn btn-default">上一步</a>
+                    <a class="btn_query btn btn-default" href="javascript:void(0);"  onclick="save()">保存</a>
+                    <!-- <a class="btn_query btn btn-default tjsp" href="javascript:void(0);">提交审批</a> -->
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<script type="text/javascript">
+	var hxqymc = locationObj.getParams().hxqymc;
+	var rzcp = locationObj.getParams().rzcp;
+	var rzlx = locationObj.getParams().rzlx;
+	var rzbl = locationObj.getParams().rzbl;
+	if(rzcp == 02){
+		$("#ddxx").css("display","none");
+	}
+	var param = {};
+	var originalData = new Array();		//原始订单数据
+	var originalYszkData = new Array();	//原始应收账款数据
+	var ddxxArray = new Array();		//已勾选的订单数据
+	var yszkxxArray = new Array();		//已勾选的应收账款数据
+	var rzsqObj = {};
+    var zxxVO = {};
+    var sqVO = {};
+	param.hxqymc = hxqymc ;
+	$("#hxqykhmc").val(param.hxqymc);
+	param.rzcp = rzcp ;
+	param.rzlx = rzlx ;
+	var selectedVal = rzcp;
+	if(selectedVal == '01'){
+		requestObj.ajaxServer(
+	        	requestObj.address.jsyRzsqDdQuery,
+	       		{"pageSize":10,
+	        	 "pageIndex":1,
+	        	 "hxqykhh":param.hxqymc
+	           	},
+	        	function(data){
+	           		var listVo = data.body.data;
+	            	for(var i = 0; i < listVo.length; i++){
+	                	var tempObj ={};
+	                	tempObj.ddbh = listVo[i].ddbh;
+	                	tempObj.hpmc = listVo[i].hpmc;
+	                	tempObj.zje = listVo[i].zje;
+	                	tempObj.rzfkhh = listVo[i].rzfkhh;
+	                	tempObj.rzfjs = listVo[i].rzfjs;
+	                	tempObj.hxqykhh = listVo[i].hxqykhh;
+	                	tempObj.ddfqsj = listVo[i].ddfqsj;
+	                	tempObj.ddqrsj = listVo[i].ddqrsj;
+	                	tempObj.jydsmc = listVo[i].jydsmc;
+	                	tempObj.zt = listVo[i].zt;
+	                	tempObj.id = listVo[i].id; 
+	                	originalData.push(tempObj);
+	            		$("#ddTable tbody").append(
+	            				"<tr><td><input type='checkbox' class='ddid' /></td>" +
+	            				 "<td>" + listVo[i].ddbh + "</td>" +
+	                            "<td>" + listVo[i].hpmc + "</td>" +
+	                            "<td>" + numberToCurrency(listVo[i].zje) + "</td>" +
+	                           /*  "<td>" + listVo[i].rzfkhh + "</td>" + */
+	                            "<td>" + listVo[i].hxqykhmc + "</td>" +
+	                            "<td>" + formatDateStr8(listVo[i].ddfqsj) + "</td>" +
+	                            "<td>" + formatDateStr8(listVo[i].ddqrsj) + "</td>" +
+	                            "<td>" + listVo[i].jydsmc + "</td>" +
+	                            "<td>" + listVo[i].zt + "</td>" +
+	                            "<td>"
+	                            +"<a href='khddxxxq.html?id="+ listVo[i].id +"' style='color: #0044CC;'>查看</a></td>" +
+	                            "</tr>"
+	                    );
+	                }
+
+	            }
+			);
+		requestObj.ajaxServer(
+	        	requestObj.address.jsyRzsqYszkQuery,
+	       		{"pageSize":10,
+	        	 "pageIndex":1,
+	        	 "hxqykhh":param.hxqymc
+	           	},
+	        	function(data){
+	           		var listVo = data.body.data;
+	            	for(var i = 0; i < listVo.length; i++){
+	                	var tempObj ={};
+	                	tempObj.fph = listVo[i].fph;
+	                	tempObj.fpdm = listVo[i].fpdm;
+	                	tempObj.rzfkhh = listVo[i].rzfkhh;
+	                	tempObj.rzfjs = listVo[i].rzfjs;
+	                	tempObj.hxqykhh = listVo[i].hxqykhh;
+	                	tempObj.fpje = listVo[i].fpje;
+	                	tempObj.kprq = listVo[i].kprq;
+	                	tempObj.jydsmc = listVo[i].jydsmc;
+	                	tempObj.zt = listVo[i].zt;
+	                	tempObj.id = listVo[i].id; 
+	                	originalYszkData.push(tempObj);
+	            		$("#yszkTable2 tbody").append(
+	            				"<tr><td><input type='checkbox' class='fpid' /></td>" +
+	            				 "<td>" + listVo[i].fph + "</td>" +
+	                            "<td>" + listVo[i].fpdm + "</td>" +
+	                            /* "<td>" + listVo[i].rzfkhh + "</td>" + */
+	                            "<td>" + listVo[i].hxqykhmc + "</td>" +
+	                            "<td>" + numberToCurrency(listVo[i].fpje) + "</td>" +
+	                            "<td>" + formatDateStr8(listVo[i].kprq) + "</td>" +
+	                            "<td>" + listVo[i].jydsmc + "</td>" +
+	                            "<td>" + listVo[i].zt + "</td>" +
+	                            "<td>"
+	                            +"<a href='sxyrzyszkxq.html?id="+ listVo[i].id +"' style='color: #0044CC;'>查看</a></td>" +
+	                            "</tr>"
+	                    );
+	                }
+
+	            }
+			);
+	}else{
+		requestObj.ajaxServer(
+	        	requestObj.address.jsyRzsqYszkQuery,
+	       		{"pageSize":10,
+	        	 "pageIndex":1,
+	        	 "hxqykhh":param.hxqymc
+	           	},
+	        	function(data){
+	           		var listVo = data.body.data;
+	            	for(var i = 0; i < listVo.length; i++){
+	                	var tempObj ={};
+	                	tempObj.fph = listVo[i].fph;
+	                	tempObj.fpdm = listVo[i].fpdm;
+	                	tempObj.rzfkhh = listVo[i].rzfkhh;
+	                	tempObj.rzfjs = listVo[i].rzfjs;
+	                	tempObj.hxqykhh = listVo[i].hxqykhh;
+	                	tempObj.fpje = listVo[i].fpje;
+	                	tempObj.kprq = listVo[i].kprq;
+	                	tempObj.jydsmc = listVo[i].jydsmc;
+	                	tempObj.zt = listVo[i].zt;
+	                	tempObj.id = listVo[i].id; 
+	                	originalYszkData.push(tempObj);
+	            		$("#yszkTable2 tbody").append(
+	            				"<tr><td><input type='checkbox' class='fpid' /></td>" +
+	            				 "<td>" + listVo[i].fph + "</td>" +
+	                            "<td>" + listVo[i].fpdm + "</td>" +
+	                           /*  "<td>" + listVo[i].rzfkhh + "</td>" + */
+	                            "<td>" + listVo[i].hxqykhmc + "</td>" +
+	                            "<td>" + numberToCurrency(listVo[i].fpje) + "</td>" +
+	                            "<td>" + formatDateStr8(listVo[i].kprq) + "</td>" +
+	                            "<td>" + listVo[i].jydsmc + "</td>" +
+	                            "<td>" + listVo[i].zt + "</td>" +
+	                            "<td>"
+	                            +"<a href='sxyrzyszkxq.html?id="+ listVo[i].id +"' style='color: #0044CC;'>查看</a></td>" +
+	                            "</tr>"
+	                    );
+	                }
+
+	            }
+			);
+	}
+
+	function nextStep3(){
+		var ddtd = $("#ddTable tbody").find("td");
+		var yszktd = $("#yszkTable2 tbody").find("td");
+		var a = $(".ddid");
+    	var b = $(".fpid");
+    	if(rzcp==01){
+    		if(ddtd.length>0){
+        		var flag = false;
+   			 	for(var i = 0 ; i < a.length ; i++){
+   		            if(a.eq(i).is(':checked')){
+   	   		            flag = true;
+   						break;
+   					}
+   			 	}
+   			 	if(!flag){
+   			 		pluginObj.alert("","请勾选订单信息");
+   			 		return;
+   	   			}
+   			}else{
+   				pluginObj.alert("","无有效订单信息，请先创建订单信息");
+   				return false;
+   			}
+        }else{
+        	if(yszktd.length>0){
+        		var flag = false;
+   			 	for(var i = 0 ; i < b.length ; i++){
+   		            if(b.eq(i).is(':checked')){
+   		             	flag = true;
+						break;
+   					}
+   			 	}
+   			 	if(!flag){
+   					pluginObj.alert("","请勾选应收账款信息");
+			 		return;
+	   			}
+   			}else{
+   				pluginObj.alert("","无有效应收账款信息，请先创建应收账款信息");
+   				return false;
+   			}
+        }
+		$(".sqdd").css("display","none");
+		$(".rzsqjg").css("display","block");
+    	requestObj.ajaxServer(
+            	requestObj.address.jsyRzsqGetSqbh,
+           		{},
+            	function(data){
+					$("#sqbh").val(data.body);
+                }
+         );
+    	count=0;
+    	yszkje=0;
+        for(var i = 0 ; i < a.length ; i++){
+            if(a.eq(i).is(':checked')){
+                var tempObj = {};
+                tempObj.ddbh = originalData[i].ddbh;
+                tempObj.hpmc = originalData[i].hpmc;
+            	tempObj.rzfkhh = originalData[i].rzfkhh;
+            	tempObj.rzfjs = originalData[i].rzfjs;
+            	tempObj.zje = originalData[i].zje;
+            	tempObj.rzfkhh = originalData[i].rzfkhh;
+            	tempObj.hxqykhh = originalData[i].hxqykhh;
+            	tempObj.ddfqsj = originalData[i].ddfqsj;
+            	tempObj.ddqrsj = originalData[i].ddqrsj;
+            	tempObj.jydsmc = originalData[i].jydsmc;
+            	tempObj.zt = originalData[i].zt;
+            	tempObj.id = originalData[i].id; 
+            	ddxxArray.push(tempObj);
+            	count++;
+                yszkje+=parseInt(originalData[i].zje);
+            }
+        }
+        for(var i = 0 ; i < b.length ; i++){
+            if(b.eq(i).is(':checked')){
+                var tempObj = {};
+                tempObj.fph = originalYszkData[i].fph;
+                tempObj.fpdm = originalYszkData[i].fpdm;
+            	tempObj.rzfkhh = originalYszkData[i].rzfkhh;
+            	tempObj.rzfjs = originalYszkData[i].rzfjs;
+            	tempObj.hxqykhh = originalYszkData[i].hxqykhh;
+            	tempObj.fpje = originalYszkData[i].fpje;
+            	tempObj.kprq = originalYszkData[i].kprq;
+            	tempObj.jydsmc = originalYszkData[i].jydsmc;
+            	tempObj.zt = originalYszkData[i].zt;
+            	tempObj.id = originalYszkData[i].id; 
+            	yszkxxArray.push(tempObj);
+            	count++;
+                yszkje+=parseInt(originalYszkData[i].fpje);
+            }
+        }
+        $("#fpzs").val(count);
+        $("#yszkje").val(numberToCurrency(yszkje));
+    }
+
+	 function save(){
+		$("#rzsq").submit(false);
+		if(!$('#rzsq').valid()){
+			return;
+		} 
+     	var sqje = $("#sqje").val();
+     	if(parseInt(sqje) > yszkje){
+     		pluginObj.alert("","融资金额不能大于应收账款金额或者订单金额");
+     		return false;
+        }
+     	var rzje = parseFloat(parseFloat(rzbl/100)* parseInt(sqje)).toFixed(2);
+     	$("#rzje").val(rzje);
+     	zxxVO.sqbh = $("#sqbh").val();
+     	zxxVO.hxkhh = $("#hxqykhmc").val();
+     	zxxVO.je= $("#yszkje").val();
+     	zxxVO.sl = $("#fpzs").val();
+     	sqVO.sqbh = $("#sqbh").val();
+     	sqVO.hxqykhh = $("#hxqykhmc").val();
+     	sqVO.fpzs = $("#fpzs").val();
+     	sqVO.yszkje = $("#yszkje").val();
+     	sqVO.rzcp = param.rzcp;
+     	sqVO.rzlx= param.rzlx;
+     	sqVO.jrjg= $("#jrjg").val();
+     	sqVO.sqje= $("#sqje").val();
+     	sqVO.rzje=$("#rzje").val();
+     	sqVO.rzbl = rzbl ;
+     	rzsqObj.zxxVO = zxxVO;
+     	rzsqObj.sqVO = sqVO;
+     	rzsqObj.ddVO = ddxxArray;
+     	rzsqObj.yszkVO = yszkxxArray;
+     	requestObj.ajaxServer(
+           		 requestObj.address.sxyrzsq,
+           		 rzsqObj,
+           		 function(){
+               		 pluginObj.alert("","操作成功!!");
+           			window.location.href = './assetManagement.html?v=APP_VER';
+	             },
+           		 function(){}
+         )
+     }
+$(function(){
+	$(".tjsp").click(function(){
+		requestObj.ajaxServer(
+         		 requestObj.address.jsyRzsqTjsp,
+                  {
+                    "sqbh":$("#sqbh").val()
+                  },
+                  function(data){
+                  	pluginObj.alert(data.head["_rd"],data.head["_rm"]);
+                  	window.location.href = 'assetManagement.html?v=APP_VER';
+                   }
+           );	
+	});
+})
+function next2(){
+	$(".sqdd").css("display","block");
+	$(".rzsqjg").css("display","none");
+}
+</script>
+<script type="text/javascript">
+	$().ready(function() {
+		$("#rzsq").validate({
+			rules : {
+				sqje : {
+					required : true,
+					number : true
+				}
+			},
+		});
+
+		});
+	</script>
+</html>

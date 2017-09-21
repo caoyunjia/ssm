@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-保理合同</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <link href="css/select2.min.css" rel="stylesheet" >
+
+    <!--jinlong css-->
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+    <script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <style>
+         /*.search_result {*/
+            /*overflow: scroll;*/
+        /*}*/
+        .search_result table> thead >tr th{
+            white-space: nowrap;
+        }
+        /* .table tbody tr td{
+            min-width: 200px;
+        } */
+    </style>
+</head>
+<body>
+   <div class="search_input container m-content" >
+        <form class="form-horizontal row" id="searchFrom" role="form" onsubmit="return false;">
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="ssxq" class="col-md-4 control-label">保理合同代码</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="" name="xydm">
+                    </div>
+                </div>
+                <div class="col-xs-6 warning">
+                    <label for="" class="col-md-4 control-label">融资客户</label>
+                    <div class="col-md-8">
+                    	<input type="text" class="form-control" id="rzkhmc" name="rzkhmc">
+                    </div>
+                 </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6 warning">
+                    <label for="" class="col-md-4 control-label">核心企业</label>
+                    <div class="col-md-8">
+                       <input type="text" class="form-control" id="hxqykhmc" name="hxqykhmc">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center col-xs-12">
+                <button type="button" id="searchBtn" class="btn_query btn btn-default">查询</button>
+            </div>
+        </form>
+    </div>
+<div class="container">
+        <div class="operate clearfix">
+            <a href="javascript:void(0)" class="more add">新增</a>
+        </div>
+        <div class="row search_result">
+            <table class="table table-bordered table-hover" >
+                <thead>
+                    <tr>
+                        <th>保理合同代码</th>
+                        <th>核心企业</th>
+                        <th>融资客户</th>
+                        <th dic-type="B1043">状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div id="kkpager"></div>
+        </div>
+</div>
+
+<script>
+$(function(){
+	$(".add").hide();
+//  查询企业岗位权限
+    requestObj.ajaxServer(
+            requestObj.address.userRoler,
+            {},
+            function(data){
+            	var listVo = data.body;
+                if (listVo.indexOf("fh") != -1 ){
+                    fhUser("fh");
+                }else{
+                	fhUser("");
+                }
+            }
+    )
+	var custType = "";
+	function fhUser(fh){
+		requestObj.ajaxServer(
+				requestObj.address.checkUser,
+				{},
+				function(data) {
+					custType = data.body.custType;
+					jzblht(custType);
+					if(custType == 03){
+						$(".add").show();
+					}
+				},
+				function() {}
+			)
+
+		function jzblht(custType){
+			requestObj.searchServer(
+			        requestObj.address.findBlhtList,
+			        "searchFrom",
+			        successFun
+			);
+			function successFun(data){
+				 requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+		         requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+		         requestObj.initPager(
+		                 requestObj.address.findBlhtList,
+		                 successFun
+		         ); 
+				$(".table-bordered tbody").empty();
+				var blhtList = data.body.data;
+				for(var i = 0; i < blhtList.length; i++){
+		    		 $(".table-bordered tbody").append(
+		                 "<tr><td>" + notNo(blhtList[i].xydm) + "</td>" +
+		                 "<td>" + notNo(blhtList[i].hxqykhmc) + "</td>" +
+		                 "<td>" + notNo(blhtList[i].rzkhmc) + "</td>" +
+		                 "<td>" + blhtList[i].htzt + "</td>" +
+		                 "<td><a href='javascript:void(0)' onclick='look(\""+ blhtList[i].xydm +"\",\""+ custType +"\",\""+ blhtList[i].htzt +"\",\""+ fh +"\")'>查看</a>"+ isDel(blhtList[i].htzt,blhtList[i].xydm,custType) +"</td>" +
+		                 "</tr>"
+		             )
+				}
+			}
+			// 给查询按钮绑定查询事件
+		    $("#searchBtn").click(function(){
+		        requestObj.searchObj.postData.pageIndex = "1";
+		        requestObj.searchServer(
+		                requestObj.address.findBlhtList,
+		                "searchFrom",
+		                successFun
+		        );
+		    });
+		}
+		// 新增按钮
+		$(".add").click(function(){
+			if(fh=="fh"){
+				location = "blht.html?type=add&valid=fhsx";
+			}else{
+				location = "blht.html?type=add&valid=sx";
+			}
+			
+		});
+
+	}
+	// 空的数据转换
+	function notNo(dataYz){
+		if(!dataYz){
+			return "";
+		}
+		return dataYz;
+	}
+
+})
+	function isDel(htzt,xydm,custType){
+		if(custType != 03){
+			return "";
+		}
+		// 01 未生效
+		if(htzt == "01"){
+			return "<a href='javascript:void(0)' onclick='del(\""+ xydm +"\",this)'>删除</a>"
+		}else{
+			return "";
+		}
+		
+	}
+	// 点击查看（可以修改）
+	function look(xydm,custType,htzt,fh){
+		// 03 金融机构
+		if(custType == 03){
+			// 01 未生效
+			if(htzt == "01"){
+				location = "blht.html?type=modify&xydm=" + xydm;
+			}else{
+				if(fh=="fh"){
+					location = "blht.html?type=modify&xydm=" + xydm+ "&valid=fhsx";
+				}else{
+					location = "blht.html?type=modify&xydm=" + xydm + "&valid=sx";
+				}
+			}
+		}
+		//00 上下游
+		if(custType == 00 || custType == 01){
+			location = "blhtSxy.html?type=modify&xydm=" + xydm;
+		}
+	}
+	// 删除
+	function del(xydm,a){
+		pluginObj.comfire("确认要删除该条信息吗？",function(){
+			requestObj.ajaxServer(
+					 requestObj.address.deleteBlht,
+					 {
+						"xydm" : xydm
+				  		 },
+					 function(data){
+						$(a).parent().parent().remove();
+						pluginObj.alert("","删除成功");
+					},
+					function(){}
+			)
+		},
+		function(){return false});
+	}
+</script>
+</body>
+</html>

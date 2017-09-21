@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-增信机构-融资申请查询/办理</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+		<link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+		<script src="js/plugin/jquery.validate.js"></script>
+    <script src="js/plugin/validate-extend.js"></script>
+	</head>
+
+	<body>
+		<div class="container m-content">
+			<form class="form-horizontal row" action="#" id="formId">
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">申请编号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="sqbh" name="sqbh" placeholder="" readonly="readonly">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">核心企业</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="hxqykhmc" name="hxqykhh" placeholder="" readonly="readonly">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">客户名称</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="khmc" name="khmc" placeholder="" readonly="readonly">
+						</div>
+					</div>
+					<input type="hidden" id="khh">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">融资产品</label>
+						<div class="col-md-8">
+							<select name="rzcp" class="form-control" id="rzcp" dic-type="B1039" dic-blank=" " disabled="disabled"></select>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">应收账款总笔数</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="fpzs" name="fpzs" placeholder="" readonly="readonly">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-md-4 control-label">应收账款总金额(元)</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="yszkje" name="yszkje" placeholder="" readonly="readonly">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="hyfl" class="col-md-4 control-label">申请金额(元)</label>
+						<div class="col-md-8">
+							<input class="form-control" id="sqje" name="sqje" type="text" maxlength="20" placeholder="" readonly="readonly">
+							</select>
+						</div>
+						<!-- <div class="col-xs-1" style="text-align: center"><p class="form-control-static">-</p></div>
+                <div class="col-xs-3">
+                    <input class="form-control" id="zje2" name="zje2" type="text" maxlength="8" placeholder="" readonly="readonly">
+                </div> -->
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">融资类型</label>
+						<div class="col-md-8">
+							<select name="rzlx" class="form-control" id="rzlx" dic-type="B1035" dic-blank=" " disabled="disabled"></select>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">融资金额(元)</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="rzje" name="rzje" placeholder="" readonly>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">融资比例</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="rzbl" name="rzbl" placeholder="" readonly>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">是否意向保单</label>
+						<div class="col-md-8">
+							<select class="form-control" id="sfyxbd" name="sfyxbd">
+								<option value="1">是</option>
+								<option value="0">否</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">电子保单号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="dzbdh" name="dzbdh" placeholder="" readonly>
+						</div>
+					</div>
+
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">承保比例</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="cbbl" name="cbbl" placeholder="" onblur="getCbje()">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">承保金额(元)</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="cbje" name="cbje" placeholder="" readonly="readonly">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">审批意见</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="spyj" placeholder="字数不能超过300字" maxlength="300" name="spyj" placeholder="审批意见">
+						</div>
+					</div>
+				</div>
+				<div class="container" id="">
+					<div class="search_result">
+						<table class="table-bordered" style="width:100%;" id="yszkTable">
+							<thead>
+								<tr>
+									<th>发票号</th>
+									<th>发票代码</th>
+									<th>融资企业</th>
+									<th>发票金额(元)</th>
+									<th>发票日期</th>
+									<th>交易对手</th>
+									<th dic-type="B1023">状态</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+				<div class="text-center col-xs-12">
+					<a id="save" class="btn_query btn btn-default" onclick="spPass()">审批通过</a>
+					<a id="save" class="btn_query btn btn-default" onclick="spRefused()">审批不通过</a>
+					<a class="btn btn-default btn_query" href="javascript:void(0)" onclick="history.go(-1)">返回</a>
+				</div>
+			</form>
+		</div>
+		<script>
+			var sqbh = '';
+			$(document).ready(function() {
+				//初始化日期插件
+
+				dataPiker();
+				sqbh = locationObj.getParams().sqbh;
+
+				requestObj.ajaxServer(
+					requestObj.address.findRzsq, {
+						"sqbh": sqbh,
+						"pageSize": 10,
+						"pageIndex": 1
+					},
+					function(data) {
+						$("#sqbh").val(data.body.sqbh);
+						$("#hxqykhmc").val(data.body.hxqykhh);
+						$("#khmc").val(data.body.qymc);
+						$("#rzcp").val(data.body.rzcp);
+						$("#fpzs").val(data.body.fpzs);
+						$("#yszkje").val(data.body.yszkje);
+						$("#sqje").val(data.body.sqje);
+						$("#rzlx").val(data.body.rzlx);
+						$("#rzje").val(data.body.rzje);
+						$("#khh").val(data.body.khh);
+						/* $("#rzbl").val(data.body.rzbl); */
+					},
+					function() {}
+				)
+
+				requestObj.ajaxServer(
+					requestObj.address.findRzsqYszkxx, {
+						"pageSize": 10,
+						"pageIndex": 1,
+						"sqbh": sqbh
+					},
+					function(data) {
+						var listVo = data.body.data;
+						var zt;
+						for(var i = 0; i < listVo.length; i++) {
+							$("#yszkTable tbody").append(
+								"<tr>" +
+								"<td>" + listVo[i].fph + "</td>" +
+								"<td>" + listVo[i].fpdm + "</td>" +
+								"<td>" + listVo[i].rzfkhh + "</td>" +
+								"<td>" + listVo[i].fpje + "</td>" +
+								"<td>" + listVo[i].kprq + "</td>" +
+								"<td>" + listVo[i].jydsmc + "</td>" +
+								"<td>" + listVo[i].zt + "</td>" +
+								"<td>" +
+								"<a href='jrjgkhyszkcx.html?zkid="+ listVo[i].id +"' style='color: #0044CC;'>查看</a></td>" +
+								"</tr>"
+							);
+						}
+					}
+				);
+
+			});
+			$("#sfyxbd").change(function() {
+				if($("#sfyxbd").find("option:selected").val() == '1') {
+					$("#dzbdh").val("");
+					$("#dzbdh").attr('readonly', '');
+				}
+				if($("#sfyxbd").find("option:selected").val() == '0') {
+					$("#dzbdh").removeAttr('readonly');
+				}
+			});
+
+			//审批通过函数
+			function spPass() {
+				$("#formId").submit(false);
+				if(!$('#formId').valid()){
+					return;
+				}
+				var spyj = $("#spyj").val();
+				var cbbl = $("#cbbl").val();
+				var dzbdh = $("#dzbdh").val();
+				var cbje = $("#cbje").val();
+				var sfyxbd = $("#sfyxbd").val();
+				var khh = $("#khh").val();
+				requestObj.ajaxServer(
+					requestObj.address.zxjgRzspPass, {
+						"sqbh": sqbh,
+						"spyj": spyj,
+						"cbbl": cbbl,
+						"dzbdh": dzbdh,
+						"cbje": cbje,
+						"sfyxbd": sfyxbd,
+						"khh": khh
+					},
+					function(data) {
+						//pluginObj.alert("","审批已通过");
+						pluginObj.alert("","审批已通过");
+						window.location.href = './zxjgrzsqsp.html?v=APP_VER';
+
+					}
+				)
+			}
+			//审批退回函数
+			function spRefused() {
+				var spyj = $("#spyj").val();
+				var cbbl = $("#cbbl").val();
+				var dzbdh = $("#dzbdh").val();
+				var cbje = $("#cbje").val();
+				var sfyxbd = $("#sfyxbd").val();
+				var khh = $("#khh").val();
+				requestObj.ajaxServer(
+					requestObj.address.zxjgRzspRefuse, {
+						"sqbh": sqbh,
+						"spyj": spyj,
+						"cbbl": cbbl,
+						"dzbdh": dzbdh,
+						"cbje": cbje,
+						"sfyxbd": sfyxbd,
+						"khh": khh
+					},
+					function(data) {
+						//pluginObj.alert("","审批已通过");
+						pluginObj.alert("","审批已退回");
+						window.location.href = './zxjgrzsqsp.html?v=APP_VER';
+
+					}
+				)
+			}
+			//获取承保金额
+			function getCbje() {
+				var cbbl = $("#cbbl").val();
+				var rzje = $("#rzje").val();
+				var cbje = parseFloat(parseFloat(cbbl / 100) * parseInt(rzje)).toFixed(2);
+				//alert("cbje:"+cbje);
+				$("#cbje").val(cbje);
+			}
+
+			//关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+			//    $(document).off('click.bs.dropdown.data-api');
+			//自动展开
+			$('.nav .dropdown').mouseenter(function() {
+				$(this).addClass('open');
+			});
+			//自动关闭
+			$('.nav .dropdown').mouseleave(function() {
+				$(this).removeClass('open');
+			});
+		</script>
+	<script type="text/javascript">
+		$().ready(function() {
+			$("#formId").validate({
+				rules : {
+					cbbl : {
+						required : true,
+						range:[0,100]
+					}
+				},
+			});
+	
+		});
+	</script>
+	</body>
+
+</html>

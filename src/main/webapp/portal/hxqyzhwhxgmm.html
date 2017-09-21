@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-账户维护</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="css/new.css" />
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.min.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+		<!-- <script src="js/jquery.js"></script> -->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/plugin/jquery.validate.js"></script>
+			  <script src="js/union-security-api.v2.2.min.js"></script>
+    	<script src="js/plugin/validate-extend.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+	</head>
+	<body>
+		<div class="container m-content">
+			<form class="form-horizontal" action="#" id="formId" style="padding: 40px">
+				<div class="row form-group">
+					<div class="col-xs-9">
+						<label class="col-md-2 col-xs-offset-4">旧密码：</label>
+						<div class="col-md-6">
+							<input type="password" class="form-control" id="oldPwd" name="oldPwd" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-3"></div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-9">
+						<label class="col-md-2 col-xs-offset-4">新密码：</label>
+						<div class="col-md-6">
+							<input type="password" class="form-control" id="newPwd" name="newPwd" maxlength="20" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-3"></div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-9">
+						<label class="col-md-2 col-xs-offset-4">确认密码：</label>
+						<div class="col-md-6">
+							<input type="password" class="form-control" id="reNewPwd" name="reNewPwd" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-3"></div>
+				</div>
+				
+				<div class="row form-group" id="vcgroup" style="display:none">
+					<div class="col-xs-9">
+						<label class="col-md-2 col-xs-offset-4">验证码：</label>
+						<div class="col-md-6">
+							<input type="text" id="vcode" name="vcode" class="form-control yzm" autocomplete="off" maxlength="4">
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<img id="vcodeImg" style="height: 27px; width: 100px;" src="img/checkNum.png" alt=""/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+					<button type="submit" class="btn_query btn btn-default">确认</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+
+		<script>
+			function getTitle() {
+				return ["修改密码"];
+			}
+			var i=0;
+			$(document).ready(function() {
+				var vo = locationObj.getParams();
+				var dlzh = vo.dlzh;
+				$("#dlzh").val(dlzh);
+				var successFun = function(data,postData){
+					//pluginObj.alert("",data.head._rm);
+						if(data.head._rd=="000000"){
+							pluginObj.alert("","修改成功，请重新登录！");
+							window.setTimeout(function(){
+						        requestObj.ajaxServer(requestObj.address.logout,{},function(d){
+						            //请求成功处理逻辑
+						            top.location.href="index.html?v=APP_VER";
+						        });
+						    },3000);
+						}
+					}
+				function submitRegister(){
+					var vo = locationObj.getParams();
+					var id = vo.id;
+					var postDate = {
+							id:id,
+							mm:pwdEncrypt($("#oldPwd").val()),
+							newPwd:pwdEncrypt($("#newPwd").val()),
+							picVC:$("#vcode").val()
+						}
+					requestObj.ajaxServer(requestObj.address.jsyMmxg,postDate,successFun,function(data){
+						pluginObj.alert(data.head._rm);
+						if(data.head._rd=='USER10022' || data.head._rd=='USER10023'){
+		        			$("#vcgroup").show();
+		               // } else if (data.head._rd=='USER10023') {
+		                } else {
+		                	i=i+1;
+		                	if(i<3){
+		                	$("#vcgroup").hide();
+		                	}
+		                }
+		                if(!$("#vcodeImg").is(":hidden")){
+		                	getDubboVertifyCode($("#vcodeImg"));
+		                }
+					});
+				}
+				 $("#vcodeImg").click(function() {
+		            getDubboVertifyCode($(this));
+		         })
+
+				jQuery.validator.addMethod("notEqualTo", function(value, element, param) {
+					return value != $(param).val();
+					}, $.validator.format("两次输入不能相同!"));
+		        $("#formId").validate({
+		            submitHandler:function(form){
+		                submitRegister();
+		            },
+		            errorPlacement: function(error, element){
+//		                element.parents(".form-group").addClass("has-error");
+		                element.after(error);
+		            },
+		            onkeyup: false,
+		            rules: {
+		                dlzh: {
+		                    required: true
+		                },
+		                oldPwd: {
+		                	minlength: 6,
+		                    required: true
+		                },
+		                newPwd: {
+		                    required: true,
+		                    minlength: 6,
+		                    isPassword: true,
+		                    notEqualTo:"#oldPwd"
+		                },
+		                reNewPwd: {
+		                    required: true,
+		                    minlength: 6,
+		                    equalTo: "#newPwd"
+
+		                }
+		            },
+		            messages: {
+		                qymc: {
+		                    required: "登录账号不能为空"
+		                },
+		                oldPwd: {
+		                    minlength:"长度不能少于六位",
+		                    required: "请输入旧密码"
+		                },
+		                newPwd: {
+		                    required:"请输入新密码",
+		                    minlength:"长度不能少于六位",
+		                    isPassword : "密码过于简单，请至少包含两种及以上字符(字母+数字+特殊字符)",
+		                    notEqualTo:"新旧密码不能相同"
+		                },
+		                reNewPwd: {
+		                    required: "请输入确认密码",
+		                    minlength:"长度不能少于六位",
+		                    equalTo:"新旧密码不一致"
+		                }
+		            } , errorPlacement: function (error, element) { //错误信息位置设置方法
+		                error.appendTo(element.parent().parent().next()); //这里的element是录入数据的对象
+		            }
+		        });
+			});
+		</script>
+	</body>
+
+</html>

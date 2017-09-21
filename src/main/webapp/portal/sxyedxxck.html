@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-上下游-放款信息查询-申请还款</title>
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css"/>
+
+    <!-- HTML5 shim and Respond.js for IE6 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+</head>
+<body>
+
+<div class="container m-content">
+    <form class="form-horizontal">
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">融资申请编号</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label">回显</label>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">融资金额(元)</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label">回显</label>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">放款金额(元)</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label">回显</label>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">放款日期</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label">回显</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">金融机构名称</label>
+                   <div class="col-md-8"> <label for="" class="control-label">回显</label>
+                   </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">核心企业名称</label>
+              <div class="col-md-8"><label for="" class="control-label">回显</label></div>
+
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">利率:</label>
+                   <div class="col-md-8"> <label for="" class="control-label">回显</label>
+                   </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">融资期限</label>
+              <div class="col-md-8"><label for="" class="control-label">回显</label></div>
+
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="" class="control-label col-md-4">还款金额(元)</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button class="btn_query btn btn-default" type="submit">提交申请</button>
+            </div>
+        </div>
+
+    </form>
+
+  </div>
+<script>
+    $(document).ready(function () {
+        var pageObj = {
+            pno: 1,//当前页
+            total: 2,//总页码
+            totalRecords: 12//总记录数目
+        };
+        //初始化日期插件
+        dataPiker();
+        //发送请求，请求第一页数据 todo
+        (function () {
+            $.ajax({
+                url: "test/guideList.json",
+                dataType: "json",
+                success: function (data) {
+                    pageObj.pno = 1;
+                    pageObj.total = data.total;
+                    pageObj.totalRecords = data.totalRecords;
+                    console.log(JSON.stringify(data));
+
+                    $(".data_table").find('tbody').empty();
+                    //  alert(data.list[0].length);
+                    for (var j = 0; j < data.list[0].length; j++) {
+                        var liELe = "<tr><td>1</td><td>系统管理员</td><td>企业名称</td><td>2015-02-25 15:11:22</td><td>后台测试</td><td>添加&nbsp减少&nbsp删除</td></tr>";
+                        $(".data_table").append(liELe);
+                    }
+                    initPager();
+                }
+            });
+        })();
+
+        //生成分页控件
+        function initPager() {
+            kkpager.generPageHtml({
+                isShowFirstPageBtn: false,
+                isShowLastPageBtn: false,
+                isGoPage: false,
+                pno: pageObj.pno,
+                mode: 'click', //设置为click模式
+                //总页码
+                total: pageObj.total,
+                //总数据条数
+                totalRecords: pageObj.totalRecords,
+                //点击页码、页码输入框跳转、以及首页、下一页等按钮都会调用click
+                //适用于不刷新页面，比如ajax
+                click: function (n) {
+                    //处理完后可以手动条用selectPage进行页码选中切换 todo
+//                    $.ajax({
+//                        url:"test/new.json",
+//                        dataType:"json",
+//                        success: function(data){
+//                            console.log(JSON.stringify(data));
+//                            $(".news_list").empty();
+//                            for(var i = 0 ; i < data.list.length ; i ++ ){
+//                                var liELe = "<li><a href='newsDetail.html?id=" + data.list[i].idNo +  "'>" + data.list[i].titleText + "</a><span>" + data.list[i].time + "</span></li>";
+//                                $(".news_list").append(liELe);
+//                            }
+//                            kkpager.selectPage(n);
+//                        }
+//                    });n
+
+                    $.ajax({
+                        url: "test/guideList.json",
+                        dataType: "json",
+                        success: function (data) {
+                            pageObj.pno = n;
+                            pageObj.total = data.total;
+                            pageObj.totalRecords = data.totalRecords;
+                            console.log(JSON.stringify(data));
+                            $(".data_table").empty();
+                            for (var j = 0; j < data.list[n - 1].length; j++) {
+                                var liELe = "<tr><td>1</td><td>系统管理员</td><td>企业名称</td><td>2015-02-25 15:11:22</td><td>后台测试</td><td>添加&nbsp减少&nbsp删除</td></tr>";
+                                // var item = "<tr><td>"+data.list[n-1]+"</td>"+"</tr>";
+                                $(".data_table").append(liELe);
+                            }
+                        }
+                    });
+                    kkpager.selectPage(n);
+
+
+                }
+
+            });
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-金融机构-综合查询</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+		<link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.min.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+		<script src="js/plugin/kkpager.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+	</head>
+
+	<body>
+	<div class="search_input container m-content" >
+		<form class="form-horizontal row" id="searchFrom" role="form" onsubmit="return false;">
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">客户名称</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="qymc" name="qymc">
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">公司类型</label>
+					<div class="col-md-8">
+						<select class="form-control" id="gslx" name="gslx" dic-type="B1010" dic-blank=" "></select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<button type="button" id="searchBtn" class="btn_query btn btn-default">查询</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="container" id="">
+		<form class="row form" action="#" id="FormId">
+			<div class="search_result">
+				<table class="table-bordered" style="width:100%;">
+					<thead>
+					<tr>
+						<th>客户名称</th>
+						<th dic-type="B1010">公司类型</th>
+						<th>联系人</th>
+						<th>联系手机</th>
+						<th>是否白名单</th>
+						<th>状态</th>
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+				<div id="kkpager"></div>
+			</div>
+		</form>
+	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+        //初始化日期插件
+        dataPiker();
+        requestObj.searchServer(
+                requestObj.address.jsyhxqyquerysxy,
+               "formId",
+                successFun
+        );
+      //进入页面默认查询数据
+      //给查询按钮绑定查询事件
+        $("#searchBtn").click(function(){
+           // alert("123");
+            requestObj.searchObj.postData.pageIndex = "1";
+            requestObj.searchServer(
+                    requestObj.address.jsyhxqyquerysxy,
+                    "searchFrom",
+                    successFun
+            );
+        });
+			function successFun(data){
+				 requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+	             requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+	             requestObj.initPager(
+	                     requestObj.address.jsyhxqyquerysxy,
+	                     successFun
+	             );
+    		$(".table-bordered tbody").empty();
+    		var listVo = data.body.data;
+            for(var i = 0 ; i < listVo.length ; i ++ ){
+                $(".table-bordered tbody").append(
+                        "<tr><td>" + noNull(listVo[i].qymc) + "</td>" +
+                        "<td>" + noNull(listVo[i].gslx) + "</td>" +
+                        "<td>" + noNull(listVo[i].lxr) + "</td>" +
+                        "<td>" + noNull(listVo[i].lxsj) + "</td>" +
+                        "<td>" + mdlx(listVo[i].mdlx) + "</td>" +
+                        "<td>" + ztfun(listVo[i].zt) + "</td>" +
+                        "<td>"
+                        +"<a  href=jrjgzhcx.html?id="+listVo[i].khh2+">综合查询 </a>"
+                         + "</td></tr>"
+                )
+            }
+        };
+        //态 1-有效；0-无效。
+        function ztfun(zt){
+            if(zt==1){
+            	return "生效";
+                }
+            if(zt==0){
+            	return "无效";
+                }
+              }
+        //名单类型 :00:默认； 01:白名单；02：黑名单。参考字典码B1007
+        function mdlx(zt){
+         if(zt==02){
+                       	return "否";
+            }else{
+            	return "是";
+             }
+         }
+
+     	//去除页面空值
+        function noNull(sj){
+    		if(!sj){
+    			return "";
+    		}
+    		return sj;
+        }
+
+        //给查询按钮绑定查询事件
+        $("#searchBtn").click(function(){
+            requestObj.searchServer(
+                    requestObj.address.jsyhxqyquerysxy,
+                    "searchFrom",
+                    successFun
+                    )
+        });
+	})
+		</script>
+	</body>
+</html>

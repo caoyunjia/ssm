@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-增信机构-上下游承保额度管理-审批详情</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+	</head>
+
+	<body>
+		<div class="container m-content">
+			<form class="form-horizontal row" action="#" id="formId">
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">额度编号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" readonly="readonly" id="edbh" name="edbh" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">客户号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" readonly="readonly" id="khh" name="khm" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">企业名称</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" readonly="readonly" id="qymc" name="qymc" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">授信额度(元)</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" readonly="readonly" id="sxzed" name="sxzed" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">已用额度(元)</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="yyed" name="yyed" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">可用额度(元)</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="kyed" name="kyed" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-sm-4 control-label">额度生效日期</label>
+						<div class="col-md-8">
+							<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="16" type="text" id="edsxrq" name="edsxrq" />
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input3" value="" />
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-sm-4 control-label">额度结束日期</label>
+						<div class="col-md-8">
+							<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="16" type="text" id="edjsrq" name="edjsrq" />
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input3" value="" />
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">审批意见</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" placeholder="字数不能超过300字" maxlength="300" id="spyq" name="spyq" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">状态</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="zt" name="zt" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="text-center col-xs-12">
+				</div>
+			</form>
+		</div>
+
+	</body>
+
+</html>

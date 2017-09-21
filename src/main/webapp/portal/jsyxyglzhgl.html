@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-业务办理-企业受理</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/new.css?v=APP_VER"/>
+    <link rel="stylesheet" type="text/css" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+</head>
+<body>
+	<div class="search_input container m-content">
+    <form class="form-horizontal form" id="searchFrom" role="form" onsubmit="return false;">
+        <div class="row form-group">
+            <div class=" col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                    <select class="form-control" name="zhlx" dic-type="B1057" dic-blank=" "
+                                                id="zhlx">
+                    </select>
+                </div>
+            </div>
+            <div class=" col-xs-6">
+                <label for="zh" class="col-md-4 control-label">账户</label>
+                <div class="col-md-8">
+                    <input name="zh" class="form-control" id="zh"  dic-blank=" "/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a id="searchBtn" class="btn btn-default btn_query">查询</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+	<div class="container" id="">
+		<div class="operate clearfix">
+            <a href="jsyxyglzhglpage.html" class="more">新增</a>
+        </div>
+				<div class="row search_result">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr> 
+		                        <th>账户</th>
+		                        <th>账户户名</th>
+		                        <th>账户开户行</th>
+		                        <th dic-type="B1057">账户类型</th>
+		                        <th>操作</th>
+		                    </tr>
+						</thead>
+						<tbody id="tbodyZhgl">
+                		</tbody>
+					</table>
+				<div id="kkpager"></div>
+				</div>
+		</div>
+		   <!--收款结算流水Modal-->
+    <div id="zhlsModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+            <div class="search_input m-content" >
+				<form class="form-horizontal row" id="zhlsFrom" role="form">
+							<div class="row form-group">
+								<div class="col-xs-6 warning">
+									<label for="" class="col-md-4 control-label">起始日期</label>
+									<div class="col-md-8">
+										<div class="input-group date form_date" data-date=""
+											data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+											data-link-format="yyyy-mm-dd">
+											<input type="text" class="form-control" name="qsrq">
+											<span class="input-group-addon"><span
+												class="glyphicon glyphicon-calendar"></span></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-6 warning">
+									<label for="" class="col-md-4 control-label">到期日期</label>
+									<div class="col-md-8">
+										<div class="input-group date form_date" data-date=""
+											data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+											data-link-format="yyyy-mm-dd">
+											<input type="text" class="form-control" name="dqrq">
+											<span class="input-group-addon"><span
+												class="glyphicon glyphicon-calendar"></span></span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="text-center col-xs-12">
+								<a id="zhlsBtn" class="btn_query btn btn-default">查询</a>
+							</div>
+							<input type="hidden" name="jszh" id="zhlsjszh">
+						</form>
+		</div>
+       <div class="container-fluid">
+              <div class="row search_result">
+	            <table class="table table-bordered table-hover skjsls" >
+	                <thead>
+	                    <tr>
+	                        <th>交易日期</th>
+	                        <th>交易时间</th>
+	                        <th dic-type="B1076">借贷标记</th>
+	                        <th>交易金额</th>
+	                        <th>账户余额</th>
+	                        <th>对方账户代号</th>
+	                        <th>对方账户名称</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                </tbody>
+            </table>
+        </div>
+         </div>
+            </div>
+        </div>
+    </div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+
+<script type="text/javascript">
+//查询额度信息
+$(document).ready(function(){
+    //初始化日期插件
+    dataPiker();
+    requestObj.searchServer(
+            requestObj.address.jsyzhglFind,
+           "searchFrom",
+            successFun
+    );
+  //进入页面默认查询数据
+    function successFun(data){
+    	requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+        requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+        requestObj.initPager(
+                requestObj.address.jsyzhglFind,
+                successFun
+            );
+		$("#tbodyZhgl").empty();
+		var listVo = data.body.data;
+        for(var i = 0 ; i < listVo.length ; i ++ ){
+            $("#tbodyZhgl").append(
+                    "<tr><td><a href='jsyxyglzhglLook.html?id="+ listVo[i].id +"'>" + noNull(listVo[i].zh) + "</a></td>" +
+                    "<td>" + noNull(listVo[i].zhhm) + "</td>" +
+                    "<td>" + noNull(listVo[i].zhkhh) + "</td>" +
+                    "<td>" + noNull(listVo[i].zhlx) + "</td>" +
+                    "<td><a href='jsyxyglzhglpage.html?type=modify&id="+ listVo[i].id +"'>修改</a><a href='javascript:void(0)' onclick='zhls(\""+ listVo[i].zh  +"\")'>流水</a></tr>")
+        }
+    }
+
+    $("#searchBtn").click(function () {
+        requestObj.searchObj.postData.pageIndex = "1";
+        requestObj.searchServer(
+                requestObj.address.jsyzhglFind,
+               "searchFrom",
+                successFun
+        );
+    });
+    //非空验证
+    function noNull(sj){
+    	if(!sj){
+    		return "";
+    	}
+    	return sj;
+    }    
+});
+function zhls(zh){
+	$("#zhlsjszh").val(zh);
+	//zhls账户流水模态框  modal
+    $("#zhlsModal").modal({
+        remote: ""
+    });
+    $(".skjsls tbody").empty();
+    $("input[name=qsrq]").val(formatDate(new Date()));
+    $("input[name=dqrq]").val(formatDate(new Date()));
+	requestObj.searchServer(
+	        requestObj.address.jsyzhls,
+	        "zhlsFrom",
+	        zhlsFun
+	);
+	function zhlsFun(data){
+		 requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+         requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+         requestObj.initPager(
+                 requestObj.address.jsyzhls,
+                 zhlsFun
+         );
+         $(".skjsls tbody").empty();
+         var list = data.body.data;
+         if(!list){
+        	 return;
+		 }
+         for (var i = 0; i < list.length; i++) {
+             $(".skjsls tbody").append(
+                     "<tr>" +
+                     "<td>" + formatDateStr(list[i].jyrq) + "</td>" +
+                     "<td>" + formatTime(list[i].jysj) + "</td>" +
+                     "<td>" + list[i].jdbj + "</td>" +
+                     "<td>" + numberToCurrency(list[i].jyje) + "</td>" +
+                     "<td>" + numberToCurrency(list[i].zhye) + "</td>" +
+                     "<td>" + list[i].dfzhdh + "</td>" +
+                     "<td>" + list[i].dfzhmc + "</td>" +
+                     "</tr>"
+             );
+         }
+	}
+	// 给查询按钮绑定查询事件
+    $("#zhlsBtn").click(function(){
+        requestObj.searchObj.postData.pageIndex = "1";
+        requestObj.searchServer(
+                requestObj.address.jsyzhls,
+                "zhlsFrom",
+                zhlsFun
+        );
+    });
+    function formatTime(value){
+		if(value.length == 6){
+			return value.substring(0, 2) + ":" + value.substring(2, 4) + ":" + value.substring(4, 6);
+		}else{
+			return value;
+		}
+	}
+	
+}
+function formatDate(d) {
+	    month = '' + (d.getMonth() + 1),
+	    day = '' + d.getDate(),
+	    year = d.getFullYear();
+	 
+	  if (month.length < 2) month = '0' + month;
+	  if (day.length < 2) day = '0' + day;
+	 
+	  return [year, month, day].join('-');
+	}
+</script>
+
+</body>
+</html>

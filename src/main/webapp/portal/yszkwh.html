@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-应收账款维护</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+	</head>
+
+	<body>
+
+		<div class="container m-content">
+			<form class="form-horizontal row" action="#">
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">企业名称</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="QYMC" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">法定代表人</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="FDDBR" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">公司类型</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="GSLX" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">注册资本(元)</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="ZCZB" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">实收资本(元)</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="SSZB" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-sm-4 control-label">成立日期</label>
+						<div class="col-md-8">
+							<div class="input-group date form_date" data-date="" data-date-format="yyyymmdd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="16" type="text" id="CLRQ" name="CLRQ" />
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input3" value="" />
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-sm-4 control-label">营业期限</label>
+						<div class="col-md-8">
+							<div class="input-group date form_date" data-date="" data-date-format="yyyymmdd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="16" type="text" id="YYQX" name="YYQX" />
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input3" value="" />
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">经营范围</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="JYFW" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">营业执照号码</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="YYZZHM" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">开户许可证号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="KHXKZH" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">组织机构代码</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="ZZJGDM" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">税务登记证号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="SWDJZH" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">机构信用代码证代码</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="JGXYDMZDM" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">贷款卡号码</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="DKKHM" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">基本户开立银行</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="JBHKLYH" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">基本户账号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="JBHZH" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">注册地址</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="ZCDZ" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">办公地址</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="BGDZ" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">客户号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="KHH" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">状态</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="ZT" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-sm-4 control-label">创建时间</label>
+						<div class="col-md-8">
+							<div class="input-group date form_date" data-date="" data-date-format="yyyymmdd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="16" type="text" id="CRSJ" name="CRSJ" />
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input3" value="" />
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">创建人</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="CRR" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-sm-4 control-label">更新时间</label>
+						<div class="col-md-8">
+							<div class="input-group date form_date" data-date="" data-date-format="yyyymmdd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="16" type="text" id="GXSJ" name="GXSJ" />
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input3" value="" />
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">更新人</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="GXR" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">扩展1</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="KZ1" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">扩展2</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="KZ2" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="text-center col-xs-12">
+					<a id="save" class="btn_query btn btn-default">保存</a>
+				</div>
+			</form>
+		</div>
+
+		<script>
+			$(document).ready(function() {
+				//初始化日期插件
+				dataPiker();
+			});
+		</script>
+	</body>
+
+</html>

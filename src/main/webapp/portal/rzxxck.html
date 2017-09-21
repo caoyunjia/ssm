@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>及时雨-融资信息查看</title>
+	    <!-- Bootstrap -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+	    <link rel="stylesheet" href="css/new.css">
+	    <link rel="stylesheet" href="fonts/iconfont.css">
+	    <script src="js/plugin/kkpager.min.js"></script>
+	    <script src="js/jquery.min.js"></script>
+	    <script src="js/bootstrap.min.js"></script>
+	    <script src="js/bootstrap-datetimepicker.min.js"></script>
+	    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+	    <script src="js/common.js?v=APP_VER"></script>
+	    <script src="js/plugin/jquery.validate.js"></script>
+	    <script src="js/plugin/validate-extend.js"></script>
+	</head>
+	<body>
+		<div class="search_input container m-content">
+    <form class="form-horizontal form" id="formId" role="form">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">申请编号</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="sqbh" name="sqbh" type="text" maxlength="25" placeholder="" readonly="readonly"> 
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">审批金额（元）</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="rzje" name="rzje" type="text" maxlength="25" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">受理编号</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="slbh" name="slbh" type="text" maxlength="25" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">申请日期</label>
+                <div class="col-md-8">
+                	<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+	                    <input class="form-control" size="16" type="text" id="sqrq" name="sqrq" readonly="readonly"/>
+	                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+	                </div>
+                </div>
+            </div>
+        </div>
+		<div class="form-group row">
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">起始日期</label>
+                <div class="col-md-8">
+                	<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+	                    <input class="form-control" size="16" type="text" id="myqsrq" name="myqsrq" readonly="readonly"/>
+	                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+	                </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">结束日期</label>
+                <div class="col-md-8">
+                	<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+	                    <input class="form-control" size="16" type="text" id="myjsrq" name="myjsrq" readonly="readonly"/>
+	                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+	                </div>
+                </div>
+            </div>
+        </div>
+       	 <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">融资币别</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="" name="rzbb" type="text" maxlength="25" dic-type="B1056" placeholder="" disabled="disabled"></select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">贸易业务编号</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="myywbh" name="myywbh" type="text" maxlength="25" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+         <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">贸易业务类型</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="myywlx" name="myywlx" type="text" maxlength="25" placeholder="" dic-type="B1059" readonly="readonly" disabled="disabled"></select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">贸易业务金额（元）</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="sqje" name="sqje" type="text" maxlength="25" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+         <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">贸易业务笔数</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="fpzs" name="fpzs" type="text" maxlength="25" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">贸易币别</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="mybb" name="mybb" type="text" maxlength="25" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">融资比例（%）</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="rzbl" name="rzbl" type="text" maxlength="25" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">承保金额（元）</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="cbje" name="cbje" type="text" maxlength="25" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">承保比例（%）</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="cbbl" name="cbbl" type="text" maxlength="25" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">电子保单号</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="dzbdh" name="dzbdh" type="text" maxlength="25" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">是否意向保单</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="sfyxbd" name="sfyxbd" type="text" dic-type="B1009" maxlength="25" placeholder="" readonly="readonly" disabled="disabled"></select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">融资利率（%）</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="lv" name="lv" type="text" maxlength="25" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">融资期限（天）</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="rzqx" name="rzqx" type="text" maxlength="25" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div> -->
+        
+        <input type="hidden"  id="khh" name="khh" >
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="#" id="searchBtn" class="btn btn-default btn_query">返回</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+	 //判断非空
+	 function noNull(sj){
+			if(!sj){
+				return "";
+			}
+			return sj;
+	    }
+    var vo= locationObj.getParams();
+    var id= vo.id;
+    var sqbh= vo.sqbh;
+        requestObj.ajaxServer(
+                requestObj.address.hxqyrztzrzxxcx,
+                {
+					"sqbh":sqbh,
+					"id":id,
+					"pageIndex":1,
+					"pageSize":10
+                    },
+                function(data,postData){
+                	pluginObj.setFormValueByName(data.body.data[0]);
+                    $("#sqrq").val(formatDateStr8(data.body.data[0].sqrq));
+                    $("#myqsrq").val(formatDateStr8(data.body.data[0].myqsrq));
+                    $("#myjsrq").val(formatDateStr8(data.body.data[0].myjsrq));
+                    $("#cbje").val(numberToCurrency(data.body.data[0].cbje));
+                    $("#myywje").val(numberToCurrency(data.body.data[0].myywje));
+                    $("#rzje").val(numberToCurrency(data.body.data[0].rzje));
+                    $("#rzbb").val("CNY");
+                },
+                function fail(){}
+        );
+        $("#searchBtn").click(function(){
+			location="hxqyzhcx.html?id=" + $("#khh").val();
+	//requestObj.searchObj.postData.pageIndex = "1";
+});
+});
+
+</script>
+	</body>
+</html>

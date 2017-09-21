@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-订单维护</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!-- <script src="js/jquery.js"></script> -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+</head>
+<body>
+
+<div class="container m-content">
+    <form class="form-horizontal" action="#" id="formId">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">订单编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="ddbh"  name="ddbh" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资方角色</label>
+                <div class="col-md-8">
+                    <select type="text" class="form-control" id="rzfjs" name="rzfjs" dic-type="B1022" placeholder="" readonly="readonly"></select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">核心企业客户号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="hxqykhh" name="hxqykhmc" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-sm-4 control-label">订单发起时间</label>
+                <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" name="ddfqsj" id="ddfqsj" readonly="readonly"/>
+                    <input type="hidden" id="dtp_input3" value="" />
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-sm-4 control-label">订单确认时间</label>
+                <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" id="ddqrsj" name="ddqrsj" readonly="readonly" />
+                    <input type="hidden" id="dtp_input3" value="" />
+                </div>
+            </div>
+               <div class="col-xs-6">
+                <label class="col-md-4 control-label">交易对手名称</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="jydsmc" name="jydsmc" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-sm-4 control-label">收货时间</label>
+                <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" id="shsj" name="shsj" readonly="readonly"/>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">货品名称</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="hpmc" name="hpmc" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">总金额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="zje" name="zje" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                    <select type="text" class="form-control" id="zt" name="zt" placeholder="" dic-type="B1023" readonly="readonly">
+                    </select> 
+                   
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">物流单号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="wldh" name="wldh" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">合同编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="fksj" name="fksj" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">运费(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="yf" name="yf" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">物流提供商</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="wltgs" name="wltgs" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a id="searchBtn" href="#" class="btn_query btn btn-default">返回</a>
+            </div>
+        </div>
+         <input type="hidden"  id="khh" name="rzfkhh" >
+    </form>
+</div>
+<script>
+$(document).ready(function(){
+
+	 //判断非空
+	 function noNull(sj){
+			if(!sj){
+				return "";
+			}
+			return sj;
+	    }
+        //初始化日期插件
+        dataPiker();
+    var vo= locationObj.getParams();
+    var id= vo.id;
+        requestObj.ajaxServer(
+                requestObj.address.jsyKhDdxxSearchone,
+                {
+					"id":id
+                    },
+                function(data,postData){
+                    	$("#rzfkhh").val(noNull(data.body.rzfkhh)),
+                    	$("#id").val(noNull(data.body.id)),
+                    	$("#rzfjs").val(noNull(data.body.rzfjs)),
+                    	$("#jydsmc").val(noNull(data.body.jydsmc)),
+                    	$("#hxqykhh").val(noNull(data.body.hxqykhh)),
+                    	$("#ddbh").val(noNull(data.body.ddbh)),
+                    	$("#ddfqsj").val(noNull(data.body.ddfqsj)),
+                    	$("#ddqrsj").val(noNull(data.body.ddqrsj)),
+                    	$("#hpmc").val(noNull(data.body.hpmc)),
+                    	$("#zje").val(noNull(data.body.zje)),
+                    	$("#wldh").val(noNull(data.body.wldh)),
+                    	$("#zt").val(data.body.zt),
+                    	$("#shsj").val(noNull(data.body.shsj)),
+                    	$("#fksj").val(noNull(data.body.fksj)),
+                    	$("#yf").val(noNull(data.body.yf)),
+                    	$("#wltgs").val(noNull(data.body.wltgs))
+                },
+                function fail(){}
+        );
+        $("#searchBtn").click(function(){
+			history.go(-1);
+        });
+	//requestObj.searchObj.postData.pageIndex = "1";
+});
+//修改
+/* $("#").click(function(){
+	  pluginObj.alert("","修改khddxx");
+	 requestObj.ajaxServer(
+      		 requestObj.address.jsyKhDdxxUpdate,
+      		 requestObj.packRequest(decodeURIComponent($("#formId").serialize(),true)),
+      		 function(data){
+      			//$("#jbSave").html("编辑");
+      			//$(".jbclwh input").attr("readonly","readonly");
+      			pluginObj.alert("","修改成功")
+			location="ddlb.html?v=APP_VER";
+            },
+            successFun
+    )
+	//requestObj.searchObj.postData.pageIndex = "1";
+});
+var successFun = function(data,postData){
+  pluginObj.alert("","成功");
+};
+}); */
+
+    //关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+    //    $(document).off('click.bs.dropdown.data-api');
+    //自动展开
+    $('.nav .dropdown').mouseenter(function(){
+        $(this).addClass('open');
+    });
+    //自动关闭
+    $('.nav .dropdown').mouseleave(function(){
+        $(this).removeClass('open');
+    });
+</script>
+</body>
+</html>

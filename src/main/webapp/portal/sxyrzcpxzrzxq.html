@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-上下游融资查询-产品选择</title>
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <!-- HTML5 shim and Respond.js for IE6 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+</head>
+<body>
+    <div class="container m-content">
+        <!--融资详情-->
+        <form action="" class="form-horizontal row tabChild" id="rzsq">
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">申请编号</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="sqbh" name="sqbh"  placeholder="" readonly>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="hxqykhmc" class="col-md-4 control-label">核心企业客户名称</label>
+                    <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" id="hxqykhmc" name="hxqykhh"/>
+                        <input type="hidden" id="dtp_input3" value=""/>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="fpzs" class="col-md-4 control-label">应收账款(元)／订单总量</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="fpzs" name="fpzs" placeholder="">
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="yszkje" class="col-md-4 control-label">应收账款(元)／订单总额(元)</label>
+                    <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" id="yszkje" name="yszkje"/>
+                        <input type="hidden" id="dtp_input3" value=""/>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">金融机构名称</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="jrjg" name="jrjg" placeholder="">
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="clsj" class="col-md-4 control-label">申请金额(元)</label>
+                    <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" id="sqje" name="sqje"/>
+                        <input type="hidden" id="dtp_input3" value=""/>
+                    </div>
+                </div>
+                <input type="hidden" id="rzje">
+                <input type="hidden" id="rzbl">
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <a class="btn_query btn btn-default" href="javascript:void(0);" onclick="save()">保存</a>
+                    <a class="btn_query btn btn-default" href="javascript:void(0);">提交审批</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

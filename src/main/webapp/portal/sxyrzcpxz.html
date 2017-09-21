@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="zh-CN">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-上下游融资查询-产品选择</title>
+		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" href="js/plugin/kkpager_green.css" />
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/new.css">
+		<!-- HTML5 shim and Respond.js for IE6 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/plugin/kkpager.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+	</head>
+
+	<body>
+		<div class="container m-content">
+			<form class="form-horizontal row" id="searchFrom" role="form" onsubmit="return false;">
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="" class="col-md-4 control-label">核心企业名称</label>
+						<div class="col-md-8">
+							<select type="text" class="form-control" id="hxqymc" onchange="select()">
+								<option></option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="" class="col-md-4 control-label">融资产品</label>
+						<div class="col-md-8">
+							<select type="text" class="form-control" id="rzcp" dic-type="B1039" dic-blank=" ">
+							<option value=''></option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="" class="col-md-4 control-label">融资类型</label>
+						<div class="col-md-8">
+							<select type="text" class="form-control" id="rzlx" dic-type="B1035" dic-blank=" ">
+								<option value=''></option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+					 	<a  href="javascript:history.go(-1);" class="btn_query btn btn-default">上一步</a>
+						<a href="javascript:void(0);" id="next1" class="btn_query btn btn-default next">下一步</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+	<script type="text/javascript">
+	$(function(){
+		 //初始化日期插件
+        dataPiker();
+        //获取核心企业
+        requestObj.ajaxServer(
+        	requestObj.address.getHxqy,
+       		{"pageSize":10,
+        	 "pageIndex":1,
+        	 "khgxlx":"01"
+           	},
+        	function(data){
+           		var listVO = data.body.data;
+            	for(var i = 0; i < listVO.length; i++){
+            		$("#hxqymc").append(
+						"<option value='"+listVO[i].khh+"'>"+listVO[i].cyfVo.qymc+"</option>"
+                    );
+                }
+            }
+		);
+	})
+		  var rzbl = "";
+	      $("#next1").click(function () {
+		    var khh = $("#hxqymc").val();
+		    var rzlx = $("#rzlx").val();
+		    if(!khh){
+			    pluginObj.alert("","请选择核心企业");
+				return false;
+			}
+			if(!rzlx){
+				pluginObj.alert("","请选择融资类型");
+				return false;
+			}
+            requestObj.ajaxServer(
+                	requestObj.address.edxxyz,
+               		{
+                		"khh" : $("#hxqymc").val()
+                   	},
+                	function(data){
+                    	if(data.body != "1"){
+							pluginObj.alert("","额度不足");
+							return;
+                        }
+                    		var hxqymc = $("#hxqymc").val();
+                            var rzcp = $("#rzcp").val();
+                            var rzlx = $("#rzlx").val();
+                            if(!rzbl || !rzcp || !rzlx){
+                            	pluginObj.alert("","请重试！")
+                            }
+        					location = "sxyrzcpxzdd.html?hxqymc=" + hxqymc + "&rzcp=" + rzcp + "&rzlx=" + rzlx + "&rzbl=" + rzbl;
+                   		//nextStep1();
+                    });
+                }
+    		);
+		  //根据选择的核心企业不同金融产品不同
+			function select(){
+	            requestObj.ajaxServer(
+	                	requestObj.address.getRzcp,
+	               		{"pageSize":10,
+	                	 "pageIndex":1,
+	                	 "khh":$("#hxqymc").val()
+	                   	},
+	                	function(data){
+	                   		$("#rzcp").empty();
+	                   		var hxqyarr = data.body.rzcp;
+	                   		if(hxqyarr){
+	                   			var arr= data.body.rzcp.split(",");
+		                    	if(arr.length > 0){
+									for( var j = 0 ; j < arr.length ; j++){
+										if(arr[j]=="01"){
+											$("#rzcp").append(
+				        						"<option value='"+arr[j]+"'>订单融资</option>"
+				                            );
+										}else{
+											$("#rzcp").append(
+					        						"<option value='"+arr[j]+"'>应收账款融资</option>"
+					                        );
+										}
+									}
+		                        }else{
+			                        if(data.body.rzcp=="01"){
+			                        	$("#rzcp").append(
+			        							"<option value='"+data.body.rzcp+"'>订单融资</option>"
+			                            );
+				                    }else{
+				                    	$("#rzcp").append(
+			        							"<option value='"+data.body.rzcp+"'>应收账款融资</option>"
+			                            );
+					                }
+		                         }
+		                    }else{
+		                    	$("#rzcp").append(
+		        						"<option value=''></option>"
+		                        );
+			                }
+	                        rzbl = data.body.rzbl;
+	                    }
+	        		);
+			}
+	</script>
+
+</html>

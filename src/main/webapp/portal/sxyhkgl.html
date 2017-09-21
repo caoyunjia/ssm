@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-我的融资-还款管理</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+    <link href="css/select2.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+	<script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/plugin/kkpager.min.js"></script>
+</head>
+<body>
+<div class="container m-content" >
+    <form class="form-horizontal row" id="searchFrom" role="form" onsubmit="return false;">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="ssxq" class="col-md-4 control-label">融资申请编号</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="rzsqrq" name="sqbh" />
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="hyfl" class="col-md-4 control-label">核心企业名称</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="hxqykhh" name="hxqykhh" >
+                        <option vlaue=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="hyfl" class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="zt" name="zt" dic-type="B1026" dic-blank=" ">
+                        <option vlaue=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" id="searchBtn" class="btn_query btn btn-default">查询</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="container" id="">
+    <form class="form row" action="#"  id="FormId">
+        <div class="search_result">
+            <table class="table table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th>融资申请编号</th>
+                    <th>融资金额(元)</th>
+                    <th>放款金额(元)</th>
+                    <th>放款日期</th>
+                    <!-- <th>还款金额</th> -->
+                    <th>核心企业名称</th>
+                    <th>金融机构名称</th>
+                    <th dic-type="B1026">状态</th>
+                    <th width="150">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div id="kkpager"></div>
+        </div>
+    </form>
+</div>
+<script>
+    $(document).ready(function(){
+		//判断是否为超管
+		var postData1={
+		}
+			requestObj.ajaxServer(requestObj.address.jsyqueryLx,postData1,function(data,postData1){
+			if(data.body.data[0].lx==1){
+					$("#sp").prop("hidden",false);
+			}else{
+				$("#sp").prop("hidden",true);
+				}
+		})
+        //初始化日期插件
+        dataPiker();
+
+		 requestObj.searchServer(
+	             requestObj.address.jsyKhgkxxgl,
+	            "FormId",
+	             successFun
+	     );
+	   //进入页面默认查询数据
+      requestObj.ajaxServer(
+          requestObj.address.getHxqy,
+            {"pageSize":10,
+            "pageIndex":1,
+            "khgxlx":'01'
+            },
+            function(data){
+              var listVO = data.body.data;
+              //alert(JSON.stringify(data.body));
+              for(var i = 0; i < listVO.length; i++){
+                 $("#hxqykhh").append(
+					"<option value='"+listVO[i].khh+"'>"+listVO[i].cyfVo.qymc+"</option>"
+                 );
+              }
+             }
+      );
+	     //给查询按钮绑定查询事件
+	     $("#searchBtn").click(function(){
+	         requestObj.searchObj.postData.pageIndex = "1";
+	         requestObj.searchServer(
+	                 requestObj.address.jsyKhgkxxgl,
+	                 "searchFrom",
+	                 successFun
+	         );
+	     });
+	 	function successFun(data){
+	 		  requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+	          requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+	          requestObj.initPager(
+	                  requestObj.address.jsyKhgkxxgl,
+	                  successFun
+	          );
+	 		$(".table-bordered tbody").empty();
+	 		var listVo = data.body.data;
+	         for(var i = 0 ; i < listVo.length; i ++ ){
+	             $(".table-bordered tbody").append(
+	                     "<tr><td>" + listVo[i].sqbh + "</td>" +
+	                     "<td>" + numberToCurrency(listVo[i].rzje) + "</td>" +
+	                     "<td>" + numberToCurrency(listVo[i].je) + "</td>" +
+	                     "<td>" + Tools.formatData(listVo[i].fkrq,"date") + "</td>" +
+	                    /*  "<td>" + hkzt(listVo[i].hkje) + "</td>" + */
+	                     "<td>" + listVo[i].hxqykhmc + "</td>" +
+	                     "<td>" + listVo[i].jrjgmc + "</td>" +
+	                     "<td>" + listVo[i].zt + "</td>" +
+	                     "<td>"
+	                     +"<a href='sxyfxxxcxsqhk.html?v=APP_VER&fkid="+ listVo[i].fkid +"'>申请还款</a> <a href='sxyfxxxcxhkls.html?v=APP_VER&fkid="+ listVo[i].fkid +"'>还款流水</a></td>" +
+	                     "</tr>"
+	             )
+	         }
+	     }
+
+    });
+    function hkzt(hk){
+		if(!hk){
+			return "0"
+		}
+		return hk;
+    }
+
+</script>
+</body>
+</html>

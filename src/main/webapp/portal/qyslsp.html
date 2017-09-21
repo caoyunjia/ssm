@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-企业受理-审批</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+		<link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.min.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+		<style>
+			.m-content {
+				padding-bottom: 70px;
+			}
+		</style>
+	</head>
+
+	<body>
+	<div class="search_input container m-content" >
+		<form class="form-horizontal row" id="searchFrom" role="form" onsubmit="return false;">
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">受理编号</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="slbh" name="slbh" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">融资方名称</label>
+					<div class="col-md-8">
+						<input class="form-control" id="rzfmc" name="rzfmc" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">法定代表人</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="fddbr" name="fddbr" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">注册资金（元）</label>
+					<div class="col-md-8">
+						<input class="form-control" id="zczj" name="zczj" data-type="currency" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+					<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">准入生效时间</label>
+					<div class="col-md-8">
+                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control rqyz startTime" size="16" type="text" id="zrsxsj" name="zrsxsj" />
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">准入到期时间</label>
+				<div class="col-md-8">
+                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control rqyz endTime" size="16"  type="text" id="zrdqsj" name="zrdqsj" />
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+				</div>
+			</div>
+			<div class="row form-group">
+		
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">与核心企业年交易额（元）</label>
+					<div class="col-md-8">
+						<input class="form-control" id="yhxqynjye" name="yhxqynjye" data-type="currency" readonly>
+					</div>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<a href="#" type="button" id="searchBtn" class="btn_query btn btn-default">返回</a>
+					<a href="#"  id="pass" onclick="pass()" class="btn_query btn btn-default">受理通过</a>
+					<a href="#"  id="refuse" onclick="refuse()" class="btn_query btn btn-default">受理不通过</a>
+				</div>
+			</div>
+		</form>
+	</div>
+
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function () {
+        //初始化日期插件
+        var slbh = locationObj.getParams().slbh;
+        dataPiker();
+//        dataPiker({pickerPosition:"top-right"});
+        requestObj.ajaxServer(
+                requestObj.address.jsySLslxq,
+                {
+                    "slbh": slbh
+                },
+                function (data) {
+                	pluginObj.setFormValueByName(data.body);
+                	$("#zczj").val(numberToCurrency(data.body.zczj));
+                	$("#yhxqynjye").val(numberToCurrency(data.body.yhxqynjye));
+                },
+                function () {
+                }
+        );
+        $("#searchBtn").click(function(){
+        	history.go(-1);
+        })
+	})
+	
+	function pass() {		//审批通过
+		if(!$('#searchFrom').valid()){
+			return;
+		}
+        	requestObj.ajaxServer(
+                    requestObj.address.jsySLpass,
+                    {
+                        "slbh": $("#slbh").val(),
+                        "zrsxsj": $("#zrsxsj").val(),
+    					"zrdqsj": $("#zrdqsj").val(),
+                    },
+                    function (data) {
+                        pluginObj.alert("","操作成功");
+                        location = "jrjgsy.html?v=APP_VER";
+                    },
+                    function () {
+                    }
+            )
+		}	
+	function refuse() {//审批拒绝
+		 pluginObj.comfire("确认该企业准入受理不通过？",function(){
+			requestObj.ajaxServer(
+                    requestObj.address.jsySLrefuse,
+                    {
+                        "slbh": $("#slbh").val(),
+                    },
+                    function (data) {
+                        pluginObj.alert("","操作成功");
+                        location = "qyslList.html?v=APP_VER";
+                    },
+                    function () {
+                    }
+            )
+		 },function(){});
+	}
+
+	$("#searchFrom").validate({
+		rules : {
+			zrsxsj : {
+				required : true,
+				isDate : true,
+				compareDate : true
+			},
+			zrdqsj : {
+				required : true,
+				isDate : true,
+				compareDate : true
+			}
+		},
+		messages: {
+			zrsxsj: {
+				compareDate: "准入到期时间必须大于生效时间",
+            },
+            zrdqsj: {
+            	compareDate: "准入到期时间必须大于生效时间",
+            }
+        }
+	});	
+		</script>
+	</body>
+</html>

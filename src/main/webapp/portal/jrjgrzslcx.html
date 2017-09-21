@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-融资受理查询</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+</head>
+<body>
+<div class="search_input container m-content">
+    <form class="form-horizontal form" id="searchFrom" role="form" onsubmit="return false;">
+        <div class="row form-group">
+            <!-- <div class="col-xs-6">
+                <label for="" class="col-md-4 control-label">融资金额(元)</label>
+                <div class="col-md-8">
+                    <div class="col-45">
+                        <input class="form-control jeq" id="rzjes" name="rzjes" type="text" maxlength="20" placeholder="">
+                        </select>
+                    </div>
+                    <div class="col-10"><p class="form-control-static">-</p></div>
+                    <div class="col-45">
+                        <input class="form-control jez" id="rzjee" name="rzjee" type="text" maxlength="20" placeholder="">
+                    </div>
+                </div>
+            </div> -->
+            <div class=" col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">受理状态</label>
+                <div class="col-md-8">
+                    <select name="slzt" class="form-control" id="slzt" dic-type="B1077" dic-blank=" ">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-xs-6">
+                <label for="" class="col-md-4 control-label pl0">申请日期</label>
+                <div class="col-md-8 pl0">
+                    <div class="col-45">
+                        <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+                             data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            <input class="form-control" size="16" type="text" id="sqrqs" name="sqrqs"/>
+                            <span class="input-group-addon"><span
+                                    class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="col-10"><p class="form-control-static">-</p></div>
+                    <div class="col-45">
+                        <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+                             data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            <input class="form-control" size="16" type="text" id="sqrqe" name="sqrqe"/>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a id="searchBtn" class="btn btn-default btn_query">查询</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container" id="">
+    <form class="form row" action="#" id="FormId">
+        <div class="search_result">
+            <table class="table-bordered table table-hover">
+                <thead>
+                <tr>
+                    <th>受理编号</th>
+                    <th>融资客户</th>
+                    <th>融资金额（元）</th>
+                    <th>申请日期</th>
+                    <th dic-type="B1077">受理状态</th>
+                    <th>贸易起始日期</th>
+                    <th>贸易结束日期</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div id="kkpager"></div>
+        </div>
+    </form>
+</div>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<script>
+    $(document).ready(function (){
+        //初始化日期插件
+        dataPiker();
+
+        //查询数据
+        requestObj.searchServer(
+            requestObj.address.findRzslcxList,
+            "searchFrom",
+            successFun
+        );
+
+        $("#searchBtn").click(function () {
+        	$("#searchFrom").submit(false);
+			if(!$('#searchFrom').valid()){
+				return;
+			}
+			var slzt=$("#slzt option:selected").val()
+            requestObj.searchObj.postData.pageIndex = "1";
+            requestObj.ajaxServer(
+                    requestObj.address.findRzslcxList,
+                    {
+                    	"rzjes":$("#rzjes").val(),
+        				"rzjee":$("#rzjee").val(),
+        				"sqrqe":$("#sqrqe").val(),
+        				"sqrqs":$("#sqrqs").val(),
+        				"slzt":slzt,
+        				"pageSize": requestObj.searchObj.postData.pageSize,
+						"pageIndex": requestObj.searchObj.postData.pageIndex
+                    },
+                    successFun
+            );
+        });
+		
+        function successFun(data){
+            requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+            requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+            requestObj.initPager(
+                requestObj.address.findRzslcxList,
+                successFun
+            );
+            $(".table-bordered tbody").empty();
+            var rzslcxList = data.body.data;
+            var operation;
+            for(var i = 0; i < rzslcxList.length; i++){
+                if(rzslcxList[i].slzt=='00'){
+					operation = "<td><a href='jrjgrzslcxck.html?slbh="+ rzslcxList[i].slbh +"'>详情</a>";
+					operation += "<a href='jrjgrzslcxsp.html?slbh="+ rzslcxList[i].slbh +"&khh="+rzslcxList[i].khh+"&hxkhh="+rzslcxList[i].hxkhh+"'>受理</a></td>";
+                }else{
+                	operation = "<td><a href='jrjgrzslcxck.html?slbh="+ rzslcxList[i].slbh +"'>详情</a>";
+                }
+                $(".table-bordered tbody").append(
+                    "<tr><td>" + rzslcxList[i].slbh + "</td>" +
+                    "<td>" + rzslcxList[i].qymc + "</td>" +
+                    "<td>" + numberToCurrency(rzslcxList[i].rzje) + "</td>" +
+                    "<td>" + formatDateStr(rzslcxList[i].sqrq) + "</td>" +
+                    "<td>" + formatDateStr(rzslcxList[i].slzt) + "</td>" +
+                    "<td>" + formatDateStr(rzslcxList[i].myqsrq) + "</td>" +
+                    "<td>" + formatDateStr(rzslcxList[i].myjsrq) + "</td>" +
+                    operation +
+                    "</tr>"
+                )
+            }
+        }
+    });
+    $("#searchFrom").validate({
+		rules:{
+			rzjes : {
+				number : true
+			},
+			rzjee : {
+				number : true
+			}
+		}
+			
+   });
+</script>
+</body>
+</html>

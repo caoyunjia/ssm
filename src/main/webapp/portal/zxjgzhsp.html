@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-增信机构-账户审批</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link href="css/new.css?v=APP_VER" rel="stylesheet">
+		<link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.min.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+		<script src="js/plugin/kkpager.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+		<style>
+			.btn_query{
+				line-height: 37px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container m-content">
+			<form class="row form-horizontal" action="#" id="formId">
+				<div class="row form-group" align="center">
+					<div class="col-xs-6" style="margin-top: 7px;">
+						<label class="col-md-4 control-label">登录账号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="khmc" name="khmc" placeholder="">
+						</div>
+					</div>
+					<div class="text-center col-xs-6">
+						<a id="searchBtn" class="btn_query btn btn-default">查询</a>
+				</div>
+				</div>
+			</form>
+		</div>
+		<div class="container" id="">
+			<form class="row form" action="#" id="FormId">
+				<div class="search_result">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>登录账号</th>
+								<th>申请日期</th>
+								<th dic-type="B1003">状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<div id="kkpager"></div>
+				</div>
+			</form>
+		</div>
+
+		<form id="searchFrom">
+			<input type="hidden" name="" id="cwbbLx" value="">
+		</form>
+		<div id="dytzs" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="smrz">
+                <form action="#" class="form form-horizontal" id="dytzsForm">
+			            <h4>请选择权限配置</h4>
+                    <div class="row form-group">
+                        <div class="col-xs-4">
+                            <div class="col-md-8">
+                                <input type="checkbox" class="tzs" name="roleId"  value="fh">复核岗
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                              <div class="col-md-8">
+                                 <input type="checkbox" class="tzs" name="roleId"  value="jb">经办岗
+                              </div>
+                        </div>
+                     </div>
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <a href="javascript:void(0)" class="btn btn_query" id="saveId">确认</a>
+                            <a href="javascript:void(0)" class="btn btn_query " data-dismiss='modal'>返回</a>
+                        </div>
+                    </div>
+                    <input type="hidden" id="hiddenid">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+		<script>
+		function sptg(id) {
+        	$("#dytzs").modal();
+        	$("#hiddenid").val(id);
+    }
+
+			function spjj(id) {
+				var postData = {
+					"id": id,
+					"zt": "03"
+				}
+				requestObj.ajaxServer(requestObj.address.jsyKhZhUpd, postData, function(data, postData) {
+					pluginObj.alert ("", data.head._rm);
+					setTimeout($("#searchBtn").click(), 1000);
+				})
+			}
+
+			function mmcz(id) {
+				var postData = {
+					"id": id,
+				}
+				requestObj.ajaxServer(requestObj.address.jsyMmcz, postData, function(data, postData) {
+					pluginObj.alert ("", data.head._rm);
+				})
+			}
+			$(document).ready(function() {
+					//初始化日期插件
+				dataPiker();
+				document.getElementById("searchFrom").reset();
+				requestObj.searchServer(
+					requestObj.address.queryExpWsx,
+					"searchFrom",
+					successFun
+				);
+				//进入页面默认查询数据
+				//给查询按钮绑定查询事件
+				$("#searchBtn").click(function() {
+					var postData = {
+						"dlzh": $("#khmc").val(),
+						"zhmc": $("#gslx").val(),
+						"pageSize": requestObj.searchObj.postData.pageSize,
+						"pageIndex": requestObj.searchObj.postData.pageIndex
+					}
+					requestObj.searchObj.postData.pageIndex = "1";
+					requestObj.ajaxServer(
+						requestObj.address.queryExpWsx,
+						postData,
+						successFun
+					);
+				});
+
+				function successFun(data) {
+					 requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+		             requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+		             requestObj.initPager(
+		                     requestObj.address.queryExpWsx,
+		                     successFun
+		             );
+					$(".table-bordered tbody").empty();
+					var listVo = data.body.data;
+					for(var i = 0; i < listVo.length; i++) {
+						//alert(  "<a href='javascript:void(0)' onclick='zwyx("+listVo[i].id+")'>置为无效</a>&nbsp;&nbsp;");
+						$(".table-bordered tbody").append(
+							"<tr><td>" + Tools.formatData(listVo[i].dlzh) + "</td>" +
+							"<td>" + Tools.formatData(listVo[i].crsj, 'date') + "</td>" +
+							"<td>" + listVo[i].zt + "</td>" +
+							"<td>" + "<a href=zxjgzhspdetail.html?id=" + listVo[i].id + ">查看</a>&nbsp;&nbsp;" +
+							"<a href='javascript:void(0)' onclick='sptg(\"" + listVo[i].id + "\")'>审批通过</a>&nbsp;&nbsp;" +
+							"<a href='javascript:void(0)' onclick='spjj(\"" + listVo[i].id + "\")'>审批拒绝</a>&nbsp;&nbsp;" +
+							"</tr>"
+						)
+					}
+				}
+				$("#saveId").click(function(){
+		            var id = $("#hiddenid").val();
+		            var chk_value =[]; 
+		            $('input[name="roleId"]:checked').each(function(){ 
+		            chk_value.push($(this).val()); 
+		            }); 
+		         	requestObj.ajaxServer(
+		                    requestObj.address.zhspqxsz,
+		                     {		
+		                    	userid:id,
+		                        roleids:chk_value
+		                            }, 
+		                     function (d) {
+		                //请求成功处理逻辑
+		                pluginObj.alert("", "操作成功!");
+		                window.location.href = "hxqyzhsp.html?v=APP_VER";
+		            })
+		        	 var postData = {
+		        	            "id": id,
+		        	            "zt": "01"
+		        	        }
+		        	        requestObj.ajaxServer(requestObj.address.jsyKhZhUpd, postData, function (data, postData) {
+		        	            setTimeout(function () {
+		        	                $("#searchBtn4").click()
+		        	            }, 1000);
+		        	        })
+		        	        $("#dytzs").hide();
+		        });
+
+			});
+
+			//关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+			//    $(document).off('click.bs.dropdown.data-api');
+			//自动展开
+			$('.nav .dropdown').mouseenter(function() {
+				$(this).addClass('open');
+			});
+			//自动关闭
+			$('.nav .dropdown').mouseleave(function() {
+				$(this).removeClass('open');
+			});
+
+			$(".rzlogout").click(function() {
+				requestObj.ajaxServer(requestObj.address.logout, {}, function(d) {
+					//请求成功处理逻辑
+					$(".user-center").hide();
+					window.location.href = "index.html?v=APP_VER";
+				});
+			})
+
+			function onUserCheck(logined, user) {
+				if(!logined) {
+					//window.location.href="index.html?v=APP_VER";
+				} else {
+					if(user.shouldChangePassword) {
+						showForceChangePassword(user, function() {
+							if(user.shouldAcceptAgreement) {
+								showAcceptAgreement(user);
+							}
+						});
+					} else if(user.shouldAcceptAgreement) {
+						showAcceptAgreement(user);
+					}
+				}
+			}
+		</script>
+	</body>
+
+</html>

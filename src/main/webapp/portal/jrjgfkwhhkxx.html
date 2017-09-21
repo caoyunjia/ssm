@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-付款维护-付款登记</title>
+
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <!-- HTML5 shim and Respond.js for IE6 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container m-content">
+    <form class="form-horizontal" action="#" id="jcxxForm">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资申请编号</label>
+                <div class="col-md-8">
+                    <input id="sqbh" name="sqbh" type="text" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资金额</label>
+                <div class="col-md-8">
+                    <input id="rzje" name="rzje" type="text" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资开始日期</label>
+                <div class="col-md-8">
+                    <input id="myqsrq" name="myqsrq" type="text" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="" class="control-label col-md-4">融资结束日期</label>
+                <div class="col-md-8">
+                	<input id="myjsrq" name="myjsrq" type="text" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">申请日期</label>
+                <div class="col-md-8">
+                    <input id="sqrq" name="sqrq" type="text" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="" class="control-label col-md-4">付款币种</label>
+                <div class="col-md-8">
+                	 <select name="bz" id="bz" class="form-control" dic-type="B1056" dic-blank=" ">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">付款金额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" data-type="currency" id="fkje" name="fkje">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="" class="control-label col-md-4">付款日期</label>
+                <div class="col-md-8">
+                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+                         data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" id="fkrq" name="fkrq"/>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <input type="hidden" id="" value=""/>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">付款方式</label>
+                <div class="col-md-8">
+                    <select name="fkfs" id="fkfs" class="form-control" dic-type="B1054" dic-blank=" ">
+                        <option value="1">现金</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">是否吊销</label>
+                <div class="col-md-8">
+                    <select id="sfdx" name="sfdx" class="form-control" dic-type="B1009" dic-blank=" ">
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+        	<div class="col-xs-6">
+                <label class="col-md-4 control-label">费用金额</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" data-type="currency" id="fyje" name="fyje">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                 <a href="javascript:void(0)" id="jbSave" class="btn_query btn btn-default">保存</a>
+                <a href="javascript:void(0)" class="btn_query btn btn-default" onclick="history.go(-1)">返回</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<script>
+    $(document).ready(function () {
+    	dataPiker();
+    	var vo = locationObj.getParams();
+		var sqbh = vo.sqbh;
+		$("#sqbhid").val(sqbh);
+		requestObj.ajaxServer(
+			requestObj.address.jsySqRzsqVOById,{
+				"sqbh": sqbh
+			},
+			function(data) {
+				$("#sqbh").val(data.body.sqbh);
+				$("#rzje").val(numberToCurrency(data.body.rzje));
+				$("#myqsrq").val(formatDateStr(data.body.myqsrq));
+				$("#myjsrq").val(formatDateStr(data.body.myjsrq));
+				$("#sqrq").val(formatDateStr(data.body.sqrq));
+			}
+		);
+		/* requestObj.ajaxServer(
+				requestObj.address.jsyFkxxgetBySqbh, {
+					"sqbh": sqbh
+				},
+				function(data) {
+					$("#fklsh").val(data.body.fklsh);
+				}
+			); */
+		$("#jbSave").click(function() {
+			$("#jcxxForm").submit(false);
+			if(!$('#jcxxForm').valid()){
+				return;
+			}
+			/* $("#jbSave").attr({"disabled":"disabled"}); */
+			requestObj.ajaxServer(
+				requestObj.address.jsyFkxxsave,
+				requestObj.packRequest(decodeURIComponent($("#jcxxForm").serialize(), true)),
+				function(data) {
+					pluginObj.alert("","保存成功");
+					location = "jrjgfkwh.html?v=APP_VER";
+					/* $(".jbclwh input").attr("readonly", "readonly");
+					$("#gslx").attr("readonly", "readonly");
+					$("#jbSave").remove(); */
+				},
+				function() {}
+			)
+		});
+		$().ready(function() {
+			$("#jcxxForm").validate({
+				rules : {
+					fkje : {
+						required : true,
+					},
+					fkrq : {
+						required : true,
+						dateISO : true
+					},
+					fkfs : {
+						required : true,
+					},
+					sfdx : {
+						required : true,
+					},
+					fyje : {
+						required : true,
+					},
+			},
+		});
+
+		});
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-额度管理-上下游授信额度(元)查看-审批详情</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    
+</head>
+<body>
+<div class="container m-content">
+    <form class="form form-horizontal" action="#" id="formId">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">额度编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" readonly="readonly" id="edbh" name="edbh" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">客户号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" readonly="readonly" id="khh" name="khm" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">企业名称</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" readonly="readonly" id="qymc" name="qymc" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">授信额度(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" readonly="readonly" id="sxzed" name="sxzed" placeholder=""
+                           readonly="true">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">已用额度(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="yyed" name="yyed" placeholder="" readonly="true">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">可用额度(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="kyed" name="kyed" placeholder="" readonly="true">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-md-4 control-label">额度生效日期</label>
+                <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" id="edsxrq" name="edsxrq" readonly="readonly"/>
+                    <input type="hidden" id="dtp_input3" value=""/>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-md-4 control-label">额度结束日期</label>
+                <div class="col-md-8">
+                        <input class="form-control" size="16" type="text" id="edjsrq" name="edjsrq" readonly="readonly"/>
+                    <input type="hidden" id="dtp_input3" value=""/>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="zt" name="zt" placeholder="" readonly="true">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center col-xs-12" id="fanhui">
+                <button class="btn btn-default btn_query">返回</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script>
+    function state(val) {
+        if (val == "01") {
+            val = "未生效";
+        } else if (val == "02") {
+            val = "已生效";
+        } else if (val == "03") {
+            val = "已冻结";
+        }
+        return val;
+    }
+    $(document).ready(function () {
+        //判断是否为超管
+        var postData1 = {}
+        requestObj.ajaxServer(requestObj.address.jsyqueryLx, postData1, function (data, postData1) {
+            if (data.body.data[0].lx == 1) {
+                $("#sp").prop("hidden", false);
+            } else {
+                $("#sp").prop("hidden", true);
+            }
+        })
+        //初始化日期插件
+        dataPiker();
+        var vo = locationObj.getParams();
+        var id = vo.id;
+        var type = vo.type;
+        if (type == "2") {
+            $("#fanhui").html('<a id="return" href="jrjgedglxxqysxedcx.html?v=APP_VER" class="btn_query btn btn-default">返回</a>');
+        }
+        else if (type == "3") {
+            $("#fanhui").html('<a id="return" href="jrjgedglsxyxedcx.html?v=APP_VER" class="btn_query btn btn-default">返回</a>');
+        }
+        var postData = {
+            "id": id,
+            "pageSize": requestObj.searchObj.postData.pageSize,
+            "pageIndex": requestObj.searchObj.postData.pageIndex
+        }
+        requestObj.ajaxServer(requestObj.address.jsyQrySxed, postData, function (data, postData) {
+            $("#edbh").val(data.body.data[0].edbh);
+            $("#khh").val(data.body.data[0].khh);
+            $("#qymc").val(data.body.data[0].qymc);
+            $("#yyed").val(numberToCurrency(data.body.data[0].yyed));
+            $("#sxzed").val(numberToCurrency(data.body.data[0].sxzed));
+            $("#kyed").val(numberToCurrency(data.body.data[0].syed));
+            $("#edsxrq").val(Tools.formatData(data.body.data[0].yxrq, "date"));
+            $("#edjsrq").val(Tools.formatData(data.body.data[0].sxrq, "date"));
+            $("#spyq").val(data.body.data[0].spyj);
+            $("#zt").val(state(data.body.data[0].zt));
+        })
+    });
+</script>
+</body>
+
+</html>

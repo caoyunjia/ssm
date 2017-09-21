@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-订单维护</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+    <link href="css/select2.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+
+    <!--jinlong css-->
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+
+    <script src="js/plugin/kkpager.min.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <script src="js/plugin/jquery.validate.js"></script>
+    <script src="js/plugin/validate-extend.js"></script>
+    <script src="js/select2.min.js"></script>
+    
+</head>
+<body>
+   <div class="container search_input m-content" >
+        <form class="form-horizontal row" id="searchForm" role="form" onsubmit="return false;">
+            <div class="form-group row">
+            <div class="col-xs-6">
+                <label for="qymc" class="col-md-4 control-label">订单编号：</label>
+                <div class="col-md-8">
+                    <input class="form-control cd32" id="ddbh" name="ddbh" type="text"  placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                    <label for="hyfl" class="col-md-4 control-label">状态：</label>
+                    <div class="col-md-8">
+                        <select class="form-control" id="zt" name="zt" dic-type="B1023" dic-blank=" ">
+                            <option vlaue=""></option>
+                        </select>
+                    </div>
+              </div>
+            </div>
+            <div class="form-group row">
+            <div class="col-xs-6">
+                <label for="hyfl" class="col-md-4 control-label">核心企业名称：</label>
+                <div class="col-md-8">
+                   <select class="form-control" id="khgxlx" name="hxqykhh">
+                        <option vlaue=""></option>
+                    </select>
+                </div>
+            </div>
+                <div class="col-xs-6">
+                    <label for="hyfl" class="col-md-4 control-label">金额（元）：</label>
+                    <div class="col-md-8">
+                        <div class="col-45">
+                            <input class="form-control jeq" id="zje" name="zje" type="text" maxlength="8" placeholder="">
+                            </select>
+                        </div>
+                        <div class="col-10" style="text-align: center"><p class="form-control-static">-</p></div>
+                        <div class="col-45">
+                            <input class="form-control jez" id="zje2" name="zje2" type="text" maxlength="8" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <a id="searchBtn" class="btn_query btn btn-default">查询</a>
+                </div>
+            </div>
+        </form>
+    </div>
+<div class="container" id="">
+    <form class="row form" action="#" id="FormId">
+        <div class="operate">
+            <a href="assetApplication.html?v=APP_VER" class="more">新增</a>
+        </div>
+        <div class="search_result">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>货品名称</th>
+                        <th>总金额（元）</th>
+                        <th>核心客户名称</th>
+                        <th>订单发起时间</th>
+                        <th>订单确认时间</th>
+                        <th>交易对手</th>
+                        <th>状态</th>
+                        <th width="180">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div id="kkpager" style="padding-left: 30px"></div>
+        </div>
+    </form>
+</div>
+<script>
+
+    $(document).ready(function(){
+    	//进入页面默认查询数据
+        requestObj.ajaxServer(
+            requestObj.address.getHxqy,
+              {"pageSize":10,
+              "pageIndex":1,
+              "khgxlx":"01"
+              },
+              function(data){
+                var listVO = data.body.data;
+                for(var i = 0; i < listVO.length; i++){
+                   $("#khgxlx").append(
+    					"<option value='"+listVO[i].khh+"'>"+listVO[i].cyfVo.qymc+"</option>"
+                   );
+                }
+               }
+        );
+        //初始化日期插件
+        dataPiker();
+        requestObj.searchServer(
+                requestObj.address.jsyKhDdxxQuery,
+               "FormId",
+                successFun
+        );
+    /*   //进入页面默认查询数据
+      $("body").append("<div class='modal_container'>" + "<div class='bg'></div><div class='loading'><img src=" + imgSrc + " alt='加载动画'/></div>" + "</div>"); */
+    });
+
+    //判断非空
+    function noNull(sj){
+		if(!sj){
+			return "";
+		}
+		return sj;
+    }
+    //状态：00：已录入未提交01：已提交未生效；02：已提交生效03：已失效04：已使用
+    function ztfun(zt){
+        if(zt==01){
+        	return "暂存";
+            }
+        if(zt==02){
+        	return "生效";
+            }
+        if(zt==03){
+        	return "已融资";
+            }
+        if(zt==04){
+        	return "已核销";
+            }
+          }
+    	function sfsx(zt,id){
+        	var str = "";
+        	if(zt ==01){
+        		str = "<a href=khddModify.html?id="+id+">修改</a>&nbsp;&nbsp;"
+    			+"<a href='javascript:void(0)' onclick= 'shengxiao(\""+id+"\",this)' >生效</a>&nbsp;&nbsp;"
+                +"<a  href='javascript:void(0)' onclick= 'delet(\""+ id +"\",this)' >删除</a>";
+            }
+			return str;
+       	}
+    	function successFun(body){
+    		 requestObj.searchObj.totalPage =  body.body.totalPageNo;//总页码
+             requestObj.searchObj.recordsTotal = body.body.totalCount;//总记录数目
+             requestObj.initPager(
+                     requestObj.address.jsyKhDdxxQuery,
+                     successFun
+             );
+    		$(".table-bordered tbody").empty();
+    		var listVo = body.body.data;
+            for(var i = 0 ; i < listVo.length ; i ++ ){
+                $(".table-bordered tbody").append(
+                        "<tr><td>" + noNull(listVo[i].ddbh) + "</td>" +
+                        "<td>" + noNull(listVo[i].hpmc) + "</td>" +
+                        "<td>" + numberToCurrency(listVo[i].zje) + "</td>" +
+                        "<td>" + noNull(listVo[i].hxqykhmc) + "</td>" +
+                        "<td>" + formatDateStr8(listVo[i].ddfqsj) + "</td>" +
+                        "<td>" + formatDateStr8(listVo[i].ddqrsj) + "</td>" +
+                        "<td>" + noNull(listVo[i].jydsmc) + "</td>" +
+                        "<td>" + noNull(ztfun(listVo[i].zt)) + "</td>" +
+                        "<td>"
+                        +"<a href=khddxxxq.html?id="+listVo[i].id+">查看</a>"+"&nbsp;&nbsp;"+
+                        sfsx(listVo[i].zt,listVo[i].id)
+                        +"</td>" +
+                        "</tr>"
+                )
+            }
+        };
+
+    //关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+    //    $(document).off('click.bs.dropdown.data-api');
+    //自动展开
+    $('.nav .dropdown').mouseenter(function(){
+        $(this).addClass('open');
+    });
+    //自动关闭
+    $('.nav .dropdown').mouseleave(function(){
+        $(this).removeClass('open');
+    });
+    //删除记录
+    function delet(id,a){
+    	pluginObj.comfire("是否确认删除?",function(){
+    		  requestObj.ajaxServer(
+               		requestObj.address.jsyKhDdxxDelete,
+                       {
+    						"id":id
+    	                    },
+                       function(){
+    	                    $(a).parent().parent().remove();
+      					pluginObj.alert("","成功");
+
+    	                        }
+                       )
+        	},function(){});
+    
+        }
+
+    //订单生效
+    function shengxiao(id,a){
+    	 requestObj.ajaxServer(
+          		requestObj.address.jsyKhDdxxUpdate,
+                  {
+						"id":id,
+						"zt":"02"
+	                    },
+                  function(){
+ 					pluginObj.alert("","操作成功");
+ 					location="ddlb.html?v=APP_VER";
+	                        }
+                  )
+
+        }
+    //给查询按钮绑定查询事件
+    $("#searchBtn").click(function(){
+    	if(!$('#searchForm').valid()){
+				return;
+			}
+        requestObj.searchServer(
+                requestObj.address.jsyKhDdxxQuery,
+                "searchForm",
+                successFun)
+    });
+
+    $("#searchForm").validate({
+        rules: {
+        	zje: {
+            	digits:true
+            },
+            zje2: {
+            	digits:true,
+            }
+        },
+        messages: {
+        	zje: {
+            	digits: "请输入整数",
+            },
+            zje2: {
+            	digits: "请输入整数",
+            }
+        }
+    });
+</script>
+</body>
+</html>

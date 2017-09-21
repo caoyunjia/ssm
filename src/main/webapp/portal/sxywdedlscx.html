@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="zh-CN">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-上下游-我的额度流水查询</title>
+
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link href="css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/new.css" />
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css" />
+		
+	</head>
+
+	<body>
+		<div class="container m-content">
+			<!--查询条件-->
+			<form class="row form-horizontal " id="searchForm">
+				<div id="wrap_file " style="">
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">金额(元)</label>
+							<input id="edid" name="edid" type="hidden">
+							<div class="col-md-8">
+								<div class="col-45">
+									<input class="form-control jeq" id="zje" name="zje" type="text" maxlength="16" placeholder="">
+								</div>
+								<div class="col-10">
+									<p class="form-control-static">-</p>
+								</div>
+								<div class="col-45">
+									<input class="form-control jez" id="zje2" name="zje2" type="text" maxlength="16" placeholder="">
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">类型</label>
+							<div class="col-md-8">
+								<select class="form-control" id="czlx" name="czlx" dic-type="B1021" dic-blank=" ">
+									<option  value=""></option>
+								</select>
+							</div>
+						</div>
+					</div>
+				<!-- 	<div class="row form-group">
+						<div class="col-xs-6">
+							<label for="clsj" class="col-md-4 control-label">日期</label>
+							<div class="col-md-8">
+								<div class="input-group date form_date" data-date="" data-date-format="yyyymmdd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+									<input class="form-control" size="16" type="text" id="clsj" name="crsj" />
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								</div>
+								<input type="hidden" id="dtp_input3" value="" />
+							</div>
+						</div>
+					</div> -->
+				</div>
+				<div class="text-center col-xs-12">
+					<a id="searchBtn" class="btn_query btn btn-default">查询</a>
+				</div>
+			</form>
+		</div>
+
+		<!--额度列表-->
+		<div class="container" id="" style="width：1040px;">
+				<div class="search_result row">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>企业名称</th>
+								<th dic-type="B1021">操作类型</th>
+								<th>额度生效日期</th>
+								<th>额度结束日期</th>
+								<th>本次操作额度(元)</th>
+								<th>本次前可用金额(元)</th>
+								<th>本次前已使用金额(元)</th>
+							</tr>
+						</thead>
+						<tbody class="data_table" id="lsxx">
+						</tbody>
+					</table>
+					<div id="kkpager"></div>
+				</div>
+		</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="js/common.js?v=APP_VER"></script>
+	<script src="js/select2.min.js"></script>
+	<script src="js/plugin/kkpager.min.js"></script>
+	<script src="js/plugin/jquery.validate.js"></script>
+    <script src="js/plugin/validate-extend.js"></script>
+		<script type="text/javascript">
+			// 查询流水信息
+			var id = "";
+			$(document).ready(function() {
+				//初始化日期插件
+				dataPiker();
+				id = locationObj.getParams().edid;
+				
+				$("#edid").val(id);
+				requestObj.searchServer(
+					requestObj.address.jsyKhEdls,
+					"searchForm",
+					successFun
+				);
+				//给查询按钮绑定查询事件
+				$("#searchBtn").click(function() {
+					if(!$('#searchForm').valid()){
+		 				return;
+		 			}
+					requestObj.searchServer(
+						requestObj.address.jsyKhEdls,
+						"searchForm",
+						successFun)
+				});
+				//进入页面默认查询数据
+				function successFun(data) {
+					requestObj.searchObj.totalPage = data.body.totalPageNo; //总页码
+					requestObj.searchObj.recordsTotal = data.body.totalCount; //总记录数目
+					requestObj.initPager(
+						requestObj.address.jsyKhEdls,
+						successFun
+					);
+					$("#lsxx").empty();
+					var listVo = data.body.data;
+					for(var i = 0; i < listVo.length; i++) {
+						$("#lsxx").append(
+							"<tr><td>" + noNull(listVo[i].qymc) + "</td>" +
+							"<td>" + noNull(listVo[i].czlx) + "</td>" +
+							"<td>" + Tools.formatData(listVo[i].yxrq,"date") + "</td>" +
+							"<td>" + Tools.formatData(listVo[i].sxrq,"date") + "</td>" +
+							"<td>" + numberToCurrency(listVo[i].bced) + "</td>" +
+							"<td>" + numberToCurrency(listVo[i].qkyed)+ "</td>" +
+							"<td>" + numberToCurrency(listVo[i].qysyed) + "</td>" +
+							"</tr>"
+						)
+					}
+				}
+			});
+			function noNull(sj){
+				if(!sj){
+					return "0";
+				}
+				return sj;
+		    }
+		   	$("#searchForm").validate({
+		        submitHandler:function(form){
+		        },
+		        onkeyup: false,
+		        rules: {
+		        	zje: {
+		            	number:true
+		            },
+		            zje2: {
+		            	number:true
+		            }
+		        }
+		    });
+		</script>
+	</body>
+
+</html>

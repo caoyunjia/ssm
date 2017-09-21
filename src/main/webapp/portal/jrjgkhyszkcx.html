@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-客户应收账款查询</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+</head>
+<body>
+<div class="container m-content">
+    <form class="form form-horizontal" action="#" id="formId">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label" >申请编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="sqbh" name="sqbh" placeholder="" readonly>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资客户</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="rzfkhh"  name="rzfkhh" placeholder="" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资方角色</label>
+                <div class="col-md-8">
+                   <select type="text" class="form-control" id="rzfjs" name="rzfjs" dic-type="B1022" placeholder="" disabled></select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">交易对手</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="jydsmc" name="jydsmc" placeholder="" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">发票号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="fph" name="fph" placeholder="" readonly>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-md-4 control-label">纳税识别号</label>
+                <div class="col-md-8">
+                    <input class="form-control" size="30" type="text" name="nssbm" id="nssbm"  readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-md-4 control-label">发票代码</label>
+                <div class="col-md-8">
+                   <input class="form-control" size="30" type="text" id="fpdm" name="fpdm" readonly>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">发票金额（元）</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="fpje" name="fpje" placeholder="" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">发票日期</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="kprq" name="kprq" placeholder="" readonly>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">税率（%）</label>
+                <div class="col-md-8">
+                    <!--  <input type="text" class="form-control" id="KHXKZH" placeholder="" readonly="readonly" value="暂存"> -->
+                    <input type="text" class="form-control" id="sl" name="sl"  readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">税额(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="se" name="se" placeholder="" readonly >
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">合同编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="htbh" name="htbh" placeholder="" readonly>
+                </div>
+            </div>
+        </div>
+ <!--        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                    <select type="text" class="form-control" id="zt" name="zt" placeholder="" dic-type="B1023" readonly="readonly"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-6">
+                <label class="col-xs-4 control-label">扩展1</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="KZ1" name="kz1" placeholder="">
+                </div>
+            </div>
+            <div class="form-group col-xs-6">
+                <label class="col-xs-4 control-label">扩展2</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="KZ2" name="kz2" placeholder="">
+                </div>
+            </div>
+            <div class="form-group col-xs-6">
+                <label class="col-xs-4 control-label">扩展3</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="KZ3" name="kz3" placeholder="">
+                </div>
+            </div>
+        </div> -->
+        <div class="row">
+        <div class="text-center col-xs-12">
+            <a id="save" class="btn btn-default btn_query" onclick="history.go(-1)">返回</a>
+        </div>
+        </div>
+    </form>
+</div>
+<form id="searchFrom">
+    <input type="hidden" name="" id="cwbbLx" value="">
+</form>
+<script>
+    $(document).ready(function(){
+        //初始化日期插件
+        $("input").attr("readonly","readonly");
+		var zkid  = locationObj.getParams().zkid;
+        dataPiker();
+        requestObj.ajaxServer(
+                requestObj.address.rzsqyszkxq,
+                {
+                    "id":zkid
+                },
+                function(data){
+                    $("#sqbh").val(data.body.sqbh);
+                    $("#rzfkhh").val(data.body.rzfkhmc);
+                    $("#rzfjs").val(data.body.rzfjs);
+                    $("#jydsmc").val(data.body.jydsmc);
+                    $("#fph").val(data.body.fph);
+                    $("#nssbm").val(data.body.nssbm);
+                    $("#fpje").val(numberToCurrency(data.body.fpje));
+                    $("#fpdm").val(data.body.fpdm);
+                    $("#kprq").val(formatDateStr8(data.body.kprq));
+                    $("#sl").val(data.body.sl);
+                    $("#se").val(numberToCurrency(data.body.se));
+                    $("#htbh").val(data.body.htbh);
+                    $("#nssbm").val(data.body.nssbm);
+                },
+                function(){}
+        );
+
+    });
+</script>
+</body>
+</html>

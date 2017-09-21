@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-核心企业账户维护</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <link rel="stylesheet" type="text/css" href="css/new.css?v=APP_VER"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <style>
+        .btn_query {
+            line-height: 37px;
+        }
+
+        modal-content {
+            width: 500px;
+            margin: 0 auto;
+            background: url(../img/uploadbg.png);
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="container m-content" style=" ">
+    <form class="form-horizontal" action="#" id="formId">
+        <div class="row form-group">
+            <div class="col-xs-6" style="margin-top: 7px">
+                <label class="col-xs-4 control-label">登录账号</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="dlzh" name="dlzh" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6 text-center">
+                <a  id="searchBtn" class="btn btn-default btn_query">查询</a>
+            </div>
+
+            <!--<div class="col-xs-3">-->
+            <!--<a id="searchBtn" class="btn_query btn btn-default">查询</a>-->
+            <!--</div>-->
+        </div>
+
+    </form> 
+</div>
+<div class="search_result container">
+    <form class="form row">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>登录账号</th>
+                <th>申请日期</th>
+                <th dic-type="B1017">状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            </tr>
+        </table>
+        <div id="kkpager"></div>
+    </form>
+
+</div>
+
+<div id="dytzs" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" id="hxqyzhwhcss">
+            <div class="smrz">
+                <form action="#" class="form form-horizontal" id="dytzsForm">
+			            <h4 style="padding-bottom:15px">请选择权限配置</h4>
+                    <div class="row form-group role" style="margin-left:50px">
+                        
+                     </div>
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <a href="javascript:void(0)" class="btn btn_query" style="display:none" id="saveId">确认</a>
+                            <a href="javascript:void(0)" class="btn btn_query " data-dismiss='modal'>返回</a>
+                        </div>
+                    </div>
+                    <input type="hidden" id="hiddenid">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+function szjs(id) {
+	$("#dytzs").modal();
+	$("#hiddenid").val(id);
+	requestObj.ajaxServer(
+            requestObj.address.userRolerSelect,
+             {		
+            	"userid":id
+                    }, 
+             function (data) {
+               var list = data.body.data;  	
+               var role = data.body.role;
+               if(role){
+                   if(role.length > 0){
+						$("#saveId").show();
+                   }
+            	   $(".role").empty();
+	               for(var i = 0; i < role.length; i++){
+		               $(".role").append(
+			             '<div class="col-xs-4">'+
+		                    '<div class="col-md-8" id="roleId1cm8">'+
+		               			'<input type="checkbox" '+ ischeck(role[i].roleid) +' class="tzs" name="roleId" id="roleId'+ i +'"  value="'+ role[i].roleid +'">' +
+		               			'<label for="roleId'+ i +'">'+ role[i].roleName +'</label>'+
+		          		 	'</div>'+
+  						'</div>');   
+	               } 
+               } 
+               function ischeck(roleid){
+            	   for(var j = 0; j < list.length; j++){
+	            		if(roleid == list[j].roleid){
+							return 'checked="checked"';
+		            	}
+		            }
+		            return "";
+               }
+    		});
+}
+$("#saveId").click(function(){
+    var id = $("#hiddenid").val();
+    var chk_value =[]; 
+    $('input[name="roleId"]:checked').each(function(){ 
+    chk_value.push($(this).val()); 
+    }); 
+ 	requestObj.ajaxServer(
+            requestObj.address.zhspqxsz,
+             {		
+            	userid:id,
+                roleids:chk_value
+                    }, 
+             function (d) {
+        //请求成功处理逻辑
+        pluginObj.alert("", "操作成功!");
+        window.location.href = "hxqyzhwh.html?v=APP_VER";
+    })
+	 var postData = {
+	            "id": id,
+	            "zt": "01"
+	        }
+	        requestObj.ajaxServer(requestObj.address.jsyKhZhUpd, postData, function (data, postData) {
+	            setTimeout(function () {
+	                $("#searchBtn4").click()
+	            }, 1000);
+	        })
+	        $("#dytzs").hide();
+});
+    function zwyx(id) {
+        var postData = {
+            "id": id,
+            "zt": "01"
+        }
+        requestObj.ajaxServer(requestObj.address.jsyKhZhUpd, postData, function (data, postData) {
+            //alert(JSON.stringify(data));
+            pluginObj.alert("", data.head._rm);
+            setTimeout(function () {
+                $("#searchBtn").click()
+            }, 1000);
+        })
+    }
+    function zwwx(id) {
+        var postData = {
+            "id": id,
+            "zt": "03"
+        }
+        requestObj.ajaxServer(requestObj.address.jsyKhZhUpd, postData, function (data, postData) {
+            pluginObj.alert("", data.head._rm);
+            setTimeout(function () {
+                $("#searchBtn").click()
+            }, 1000);
+        })
+    }
+    function mmcz(id) {
+        var postData = {
+            "id": id,
+        }
+        requestObj.ajaxServer(requestObj.address.jsyMmcz, postData, function (data, postData) {
+            pluginObj.alert("", data.head._rm);
+            setTimeout(function () {
+                $("#searchBtn").click()
+            }, 1000);
+        })
+    }
+    $(document).ready(function () {
+        //初始化日期插件
+        dataPiker();
+        document.getElementById("formId").reset();
+        requestObj.searchServer(
+                requestObj.address.jsyKhZhQuery,
+                "formId",
+                successFun
+        );
+        //进入页面默认查询数据
+        //给查询按钮绑定查询事件
+        $("#searchBtn").click(function () {
+        	  requestObj.searchObj.postData.pageIndex = "1";
+		        requestObj.searchServer(
+		                requestObj.address.jsyKhZhQuery,
+		                "formId",
+		                successFun
+		        );
+        });
+        function successFun(data) {
+            requestObj.searchObj.totalPage = data.body.totalPageNo;//总页码
+            requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+            requestObj.initPager(
+                    requestObj.address.jsyKhZhQuery,
+                    successFun
+            );
+            $(".table-bordered tbody").empty();
+            var listVo = data.body.data;
+            for (var i = 0; i < listVo.length; i++) {
+                var str =""; 
+                    if(listVo[i].zt=='03'){
+                       str += "<a class='wx' href='javascript:void(0)' style='color: #0044CC;' onclick='zwyx(\"" + listVo[i].id + "\")'>置为有效</a>&nbsp;&nbsp;</td>";
+                    }else{
+               	 	   str += "<a class='yx' href='javascript:void(0)' style='color: #0044CC;' onclick='zwwx(\"" + listVo[i].id + "\")'>置为无效</a>&nbsp;&nbsp;</td>";
+                    }
+                $(".table-bordered tbody").append(
+                        "<tr><td class='order_'>" + noNull(listVo[i].dlzh) + "</td>" +
+                        "<td class='order_'>" + formatDateStr8(listVo[i].crsj) + "</td>" +
+                        "<td class='order_'>" + noNull(listVo[i].zt) + "</td>" +
+                        "<td class='order_'>" + "<a style='color: #0044CC;' href=hxqyzhwhdetail.html?dlzh=" + listVo[i].dlzh + ">查看</a>" +"<a  href='javascript:void(0)' style='color: #0044CC;' onclick='szjs(\"" + listVo[i].id + "\")'>设置角色</a>"+
+                        str+"</tr>"
+                )
+                /* if(listVo[i].zt=='03'){
+					$('.yx').hide();
+				}
+				if(listVo[i].zt=='01'){
+					$('.wx').hide();
+				} */
+                
+            }
+        }
+
+    });
+
+  //飞空验证
+    function noNull(sj){
+    	if(!sj){
+    		return "";
+    	}
+    	return sj;
+    }
+    $(".rzlogout").click(function () {
+        requestObj.ajaxServer(requestObj.address.logout, {}, function (d) {
+            //请求成功处理逻辑
+            $(".user-center").hide();
+            window.location.href = "index.html?v=APP_VER";
+        });
+    })
+    function onUserCheck(logined, user) {
+        if (!logined) {
+            //window.location.href="index.html?v=APP_VER";
+        } else {
+            if (user.shouldChangePassword) {
+                showForceChangePassword(user, function () {
+                    if (user.shouldAcceptAgreement) {
+                        showAcceptAgreement(user);
+                    }
+                });
+            } else if (user.shouldAcceptAgreement) {
+                showAcceptAgreement(user);
+            }
+        }
+    }
+    //    $('a').click(function(){
+    //        var href=$(this).attr("href");
+    //        $("iframe").attr("src",href);
+    //        return false;
+    //    })
+</script>
+</body>
+</html>

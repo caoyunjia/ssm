@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>及时雨-下柜信息详情</title>
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/new.css" />
+<link href="js/plugin/uploadify/uploadify.css" rel="stylesheet">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+		<script src="js/html5shiv.min.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+<!--<script src="js/jquery-1.11.1.min.js"></script>-->
+<link rel="stylesheet" href="js/plugin/kkpager_green.css" />
+</head>
+
+<body>
+	<div class="container m-content">
+		<div class="addlist jbclwh ">
+			<form class="form-horizontal row" action="#" id="xgxxForm">
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">交易日期</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" name="khjyrq"
+								id="khjyrq" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">地区代号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" name="khdqdh"
+								id="khdqdh" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">机构代号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="khjgdh"
+								name="khjgdh" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">下柜合同类型</label>
+						<div class="col-md-8">
+							<select class="form-control read_select" id="xghtlx"
+								name="xghtlx" dic-type="B1064" dic-blank=" ">
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">合同编号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="htbh"
+								name="htbh" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">客户代号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="khdh"
+								name="khdh" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">科目代号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="kmdh"
+								name="kmdh" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">产品代号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="cpdh"
+								name="cpdh" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">发生类型</label>
+						<div class="col-md-8">
+							<select class="form-control read_select" id="jylx" name="jylx"
+								dic-type="B1067" dic-blank=" ">
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">货币种类</label>
+						<div class="col-md-8">
+							<select class="form-control read_select" id="hbzl" name="hbzl"
+								dic-type="B1072" dic-blank=" ">
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">发放次数</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="ffcs"
+								name="ffcs" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">截止日期</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="jzrq"
+								name="jzrq" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">起始日期</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="qsrq"
+								name="qsrq" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">到期日期</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="dqrq"
+								name="dqrq" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">合同金额（元）</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="htje"
+								name="htje" data-type="currency" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">本次金额（元）</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="bqje"
+								name="bqje" data-type="currency" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">利率代号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="lldh"
+								name="lldh" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">基准利率生效日期</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="llsxrq"
+								name="llsxrq" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">利率浮动方式</label>
+						<div class="col-md-8">
+							<select class="form-control read_select" id="llfdfs"
+								name="llfdfs" dic-type="B1066" dic-blank=" ">
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">浮动利率（%）</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="fdll"
+								name="fdll" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">月利率（%）</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="ll"
+								name="ll" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">罚息率（%）</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="fxl"
+								name="fxl" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">放款支付类型</label>
+						<div class="col-md-8">
+							<select class="form-control read_select" id="fkzflx"
+								name="fkzflx" dic-type="B1063" dic-blank=" ">
+							</select>
+						</div>
+					</div>
+
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">金额控制标志</label>
+						<div class="col-md-8">
+							<select class="form-control read_select" id="kzbz" name="kzbz"
+								dic-type="B1068" dic-blank=" ">
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">计息标志</label>
+						<div class="col-md-8">
+							<select class="form-control read_select" id="jxbz" name="jxbz"
+								dic-type="B1065" dic-blank=" ">
+							</select>
+						</div>
+					</div>
+
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">计息周期</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="jxzq"
+								name="jxzq" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">计息月</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="jxys"
+								name="jxys" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">计息天数</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="jxts"
+								name="jxts" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">客户证件号码</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="qydm"
+								name="qydm" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">结算账户</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="jszh"
+								name="jszh" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">担保对应账户</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control read_only" id="dbdyzh"
+								name="dbdyzh" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="text-center col-xs-12">
+						<a class="btn btn-default btn_query" href="javascript:void(0)"
+							onclick="history.go(-1)">返回</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script src="js/plugin/kkpager.min.js"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="js/common.js?v=APP_VER"></script>
+	<script src="js/content-list.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/fileinput.min.js"></script>
+	<script src="js/plugin/uploadify/jquery.uploadify.js"></script>
+	<script src="js/plugin/kkpager.min.js"></script>
+	<script src="js/plugin/jquery.validate.js"></script>
+	<script src="js/plugin/validate-extend.js"></script>
+	<script type="text/javascript">
+		//查询下柜信息
+		$(document).ready(function() {
+			var id = locationObj.getParams().xgbh;
+			requestObj.ajaxServer(requestObj.address.getXgxxDetail, {
+				"id" : id
+			}, function(data) {
+				pluginObj.setFormValueById(data.body);
+				$("#khjyrq").val(formatDateStr(data.body.khjyrq));
+				$("#jzrq").val(formatDateStr(data.body.jzrq));
+				$("#qsrq").val(formatDateStr(data.body.qsrq));
+				$("#dqrq").val(formatDateStr(data.body.dqrq));
+				$("#llsxrq").val(formatDateStr(data.body.llsxrq));
+				$("#htje").val(numberToCurrency(data.body.htje));
+				$("#bqje").val(numberToCurrency(data.body.bqje));
+			}, function() {
+			});
+		});
+		$(".jbclwh input").attr("readonly", "readonly");
+		$(".jbclwh .read_select").attr("disabled", "disabled");
+	</script>
+</body>
+
+</html>

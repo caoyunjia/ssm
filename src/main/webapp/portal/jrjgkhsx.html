@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-客户授信</title>
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="css/new.css?v=APP_VER"/>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.min.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<!--<script src="js/jquery-1.11.1.min.js"></script>-->
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="js/common.js?v=APP_VER"></script>
+	<script src="js/content-list.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<!--中间内容部分-->
+<div class="middle row form-group">
+	<div class="middle-left col-xs-3">
+		<div class="ml-btn">
+			<span class="jbxx">承保准入</span>
+		</div>
+		<div class="ml-btn">
+			<span class="jbxx">客户准入</span>
+		</div>
+	</div>
+	<div class="middle-right col-xs-9">
+		<div class=" biaodan">
+			<div class="addlist jbclwh ">
+				<form class="form-horizontal row" action="#" id="jcxxForm">
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">客户号</label>
+							<div class="col-md-8">
+								<p id="KHH"></p>
+								<input type="hidden" name="khh" id="hikhh">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">企业名称</label>
+							<div class="col-md-8">
+								<p id="QYMC"></p>
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">法定代表人</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="FDDBR" name="fddbr" placeholder="">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">注册资本</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="ZCZB" name="zczb" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">公司类型</label>
+							<div class="col-md-8">
+								<select class="form-control" id="GSLX" name="gslx" dic-type="B1010" dic-selected=" ">
+								</select>
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label for="CLRQ" class="col-md-4 control-label">营业期限</label>
+							<div class="col-md-8">
+								<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+									<input class="form-control" size="16" type="text" id="YYQX" name="yyqx" />
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								</div>
+								<input type="hidden" id="dtp_input3" value="" />
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">实收资本(元)</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="SSZB" name="sszb" placeholder="">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">营业执照号码</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="YYZZHM" name="yyzzhm" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">经营范围</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="JYFW" name="jyfw" placeholder="">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">组织机构代码</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="ZZJGDM" name="zzjgdm" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">开户许可证号</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="KHXKZH" name="khxkz" placeholder="">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">机构信用代码证代码</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="JGXYDMZDM" name="jgxydmzdm" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">税务登记证号</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="SWDJZH" name="swdjzh" placeholder="">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">贷款卡号码</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="DKKHM" name="dkkhm" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">基本户开立银行</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="JBHKLYH" name="jbhklyh" placeholder="">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">基本户账号</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="JBHZH" name="jbhzh" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">注册地址</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="ZCDZ" name="zcdz" placeholder="">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">办公地址</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="BGDZ" name="bgdz" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">联系人</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="lxr" name="lxr" placeholder="">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">所在城市</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="szcs" name="szcs" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">联系地址</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="lxdz" name="lxdz" placeholder="">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">提醒邮箱</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="txyx" name="txyx" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">联系电话</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="lxdh" name="lxdh" placeholder="">
+							</div>
+						</div>
+
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">联系手机</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="lxsj" name="lxsj" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">备注</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="KZ1" name="kz1" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<a id="jbSave" class="btn_query btn btn-default">编辑</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class=" biaodan" style="display: none">
+			<div class="addlist frclwh ">
+				<form class="form-horizontal row" action="#" id="frForm">
+					<input type="hidden" class="form-control" id="frId" name="id" placeholder="">
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">客户号</label>
+							<div class="col-md-8">
+								<p id="FRKHH"></p>
+								<input type="hidden" name="khh" id="FRKHH">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">法定代表人</label>
+							<div class="col-md-8">
+								<p id="FRXM"></p>
+								<input type="hidden" name="xm" id="FRXM">
+							</div>
+						</div>
+
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">身份证号</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="FRSFZH" name="sfzh" placeholder="">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label for="ssxq" class="col-md-4 control-label">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
+							<div class="col-md-8">
+								<select class="form-control" style="padding: 0;" id="FRXB" disabled="disabled" name="xb">
+									<option vlaue="01">男</option>
+									<option vlaue="02">女</option>
+								</select>
+							</div>
+						</div>
+
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label for="CLRQ" class="col-md-4 control-label">出生日期</label>
+							<div class="col-md-8">
+								<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+									<input class="form-control" size="16" type="text" id="FRCSRQ" name="csrq" />
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								</div>
+								<input type="hidden" id="dtp_input3" value="" />
+							</div>
+						</div>
+
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">签发机关</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="FRQFJG" name="qfjg" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label for="CLRQ" class="col-md-4 control-label">有效期限</label>
+							<div class="col-md-8">
+								<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+									<input class="form-control" size="16" type="text" id="FRYXQX" name="yxqx" />
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								</div>
+								<input type="hidden" id="dtp_input3" value="" />
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">证件住址</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="FRZJZZ" name="zjzz" placeholder="">
+							</div>
+						</div>
+
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">电话号码</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="FRDHHM" name="dhhm" placeholder="">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">目前住址</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="FRMQZZ" name="mqzz" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<a id="frSave" class="btn_query btn btn-default">编辑</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="searchFrom">
+    <input type="hidden" name="" id="cwbbLx" value="">
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        //初始化日期插件
+        dataPiker();
+        requestObj.ajaxServer(
+                requestObj.address.findSxyJcxx,
+                {
+                    "khh":"KH01"
+                },
+                function(data){
+                    $("#QYMC").html(data.body.qymc);
+                    $("#FDDBR").val(data.body.fddbr);
+                    $("#GSLX").val(data.body.gslx);
+                    $("#ZCZB").val(data.body.zczb);
+                    $("#SSZB").val(data.body.sszb);
+                    $("#YYQX").val(data.body.yyqx);
+                    $("#JYFW").val(data.body.jyfw);
+                    $("#YYZZHM").val(data.body.yyzzhm);
+                    $("#KHXKZH").val(data.body.khxkz);
+                    $("#ZZJGDM").val(data.body.zzjgdm);
+                    $("#SWDJZH").val(data.body.swdjzh);
+                    $("#JGXYDMZDM").val(data.body.jgxydmzdm);
+                    $("#DKKHM").val(data.body.dkkhm);
+                    $("#JBHKLYH").val(data.body.jbhklyh);
+                    $("#JBHZH").val(data.body.jbhzh);
+                    $("#ZCDZ").val(data.body.zcdz);
+                    $("#BGDZ").val(data.body.bgdz);
+                    $("#KHH").html(data.body.khh);
+                    $("#hikhh").val(data.body.khh);
+                    $("#KZ1").val(data.body.kz1);
+                },
+                function(){}
+        );
+        $(".jbclwh input").attr("readonly","readonly");
+        $("#jbSave").click(function(){
+            if($("#jbSave").html() == "编辑"){
+                $(".jbclwh input").removeAttr("readonly");
+                $("#jbSave").html("保存");
+            }else{
+                requestObj.ajaxServer(
+                        requestObj.address.modifySxyJcxx,
+                        requestObj.packRequest(decodeURIComponent($("#jcxxForm").serialize(),true)),
+                        function(data){
+                            //pluginObj.alert("","修改成功！");
+                            $("#jbSave").html("编辑");
+                            $(".jbclwh input").attr("readonly","readonly");
+                            pluginObj.alert("","修改成功");
+                        },
+                        function(){}
+                )
+            }
+        });
+
+    });
+
+    // 点击展开法人资料页面后调用方法
+    $(".search .container img").eq(1).click(function(){
+        if ($(this).attr("src") == "img/arrowUp.png"){
+            requestObj.ajaxServer(
+                    requestObj.address.findSxyFrCw,
+                    {
+                        "khh":"KH01",
+                        "lx":"01"
+                    },
+                    function(data){
+                        $("#frId").val(data.body.id);
+                        $("#FRSFZH").val(data.body.sfzh);
+                        $("#FRXM").val(data.body.xm);
+                        $("#FRXB").val(data.body.xb);
+                        $("#FRCSRQ").val(data.body.csrq);
+                        $("#FRQFJG").val(data.body.qfjg);
+                        $("#FRYXQX").val(data.body.yxqx);
+                        $("#FRZJZZ").val(data.body.zjzz);
+                        $("#FRMQZZ").val(data.body.mqzz);
+                        $("#FRDHHM").val(data.body.dhhm);
+                        $("#FRKHH").val(data.body.khh);
+                    },
+                    function(){}
+            );
+            $(".frclwh input").attr("readonly","readonly");
+            $("#frSave").click(function(){
+                if($("#frSave").html() == "编辑"){
+                    $(".frclwh input").removeAttr("readonly");
+                    $("#frSave").html("保存");
+                }else{
+                    requestObj.ajaxServer(
+                            requestObj.address.modifySxyFrCw,
+                            requestObj.packRequest(decodeURIComponent($("#frForm").serialize(),true)),
+                            function(data){
+                                //pluginObj.alert("","修改成功！");
+                                $("#frSave").html("编辑");
+                                $(".frclwh input").attr("readonly","readonly");
+                                pluginObj.alert("","修改成功");
+                            },
+                            function(){}
+                    )
+                }
+            });
+        }
+    });
+
+    // 点击展开财务资料页面后调用方法
+    $(".search .container img").eq(2).click(function(){
+        if ($(this).attr("src") == "img/arrowUp.png"){
+            requestObj.ajaxServer(
+                    requestObj.address.findSxyFrCw,
+                    {
+                        "khh":"KH01",
+                        "lx":"02"
+                    },
+                    function(data){
+                        $("#cwId").val(data.body.id);
+                        $("#CWSFZH").val(data.body.sfzh);
+                        $("#CWXM").val(data.body.xm);
+                        $("#CWXB").val(data.body.xb);
+                        $("#CWCSRQ").val(data.body.csrq);
+                        $("#CWQFJG").val(data.body.qfjg);
+                        $("#CWYXQX").val(data.body.yxqx);
+                        $("#CWZJZZ").val(data.body.zjzz);
+                        $("#CWMQZZ").val(data.body.mqzz);
+                        $("#CWDHHM").val(data.body.dhhm);
+                        $("#CWKHH").val(data.body.khh);
+                    },
+                    function(){}
+            );
+            $(".cwzlwh input").attr("readonly","readonly");
+            $("#cwSave").click(function(){
+                if($("#cwSave").html() == "编辑"){
+                    $(".cwzlwh input").removeAttr("readonly");
+                    $("#cwSave").html("保存");
+                }else{
+                    requestObj.ajaxServer(
+                            requestObj.address.modifySxyFrCw,
+                            requestObj.packRequest(decodeURIComponent($("#cwForm").serialize(),true)),
+                            function(data){
+                                //pluginObj.alert("","修改成功！");
+                                $("#cwSave").html("编辑");
+                                $(".cwzlwh input").attr("readonly","readonly");
+                                pluginObj.alert("","修改成功");
+                            },
+                            function(){}
+                    )
+                }
+            });
+        }
+    });
+
+    // 点击展开财务资料页面后调用方法
+    $(".search .container img").eq(3).click(function(){
+        if ($(this).attr("src") == "img/arrowUp.png"){
+            requestObj.searchServer(
+                    requestObj.address.cwbbXx,
+                    "searchFrom",
+                    function(data){
+                        var cwList = data.body.data;
+                        $("#cwbb tbody").empty();
+                        for(var i = 0; i < cwList.length; i++){
+                            $("#cwbb tbody").append(
+                                    "<tr>"+
+                                    "<td>"+ cwList[i].bbmc +"</td>"+
+                                    "<td>"+ cwList[i].bb +"</td>"+
+                                    "<td>"+ cwList[i].bbmb +"</td>"+
+                                    "<td>"+ cwList[i].nf +"</td>"+
+                                    "<td>"+ cwList[i].jd +"</td>"+
+                                    "<td>"+ cwList[i].crsj +"</td>"+
+                                    "<td>"+ cwList[i].crr +"</td>"+
+                                    "<td><a href='#'>查看</a> <a href='javascript:void(0)' onclick='del(\""+  cwList[i].id +"\")'>删除</a></td>"+
+                                    "</tr>"
+                            );
+                        }
+                    });
+        }
+    });
+    // 删除报表
+    function del(id){
+        requestObj.ajaxServer(
+                requestObj.address.deleteBb,
+                {
+                    "id" : id
+                },
+                function(data){
+                    //pluginObj.alert("","删除成功！");
+                    pluginObj.alert("","删除成功");
+                },
+                function(){}
+        )
+    }
+
+
+    $(".search .container img").click(function(){
+        var target=$(this).parent().parent().parent().next();
+        $('.biaodan').not(target).hide().prev().find("img").attr("src","img/arrowUp.png");
+        $(this).parent().parent().parent().next().slideToggle(500);
+
+        if ($(this).attr("src") == "img/arrowDown.png") {
+            $(this).attr("src", "img/arrowUp.png")
+        } else if ($(this).attr("src") == "img/arrowUp.png") {
+            $(this).attr("src", "img/arrowDown.png");
+        }
+    });
+</script>
+</body>
+</html>

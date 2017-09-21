@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-核心企业-保单查询</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+		<!--jinlong css-->
+		<link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+		<link rel="stylesheet" href="css/new.css" />
+	</head>
+
+	<body>
+		<div class="container m-content">
+			<form class="form-horizontal row" action="#" id="formId">
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">订单号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="QYMC" name="ddbh" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">订单发起人(买方)</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="ddfqr" name="ddfqr" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">发起人客户号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="GSLX" name="fqrkhh" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">订单接收人(卖方)</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="ZCZB" name="ddjsr" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">接收人客户号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="SSZB" name="jsrkhh" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-md-4 control-label">订单发起时间</label>
+						<div class="col-md-8">
+							<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="16" type="text" name="ddfqsj" id="CLRQ" name="CLRQ" />
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input3" value="" />
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-md-4 control-label">订单确认时间</label>
+						<div class="col-md-8">
+							<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="16" type="text" id="YYQX" name="ddqrsj" />
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input3" value="" />
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">核心企业客户号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="JYFW" name="hxqykhh" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">货品名称</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="YYZZHM" name="hpmc" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">状态</label>
+						<div class="col-md-8">
+							<!--  <input type="text" class="form-control" id="KHXKZH" placeholder="" readonly="readonly" value="暂存"> -->
+							<input type="hidden" value="01" name="zt">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">总金额（元）</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="ZZJGDM" name="zje" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">物流提供商</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="SWDJZH" name="wltgs" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">物流单号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="JGXYDMZDM" name="wldh" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">运费</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="DKKHM" name="yf" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-md-4 control-label">收货时间</label>
+						<div class="col-md-8">
+							<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="16" type="text" id="YYQX" name="shsj" />
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input3" value="" />
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-md-4 control-label">付款时间</label>
+						<div class="col-md-8">
+							<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="16" type="text" id="YYQX" name="fksj" />
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input3" value="" />
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-md-4 control-label">创建时间</label>
+						<div class="col-md-8">
+							<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="16" type="text" id="YYQX" name="crsj" />
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input3" value="" />
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">创建人</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="CRR" name="crr" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="CLRQ" class="col-md-4 control-label">更新时间</label>
+						<div class="col-md-8">
+							<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="16" type="text" id="GXSJ" name="gxsj" />
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input3" value="" />
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">更新人</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="GXR" name="gxr" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">扩展1</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="KZ1" name="kz1" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label class="col-md-4 control-label">扩展2</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="KZ2" name="kz2" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<a id="save" class="btn_query btn btn-default">保存</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<form id="searchFrom">
+			<input type="hidden" name="" id="cwbbLx" value="">
+		</form>
+		<script>
+			$(document).ready(function() {
+				//初始化日期插件
+
+				dataPiker();
+				requestObj.ajaxServer(
+					requestObj.address.findSxyJcxx, {
+						"khh": "KH01"
+					},
+					function(data) {
+						$("#QYMC").html(data.body.qymc);
+						$("#FDDBR").val(data.body.fddbr);
+						$("#GSLX").val(data.body.gslx);
+						$("#ZCZB").val(data.body.zczb);
+						$("#SSZB").val(data.body.sszb);
+						$("#YYQX").val(data.body.yyqx);
+						$("#JYFW").val(data.body.jyfw);
+						$("#YYZZHM").val(data.body.yyzzhm);
+						$("#KHXKZH").val(data.body.khxkz);
+						$("#ZZJGDM").val(data.body.zzjgdm);
+						$("#SWDJZH").val(data.body.swdjzh);
+						$("#JGXYDMZDM").val(data.body.jgxydmzdm);
+						$("#DKKHM").val(data.body.dkkhm);
+						$("#JBHKLYH").val(data.body.jbhklyh);
+						$("#JBHZH").val(data.body.jbhzh);
+						$("#ZCDZ").val(data.body.zcdz);
+						$("#BGDZ").val(data.body.bgdz);
+						$("#KHH").html(data.body.khh);
+						$("#hikhh").val(data.body.khh);
+						$("#KZ1").val(data.body.kz1);
+					},
+					function() {}
+				);
+				$(".jbclwh input").attr("readonly", "readonly");
+				$("#jbSave").click(function() {
+					if($("#jbSave").html() == "编辑") {
+						$(".jbclwh input").removeAttr("readonly");
+						$("#jbSave").html("保存");
+					} else {
+						requestObj.ajaxServer(
+							requestObj.address.modifySxyJcxx,
+							requestObj.packRequest(decodeURIComponent($("#jcxxForm").serialize(), true)),
+							function(data) {
+								//pluginObj.alert("","修改成功！");
+								$("#jbSave").html("编辑");
+								$(".jbclwh input").attr("readonly", "readonly");
+								pluginObj.alert("","修改成功");
+							},
+							function() {}
+						)
+					}
+				});
+
+			});
+
+			// 点击展开法人资料页面后调用方法
+			$(".search .container img").eq(1).click(function() {
+				if($(this).attr("src") == "") {
+					requestObj.ajaxServer(
+						requestObj.address.findSxyFrCw, {
+							"khh": "KH01",
+							"lx": "01"
+						},
+						function(data) {
+							$("#frId").val(data.body.id);
+							$("#FRSFZH").val(data.body.sfzh);
+							$("#FRXM").val(data.body.xm);
+							$("#FRXB").val(data.body.xb);
+							$("#FRCSRQ").val(data.body.csrq);
+							$("#FRQFJG").val(data.body.qfjg);
+							$("#FRYXQX").val(data.body.yxqx);
+							$("#FRZJZZ").val(data.body.zjzz);
+							$("#FRMQZZ").val(data.body.mqzz);
+							$("#FRDHHM").val(data.body.dhhm);
+							$("#FRKHH").val(data.body.khh);
+						},
+						function() {}
+					);
+					$(".frclwh input").attr("readonly", "readonly");
+					$("#frSave").click(function() {
+						if($("#frSave").html() == "编辑") {
+							$(".frclwh input").removeAttr("readonly");
+							$("#frSave").html("保存");
+						} else {
+							requestObj.ajaxServer(
+								requestObj.address.modifySxyFrCw,
+								requestObj.packRequest(decodeURIComponent($("#frForm").serialize(), true)),
+								function(data) {
+									//pluginObj.alert("","修改成功！");
+									$("#frSave").html("编辑");
+									$(".frclwh input").attr("readonly", "readonly");
+									pluginObj.alert ("修改成功");
+								},
+								function() {}
+							)
+						}
+					});
+				}
+			});
+
+			// 点击展开财务资料页面后调用方法
+			$(".search .container img").eq(2).click(function() {
+				if($(this).attr("src") == "") {
+					requestObj.ajaxServer(
+						requestObj.address.findSxyFrCw, {
+							"khh": "KH01",
+							"lx": "02"
+						},
+						function(data) {
+							$("#cwId").val(data.body.id);
+							$("#CWSFZH").val(data.body.sfzh);
+							$("#CWXM").val(data.body.xm);
+							$("#CWXB").val(data.body.xb);
+							$("#CWCSRQ").val(data.body.csrq);
+							$("#CWQFJG").val(data.body.qfjg);
+							$("#CWYXQX").val(data.body.yxqx);
+							$("#CWZJZZ").val(data.body.zjzz);
+							$("#CWMQZZ").val(data.body.mqzz);
+							$("#CWDHHM").val(data.body.dhhm);
+							$("#CWKHH").val(data.body.khh);
+						},
+						function() {}
+					);
+					$(".cwzlwh input").attr("readonly", "readonly");
+					$("#cwSave").click(function() {
+						if($("#cwSave").html() == "编辑") {
+							$(".cwzlwh input").removeAttr("readonly");
+							$("#cwSave").html("保存");
+						} else {
+							requestObj.ajaxServer(
+								requestObj.address.modifySxyFrCw,
+								requestObj.packRequest(decodeURIComponent($("#cwForm").serialize(), true)),
+								function(data) {
+									//pluginObj.alert("","修改成功！");
+									$("#cwSave").html("编辑");
+									$(".cwzlwh input").attr("readonly", "readonly");
+									pluginObj.alert("","修改成功");
+								},
+								function() {}
+							)
+						}
+					});
+				}
+			});
+
+			// 点击展开财务资料页面后调用方法
+			$(".search .container img").eq(3).click(function() {
+				if($(this).attr("src") == "") {
+					requestObj.searchServer(
+						requestObj.address.cwbbXx,
+						"searchFrom",
+						function(data) {
+							var cwList = data.body.data;
+							$("#cwbb tbody").empty();
+							for(var i = 0; i < cwList.length; i++) {
+								$("#cwbb tbody").append(
+									"<tr>" +
+									"<td>" + cwList[i].bbmc + "</td>" +
+									"<td>" + cwList[i].bb + "</td>" +
+									"<td>" + cwList[i].bbmb + "</td>" +
+									"<td>" + cwList[i].nf + "</td>" +
+									"<td>" + cwList[i].jd + "</td>" +
+									"<td>" + cwList[i].crsj + "</td>" +
+									"<td>" + cwList[i].crr + "</td>" +
+									"<td><a href='#'>查看</a> <a href='javascript:void(0)' onclick='del(\"" + cwList[i].id + "\")'>删除</a></td>" +
+									"</tr>"
+								);
+							}
+						});
+				}
+			});
+			// 删除报表
+			function del(id) {
+				requestObj.ajaxServer(
+					requestObj.address.deleteBb, {
+						"id": id
+					},
+					function(data) {
+						//pluginObj.alert("","删除成功！");
+						pluginObj.alert("","删除成功");
+					},
+					function() {}
+				)
+			}
+
+		</script>
+	</body>
+
+</html>

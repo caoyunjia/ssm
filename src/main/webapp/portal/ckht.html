@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-融资申请查询/办理</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <style>
+        #dytzs .modal-lg{
+            padding-top: 150px;
+        }
+        
+    </style>
+</head>
+<body>
+     <form class="form-horizontal form" id="searchFrom" role="form" onsubmit="return false;">
+       	 <input type="hidden" name="ywbh" id="ywbh" value="">
+    </form> 
+<div class="container" id="" >
+    <form class="form row" action="#" id="FormId">
+        <div class="search_result">
+            <table class="table-bordered table table-hover">
+                <thead>
+                <tr>
+                    <th width='150'>通知书编号</th>
+                    <th width='180'>通知书类型</th>     
+                    <th dic-type="B1079">在线签约状态</th>
+                    <th width='180'>生成时间</th>
+                    <th>状态</th>
+                    <th width='200'>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div id="kkpager"></div>
+        </div>
+    </form>
+</div>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<script>
+var flag;
+var glxybh;
+var sqbh;
+var khh;
+var qymc ;
+var custType;
+var jrlx;
+    $(document).ready(function () {
+        //判断是否为超管
+        var postData1 = {}
+        requestObj.ajaxServer(requestObj.address.jsyqueryLx, postData1, function (data, postData1) {
+            if (data.body.data[0].lx == 1) {
+                $("#sp").prop("hidden", false);
+            } else {
+                $("#sp").prop("hidden", true);
+            }
+            requestObj.ajaxServer(
+				requestObj.address.checkUser,
+				{},
+				function(data) {
+					custType = data.body.custType;
+					fn();
+					ft()
+				},
+				function() {}
+			)
+            
+            //查找权限
+           
+        })
+        //初始化日期插件
+
+        dataPiker();
+        glxybh = locationObj.getParams().glxybh;
+        sqbh = locationObj.getParams().sqbh;
+       	khh = locationObj.getParams().khh;
+        qymc = locationObj.getParams().qymc;
+        $("#ywbh").val(glxybh);
+        function ft(){
+        requestObj.searchServer(
+                requestObj.address.dzhtListHt,
+                "searchFrom",
+                successFun
+        );
+        }
+        //进入页面默认查询数据
+        //给查询按钮绑定查询事件
+        $("#searchBtn").click(function () {
+        	$("#searchFrom").submit(false);
+/* 			if(!$('#searchFrom').valid()){
+				return;
+			} */
+            requestObj.searchObj.postData.pageIndex = "1";
+            requestObj.searchServer(
+                    requestObj.address.dzhtListHt,
+                    "searchFrom",
+                    successFun
+            );
+        });
+   
+        function successFun(data) {
+            requestObj.searchObj.totalPage = data.body.totalPageNo;//总页码
+            requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+            requestObj.initPager(
+                    requestObj.address.dzhtListHt,
+                    successFun
+            );
+            $(".table-bordered tbody").empty();
+            var listVo = data.body.data;
+            var operation;
+            var dqzt;
+           	// (最新状态)  融资申请表 状态 00 已录入未提交 01及时与审批中 02-增信机构审批中 03-及时雨复核中 04-金融机构审批中  05-审批通过 06-审批拒绝
+            for (var i = 0; i < listVo.length; i++) {
+            //通过判断通知书类型发送ajax去数据库判断是否有文件,如果有文件就显示下载   
+           			 operation = "<td>"; 
+				 if (listVo[i].wjid !=null&&listVo[i].wjid!='') {
+                     operation += "<a target='_blank' href='"+requestObj.port+"common/filePreview.do?q="+listVo[i].wjid+"'>预览</a>";
+				     operation += "<a href='"+requestObj.port+"common/file.do?q="+listVo[i].wjid+"'>下载</a>"; 
+				     operation += ""+isQz(listVo[i].wjid, glxybh,listVo[i].id,listVo[i].zxqyzt,listVo[i].tzslx,listVo[i].tzsbh); 
+                 } else{
+					 operation+= ""+sfCkht(listVo[i].tzslx,listVo[i].id,glxybh,listVo[i].htmc);
+                 }
+                $(".table-bordered tbody").append(
+                        "<tr><td><a href='#' onclick='Xyym("+listVo[i].tzslx+")'>"+listVo[i].tzsbh+"</a></td>" +
+                        "<td width='180'>"+ Tzslx(listVo[i].tzslx) + "</td>" +
+                        "<td>" +zxQyzt(listVo[i].zxqyzt,listVo[i].tzslx) + "</td>" +
+                        "<td width='180'>" +formatDateStr(listVo[i].scsj) + "</td>" +
+                        "<td>" + Zt(listVo[i].zt) + "</td>" +
+                        operation +
+                        "</tr>"
+            
+                )
+            }
+        }
+    });
+    
+    
+  //判断非空
+    function noNull(sj){
+		if(!sj){
+			return "无";
+		}
+		return sj;
+    }
+   function Xyym(tzslx){	
+ 		 tzslx = tzslx || '';
+ 		 //保利合同
+		if(tzslx ==""){
+			window.location.href ="blht.html?type=modify&xydm="+glxybh+"&tab=0"+jrlx;
+		}
+		if(tzslx =="1"){
+			window.location.href ="blht.html?type=modify&xydm="+glxybh+"&tab=4"+jrlx;
+		}
+		if(tzslx =="2"){
+			window.location.href ="rzzqzrs.html?sqbh="+sqbh+"&qymc="+qymc+"&khh="+khh;
+		}
+    	if(tzslx =="3"){	
+			window.location.href ="yszkzrtzs.html?sqbh="+sqbh+"&qymc="+qymc+"&khh="+khh;
+			}
+		if(tzslx =="4"){
+			window.location.href ="yszkzrqrs.html?sqbh="+sqbh+"&qymc="+qymc+"&khh="+khh;
+		}
+    }
+
+    //查看时根据融资产品不同跳转不同页面
+    function rzlx(rzcp, sqbh) {
+        if (rzcp == '01') {
+            location = "jrjgrzspck2.html?sqbh=" + sqbh;
+        }
+        if (rzcp == '02') {
+            location = "jrjgrzspck1.html?sqbh=" + sqbh;
+        }
+    }
+
+   		 //判断是否签约
+    	function isSfzxqy(zxqy){
+    	zxqy = zxqy || '';
+		if(zxqy =="1"){
+			return "是";
+		}else{
+			return "否";
+		}		
+	}
+	
+		//状态
+		function Zt(zt){
+    	zt = zt || '';
+		if(zt =="02"){
+			return "已生效";
+		}else if(zt=="01"){
+			return "未生效";
+		}else{
+			return "";
+		}
+	}
+		//在线签约状态
+		function zxQyzt(zxqyzt,tzslx){
+    	zxqyzt = zxqyzt || '';
+    	tzslx = tzslx || '';
+    	if(tzslx!="01"){
+			return zxqyzt;
+		}else{
+			return "-"
+		}
+	}
+	  //通知书类型
+	   	function Tzslx(tzslx){
+    	tzslx = tzslx || '';
+		if(tzslx =="00"){
+			return "国内反向保理业务合同";
+			}
+		else if(tzslx =="01"){
+			return "流动资金借款合同";
+		}
+		else if(tzslx =="02"){
+			return "债权转让书";
+		}
+		else if(tzslx =="03"){
+			return "应收账款转让通知书";
+		}
+		else if(tzslx =="04"){
+			return "应收账款转让确认书";
+		}else{
+			return "";
+		}
+		}	
+		 function isQz(wjid, ywbh, id, zt,tzslx,tzsbh) {
+		 		//如果通知书类型是流贷合同,那么不显示签章
+		 		if(tzslx=="01"){
+		 			return "";
+		 		}
+		 		//如果有通知书文件
+                if (wjid) {
+                	//如果是金融机构
+                   if(custType=="03"){
+                    // 1 已录入 2 待客户签约  3 待银行签约 4 已签约 
+	            	if(zt == 1){
+	                 	return "<a href='javascript:void(0)' onclick='rzkhqz(\"" + "2" + "\",\"" + id + "\")'>发送客户签约</a>";
+	                }
+	                if(zt == 2){
+	                 	return "<a href='javascript:void(0)' onclick='rzkhqz(\"" + "1" + "\",\"" + id + "\")'>撤销</a>";
+	                }
+	                if(zt == 3){
+	                	return "<a href='javascript:void(0)' onclick='tzsqz(\"" + wjid + "\",\"" + ywbh + "\",\"" + id + "\")'>签章</a><a href='javascript:void(0)' onclick='tzsUpdate(\"" + wjid + "\",\"" + tzsbh + "\")'>更新</a>";
+	                }
+	                if(zt == 4){
+	                	return "<a href='javascript:void(0)' onclick='tzsUpdate(\"" + wjid + "\",\"" + tzsbh + "\")'>更新</a>";
+	                }
+	                //如果是上下游用户
+	                }else{
+	                	if(zt==2){
+	                		return "<a href='javascript:void(0)' onclick='tzsqz(\"" + wjid + "\",\"" + ywbh + "\",\"" + id + "\")'>签章</a><a href='javascript:void(0)' onclick='rzkhqz(\"" + "1" + "\",\"" + id + "\")'>拒绝签章</a>";
+	                	}else{
+	                		return "";
+	                	}
+	                }
+	              //如果没有通知书文件
+                } else {
+                    return "";
+                }
+            }
+            function rzkhqz(zt,id){
+        	   requestObj.ajaxServer(
+                       requestObj.address.updateTzsb,
+                       {
+                           "id": id,
+                           "zxqyzt": zt
+                       },
+                       function (data) {
+                          pluginObj.alert("", "操作成功");
+                          location =window.location.href;
+                       },
+                       function () {
+                       }
+               )
+        }
+        function tzsqz(wjid, ywbh, id) {
+            requestObj.ajaxServer(
+                    requestObj.address.dzhtQz,
+                    {
+                        "id": id,
+                        "ywbh": ywbh,
+                        "wjid": wjid,
+                        "keyWord": "签字盖章"  
+                    },
+                    function (data) {
+                        pluginObj.alert("", "操作成功");
+                       	location =window.location.href;
+                    },
+                    function () {
+                    }
+            )
+
+        }
+        function savewj(ywbh, id, htmc) {
+            requestObj.ajaxServer(
+                    requestObj.address.jrjgsaveTzs,
+                    {
+                        "id": id,
+                        "ywbh": ywbh,
+                        "htmc": htmc + ".pdf",
+                        "tzsmc": "notice"
+                    },
+                    function (data) {
+                        pluginObj.alert("", "操作成功");
+                        location =window.location.href;
+                    },
+                    function () {
+                    window.location.href ="blht.html?type=modify&xydm="+ywbh+"&tab=1"+jrlx;
+                    }
+            )
+        }
+        //生成合同
+       function Scht(tzslx,id,ywbh,htmc){	
+       tzslx = tzslx || '';
+       if(tzslx =="00"){
+			savewj(ywbh, id, htmc);
+		}
+		if(tzslx =="01"){
+			window.location.href ="blht.html?type=modify&xydm="+ywbh+"&tab=4"+jrlx;
+		}
+		if(tzslx =="02"){
+			window.location.href ="rzzqzrs.html?sqbh="+sqbh+"&qymc="+qymc+"&khh="+khh;
+		}
+    	if(tzslx =="03"){	
+			window.location.href ="yszkzrtzs.html?sqbh="+sqbh+"&qymc="+qymc+"&khh="+khh;
+			}
+		if(tzslx =="04"){
+			window.location.href ="yszkzrqrs.html?sqbh="+sqbh+"&qymc="+qymc+"&khh="+khh;
+		}
+		
+		}
+		//是否显示查看合同
+		function sfCkht(tzslx,id,ywbh,htmc){
+			if(custType=="03"){	
+				return "<a onclick=Scht(\""+tzslx+"\",\""+id+"\",\""+ywbh+"\",\""+htmc+"\")>生成合同</a></td>";
+			}else{
+				return "-";
+			}
+		}
+		//判断是复核还是经办
+		function fn(){
+		 requestObj.ajaxServer(
+            requestObj.address.userRoler,
+            {},
+            function(data){
+            	var listVo = data.body;
+                if (listVo.indexOf("fh") != -1 ){
+					jrlx="&valid=fhsx";
+                }else{
+					jrlx="&valid=sx";
+                }
+            }
+   			 )
+		
+		}
+		//更新成功后调回当前页面
+		function tzsUpdate(wjid, tzsbh) {
+        requestObj.ajaxServer(
+                requestObj.address.updateTszByYTJ,
+                {
+                    "tzsbh": tzsbh,
+                    "wjid": wjid
+                },
+                function (data) {
+                   pluginObj.alert("", "操作成功");
+                   location =window.location.href;
+                },
+                function () {
+                }
+        )
+    }
+		
+</script>
+</body>
+</html>

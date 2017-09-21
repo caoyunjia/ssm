@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico">
+    <title>及时雨-注册</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate.css">
+    <link href="css/main.css?v=APP_VER" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="fonts/iconfont.css">
+    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+    <link href="css/main.css?v=APP_VER" rel="stylesheet">
+    <link href="css/select2.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE6 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/plugin/jquery.validate.js"></script>
+    <script src="js/plugin/validate-extend.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/union-security-api.v2.2.min.js"></script>
+	<script src="js/select2.min.js"></script>
+    <style>
+        input.error, input.error:focus {
+            outline: none;
+            border: 1px solid red;
+        }
+
+        label.error {
+            color: red;
+            line-height: 30px;
+        }
+
+        .col-md-8 {
+            padding-right: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img class="logo" src="images/LOGO.png" height="">
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html?v=APP_VER">首页</a></li>
+                <li><a href="rzlc.html?v=APP_VER">融资流程</a></li>
+                <li><a href="sxlc.html?v=APP_VER">授信流程</a></li>
+                <li><a href="cjwt.html?v=APP_VER">常见问题</a></li>
+                <li class="user-center"><a href="myCenter.html?v=APP_VER">个人中心</a></li>
+                <li style="margin-top: 8px; text-align: center; width: 60px"><span><a href="notice.html?v=APP_VER"><img
+                        src="images/notice.jpg"></a></span></li>
+                <!--<li class="dropdown">-->
+                <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>-->
+                <!--<ul class="dropdown-menu" role="menu">-->
+                <!--<li><a href="#">Action</a></li>-->
+                <!--<li><a href="#">Another action</a></li>-->
+                <!--<li><a href="#">Something else here</a></li>-->
+                <!--<li class="divider"></li>-->
+                <!--<li class="dropdown-header">Nav header</li>-->
+                <!--<li><a href="#">Separated link</a></li>-->
+                <!--<li><a href="#">One more separated link</a></li>-->
+                <!--</ul>-->
+                <!--</li>-->
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="body" style="background-color:#fff;padding-bottom: 1px">
+    <div class="container m-content">
+        <div id="hyzhuc_out">
+            <form class="form-horizontal" name="registForm" id="registForm" action="" method="post">
+                <h3 style="text-align: center; margin-bottom: 40px">欢迎注册</h3>
+                <div style="">
+                    <div class="row form-group">
+                        <div id="kh" class="col-xs-6 col-xs-offset-3">
+                            <label class="control-label col-md-4">企业类型</label>
+                            <div class="col-md-8">
+                                <select id="org" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div id="mc" class="col-xs-6 col-xs-offset-3">
+                            <label class="control-label col-md-4" id="khmc">企业名称</label>
+                            <div class="col-md-8">
+                                <select class="form-control" id="orgVal" name="orgVal" required="required"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-6 col-xs-offset-3">
+                            <label class="control-label col-md-4" for="mobile">手机号</label>
+                            <div class="col-md-4">
+                                <input type="text" class="col-xs-12 form-control" maxlength="11" name="mobile"
+                                       id="mobile"
+                                       value="" placeholder="请输入手机号"
+                                       onkeydown='if (event.keyCode==13)document.getElementById("picVC").focus();'/>
+                            </div>
+                            <div class="col-md-2" style="padding:0px">
+                                <input type="text" class="col-xs-12 form-control" maxlength="4" name="picVC" id="picVC"
+                                       value="" placeholder="验证码"
+                                       onkeydown='if (event.keyCode==13)document.getElementById("verifyCode").focus();'/>
+                            </div>
+                            <div class="col-md-2" style="padding-left: 0;padding-right: 0">
+                                <img id="vcodeImg" style="height: 34px; width: 80px;" src="img/checkNum.png" alt=""/>
+                            </div>
+                        </div>
+                        <div class="col-xs-3"></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-6 col-xs-offset-3">
+                            <label class="control-label col-md-4" for="verifyCode">短信验证码</label>
+                            <div class="col-md-8 clearfix">
+                                <input type="text" class="col-45 form-control" id="verifyCode" name="verifyCode"
+                                       maxlength="6"/>
+                                <a class="btn  btn-primary col-45" href="javascript:void(0)" id="sendValidCode"
+                                   style="text-align:center; height: 34px; float: right;"
+                                   onclick="sendSmsForRegist()" ;>获取验证码</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-3"></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-6 col-xs-offset-3">
+                            <label class="control-label col-md-4" for="password">密码</label>
+                            <div class="col-md-8">
+                                <input class="col-xs-12 form-control" type="password" name="password" id="password"
+                                       maxlength="16"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-3"></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-6 col-xs-offset-3">
+                            <label class="control-label col-md-4" for="affirmPwd">密码确认</label>
+                            <div class="col-md-8">
+                                <input class="col-xs-12 form-control" type="password" name="affirmPwd" id="affirmPwd"
+                                       maxlength="16"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-3"></div>
+                    </div>
+                </div>
+                <div class="col-xs-9 col-xs-offset-5">
+                    <input style="width: 26px" id="checkBox" value="N" name="checkBox" type="checkbox"/><label
+                        for="checkBox">
+                    我已阅读并同意该<a target="_blank" href="registAgreement.html?v=APP_VER"><span
+                        id="span_zcxy">《用户注册协议》</span></a></label>
+                </div>
+                <div class="col-xs-12 text-center" style="margin-top: 20px; margin-bottom: 100px">
+                    <button type="submit" class="btn_query btn btn-primary step_over_btn">注册</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+
+    </div>
+</div>
+<script type="text/javascript">
+	//首先加载所有的企业类型
+			//获取验证码
+		function picvocode(){
+			$("#vcodeImg").attr("src",requestObj.port+requestObj.address.piccode+"?t="+new Date().getTime());
+			
+		}
+		//点击切换验证码
+		$("#vcodeImg").click(function(){
+			picvocode();
+		});
+		
+		$("#registForm").validate({
+			rules:{
+			mobile:{
+				isMobile:true,
+				required:true
+			},
+			vcode:{
+				required:true	
+			}	
+			},
+			message:{
+				mobile:{
+					isMobile:"手机格式不能为空",
+					required:"手机号码必输"
+				}
+					
+			}
+			
+		});
+		function sendSmsForRegist(){
+			//首先验证手机号是否正常
+		//	if(mobile.isvalidate())
+			
+        var mobile = $("#mobile").val();
+        if (!mobile) {
+            pluginObj.alert("", "请输入手机号！")
+            return "";
+        }
+        if (!mobile || mobile.length < 11) {
+            return "";
+        }
+
+        var picVC = $("#picVC").val();
+        if (!picVC) {
+            pluginObj.alert("", "请输入图片验证码！")
+            return "";
+        }
+		
+        var time=30;
+        
+        $.ajax({
+        	url:requestObj.port+requestObj.address.sendSms,
+        	type:"post",
+        	dataType:"json",
+        	contentType:"application/json",
+        	success: function(data){
+  				//响应成功以后
+        		$("#sendValidCode").text(--time);
+        			
+        			
+        		}
+        
+        	
+        });
+		}
+		
+	$(function(){
+		//加载页面就切换验证码
+		picvocode();
+		$("#org").append(
+              	"<option value='rz'>融资客户</option><option value='jr'>金融客户</option>"
+		);	
+		
+		$("#org").change(function(){
+			var op=$("#org").val()
+			//	alert($("#org").val());	
+			//	var option = $("#org option:selected").val();
+				select(op);
+		});
+		//根据选择的值去加载新的数据
+		function select(option){
+			console.log(option);
+			$("#orgVal").empty();
+			var q={"type":option};
+			console.log(q);
+			$.ajax({
+				url:requestObj.port+requestObj.address.showAllQy,
+				type:"post",
+				data:JSON.stringify(q),
+				dataType:"json",
+				contentType:"application/json", 
+				success: function(data){
+					var str ="<option value=''></option>"
+					for(var i=0;i<data.length;i++){
+						str="<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+					}
+					$("#orgVal").append(str);
+					//initSeclect("orgVal",data,"id","name");
+				}
+				});
+		}
+	});
+	
+	
+	
+</script>
+
+<!-- <script>
+    //发送短信验证码
+    function sendSmsForRegist() {
+        var $this = $(this);
+        if ($this.data("disable")) {
+            return;
+        }
+        var mobile = $("#mobile").val();
+        if (!mobile) {
+            pluginObj.alert("", "请输入手机号！")
+            return "";
+        }
+        if (!mobile || mobile.length < 11) {
+            return "";
+        }
+
+        var picVC = $("#picVC").val();
+        if (!picVC) {
+            pluginObj.alert("", "请输入图片验证码！")
+            return "";
+        }
+        var time = 30;
+        var origtext = $("#sendValidCode").text();
+        //发送等待
+        requestObj.ajaxServer(requestObj.address.sendSmsForRegist, {dlzh: mobile, picVC: picVC}, function (data) {
+            //pluginObj.alert("",data.head._rm);
+            $("#sendValidCode").text("发送成功(" + time + "秒)");
+            $("#sendValidCode").attr("disabled", true);
+            var t = setInterval(function () {
+                $("#sendValidCode").text("发送成功(" + (--time) + "秒)");
+            }, 1000);
+            setTimeout(function () {
+                clearInterval(t);
+                $("#sendValidCode").text(origtext);
+                $("#sendValidCode").attr("disabled", false);
+            }, time * 1000);
+        }, function () {
+            $("#vcodeImg").trigger("click");
+        });
+    }
+
+    $(document).ready(function () {
+        $("#vcodeImg").click(function () {
+            getVertifyCode($(this));
+        }).trigger("click");
+
+        //第一个select改变时，调用select方法
+        $("#org").change(function () {
+            select($("#org").val());
+            alert($("#org").val());
+        })
+        //第二个select返回成功后的方法
+        var success = function (data, postData) {
+            var str = '<option value="0"></option>'
+            for (var i = 0; i < data.body.data.length; i++) {
+                str += '<option value=' + data.body.data[i].khh + '>' + data.body.data[i].qymc + '</option>';
+            }
+            str += '';
+            $("#orgVal").append(str);
+        }
+        //第二个select框加载方法
+        function select(option) {
+        	var orgSel = $("#orgVal");
+			orgSel.val(null).trigger("change");
+			orgSel.select({
+				url : requestObj.address.selectCustom
+			}, {
+				type : option
+			});
+
+			/* $("#orgVal").empty();
+			if (option) {
+			    var data = {
+			        "pageSize": "1000000",
+			        "pageIndex": "1",
+			        "qylx": option
+			    }
+			    requestObj.ajaxServer(requestObj.address.queryQy, data, success);
+			} else {
+			    $("#orgVal").append('<option value="0"></option>');
+			} */
+		}
+
+		//页面初始化4种类型
+		var options = '<option></option><option value="00">融资客户</option><option value="01">核心企业</option><option value="02">增信机构</option><option value="03">金融机构</option>'
+		$("#org").append(options);
+		var option = $("#org option:selected").val();
+		//加载第二个select框
+		select(option);
+		function returnIndex() {
+			window.location.href = "index.html?v=APP_VER";
+
+		}
+
+		var successFun = function(data, postData) {
+			pluginObj.alert("", data.head._rm);
+			window.setTimeout(function() {
+				window.location.href = "index.html?v=APP_VER"
+			}, 2000);
+		}
+		var errorFun = function(data, postData) {
+			if (data.head._rm == "该手机已被注册！请登录") {
+				window.setTimeout(function() {
+					window.location.href = "index.html?v=APP_VER"
+				}, 2000);
+			}
+		}
+
+		function submitRegister() {
+			//alert($("#orgVal option:selected").val());
+			if ($("#orgVal option:selected").val() == "0") {
+				pluginObj.alert("", "请选择企业！")
+				return false;
+			}
+			var postData = {
+				"dlzh" : $("#mobile").val(),
+				"mm" : pwdEncrypt($("#password").val()),
+				"yzm" : $("#verifyCode").val(),
+				'khh' : $("#orgVal option:selected").val(),
+				'lx' : $("#org option:selected").val(),
+				'qymc' : $("#orgVal").text()
+			}
+			requestObj.ajaxServer(requestObj.address.register, postData, successFun, errorFun);
+		}
+
+		//表单校验
+		$("#registForm").validate({
+			submitHandler : function(form) {
+				//判断是否有勾选用户注册协议
+				if (!registForm.checkBox.checked) {
+					pluginObj.alert("", "请您务必阅读并同意《用户注册协议》！");
+					return false;
+				}
+				submitRegister();
+			},
+			onkeyup : false,
+			rules : {
+				mobile : {
+					required : true,
+					isMobile : true
+				},
+				picVC : {
+					required : true
+				},
+				verifyCode : {
+					required : true,
+					minlength : 6
+				},
+				password : {
+					required : true,
+					minlength : 6,
+					isPassword : true
+				},
+				affirmPwd : {
+					required : true,
+					minlength : 6,
+					equalTo : "#password"
+				},
+				orgVal : {
+					required : true
+				}
+			},
+			messages : {
+				mobile : {
+					required : "请输入联系人手机",
+					mobile : true
+				},
+				picVC : {
+					required : ""
+				},
+				verifyCode : {
+					required : "请输入验证码",
+					minlength : "验证码长度是6位"
+				},
+				password : {
+					required : "请输入密码",
+					minlength : "密码最少为6位",
+					isPassword : "密码过于简单，请至少包含两种及以上字符(字母+数字+特殊字符)"
+				},
+				affirmPwd : {
+					required : "请输入确认密码",
+					minlength : "密码最少为6位",
+					equalTo : "两次密码输入不一致"
+				},
+				orgVal : {
+					required : "请选择客户名称"
+				}
+			},
+			errorPlacement : function(error, element) { //错误信息位置设置方法
+				error.appendTo(element.parent().parent().next()); //这里的element是录入数据的对象
+			}
+		});
+
+	})
+</script> -->
+
+
+</body>
+</html>

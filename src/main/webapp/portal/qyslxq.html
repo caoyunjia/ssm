@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-企业受理-详情</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+		<link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.min.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+	<div class="search_input container m-content" >
+		<form class="form-horizontal row" id="searchFrom" role="form" onsubmit="return false;">
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">申请编号</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="sqbh" name="sqbh" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">受理编号</label>
+					<div class="col-md-8">
+						<input class="form-control" id="slbh" name="slbh" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">融资方名称</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="rzfmc" name="rzfmc" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">税务登记证号码</label>
+					<div class="col-md-8">
+						<input class="form-control" id="swdjzhm" name="swdjzhm" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">营业执照号</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="yyzzh" name="yyzzh" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">组织机构代码证号</label>
+					<div class="col-md-8">
+						<input class="form-control" id="zzjgdmzh" name="zzjgdmzh" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">社会统一信用代码</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="shtyxydm" name="shtyxydm" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">法定代表人</label>
+					<div class="col-md-8">
+						<input class="form-control" id="fddbr" name="fddbr" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">法人证件类型</label>
+					<div class="col-md-8">
+						<select type="text" class="form-control" id="frzjlx" name="frzjlx" readonly dic-type="B1061"></select>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">法人证件号码</label>
+					<div class="col-md-8">
+						<input class="form-control" id="frzjhm" name="frzjhm" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">法人联系手机</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="frlxsj" name="frlxsj" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">公司类型</label>
+					<div class="col-md-8">
+						<select class="form-control read_select" id="gslx" disabled="disabled" name="gslx" dic-type="B1010" dic-blank=" ">
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">注册成立日期</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="zxclrq" name="zxclrq" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">注册资金(元)</label>
+					<div class="col-md-8">
+						<input class="form-control" id="zczj" name="zczj" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">每年营业额(元)</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="mnyye" name="mnyye" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">企业联系人</label>
+					<div class="col-md-8">
+						<input class="form-control" id="qylxr" name="qylxr" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">企业联系电话</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="qylxdh" name="qylxdh" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">企业联系人职务</label>
+					<div class="col-md-8">
+						<input class="form-control" id="qylxrzw" name="qylxrzw" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">企业联系人电子邮箱</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="qylxrdzyx" name="qylxrdzyx" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">企业联系人QQ</label>
+					<div class="col-md-8">
+						<input class="form-control" id="qylxrqq" name="qylxrqq" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">企业联系人微信</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="qylxrwx" name="qylxrwx" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">核心企业</label>
+					<div class="col-md-8">
+						<input class="form-control" id="hxqy" name="hxqy" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">核心企业组织机构代码证</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="hxqyzzjgdmz" name="hxqyzzjgdmz" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">交易年限（年）</label>
+					<div class="col-md-8">
+						<input class="form-control" id="jynx" name="jynx" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">与核心企业年交易额（元）</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="yhxqynjye" name="yhxqynjye" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">纠纷记录（次数）</label>
+					<div class="col-md-8">
+						<input class="form-control" id="jfjls" name="jfjls" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">纠纷记录次数比例</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="jfjlsbl" name="jfjlsbl" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">交易活跃度</label>
+					<div class="col-md-8">
+						<input class="form-control" id="jyhyd" name="jyhyd" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">综合评价</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="zhpj" name="zhpj" readonly>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="col-md-4 control-label">建议额度值（元）</label>
+					<div class="col-md-8">
+						<input class="form-control" id="jyedz" name="jyedz" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<a href="#" type="button" id="searchBtn" class="btn_query btn btn-default">返回</a>
+				</div>
+			</div>
+		</form>
+	</div>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function () {
+        //初始化日期插件
+        var slbh = locationObj.getParams().slbh;
+        dataPiker();
+        requestObj.ajaxServer(
+                requestObj.address.jsySLslxq,
+                {
+                    "slbh": slbh
+                },
+                function (data) {
+                	pluginObj.setFormValueByName(data.body);
+                	$("#zczj").val(numberToCurrency(data.body.zczj));
+                	$("#zxclrq").val(formatDateStr8(data.body.zxclrq));
+                	$("#mnyye").val(numberToCurrency(data.body.mnyye));
+                	$("#yhxqynjye").val(numberToCurrency(data.body.yhxqynjye));
+                	$("#jyedz").val(numberToCurrency(data.body.jyedz));
+                	
+                },
+                function () {
+                }
+        );
+        $("#searchBtn").click(function(){
+        	history.go(-1);
+        })
+	})
+		</script>
+	</body>
+</html>

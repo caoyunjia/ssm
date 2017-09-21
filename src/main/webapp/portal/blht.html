@@ -1,0 +1,2588 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-保理合同</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/new.css?v=APP_VER"/>
+	<link href="css/select2.min.css" rel="stylesheet">
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!--<script src="js/jquery-1.11.1.min.js"></script>-->
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <link href="js/plugin/uploadify/uploadify.css" rel="stylesheet">
+    <style>
+        fieldset {
+            padding: .35em 1.5em .75em;
+            margin: 0 2px;
+            border: 2px solid #dee1e1;
+        }
+
+        legend {
+            padding: .5em;
+            border: 0;
+            width: auto;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .form-horizontal .control-label {
+            padding-right: 0;
+        }
+
+        .form .row {
+            margin-top: 0;
+        }
+
+        .container {
+            width: 970px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .m-left {
+            margin: 0;
+            padding-top: 40px;
+        }
+
+        .m-left .ml-head, .m-left .ml-btn {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .m-right {
+            min-height: 700px;
+        }
+        em {
+            display: block;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+            text-indent: 2em;
+        }
+        p {
+            text-indent: 2em;
+        }
+
+        .pl2em {
+            padding-left: 2em;
+        }
+
+        .pr25 {
+            padding-right: 25px !important;
+        }
+
+        .biaoti {
+            text-align: center;
+			font-weight: bold;
+        }
+
+        .plr30 {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .mt0 {
+            margin-top: 0 !important;
+        }
+
+        .header h2 {
+            text-align: center;
+        }
+
+        .header span {
+            float: right;
+        }
+
+        .tab {
+            width: 100%;
+        }
+
+        .tab th, .tab td {
+            padding: 5px 10px;
+        }
+
+        .time {
+            width: 50px;
+        }
+
+        input {
+            border: 0;
+            border-bottom: 1px solid #000000;
+            outline: none;
+            padding-left: 5px;
+        }
+
+        /*03-15*/
+        pre {
+            white-space: pre-line;
+            padding: 0;
+            margin: 0;
+            border: none 0;
+            float: left;
+            background: none;
+        }
+
+        .bd-ldht .form-horizontal {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .mb0 {
+            margin-bottom: 0;
+        }
+
+        .pl0 {
+            padding-left: 0;
+        }
+
+        .ti0 {
+            text-indent: 0;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .form-horizontal {
+            padding-bottom: 0;
+        }
+
+        .div-style {
+         /* background-image: url("img/testbg.png");
+            background-repeat: no-repeat;
+            background-position: 0px 15px;
+            background-size:600px 33px;
+            width:600px; height:80px*/
+            padding-top: 50px;
+            padding-bottom:50px;
+        }
+          .div-style2 {
+            padding-top: 85px;
+            padding-bottom:50px;
+        }
+
+
+        .bottom_footer {
+            padding-top: 50px;
+        }
+
+        .modal-content {
+            background-color: #fff;
+        }
+
+        button{
+             /* outline-style: none; */
+             width: 40px;
+             height: 25px;
+             background-image: url("img/zhlsb.png");
+             background-color: white;
+             border: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="middle row form-group">
+    <div class="middle-left col-xs-3">
+        <div class="ml-head">
+            保理合同
+        </div>
+        <div class="ml-btn">
+            <span class="jbxx">合同信息</span>
+        </div>
+        <div class="ml-btn">
+            <span class="jbxx">合同要素</span>
+        </div>
+        <div class="ml-btn">
+            <span class="jbxx">合同附件</span>
+        </div>
+        <div class="ml-btn">
+            <span class="jbxx">电子合同</span>
+        </div>
+        <div class="ml-btn">
+            <span class="jbxx">流贷合同</span>
+        </div>
+    </div>
+
+
+    <div class="form middle-right col-xs-9 form-horizontal" id="blhtcss">
+        <form class="form mt0" id="blhtForm">
+            <div class="jc biaodan">
+                <div class="addlist htxx">
+                    <!--Added-->
+                    <fieldset>
+                        <legend>基本信息</legend>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">保理合同代码</label>
+                                    <div class="col-md-8">
+                                        <input type="text" value="" readonly class="form-control" name="xydm" id="xydm"
+                                               placeholder="合同代码由系统生成">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 warning">
+                                    <label for="" class="col-md-4 control-label">保理合同编号</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" value="" placeholder="请输入保理合同编号" name="xybh" id="xybh">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6 warning">
+                                    <label for="" class="col-md-4 control-label">融资客户</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control warning" name="rzkhh" id="rzkhh">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 warning">
+                                    <label for="" class="col-md-4 control-label">核心企业</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control warning" name="hxqykhh" id="hxqykhh">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">业务品种</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" id="ywpz" name="ywpz" dic-type="B1040"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">占用额度类型</label>
+                                    <div class="col-md-8">
+                                        <select name="edlx" class="form-control" id="edlx" dic-type="B1041"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">产品模式</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" name="cpms" id="cpms" dic-type="B1045"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">融资比例/支付对价比例(%)</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control rzbl" value="" name="rzbl" placeholder="如80%，请输入80" id="rzbl" maxlength="9" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">账期（天数）</label>
+                                    <div class="col-md-8">
+                                        <input type="text" value="" class="form-control" id="zq" placeholder="如3天，请输入3" name="zq" maxlength="4">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">宽限期（天数）</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class=" form-control" value="" id="kxq" placeholder="如3天，请输入3" name="kxq" maxlength="4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">货币种类</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" name="hbzl" id="hbzl" dic-type="B1056"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">应收账款转让净额（元）</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control yszk" value="" data-type="currency" maxlength="15"
+                                               id="yszkzrje" name="yszkzrje">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">融资金额（元）</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control rzje" type="text" value="" data-type="currency" maxlength="15"
+                                               name="ckje" id="ckje">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <!--融资企业结算账号-->
+                                    <label for="" class="col-md-4 control-label">企业结算账号<button type="button" class="zhls" id="zhls" maxlength="26"> </button></label>
+                                    <!-- <div class="col-md-8">
+                                       <input type="text" class="form-control" value="" id="jszh" name="jszh">
+                                    </div> -->
+                                    <div class="col-md-5" style="width:55%">
+							                	<input type="text" class="form-control" value="" id="jszh" name="jszh" readonly="readonly" ></div>
+							                <div class="col-md-1 control-label">
+							                    <button type="button" class="selectBtn" id="glblhtbu" maxlength="26"> </button></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">融资企业结算账户名称</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control rzje" type="text" value="" maxlength="26" readonly="readonly"
+                                               name="jszhhm" id="jszhhm" maxlength="64">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">融资企业结算账户开户行</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" value="" id="jszhkhh" name="jszhkhh" readonly="readonly"  maxlength="64">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6 warning">
+                                    <label for="" class="col-md-4 control-label">回款账户类型</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" name="hkzhlx" dic-type="B1057" dic-blank=" "
+                                                id="hkzhlx">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">回款账号<button type="button" class="zhls" id="zhlsHkzh"> </button></label>
+                                    <!-- <div class="col-md-8">
+                                        <input type="text" class="form-control" name="hkzh" id="hkzh" maxlength="26">
+                                    </div> -->
+                                    <div class="col-md-5" style="width:55%">
+							                	<input type="text" class="form-control" value="" id="hkzh" readonly="readonly" name="hkzh"></div>
+							                <div class="col-md-1 control-label">
+							                    <button type="button" class="selectBtn" id="selectHkzh" maxlength="26"> </button></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">回款账号账户名称</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control rzje" type="text" value="" maxlength="26" readonly="readonly"
+                                               name="hkzhhm" id="hkzhhm" maxlength="64">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">回款账户开户行</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" value="" id="hkzhkhh" name="hkzhkhh" readonly="readonly" maxlength="64">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6 warning">
+                                    <label for="htrq" class="col-md-4 control-label">合同日期</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group date form_date" data-date=""
+                                             data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+                                             data-link-format="yyyy-mm-dd">
+                                            <input type="text" class="form-control startTime" name="htrq" id="htrq">
+                                            <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="col-xs-6 warning">
+                                    <label for="htdqr" class="col-md-4 control-label">合同到期日</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group date form_date" data-date=""
+                                             data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+                                             data-link-format="yyyy-mm-dd">
+                                            <input type="text" class="form-control endTime" name="htdqr">
+                                            <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <input type="hidden" name="htzt">
+                        </div>
+                    </fieldset>
+                    <!--Added-->
+                    <fieldset>
+                        <legend>保理费信息</legend>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">保理费收取方式</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" name="sqfs" id="sqfs" dic-type="B10481"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label class="control-label col-md-4">扣取方式</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control ms" name="kqfs" id="kqfs" dic-type="B1049"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">保理费计算方式</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control ms" name="blfjsfs" id="blfjsfs" dic-type="B10502"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">保理费费率(%)</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control ms" value="" placeholder="如80%，请输入80" name="blffl" id="blffl"  maxlength="10">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">固定费用（元）</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control ms" value="" data-type="currency"
+                                               name="gdfy" id="gdfy" maxlength="18">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">其它费用（元）</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control ms" value="" data-type="currency"
+                                               name="qtfy" id="qtfy" maxlength="18">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>融资利率信息</legend>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">融资利率(%)</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" value="" placeholder="如80%，请输入80" name="rzlv" id="rzlv"  maxlength="10">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label class="control-label col-md-4">逾期利率上浮比率(%)</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" placeholder="如80%，请输入80" value="" name="yqlvsfbl" id="yqlvsfbl" maxlength="10">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="" class="col-md-4 control-label">利息收取方式</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" name="lxsqfs" id="lxsqfs" dic-type="B1051"
+                                                dic-blank=" ">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>其它信息</legend>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="" class="col-xs-2 control-label">备注</label>
+                                    <div class="col-xs-10">
+                                        <textarea class="form-control" rows="2" placeholder="字数不能超过300字" name="bz" id="bz" maxlength="300"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="bottom_footer col-xs-12 form-group text-center u-btn">
+                            <a class="btn btn-default btn_query clickZc" style="display:none" href="javascript:void(0)">暂存</a>
+                            <a class="btn btn-default btn_query clickSave" href="javascript:void(0)">提交</a>
+                            <a class="btn btn-default btn_query" href="javascript:history.go(-1);">返回 </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="biaodan" style="display: none">
+            <!-- <p>编号：<input type="text" class="" name="tzsbh" form="htysForm" size="4" maxlength="4"/> 年
+                   <input type="text" class="" name="tzsbh1" form="htysForm" size="4" maxlength="10"/>
+                     字 <input type="text" class="" name="tzsbh2" form="htysForm" size="4" maxlength="10"/> 号
+                  </p> -->
+            <br/>
+            <p class="bold">鉴于甲方拟采用信用销售方式向 公司（以下简称“买方”）：</p>
+            <p><input type="radio" name="a" value="1">　销售　<input type="text" maxlength="20" class="xyxsfs"/>（货物名称）和/或
+            <p>
+            <p><input type="radio" name="a" value="2">　提供　<input type="text" maxlength="20" class="xyxsfs"/>（服务名称）和/或
+            <p>
+            <input type="radio" name="a" value="3">　进行　<input type="text" maxlength="20" class="xyxsfs"/>（交易名称）（上述内容统称为交易），并拟利用乙方提供的国内反向保理业务，为明确双方权利义务，经协商一致，特订立本合同。
+<hr/>
+            <p>
+                <form class="plr30 row" id="htysForm">
+                    <input type="hidden" name="xyxsfs">
+                    <input type="hidden" name="xsfsmc">
+                    <p class="bold">第十五条 融资利率与计结息</p>
+                    <p class="bold">（一）相关解释条款</p>
+                <!--    <h3>第十五条 融资利率与计结息</h3>
+                    <h4>（一）相关解释条款</h4>-->
+            <p>1、“央行人民币贷款基准利率”指中国人民银行公布的当日人民币贷款基准利率。</p>
+            <p>2、“央行人民币存款基准利率”指中国人民银行公布的当日人民币存款基准利率。</p>
+            <p>3、“LPR”指由全国银行间同业拆借中心基于报价行自主报出的最优贷款利率计算并发布的当日贷款基础利率。</p>
+            <p>4、“SHIBOR”指由全国银行间同业拆借中心计算并发布的当日上海银行间同业拆放利率。</p>
+            <p>5、“LIBOR”指T-2日伦敦金融市场银行间拆借利率,币种包括美元、欧元、日元等。其中，“T”为融资实际发放日，“T-2”为融资实际发放日的前二个工作日，下同。</p>
+            <p>6、“HIBOR”指T-2日香港金融市场银行间港币拆借利率。</p>
+            <p class="bold">（二）关于融资利率与利息计收条款</p>
+            <!--<h4>（二）关于融资利率与利息计收条款</h4>-->
+            <p class="bold">1、融资利率</p>
+            <p class="bold">（1）定价基准利率按下列第
+                <select name="jzlvydfs" class="djjzlv" id="jzlvydfs">
+                    <option value="1">壹</option>
+                    <option value="2">贰</option>
+                    <option value="3">叁</option>
+                    <option value="4">肆</option>
+                    <option value="5">伍</option>
+                    <option value="6">陆</option>
+                </select>
+                种约定执行：
+            </p>
+            <p>（壹）央行人民币贷款基准利率 <input type="text" maxlength="2" class="djjzlv_qx"/> 期限档次。</p>
+            <p>（贰）央行人民币存款基准利率 <input type="text" maxlength="2" class="djjzlv_qx"/> 期限档次。</p>
+            <p>（叁）LPR <input type="text" maxlength="2" class="djjzlv_qx"/> 期限档次。</p>
+            <p>（肆）SHIBOR <input type="text" maxlength="2" class="djjzlv_qx"/> 期限档次。</p>
+            <p>（伍）LIBOR <input type="text" maxlength="2" class="djjzlv_qx"/> 期限档次。</p>
+            <p>（陆）HIBOR <input type="text" maxlength="2" class="djjzlv_qx"/> 期限档次。</p>
+            <p class="bold">（2）融资利率定价公式按下列第
+                <select name="rzlvdjgsfs" class="rzlv" id="rzlvdjgsfs">
+                    <option value="1">壹</option>
+                    <option value="2">贰</option>
+                </select>
+                执行：
+            </p>
+            <p>（壹）融资利率=定价基准利率+ <input type="text" maxlength="32" data-type="currency" class="rzlv_qx"/> %。</p>
+            <p>（贰）融资利率=定价基准利率× <input type="text" maxlength="32" data-type="currency" class="rzlv_qx"/> 。</p>
+
+            <p class="bold">（3）融资利率（指年利率，下同）按下列第
+                <select name="rzlvfs" id="">
+                    <option value="1">壹</option>
+                    <option value="2">贰</option>
+                    <option value="3">叁</option>
+                </select>
+                种约定执行：
+            </p>
+            <p>（壹）固定利率。根据实际发放日定价基准利率和定价公式确定融资利率，融资期间利率不变。</p>
+            <p>（贰）浮动利率。根据实际发放日和利率调整日定价基准利率和定价公式确定融资利率。利率调整日按以下第
+                <select name="fdlvfs">
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                </select>
+                种方式执行：
+            </p>
+            <p>A、浮动周期为
+                <input type="text" name="fdlvfszq" id="" value="" maxlength="8" class=""/>
+                （月/季/半年/年/其他周期），自融资实际发放日起每满一个周期的对应日为合同利率调整日，当月无对应日的以该月最后一天为对应日；</p>
+            <p>B、 融资期间，如遇基准利率调整，不再通知甲方。</p>
+            <p>（叁）其他利率方式： <input type="text" name="qtlvfs" id="qtlvfs" maxlength="50"></p>
+            <p>&nbsp;&nbsp;（4）本合同项下分次使用的融资对应的定价基准利率，应以每次融资实际发放日（或利率调整日，如有）的基准利率为确定标准。</p>
+            <p>&nbsp;&nbsp;（5）本合同项下发放的融资，如遇国家取消基准利率或者市场不再公布基准利率，乙方有权根据同期的国家利率政策，按照公平诚信的原则，并参照行业惯例、利率状况等因素，重新确定融资利率后通知甲方。甲方有异议的，应与乙方协商。自乙方发出通知之日起五个工作日内协商不成的，乙方有权提前收贷，甲方应当立即清偿剩余的融资本息。 </p>
+
+            <p class="bold">2、融资利息偿还方式</p>
+            <p>（1）融资利息的计算。本外币融资本金自乙方根据本合同约定划至甲方账户之日起开始计息。融资每日应计利息=当日融资余额×日利率。日利率与年利率的换算按照中国人民银行规定和国际惯例执行。</p>
+            <p class="bold">（2）融资利息偿还方式按下列第
+                <select name="rzlvchfs" class="lxchfs" id="rzlvchfs">
+                    <option value="1">壹</option>
+                    <option value="2">贰</option>
+                    <option value="3">叁</option>
+                </select>
+                种约定执行：
+            </p>
+            <p>（壹）本合同融资约定每 <input type="text" name="" id="" value="" maxlength="10" class="lxchfs_qx"/>　
+                （月/季末月/半年末月/年末月/其他周期）的20日为结息日，甲方应在结息日次日向乙方支付当期融资利息，在融资到期日结清其余本息。</p>
+            <p>（贰）自融资实际发放日起每满 <input type="text" name="" id="" value="" maxlength="10" class="lxchfs_qx"/>
+                （月/季/半年/年/其他周期）的对应日（当月无对应日的以该月最后一天为对应日）的前一日为结息日，甲方应在结息日次日向乙方支付当期融资利息，在融资到期日支付最后一期利息。</p>
+            <p>（叁）其他偿还方式：<input type="text" name="qtchfs" maxlength="50" class=""/></p>
+
+            <p class="bold">3、罚息和复利</p>
+            <p>（1）如甲方未按本合同约定的用途使用融资，乙方有权对被挪用的融资计收罚息，罚息利率为融资利率上浮
+                <input type="" name="fxlv1" id="" maxlength="10" value=""/> ％；
+                甲方未按期还款且又未就展期事宜与乙方达成协议，即融资逾期的，乙方有权对逾期的融资计收罚息，罚息利率为融资利率上浮
+                <input type="" name="fxlv2" id="" maxlength="10" value=""/>
+                ％；对未按时支付的利息，乙方有权按本合同约定的融资逾期罚息利率计收复利。同一笔融资既逾期又未按合同约定用途使用的，罚息利率按较高者计算。</p>
+            <p>（2）融资利率采用固定利率的，则罚息利率也为固定利率；融资利率采用浮动利率的，则罚息利率也为浮动利率，其浮动周期与融资利率浮动周期一致。</p>
+            <p>（3）罚息和复利的计收方式按照本合同约定的融资利息偿还方式执行。</p>
+            <p class="bold">4、保理费</p>
+            <p>本合同保理费按根据应收账款净额的 <input type="" name="blfsqb" maxlength="6" id="" data-type="currency" value=""/> ％收取。</p>
+
+            <p class="bold">5、利息及费用支付方式，选择
+                <select name="lxfyzffs">
+                    <option value="1">（1）</option>
+                    <option value="2">（2）</option>
+                </select></p>
+
+            <p>（1）甲方支付利息及费用
+                <select name="jfzffs">
+                    <option value="1">乙方向甲方发放融资款项时，逐笔扣收融资利息和费用；</option>
+                    <option value="2">乙方在收到买方付款时，逐笔扣收融资利息和费用；</option>
+                    <option value="3">乙方从甲方下述账户中主动扣收：</option>
+                </select>
+            </p>
+
+            <p>开户银行：<input type="text" id="jszhkhh_htys" disabled="disabled" maxlength="30"/></p>
+            <p>户名：<input type="text" id="jszh_htys" disabled="disabled" maxlength="30"/></p>
+            <p>账号：  <input type="text" name="" id="jszhhm_htys" disabled="disabled" maxlength="30"/></p>
+            <p> （2）买方支付：即  <input type="text" id="cdblf" disabled="disabled"> 承担保理费。</p>
+                <p> <select name="mfzffs">
+                    <option value="1">买方到期向乙方支付保理费；</option>
+                    <option value="2">买方授权乙方从下述账户中主动扣收：</option>
+                </select>
+            </p>
+            <p>开户银行：<input type="text" name="" id="hkzhkhh_htys" value="" disabled="disabled" maxlength="30"/></p>
+            <p>户名：<input type="text" name="" id="hkzhhm_htys" value="" disabled="disabled" maxlength="30"/></p>
+            <p>账号：  <input type="text" name="" id="hkzh_htys" value="" disabled="disabled" maxlength="30"/></p>
+
+           <!-- <p><label for="">开户银行：</label><input type="text" name="" id="" value="" disabled="disabled"/></p>
+            <p><label for="">户名：</label><input type="text" name="" id="" value="" disabled="disabled"/></p>
+            <p><label for="">账号： </label><input type="text" name="" id="" value="" disabled="disabled"/></p>-->
+
+            <p>6、实际业务操作中，如果上述融资金额、期限、利率与借款借据、凭证不一致的，以借款借据、凭证记载的为准。</p>
+            <p>7、乙方向甲方提供除流动资金贷款外融资方式的，融资款的发放及计息方式由双方另行签订具体融资合同进行约定，具体融资合同为本合同的分合同。</p>
+
+            <!--28 29 30条-->
+            <hr/>
+            <h3 class="biaoti">法律适用、争议解决</h3>
+            <p>第二十八条 本合同的订立、效力、解释、履行及争议的解决均适用中华人民共和国法律。</p>
+            <p>第二十九条 在合同履行过程中发生争议，可以通过协商解决；</p>
+            <p class="bold">协商不成，按以下第
+                <select name="zyjjfs" class="" id="zyjjfs">
+                    <option value="1">（壹）</option>
+                    <option value="2">（贰）</option>
+                </select>
+                种方式解决；
+            </p>
+            <p>（壹）向甲方所在地人民法院起诉。<input type="hidden" class=""></p>
+            <p>（贰）提交 <input type="" name="zcwyh" id="zcwyh" value="" maxlength="30" class=""/> 仲裁委员会（仲裁地点为 
+            <input type="" maxlength="30" name="zcdd"  id="zcdd"  value=""/>
+                ），按照申请仲裁时该会现行有效的仲裁规定进行仲裁。仲裁裁决是终局的，对双方均有约束力。</p>
+            <p>第三十条 在争议期间，本合同不涉及争议部分的条款仍须履行。</p>
+            <hr/>
+            <div class="row">
+                <div class="bottom_footer col-xs-12 form-group text-center u-btn">
+                    <a class="btn btn-default btn_query htysSave" href="javascript:void(0)">保存</a>
+                    <a class="btn btn-default btn_query" href="javascript:history.go(-1);">返回 </a>
+                </div>
+            </div>
+            <input type="hidden" name="xydm" id="htys_xydm">
+            <input type="hidden" name="id">
+            </form>
+        </div>
+
+        <div class="biaodan" style="display: none"> <!--合同附件需修改-->
+            <div class="addlist htfj">
+                <div class="operate clearfix pr5">
+                    <a href="javascript:void(0)" class="more add">新增</a>
+                </div>
+                 <form action="" id="bcxxForm">
+		            <input type="hidden" name="ywbh">
+		            <input type="hidden" name="ywlx" value="0012">
+		        </form>
+                <div class="search_result row">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>文件名称</th>
+                            <th>详情</th>
+                            <th>上传时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div id="kkpager"></div>
+                </div>
+            </div>
+        </div>
+        <div class="biaodan blht-dzht" style="display: none"> <!--电子合同需修改-->
+            <div class="addlist" style="padding-bottom: 15px;padding-top: 55px;">
+                <div class="operate">
+                </div>
+                <div class="search_result row">
+                    <table class="table table-bordered table-hover dzht">
+                        <thead>
+                        <tr>
+                            <th>合同名称</th>
+                            <th>生成日期</th>
+                            <th dic-type="B1079">在线签约状态</th>
+                            <th width="250">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="biaodan bd-ldht" style="display: none"> <!--流贷合同需修改-->
+          <!--  <h3 class="mt0"> 流动资金借款合同 编号：</h3> -->
+          <form id="ldhtForm">
+          <div>
+              <h3 class="bold" style="text-align:center">流动资金借款合同</h3>
+              <h5 class="bold" style="text-align:right">编号:<input type="text" name="ldhtbh"></h5>
+          </div>
+              <input type="hidden" name="ldXydm">
+            <!--added-->
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <div class="col-md-1">
+                                    </div>
+                                    <p class="mb0 ti0">贷 款 人：<input type="text" name="dkr" maxlength="30"></p>
+                                    <div class="col-md-1">
+                                    </div>
+                                    <p class="mb0 ti0">住 所：<input type="text" name="dkrzs" maxlength="50"></p>
+                                </div>
+                                <div class="col-xs-6 warning">
+                                    <p class="mb0 ti0">法定代表人/负责人：<input type="text" name="dkrFddbr" maxlength="20"></p>
+                                    <p class="mb0 ti0">联 系 人：<input type="text" name="dkrLxr" maxlength="20">
+                                </div>
+                                <div class="col-xs-6 warning">
+                                    <div class="col-md-1">
+                                    </div>
+                                    <p class="mb0 ti0">职务：<input type="text" name="dkrzw" maxlength="30"></p>
+                                    <div class="col-md-1">
+                                    </div>
+                                    <p class="mb0 ti0">通讯地址：<input type="text" name="dkrTxdz" maxlength="50"></p>
+                                </div>
+                                <div class="col-xs-6 warning">
+                                    <p class="mb0 ti0">邮政编码： <input type="text" name="dkryb" maxlength="10"></p>
+                                    <p class="mb0 ti0">电传：<input type="text" name="dkrdc" maxlength="30"></p>
+                                </div>
+                                <div class="col-xs-6 warning">
+                                    <div class="col-md-1">
+                                    </div>
+                                    <p class="mb0 ti0">联系电话： <input type="text" name="dkrLxdh" maxlength="20"></p>
+                                    <div class="col-md-1">
+                                    </div>
+                                    <p class="mb0 ti0">传真：<input type="text" name="dkrcz" maxlength="30"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-6 ">
+                                    <div class="col-md-1">
+                                    </div>
+                                    <p class="mb0 ti0">借 款 人： <input type="text" name="jkr" maxlength="30"></p>
+                                    <div class="col-md-1">
+                                    </div>
+                                    <p class="mb0 ti0">住 所: <input type="text" name="jkrzs" maxlength="50"></p>
+                                </div>
+                                <div class="col-xs-6 warning">
+                                    <p class="mb0 ti0">法定代表人/负责人： <input type="text" name="jkrFddbr" maxlength="20"></p>
+                                    <p class="mb0 ti0">联 系 人：<input type="text" name="jkrLxr" maxlength="20"></p>
+                                </div>
+                                <div class="col-xs-6 warning">
+                                    <div class="col-md-1">
+                                    </div>
+                                    <p class="mb0 ti0">职务：<input type="text" name="jkrzw" maxlength="20"></p>
+                                    <div class="col-md-1">
+                                    </div>
+                                    <p class="mb0 ti0">通讯地址： <input type="text" name="jkrTxdz" maxlength="50"></p>
+                                </div>
+                                 <div class="col-xs-6 warning">
+                                    <p class="mb0 ti0">邮政编码： <input type="text" name="jkryb" maxlength="10"></p>
+                                    <p class="mb0 ti0">电传：<input type="text" name="jkrdc" maxlength="20"></p>
+                                </div>
+                                <div class="col-xs-6 warning">
+                                    <div class="col-md-1">
+                                    </div>
+                                    <p class="mb0 ti0">联系电话： <input type="text" name="jkrLxdh" maxlength="20"></p>
+                                    <div class="col-md-1">
+                                    </div>
+                                    <p class="mb0 ti0">传真：<input type="text" name="jkrcz" maxlength="20"></p>
+                                    <br/>
+                                    <div class="col-md-1">
+                                    </div>
+                                    <p class="mb0 ti0">合同签订地点：<input type="text" name="htqddd" maxlength="30"></p>
+                                </div>
+                            </div>
+                        </div>
+              <hr/>
+            <!--added-->
+
+                <p class="mb0">经借款人申请，贷款人审核同意给予借款人流动资金借款。为明确双方权利义务，恪守信用，立约双方根据中华人民共和国有关法律、法规，经平等协商，特签订本合同以兹共同遵守。</p>
+                <em>贷款人与借款人确认本合同项下借款属于以下第 <select name="jkqk" id="">
+                    <option value="壹">壹&nbsp;</option>
+                    <option value="贰">贰&nbsp;</option>
+                </select> 种情况：
+                </em>
+                <p class="mb0">（壹）本合同为编号 <input type="text" name="zhtbh" maxlength="30"> 的《 <input type="text" name="zhtmc" maxlength="30">
+                    额度授信合同》(即总合同)的分合同，授信额度折合人民币 <input maxlength="50"
+                            name="sxed" type="text">，授信有效期自<input maxlength="30" type="text" name="sxyxqq">至 <input maxlength="30" type="text" name="sxyxqz">止。本次借款金额计入授信额度。其中，外币借款金额按照本合同签订当日贷款人公布的中间价折算成人民币计入授信额度。
+                <p>&nbsp;</p>
+                <p class="mb0">（贰）本合同为贷款人与借款人签订的独立的法律文本。</p>
+              <br>
+                <p class="mb0 bold"> 第一条 定义与解释</p>
+                <pre class="pl2em">
+            除非立约双方另有书面约定，则本合同以下词汇将作如下定义和解释：
+            一、“流动资金借款”，是指借款人向贷款人申请发放的，用于借款人日常生产经营周转的本外币借款。
+            二、“债权”或称主债权，是指借款人（债务人）向贷款人（债权人）提出申请，贷款人经审核同意后，根据本合同向借款人提供的融资而形成的债权（含本金、利息、罚息、复利、违约金、损害赔偿金、债权人实现债权的费用等）。贷款人在本合同项下所拥有的针对借款人的债权和借款人在本合同项下对贷款人的债务内容对应一致。
+            “债权人实现债权的费用”，是指贷款人采取诉讼、仲裁等方式实现债权时支付的诉讼（仲裁）费、律师费、差旅费、执行费、保全费及其他实现债权的必要费用。
+            三、本合同第五条以下词汇作如下定义和解释：
+            “固定利率”指在借款期限内保持不变的利率。
+            “浮动利率”指在借款期限内按借贷双方约定的周期和幅度变动的利率。
+            “浮动周期”指借贷双方约定的借款利率的变动频率。在一个浮动周期内，借款利率以基准利率按照合同约定的定价方式计算确定，浮动周期内借款利率保持不变；在一个浮动周期届满、进入下一个浮动周期时，借款利率以新浮动周期的基准利率按照合同约定的定价方式计算确定，浮动周期内借款利率保持不变。
+            “LIBOR”指伦敦金融市场银行间拆借利率,币种包括美元、欧元、日元等，具体数值以兴业银行转发的数值为准。
+            “HIBOR”指香港金融市场银行间港币拆借利率，具体数值以兴业银行转发的数值为准。
+            四、本合同第十三条约定的“重大交易”是指（包括但不限于）：任何确定要发生或潜在的将严重影响借款人公司基本架构、公司股东变更、或有负债、现金流量、盈利能力、公司核心商业秘密、公司核心竞争力、公司重要资产、公司重大债权债务、偿还债务能力、履行本合同能力的交易，或者贷款人和/或借款人认为构成重大交易的其他交易。
+            五、本合同第十三条约定的“重大事件”是指（包括但不限于）：任何确定的或潜在的将严重影响借款人公司高级管理人员履行职务的能力、从事公司核心业务员工的雇佣和解约、公司核心商业秘密、公司核心竞争力、公司基本架构、公司股东变更、公司或有负债、公司存续、公司从事业务的合法性、公司稳定、公司发展、公司盈利能力、公司偿还债务能力、公司履行本合同能力的事件，以及贷款人和/或借款人认为构成重大事件的其他事件。
+            六、本合同中“工作日”均指贷款人银行的营业日，合同履行过程中，若某个提款、还款日为非营业日，则顺延至下一个营业日。</pre>
+                <p>&nbsp;</p>
+                <p class="bold mb0">第二条 借款金额</p>
+                <p class="mb0">贷款人同意给予借款人借款（币种）<input maxlength="20" type="text" name="jkbz">(金额大写)<input type="text" name="jkje" maxlength="50"></p>
+              <br>
+                <p class="mb0 bold"> 第三条 借款用途</p>
+                <p class="mb0">本借款用于 <input type="text" name="jkyt" maxlength="50"> ，未经贷款人书面同意，借款人不得将借款挪作他用。</p>
+              <br>
+                <p class="mb0 bold">第四条 借款期限</p>
+                <p class="mb0"> 一、借款期限为<input type="text" name="jkqx" maxlength="20"> ，自<input type="text" name="jkqxq" maxlength="30"> 至 <input
+                      maxlength="30"  type="text" name="jkqxz">止。</p>
+                <p class="mb0">二、一次性放款的，放款日以借款借据、借款凭证所记载的实际发放日为准，如实际发放日迟于前款记载的借款发放日，则借款到期日相应顺延。</p>
+                <p class="mb0">三、借款分次使用计划为：</p>
+                <p class="mb0"><input type="text" size="4" value="" maxlength="4" name="year1"> 年
+                    <input type="text" size="4" value="" maxlength="2" name="month1"> 月
+                    <input type="text" name="day1" size="4" maxlength="2" value="">日
+                    <input name="jkfcje1" value="" type="text" size="4" maxlength="20" data-type="currency"> 万元</p>
+
+                <p class="mb0"><input type="text" size="4" value="" maxlength="4" name="year2"> 年
+                    <input type="text" size="4" value="" maxlength="2" name="month2"> 月
+                    <input type="text" name="day2" size="4" maxlength="2" value="">日
+                    <input name="jkfcje2" value="" type="text" size="4" maxlength="20" data-type="currency"> 万元</p>
+
+                <p class="mb0"><input type="text" size="4" value="" maxlength="4" name="year3"> 年
+                    <input type="text" size="4" value="" maxlength="2" name="month3"> 月
+                    <input type="text" name="day3" size="4" maxlength="2" value="">日
+                    <input name="jkfcje3" value="" type="text" size="4" maxlength="20" data-type="currency"> 万元</p>
+
+                <p class="mb0"><input type="text" size="4" value="" maxlength="4" name="year4"> 年
+                    <input type="text" size="4" value="" maxlength="2" name="month4"> 月
+                    <input type="text" name="day4" size="4" maxlength="2" value="">日
+                    <input name="jkfcje4" value="" maxlength="20" type="text" size="4" data-type="currency"> 万元</p>
+                <p class="mb0">借款人应于每期提款日前三个工作日或者贷款人书面要求的其他时间向贷款人申请办理提款手续。</p>
+                <p class="mb0">如借款人未按上述约定的分次使用期限提取借款，则贷款人有权要求借款人支付当期应当提取的借款金额的万分之 <input type="text" size="4" value="" maxlength="6" data-type="currency"
+                                                                                         name="bcjbfz"> 作为补偿金。</p>
+                <p class="mb0">四、在符合本合同第六条约定的提款先决条件下，贷款人根据本合同第七条约定支付借款资金。</p>
+                <p class="mb0">
+                    五、贷款人有权根据借款是否满足有关法律、法规、政策的规定及本合同约定的提款先决条件、借款资金支付条件、本合同对应担保合同签订及担保手续办理时间等因素以及贷款人认为必要的其他因素适当调整借款分次使用计划。</p>
+                <p class="mb0">六、借款分次使用的，实行同一到期日，即分别发放的各期借款以第一次放款的借款借据或借款凭证所确定的借款到期日为同一到期日。</p>
+                <p class="mb0">七、若贷款人根据本合同约定的情形提前收贷，则视为借款到期日相应提前。</p>
+              <br>
+                <p class="bold mb0">第五条 借款利率与利息计收</p>
+                <p class="mb0">一、人民币借款利率</p>
+                <em>（一）人民币借款利率按下列第 <select name="lvzxfs" id="">
+                    <option value="壹">壹</option>
+                    <option value="贰">贰</option>
+                    <option value="叁">叁</option>
+                </select> 种约定执行：
+                </em>
+                <p class="mb0">（壹）固定利率，执行年利率 <input type="text" size="4" name="gdlvbfz" data-type="currency" maxlength="6">%。如在本合同第四条记载的借款发放日之后、每次借款实际发放日之前遇国家基准利率调整，则固定利率执行实际发放日同期同档次国家基准利率上浮
+                    <input data-type="currency"  maxlength="6"
+                            type="text" size="4" name="gdlvsfbfz"> %或下浮 <input type="text" size="4" data-type="currency"  maxlength="6" name="gdlvxfbfz">%，亦即，实际利率等于实际发放日同期同档次国家基准利率乘以系数
+                    <input name="sjlvxs" maxlength="6" data-type="currency" 
+                           type="text">。借款期间不因国家基准利率的调整而调整。</p><br>
+                <p class="mb0">（贰）浮动利率，年利率为同期同档次国家基准利率上浮 <input name="fdlvsfbfs" type="text" data-type="currency"  maxlength="6" size="4"> %或下浮 <input
+                       data-type="currency" maxlength="6" name="fdlvxjbfs" type="text" size="4">%，亦即，实际利率等于同期同档次国家基准利率乘以系数
+                    <input name="fdlvxs" data-type="currency"  maxlength="6"
+                           type="text"> 。<em>利率调整日按以下第 <select name="lvtzrfs" id="">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>种方式确定：</em></p>
+                <p class="mb0">A、以国家基准利率调整生效日为合同利率调整日；</p>
+                <p class="mb0">B、自借款实际发放日起每满 <input name="lvtzrzq" type="text" maxlength="4">（月/季/半年/年/其他周期）的对应日为合同利率调整日，当月无对应日的以该月最后一天为对应日；</p>
+              <p class="mb0">C、 <input name="lvtzrfsCqt" type="text" maxlength="50">。</p></p>
+                <p class="mb0">首期利率为实际发放日同期同档次国家基准利率乘以以上系数，从实际发放日起在上款确定的利率调整日，再按当时相应档次的国家基准利率乘以以上系数确定下一周期利率。
+                    借款期间，如遇国家基准利率调整，不再通知借款人。</p>
+                <br>
+                <p class="mb0">（叁）其他利率方式：<input name="ldqtlvfs" type="text" maxlength="50">。</p>
+                <p class="mb0">
+                    （二）本合同项下分次使用的借款对应的基准利率，应以每次借款实际发放日的国家同期同档次基准利率为确定标准。
+                    （三）本合同项下发放的人民币借款，如遇国家取消基准利率，贷款人有权根据同期的国家利率政策，按照公平诚信的原则，并参照行业惯例、利率状况等因素，重新确定借款利率后通知借款人。借款人有异议的，应与贷款人协商。自贷款人发出通知之日起五个工作日内协商不成的，贷款人有权提前收贷，借款人应当立即清偿剩余的借款本息。
+                </p>
+                <p class="mb0">二、外币借款利率</p>
+                <em>（一）外币借款利率按下列第 <select name="wbjklvfs" id="">
+                    <option value="壹">壹</option>
+                    <option value="贰">贰</option>
+                    <option value="叁">叁</option>
+                </select> 种约定执行：</em>
+                <p class="mb0">(壹)固定利率，年利率为 <input type="text" size="4" name="nlv" data-type="currency" maxlength="6"> %。</p>
+                <br>
+                <em>(贰)浮动利率，按下列第 <select name="fdlvzxfs" id="">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+</select> 种约定执行：</em>
+                <p>A、利率按本合同借款币种的 <input type="text" name="aqx" size="4" maxlength="3">
+                    个月期限的LIBOR <input name="ajj" maxlength="1"
+                                      type="text" size="4"> (加或减) <input type="text" size="4" name="abfd" maxlength="3"> 个百分点计算，浮动周期为
+                    <input type="text" name="afdzq" maxlength="3"
+                           size="4">个月;</p>
+                <p>    B、利率按本合同借款币种(仅指港币)的 <input name="bqx" maxlength="3"
+                                               type="text" size="4"> 个月期限的HIBOR <input name="bjj" type="text" size="4" maxlength="1">
+                    (加或减) <input type="text" name="bbfd" size="4" maxlength="3">个百分点计算，浮动周期为
+                    <input name="bfdzq" maxlength="3"
+                           type="text" size="4">个月。</p>
+                <p class="mb0"> (叁)其它约定方式：<input type="text" name="qtydfs" maxlength="50">。</p>
+                <p class="mb0">（二）本合同项下分次使用的外币借款应以每次借款实际发放日兴业银行转发的LIBOR或HIBOR作为利率确定标准。</p>
+                <p class="mb0"> 三、借款利息偿还方式</p>
+                <em>借款利息偿还方式按下列第 <select name="lxchfs" id="">
+                    <option value="壹">壹</option>
+                    <option value="贰">贰</option>
+                </select>种约定执行：
+                </em>
+                <p class="mb0">（壹）本合同借款约定每 <input type="text" name="lxchzq" maxlength="4">
+                    （月/季末月/半年末月/年末月/其他周期）的20日为结息日，借款人应在结息日次日向贷款人支付当期借款利息，在借款到期日结清其余本息。</p>
+                <br>
+                <p class="mb0">（贰）其他偿还方式：<input type="text" name="ldqtchfs" maxlength="50">。</p>
+                <p class="mb0">四、罚息和复利</p>
+                <p class="mb0">（一）如借款人未按本合同约定的用途使用借款，贷款人有权对被挪用的借款计收罚息，罚息利率为借款利率上浮 <input type="text" name="fxlv1" data-type="currency" maxlength="6"
+                                                                                         size="4">
+                    ％；借款人未按期还款且又未就展期事宜与贷款人达成协议，即借款逾期的，贷款人有权对逾期的借款计收罚息，罚息利率为借款利率上浮
+                    <input type="text" data-type="currency" maxlength="6" name="fxlv2" size="4">％；对未按时支付的利息，贷款人有权按本合同约定的借款逾期罚息利率计收复利。同一笔借款既逾期又未按合同约定用途使用的，罚息利率按较高者计算。
+                </p>
+                <p class="mb0">（二）借款利率采用固定利率的，则罚息利率也为固定利率；借款利率采用浮动利率的，则罚息利率也为浮动利率，其浮动周期与借款利率浮动周期一致。</p>
+                <p class="mb0">（三）罚息和复利的计收方式按照本合同约定的借款利息偿还方式执行。</p>
+                <p class="mb0">五、本外币借款本金自贷款人根据本合同约定划至借款人账户之日起开始计息。日利率=年利率/360。</p>
+                <br>
+                <p class="mb0 bold">第六条 提款先决条件</p>
+                <pre>
+                    一、借款人满足贷款人要求的下列各项提款先决条件后，方可向贷款人申请发放本合同项下借款：
+                      （一）借款人已向贷款人送达下列文件，文件所载明的情况没有变化且持续有效，或者借款人已就变化作出令贷款人满意的解释和说明：
+                           1、借款申请书，其主要内容包括但不限于：借款项目名称、金额、用途、期限、还款计划和还款来源等；
+                           2、借款人经年检合格的营业执照或事业单位法人证书、年检合格的税务登记证、组织机构代码证、公司章程、历次验资报告、贷款卡及密码、在工商行政管理部门登记备案的法定代表人及董事会成员和主要负责人、财务负责人名单和签字样本、法定代表人或其授权代表的有效身份证明文件、贷款人认为必要的其他公司文件；
+                           3、借款人按照法定程序召开，且经法定人数的董事或股东表决通过的，真实、合法、有效的关于同意向贷款人申请本合同项下借款并明确借款用途以及接受贷款人要求的各项借款条件的董事会或股东会决议或贷款人认为必要的其他文件；
+                           4、贷款人认可的近三年年报（附审计报告及附注），最近一期及上年同期财务报表，成立不足三年的借款人，提交自成立以来年度的报表；
+                           5、关联企业信息；
+                           6、申请临时性流动资金借款的，需提供采购合同、订单合同、债项证明等相关合同、凭证或资料；
+                           7、拟采取抵/质押担保方式，需提供抵/质押物权属证明材料、评估价值报告，并按照有关法律法规要求应当办理的抵/质押登记手续已经妥善办理，有关权属证明文件、登记证明文件等正本已按照贷款人要求交给贷款人收存；拟采取第三方保证，需比照上述第2至4项要求提供相关担保材料，该保证合同已经生效；上述担保应持续有效；
+                           8、如贷款人要求就抵/质押物办理保险的，以贷款人为第一受益人的保险手续已办妥且保险单正本已交给贷款人收存；且该保险持续有效；借款人提供抵/质押的，借款人在此将因保险事件发生而享有的保险金请求权转让给贷款人；
+                           9、特殊行业企业须提供有权批准部门颁发的特殊行业生产经营许可证或企业资质等级证书；                  10、如果本合同任何一方要求办理公证等手续的，已办妥相关公证手续；
+                           11、借款人已按照贷款人要求在贷款人处开立账户，自愿接受贷款人信贷监督和支付结算监督；               12、借款人申请外汇项目贷款，须提供有效的外汇贷款用途证明和有关部门的批件，且符合有关外汇管理政策；
+                           13、贷款人要求提供的增值税、营业税及所得税纳税申报表；                                             14、贷款人要求提供的其他文件、报表、凭证等资料。
+                     （二）借款人依法设立，生产经营合法、合规，具有持续经营能力，有合法的还款来源；
+                     （三）借款用途明确、合法合规；
+                     （四）本合同第十一条借款人所作的声明与承诺均持续真实有效；在申请放款日或此前未发生任何违约事件或潜在违约事件；
+                     （五）借款人已填妥与放款有关的借据或借款凭证。借据或借款凭证是本合同的组成部分，与本合同具有同等法律效力。在本合同项下的借款金额、借款期限、借款利率等如与借据或借款凭证记载不一致时，以借据或借款凭证的记载为准；
+                     （六）借款人信用状况良好，无重大不良记录；借款人为新设法人的，其控股股东应有良好的信用状况，无重大不良记录；
+                     （七）贷款人要求的其他提款先决条件。
+                    二、贷款人履行本合同项下义务是以本条约定的提款先决条件被满足为前提。贷款人有权单方面决定降低或放弃部分提款先决条件，借款人或担保人不得以该条件作为抗辩贷款人的事由。
+                    三、贷款人有权根据融资项目是否满足有关法律、法规、政策的规定及贷款人要求的提款先决条件、本合同对应担保合同签订及担保手续办理时间等因素适当调整借款发放。
+                    四、借款人在此同意：本合同签订后，若借款人任何一次提款未满足本合同约定的提款先决条件或借款资金支付条件，则贷款人有权停止放款、停止支付借款资金或解除本借款合同，由此而产生的责任或损失由借款人自行承担。贷款人解除合同应通知借款人，借款人的异议期间为五个工作日，自解除通知按本合同约定的方式送达借款人之日起计算。借款人未提出异议的，异议期届满后本合同自动解除。借款人有异议但双方在异议期间届满后五个工作日内仍协商不成的，贷款人有权按本合同约定提前收贷。
+                    五、经贷款人审核，借款人满足本合同约定提款先决条件的，贷款人根据本合同第七条约定支付借款资金。</pre>
+                <p>&nbsp;</p>
+                <p class="mb0 bold">第七条 账户监控及借款资金支付</p>
+                <pre>一、账户监控
+            根据银监会颁布的《流动资金贷款管理暂行办法》要求，借款人承诺在申请发放借款前已满足合同约定的提款先决条件，接受贷款人监督借款资金按约定用途使用。贷款人有权对借款人开立的基本存款账户、一般存款账户、专用存款账户进行账户监控，按照合同约定的方式对借款资金的发放、支付及还款资金实施监督与控制。
+            借款人指定下列账户为专门资金回笼账户，并及时提供该账户资金进出情况：</pre>
+                <p class="mb0"> 户名： <input type="text" name="hm" maxlength="30"> 账号： <input name="zh" type="text" maxlength="30"></p>
+                <p class="mb0"> 开户银行： <input type="text" name="khyh" maxlength="30"></p>
+                <pre>贷款人可根据借款人信用状况、融资情况等，与借款人协商另行签订账户管理协议，明确约定对指定账户回笼金进出的管理。贷款人有权根据借款人资金回笼情况提前收回贷款。
+            二、借款资金支付
+            （一）贷款人有权采用贷款人受托支付或借款人自主支付的方式对借款资金的支付进行管理与控制。
+            1、贷款人“受托支付”是指借款人授权贷款人将借款资金支付给符合本合同约定用途的借款人交易对手。
+            采用贷款人受托支付方式的，在借款资金发放前，借款人应提供符合本合同约定用途的相关交易资料，经贷款人审核同意后，将借款资金通过借款人账户及时支付给借款人交易对手。
+            采用贷款人受托支付方式的，在借款资金支付给借款人交易对手后，如果由于基础交易合同被撤销、解除、无效等原因，导致借款资金退回的，贷款人对于该退回的借款资金有权根据本合同第十二条约定提前收贷。
+            2、借款人“自主支付”是指贷款人将借款资金发放至借款人账户后，由借款人自主支付给符合本合同约定用途的借款人交易对手。
+            采用借款人自主支付方式的，借款人应定期向贷款人汇总报告借款资金支付情况，贷款人有权通过账户分析、凭证查验、现场调查等方式核查借款支付是否符合约定用途。
+            （二）受托支付
+            具有以下情形之一的借款资金支付，应采用贷款人受托支付方式：
+            1、借款人与贷款人新建立信用业务关系且借款人在贷款人处的内部评级等级在B3级（含）以下，“新建立信用业务关系”指贷款人与借款人初次建立信用业务关系或者2年内未发生信用业务关系；
+            2、用于置换的流动资金借款</pre>
+                <p class="mb0">3、支付对象明确或单笔支付金额超过 <input type="text" size="4" name="ccje" maxlength="7" data-type="currency"> 万元（含）人民币（外币借款的，按支付日贷款人公布的中间价折算）；</p>
+                <p class="mb0">4、其他：<input type="text" name="qt" maxlength="30">。</p>
+                <pre>（三）在借款发放和支付过程中，借款人出现以下情形的，应根据贷款人要求补充借款发放和支付条件，贷款人有权采取更为严格的借款发放及支付条件，并有权停止借款资金的发放和支付，根据本合同第十四条第二款约定采取相应的措施：
+            1、信用状况下降；
+            2、主营业务盈利能力不强；
+            3、借款资金使用出现异常；
+            4、其他贷款人认为的情形。</pre>
+                <p>&nbsp;</p>
+                <p class="mb0 bold">第八条 借款本息偿还</p>
+                <em>一、本合同项下借款本金采用如下第 <select name="jkbjchfs" id="">
+                    <option value="壹">壹</option>
+                    <option value="贰">贰</option>
+                    <option value="叁">叁</option>
+                </select> 种偿还方式：</em>
+                <p class="mb0">（壹）分期偿还借款本金，还本金额及日期如下：</p>
+                <p class="mb0"><input type="text" size="4" maxlength="4" name="hkyear1"> 年
+                    <input type="text" maxlength="2" size="4" name="hkmonth1"> 月
+                    <input type="text" maxlength="2" name="hkday1" size="4"> 日
+                    <input type="text" name="hkje1" size="4" maxlength="20" data-type="currency"> 万元；</p>
+                <p class="mb0"><input type="text" size="4" maxlength="4" name="hkyear2"> 年
+                    <input type="text" maxlength="2" size="4" name="hkmonth2"> 月
+                    <input type="text" maxlength="2" name="hkday2" size="4"> 日
+                    <input type="text" name="hkje2" size="4" maxlength="20" data-type="currency"> 万元；</p>
+                <p class="mb0"><input type="text" size="4" maxlength="4" name="hkyear3"> 年
+                    <input type="text" maxlength="2" size="4" name="hkmonth3"> 月
+                    <input type="text" maxlength="2" name="hkday3" size="4"> 日
+                    <input type="text" name="hkje3" size="4" maxlength="20" data-type="currency"> 万元；</p>
+                <p class="mb0"><input type="text" size="4" maxlength="4" name="hkyear4"> 年
+                    <input type="text" maxlength="2" size="4" name="hkmonth4"> 月
+                    <input type="text" maxlength="2" name="hkday4" size="4"> 日
+                    <input type="text" name="hkje4" size="4" maxlength="20" data-type="currency"> 万元；</p>
+                <input type="text" name="zdy" maxlength="20" data-type="currency"> 万元；</p>
+                <pre> 如贷款人调整借款分次使用计划，本条款约定的借款分期偿还日期及金额不变，借款人应当按期归还借款本金。</pre>
+                <p class="mb0">（贰）借款到期日一次性全部偿还借款本金。</p>
+                <p class="mb0">（叁）借款本金偿还的其他方式：<input type="text" name="jkbjchqtfs" maxlength="30"></p>　　　　
+                <p class="mb0">二、借款人应在本合同约定的还款日和结息日向贷款人按时足额归还本合同项下借款本金及利息。</p>e>
+                <p class="mb0">
+                    三、若遇还款日为非贷款人营业日，则顺延至下一个贷款人营业日还款，该非贷款人营业日计入贷款实际占用天数。借款人在偿还最后一期借款本金时，应利随本清，不受本合同第五条约定的结息日的约束。</p>
+                <p class="mb0"> 四、借款人未按期偿还借款合同项下的借款，需要展期还款的，应在该笔贷款到期日前 <input type="text" name="jkzqsqr" maxlength="3">
+                    个工作日向贷款人提交书面借款展期申请。经贷款人审查同意的，由双方另行签署《借款展期合同》作为本合同的补充合同。</p>
+                <p class="mb0">五、提前还款
+                    借款人应按本合同约定日期偿还借款本金及利息。<br>
+                    借款人要求提前部分或全部归还借款本息，应提前
+                    <input type="text" size="4" name="tqhkr" maxlength="3">
+                    个工作日书面通知贷款人，并征得贷款人书面同意。经贷款人同意，借款人提前归还部分借款本息后，应与贷款人协商确定此后的还款期数、还款时间和还款金额。对提前归还的借款本金根据实际使用期限并按本合同约定的借款利率计收利息。贷款人对提前还款之前已计收的借款利息不再调整。
+                </p>
+                <p class="mb0">借款人要求提前还款的，贷款人有权要求借款人按 <input type="text" name="tqhkbc" maxlength="30"> 给予补偿。</p>
+                六、借款人在此不可撤销地授权贷款人在借款人发生未履行或违反本合同约定的情形时，无须经过司法程序可直接从借款人开立在贷款人处及兴业银行所有分支机构的任何账户中扣收款项，包括但不限于借款本息（含罚息、复利）、本合同项下相关费用等。借款人同意贷款人有权决定具体扣收顺序。
+                <p>&nbsp;</p>
+                <p class="mb0 bold"> 第九条 担保</p>
+                <pre>一、下列合同为本合同的担保合同：
+
+
+                    二、本合同项下担保合同签订完毕、担保手续办妥前，贷款人有权暂不履行本合同项下的放款等各项义务。</pre>
+            <p>&nbsp;</p>
+            <p class="mb0 bold">第十条 双方的权利义务</p>
+            <pre>一、贷款人的权利和义务
+            （一）贷款人权利：
+            1、有权要求借款人按期归还贷款本息；
+            2、有权要求借款人提供与贷款有关的各项资料；
+            3、有权了解借款人的生产经营和财务状况；
+            4、有权监督借款人按本合同约定的用途使用贷款；
+            5、有权监督贷款使用情况并提出要求；
+            6、有权无须经过司法程序直接从借款人开立在贷款人处及兴业银行所有分支机构的任何账户中扣收借款本息（含罚息、复利）及本合同项下相关费用；
+            7、贷款人有权在任何时候将本合同项下全部或部分债权以及担保权益转让给第三方，无须取得借款人的同意。贷款人转让本合同项下借款及担保权益，借款人仍然承担本合同项下的所有义务；
+            8、借款人未依照合同约定归还贷款本息或未落实还本付息事宜的，贷款人有权在中国人民银行征信中心或新闻媒体等予以披露，并采取清收、诉讼或仲裁等法律措施；
+            9、有权根据借款人资金回笼情况，单方决定提前收贷；
+            10、有权享有法律、法规、规章规定的或本合同约定的其他权利。
+            （二）贷款人义务：
+            1、按本合同的约定发放并支付贷款资金；
+            2、对借款人的债务、财务、生产、经营情况保密，但是下列情形除外：
+            （1）法律法规规定；
+            （2）监管机构规定或要求；
+            （3）向贷款人的合作方披露等情形。
+            二、借款人的权利和义务
+            （一）借款人享有如下权利：
+            1、有权按本合同的约定提取和使用全部借款；
+            2、有权要求贷款人依照本协议约定对其提供的资料承担保密义务。
+            （二）借款人义务
+            1、应当如实提供贷款人要求提供的文件资料，以及所有开户行、账号及存贷款余额情况，并配合贷款人的调查、审查和检查；
+            2、接受贷款人对其使用信贷资金情况和有关生产经营、财务活动的监督或检查，并及时就贷款人的建议或要求采取合理处理措施；
+            3、应当按本合同约定的用途使用借款，不挪作他用，并保证不得用于固定资产投资；不得用于国家禁止生产、经营的领域和用途；不用借款从事股本权益性等投资；不用借款炒买炒卖有价证券、期货、房地产等；不用借款从事企业间相互借贷活动以及其他国家限制的非法活动；不以其他方式挤占、挪用借款；
+            4、根据本合同第七条约定，接受贷款人对借款人的账户监控及借款资金支付管理；
+            5、应当按本合同约定按时足额偿还借款本息；
+            6、未经贷款人书面同意，不得将本合同项下债务全部或部分转让给第三人；
+            7、不以任何方式减少注册资本；</pre>
+            <p class="bold">8、借款人发生合并、分立、股权转让、对外投资、实质性增加债务融资等重大事项前，应至少提前30个工作日书面通知贷款人并取得贷款人的书面同意，积极按贷款人要求落实好本合同项下借款本息按期足额偿还的保障措施，包括但不限于：</p>
+                <p class="mb0">（1）向银行等第三方申请借款或负债、或向第三方提供贷款、或为第三方的债务提供担保等实质性增加债务融资，影响或可能影响借款本息归还的；</p>
+                <p class="mb0">
+                    （2）进行重大产权变动和经营方式的调整(包括但不限于与外商、港澳台商签订合资、合作合同；撤销、关闭、停产、转产；分立、合并、兼并、被兼并；重组、组建或改建为股份制公司；对外投资；以房屋、机器设备等固定资产或商标、专利、专有技术、土地使用权等无形资产入股或投资于股份公司或投资公司，以租赁、承包、联营、托管等方式进行产权、经营权交易)；</p>
+                <p class="mb0">（3）股权发生变更达到 <input type="text" name="gqbg" maxlength="6" data-type="currency"> %（包括但不限于股权转让、托管、代管、质押等）。</p>
+                <pre> 9、借款人应自以下情况发生之日起或可能发生之日起7个工作日内书面通知贷款人，并积极按贷款人要求落实好本合同项下借款本息按期足额偿还的保障措施：
+            （1）发生重大财务亏损、资产损失或其他财务危机；
+            （2）发生停业、被吊销或注销营业执照、申请或被申请破产、解散等情形；
+            （3）其控股股东及其他关联公司经营或财务方面出现重大危机，影响其正常经营的；
+            （4）借款人法定代表人、董事或重要高层管理人员发生人事变动，影响其正常经营的；</pre>
+                <p class="mb0">（5）担保人股权发生变更达到 <input type="text" size="4" name="dbrgqbg" data-type="currency"  maxlength="6"> %的（包括但不限于股权转让、托管、代管、质押等）；</p>
+                <pre>（6）借款人与其控股股东及其他关联公司之间发生重大关联交易，影响其正常经营的；
+            （7）发生对其经营或财产状况产生重大不利后果的任何诉讼、仲裁或刑事、行政处罚；
+            （8）发生其他可能影响其偿债能力的重大事项。
+            10、应贷款人的要求（该要求以合理的方式提前通知借款人，除非由于违约事件或潜在违约事件的发生或者由于特定环境导致无须进行提前通知）, 允许贷款人的代表在正常的办公时间内从事下列活动：
+            （1）访问借款人开展经营活动的所在地；
+            （2）检查借款人的场所、设施、工厂和设备；
+            （3）查询借款人的账薄记录和所有其他的记录；
+            （4）询问知悉或可能知悉贷款人所需相关信息的借款人的雇员、代理商、承包商、分包商。</pre>
+                <p class="mb0">11、借款人保证在借款期内将流动资产和资产净值、资产负债比例、资产流动比例等财务状况维持在贷款人要求的下列范围内： <input name="cwzk" type="text">
+                    。</p>
+            <p>12、对贷款人向借款人寄出或以其他方式送达的催收函或催收文件，借款人必须进行签收后并将回执交由贷款人。
+                <br>
+                <p class="mb0 bold">第十一条 借款人声明与承诺</p>
+                <pre>借款人自愿作出以下声明与承诺，并就其内容的真实性承担法律责任：
+            一、借款人是根据中华人民共和国法律成立并有效存续的合法单位，具有完全民事行为能力。借款人保证根据贷款人的要求提供相关证明、许可、证书以及贷款人要求的其他文件。
+            二、借款人有足够的能力履行在本合同项下的所有义务和责任，并不因任何指令、财务状况的改变、与任何单位签订的任何协议而减轻或免除其所承担的清偿责任。
+            三、借款人具有充分的权力、授权及法定权利签署本合同，借款人已取得及履行完毕签署及履行本合同所需的一切其内部的批准及授权或其它相关手续，并已取得及履行完毕签署及履行本合同所需的一切必要的任何政府部门或其他权力机关的批准、登记、授权、同意、许可或其它相关手续，并且签署本合同所需的一切批准、登记、同意、许可、授权以及其它相关手续均保持充分合法有效。
+            四、借款人签署本合同完全符合借款人的有关章程、内部决定以及股东会、董事会的决议。本合同也不与借款人之任何章程、内部决定和股东会、董事会决议以及借款人的政策相冲突或相违背。
+            五、签署和履行本合同是基于借款人的真实意思表示。借款融资符合法律法规的要求，本合同签署和履行未违反任何对借款人有约束力的法律、法规、条例或合同的约定。本合同是合法有效并可强制执行的，如因借款人在签署和履行本合同时的权利瑕疵而致使本合同无效，借款人将立即无条件的赔偿贷款人的全部损失。
+            六、借款人在本合同项下向贷款人提供的全部文件、财务报表及其他资料是真实、完整、准确和有效的，并持续保持贷款人要求的各项财务指标。
+            七、借款人同意本合同项下的借款业务受贷款人的规定和惯例及实务的约束。贷款人有权根据借款人资金回笼情况提前收回贷款。
+            八、如借款人未按本合同的约定履行义务，借款人在此授权贷款人无须经过司法程序可直接从借款人开立在贷款人处及兴业银行所有分支机构的任何账户中扣收借款本息（含罚息、复利）及本合同项下相关费用。
+            九、无论在本合同签署前或签署后，如借款人将有关具体交易的任何文件提交给贷款人审核，借款人保证全部文件的真实性，贷款人将只对交易文件的表面真实性作出决定，贷款人对借款人从事的具体交易实质既不参与也不知晓，更不承担任何责任。
+            十、借款人确认，除已经书面披露给贷款人之情形外，借款人未隐瞒任何已发生或即将发生的有可能使贷款人不同意发放本合同项下借款的下列事件：
+              （一）借款人承担的债务、或有负债，包括但不限于在借款人的资产或收益上设立的任何未披露给贷款人的抵押、质押、留置和其它债务负担；
+              （二）与借款人或借款人主要管理人员有牵连的重大违纪、违法或被索赔事件；
+              （三）借款人与其他任何债权人之间的债权债务合同发生借款人违约的事件；
+              （四）借款人没有发生、也不存在未结的或就借款人所知可能发生的针对其或其财产的任何诉讼、仲裁或行政诉讼，并且无论是主动或是由第三方提出未发生任何针对借款人的清算或歇业或其他类似程序；
+              （五）其他可能影响借款人财务状况和偿债能力情况。
+            十一、借款人承诺按本合同约定的用途使用借款，不挪作他用或被用作其他违反本合同约定目的任何用途。随时接受并配合贷款人进行借款支付管理、贷后管理及相关检查，配合贷款人对借款人使用借款资金情况和借款人生产经营、财务活动、物资库存、资产负债、银行存款、现金库存等情况的监督、检查以及清点或其他贷款人认为必要或合适的要求。
+            十二、提供贷款人认可的足额、有效的或其他贷款人认为合适的可接受的担保。如本合同项下担保为房屋抵押的，借款人在知悉抵押房屋将被拆迁的信息时，应及时向贷款人履行告知义务；抵押房屋被拆迁的，对于采用产权调换补偿形式的，贷款人有权要求借款人提前清偿债务，或重新设置抵押并签订新的抵押协议，在原有抵押房地产灭失后而新抵押登记尚未办理之前，应提供具备担保条件的担保方担保；对于以补偿方式进行补偿的拆迁房地产，借款人负责要求抵押人将拆迁补偿款通过开立保证金专户或存单等形式，继续为主债权提供担保。
+            十三、借款人不得以任何方式减少注册资本。未征得贷款人事先书面同意，不得将本合同项下债务部分或全部转让第三人。在本合同项下债务全部清偿之前，未征得贷款人书面同意，不得提前清偿借款人与其他债权人（兴业银行其他分支机构除外）的任何债务。
+            十四、发生影响借款人偿债能力的重大不利事项及时通知贷款人，进行合并、分立、股权转让、对外投资、实质性增加债务融资等重大事项前征得贷款人书面同意。
+            十五、如贷款人因履行本合同项下义务而与借款人或与借款人有关的任何第三方当事人之间发生诉讼或仲裁或其他纠纷，导致贷款人被迫卷入借款人与任何第三方之间的纠纷之中，贷款人因此支付的诉讼或仲裁费用、律师费等其他费用，均由借款人承担。
+            十六、因本合同项下的结算业务，借款人均须通过在贷款人开立的结算账户办理。</pre>
+                <p class="mb0">十七、借款人声明与承诺的其他事项： <input type="text" name="qtsx" maxlength="30"> 。</p>
+                <p>&nbsp;</p>
+                <p class="mb0 bold">第十二条 提前收贷</p>
+                <pre> 一、在借款期间，借款人或担保人(保证人或抵押人或出质人)发生下列情况之一时，贷款人有权单方决定停止支付借款人尚未使用的借款，并提前收回部分或全部借款本息，分期偿还的借款，贷款人对其中某一期借款依据本合同约定提前收贷的，其他未到期的借款视为提前到期:
+                （一）提供虚假材料或隐瞒重要经营财务事实的，向贷款人提交的与任何证明和文件及本合同第十一条的声明与承诺中的任何一项被证明为不真实、不准确、不完整或故意使人误解；
+                （二）未经贷款人同意擅自改变借款原定用途，挪用借款或用借款从事非法、违规交易的；
+                （三）利用与关联方之间的虚假合同，以无实际贸易背景的应收票据、应收账款等债权向贷款人贴现或质押，套取贷款人资金或授信的；
+                （四）拒绝接受贷款人对其信贷资金使用情况和有关经营财务活动进行监督和检查的；
+                （五）出现合并、分立、收购、重组、股权转让、对外投资、实质性增加债务融资等重大事项，贷款人认为可能影响到借款安全的；
+                （六）通过关联交易，有意逃废贷款人债权的；
+                （七）资信状况恶化，清偿能力（包括或有负债）明显减弱；
+                （八）借款人或借款人的关联企业及担保人或担保人的关联企业出现本合同第十五条约定的交叉违约情形的；
+                （九）借款人没有按期偿还本合同项下任何一项融资的本金、利息；
+                （十）借款人停止偿还其债务,或不能或表示其不能偿还到期债务；
+                （十一）借款人停业、歇业、被宣告破产、解散、被吊销营业执照、被撤销、涉及重大经济纠纷、财务状况恶化等；
+                （十二）借款人未履行本合同第十条及第十三条约定的义务及本合同约定的其他义务，或担保人未履行担保合同约定的义务；
+                （十三）用于担保的抵押物、质物价值已经或可能明显减少，或质押的权利必须在借款到期前兑现；
+                （十四）借款人或担保人（保证人或抵押人或出质人）法定代表人、主要投资者个人、董事、监事、高级管理人员异常变动、失踪或被司法机关依法调查或限制人身自由，已经或可能影响到本合同项下义务的履行；
+                （十五）本合同另有约定的事件，或根据借款人资金回笼情况，或其他危及、损害或可能危及、损害贷款人权益的事件。
+            二、出现上述提前收贷情形的，贷款人可视借款人生产经营、财务状况及资金回笼等情况单方决定是否给予借款人一定的宽限期。贷款人给予借款人宽限期的，在宽限期内借款人仍未采取补救措施或采取的补救措施不符合贷款人要求的，贷款人有权单方决定提前收贷；贷款人也可以不给予借款人宽限期，直接决定提前收贷。
+            三、提前收贷时，贷款人有权按照本合同第十四条第二款约定采取相应的措施。</pre>
+                <p>&nbsp;</p>
+                <p class="bold mb0"> 第十三条 借款人向贷款人披露重大交易和重大事件的义务</p>
+                <pre> 一、借款人应及时向贷款人书面报告借款人发生的重大交易和重大事件。
+              二、如果借款人属于集团客户，借款人应依据相关规定及时向贷款人报告借款人净资产10%以上关联交易，包括但不限于：
+                （一）交易各方的关联关系；
+                （二）交易项目和交易性质；
+                （三）交易的金额或相应的比例；
+                （四）定价政策(包括没有金额或只有象征性金额的交易)。</pre>
+                <p>&nbsp;</p>
+                <p class="mb0 bold">第十四条 违约责任</p>
+                <pre> 一、本合同生效后,借款人和贷款人双方均应履行本合同约定的义务，任何一方不履行或不完全履行本合同约定义务的,应当承担相应的违约责任。
+              二、借款人未按本合同约定用途使用借款、未按约定方式进行借款资金支付、未遵守声明与承诺事项、申贷文件信息失真、突破约定的财务指标、发生重大交叉违约事件等未履行本合同任一条款约定的，贷款人有权采取下列一项或几项措施：
+                （一）要求限期纠正违约；
+                （二）停止发放本合同项下未发放的借款，并停止支付本合同项下未支付的借款资金；
+                （三）要求借款人补充提供符合贷款人要求的借款发放和支付条件或取消借款人以“自主支付”方式使用贷款；
+                （四）单方决定全部或部分债务提前到期；
+                （五）单方终止本合同，要求借款人清偿到期或未到期的借款本金及利息，并支付或赔偿相关损失；
+                （六）如借款逾期，要求借款人支付逾期罚息；如借款人挪用借款，要求借款人支付挪用罚息；要求借款人支付未付利息的复利；
+                （七）要求借款人追加或更换保证人、抵押物、质物/出质权利；
+                （八）实施或实现有关借款的任何担保项下的权利；
+                （九）无须经过司法程序直接从借款人开立在贷款人处及兴业银行所有分支机构的任何账户中扣收款项，或委托借款人账户开立行对其账户扣收款项，包括但不限于借款本息（含罚息、复利）、本合同项下相关费用等，如果账户中款项的货币与借款货币不同，贷款人有权按扣收当日贷款人公布的中间价折算成借款货币清偿借款本息；
+                （十）提起诉讼或仲裁要求借款人清偿借款本息，债权人实现债权的费用由借款人承担；
+                （十一）贷款人有权对在贷款人控制和占有之下的借款人的任何动产或不动产，有形财产或无形财产予以扣押或留置或其他贷款人认为合适的措施；
+                （十二）法律法规规定或本合同约定或贷款人认为适当的其他措施。
+              三、在符合本合同约定的提款先决条件及借款资金支付条件下，贷款人未按照约定的日期、数额提供借款，造成借款人损失的，应赔偿借款人因此而造成的直接经济损失。但是不论如何，对于借款人因此而产生的任何可预见或不可预见的间接损失，贷款人不负赔偿责任。</pre>
+                <p class="bold">
+                    四、本合同履行过程中，因借款人提供的材料不真实、不准确、不完整或存在其他瑕疵导致贷款人受托支付错误、支付不及时、借款人违反本合同约定办理自主支付或形成其他损失的，贷款人不承担任何责任。</p>
+                <pre>五、因本合同约定的贷款发放账户或支付对象账户被冻结或其他原因导致放款及支付纠纷或形成其他损失的，贷款人不承担任何责任。
+             六、本合同项下的担保人(即保证人、抵押人、出质人)发生下列事由，贷款人有权按照本条第二款约定采取措施：
+                (一)保证人未履行保证合同的约定，或资信状况恶化，或发生其他担保能力减弱的事件；
+                (二)抵押人未履行抵押合同的约定，或故意毁损抵押物，或抵押物价值可能或已经明显减少，或其他有损贷款人抵押权的事件；
+                (三)出质人未履行质押合同的约定，或质物价值已经或可能明显减少，或质押的权利必须在借款清偿前兑现，或其他有损贷款人质押权的事件。</pre>
+                <p>&nbsp;</p>
+                <p class="bold mb0"> 第十五条 交叉违约</p>
+                <pre> 借款人或借款人的关联企业及担保人或担保人的关联企业出现以下任何一种情况，均被视为借款人对本合同同时违约，贷款人有权根据本合同第十二条约定提前收贷，并根据本合同第十四条约定要求借款人承担违约责任：
+                （一）任何借款、融资或债务出现或可能出现违约或被宣布提前到期；
+                （二）任何担保或类似义务未履行，或存在未履行的可能性；
+                （三）未履行或违反有关债务担保以及其他类似义务的法律文件或合同，或存在未履行或违反的可能性； （四）出现或即将出现无力清偿到期债务或到期借款/融资的情况；
+                （五）经法律程序被宣告或即将被宣告破产；
+                （六）将其资产或财产转让给其他债权人；
+                （七）危及本合同项下借款本息安全的其他情况。</pre>
+                <p>&nbsp;</p>
+                <p class="bold mb0"> 第十六条 义务的连续性</p>
+                本合同项下借款人的一切义务均具有连续性,对其继承人、代理人、接管人、受让人及其合并、改组、更改名称等后的主体均具有完全的、同等的约束力。
+                <p>&nbsp;</p>
+                <p class="mb0 bold">第十七条 本金和利息加速到期条款</p>
+                借款人同意，一旦借款人未履行本合同第十一条声明与承诺，或借款人未履行本合同项下之任何一项义务时，贷款人有权决定借款人对贷款人的其他任何一项义务包括本合同项下借款的到期和未到期的全部本金、利息（含罚息及复利）的偿还义务将立即到期。
+                <p>&nbsp;</p>
+                <p class="mb0 bold">第十八条 法律适用、管辖及争议解决</p>
+                <pre>一、本合同的订立、生效、履行、解除、解释及争议的解决等均适用中华人民共和国法律。
+             二、凡因本合同发生的任何争议，借款人和贷款人双方应通过友好协商解决；友好协商不成的，<em>双方均同意以如下第 <select name="ldzyjjfs" id="">
+        											<option value="壹">壹</option>
+        											<option value="贰">贰</option>
+        											<option value="叁">叁</option>
+                    </select> 种方式解决：</em>
+                <p class="mb0">（壹）向贷款人所在地之人民法院提起诉讼。</p>
+                <p class="mb0">（贰）向 <input type=" text" name="ldzcwyh" maxlength="30">仲裁委员会申请仲裁，适用该仲裁委员会在仲裁时有效的仲裁规则解决纠纷，该仲裁裁决是终局的，对双方均有约束力。仲裁庭的开庭地点选择在 开庭。
+                </p>
+                <p class="mb0">（叁）其他方式：<input type="text" name="qtfs" maxlength="50"> 。</p>
+                三、在争议期间，本合同不涉及争议部分的条款仍须履行。</pre>
+                <p>&nbsp;</p>
+                <p class="mb0 bold">第十九条 文件往来、通讯和通知</p>
+                <pre>
+            一、本合同项下的任何文件往来、通讯和通知均应以书面形式按本合同封面记载的地址、电传号或其他联系方法送达对方。
+            二、如本合同任何一方的上述联系方法发生变化，应毫不迟延地以任何快捷方式通知对方。一方未及时通知对方的，合同另一方按未通知前的联系方法送达文件、通讯和通知，一切后果由未通知方承担。
+            三、任何文件、通讯和通知只要按照上述地址发送，即应视作在下列日期被送达:
+               （一）邮递（包括特快专递、平信邮寄、挂号邮寄），以邮寄之日后的第五个工作日视为送达日；
+               （二）传真或其他电子通讯方式，以发送之日视为送达日；
+               （三）专人送达，以收件人签收之日视为送达日。贷款人以在其网站、网上银行、电话银行或营业网点发布公告的方式发送通知的，以公告发布之日视为送达日。贷款人在任何情况下均无需对邮递、传真、电话或任何其他通讯系统所出现的任何传送失误、缺漏或延迟承担任何责任。
+            四、双方约定，双方的单位公章、办公室印章、财务专用章、合同专用章、收发章及贷款人的信贷业务专用章等均是双方文件往来、通讯和通知的有效印章。借款人单位所有工作人员是文件往来、通讯和通知的有权签收人。</pre>
+                <p>&nbsp;</p>
+                <p class="bold mb0"> 第二十条 合同效力及其他事项</p>
+                <p class="mb0">
+                    一、本合同自立约双方签字或盖章之日起生效。</p>
+                <p class="bold mb0">
+                    二、在本合同生效期间，贷款人给予借款人、担保人的任何宽容、宽限或延缓行使本合同中享有的权益或权利，均不损害、影响或限制贷款人依有关法律规定和本合同应享有的一切权益和权利，不应视为贷款人对本合同项下权利、权益的放弃，也不影响借款人在本合同项下的任何义务。</p>
+                <p class="mb0">
+                    三、如因国家法律法规或监管政策发生变更，导致贷款人按本合同约定履行放款义务不符合法律法规或监管要求时，贷款人有权单方面终止合同，宣布已发放的所有贷款提前到期，借款人应按贷款人要求立即偿还。</p>
+                <p class="mb0">
+                    四、因不可抗力、通讯或网络故障、贷款人系统故障等原因导致未按时发放贷款或办理支付的，贷款人不承担任何责任，但应及时通知借款人。</p>
+                <p class="mb0 bold">
+                    五、贷款人有权根据经营管理需要授权或委托兴业银行其他分支机构履行本合同项下权利和义务（包括但不限于授权或委托兴业银行其他分支机构签订相关合同等），或将本合同项下贷款划归兴业银行其他分支机构承接管理，借款人对此表示认可，贷款人的上述行为无需另行征得借款人同意。</p>
+                <P class="mb0 bold">
+                    六、借款人同意贷款人有权根据借款人生产经营情况、还款情况及其他金融机构授信情况等因素单方面调减或取消本合同尚未使用的借款金额。贷款人决定调减或取消的，应提前五个工作日通知借款人，但无需另行征得借款人同意。</P>
+                <P class="mb0">
+                    七、如果在任何时候，本合同的任何条款在任何方面是或变得不合法、无效或不可执行，本合同其他条款的合法性、有效性或可执行性不受任何影响或减损。</P>
+                <P class="mb0">
+                    八、本合同的小标题仅为方便阅读而加入，不得被用于对本合同的解释或任何其他目的。</P>
+                <P class="mb0">
+                    九、本合同附件是本合同不可分割的组成部分，与本合同正文具有同等法律效力。</P>
+                <p class="mb0 bold">
+                    十、本合同壹式 <input type="text" size="4" name="num1" maxlength="2"> 份，贷款人执 <input type="text" size="4" name="num2" maxlength="2"> 份，借款人执 <input type="text" size="4" name="num3" maxlength="2"> 份，<input type="text" size="4" name="num4" maxlength="20"> 执 <input name="num5" type="text" size="4" maxlength="2">份，具有同等法律效力。</p>
+                <br>
+                <p class="bold mb0">第二十一条 公证与自愿接受强制执行</p>
+                <P class="mb0">
+                    一、如本合同任何一方提出公证要求，本合同应在国家规定的公证机关进行公证。</P>
+                <P class="mb0">
+                    二、经公证的合同具有强制执行效力，借款人未履行债务或出现法律法规规定、本合同约定的贷款人实现债权的情形时，贷款人有权向有管辖权的人民法院直接申请强制执行。</p>
+                <br>
+                <p class="bold mb0"> 第二十二条 补充条款：</p>
+                <p class="mb0">
+                    <textarea name="bctk" cols="90" rows="8" maxlength="300"></textarea>
+                </p>
+                <h3>签约重要提示</h3>
+                <pre class="pl2em">为了维护您的权益，请您在签署本合同之前仔细阅读,检查并确认以下事宜：
+            一、您有权签署本合同，若依法需要取得他人同意的，您已经取得充分授权；
+            二、您已经认真阅读并充分理解合同条款，并特别注意了其中有关责任承担、免除或限制兴业银行责任、以及加黑字体部分的内容；
+            三、贵公司及您已经充分理解合同条款的含义及相应的法律后果，并愿意接受这些条款约定；
+            四、兴业银行提供的合同文本仅为示范文本，合同相关条款后均留有空白行，并在合同尾部增设了“补充条款”，供各方对合同进行修改、增补或删减使用；
+            五、如果您对本合同还有疑问，请及时向兴业银行咨询。</pre>
+                <!--<pre>
+            <div class="pl2em">七、如果在任何时候，本合同的任何条款在任何方面是或变得不合法、无效或不可执行，本合同其他条款的合法性、有效性或可执行性不受任何影响或减损。
+            八、本合同的小标题仅为方便阅读而加入，不得被用于对本合同的解释或任何其他目的。
+            九、本合同附件是本合同不可分割的组成部分，与本合同正文具有同等法律效力。</div></pre>
+                <p class="mb0">十、本合同壹式 <input type="text" size="4" name="num1"> 份，贷款人执 <input type="text" size="4"
+                                                                                              name="num2"> 份，借款人执 <input
+                        type="text" size="4" name="num3"> 份，
+                    <input type="text" size="4" name="num4"> 执 <input name="num5" type="text" size="4">
+                    份，具有同等法律效力。</p>
+                <br>
+                <p class="bold mb0">第二十一条 公证与自愿接受强制执行</p>
+                <pre class="pl2em">
+            一、如本合同任何一方提出公证要求，本合同应在国家规定的公证机关进行公证。
+            二、经公证的合同具有强制执行效力，借款人未履行债务或出现法律法规规定、本合同约定的贷款人实现债权的情形时，贷款人有权向有管辖权的人民法院直接申请强制执行。</pre>
+                <br>
+                <p class="bold mb0"> 第二十二条 补充条款：</p>
+                <p class="mb0">
+                    <textarea name="bctk" cols="90" rows="8"></textarea>
+                </p>
+                <h3>签约重要提示</h3>
+                <pre class="pl2em">为了维护您的权益，请您在签署本合同之前仔细阅读,检查并确认以下事宜：
+            一、您有权签署本合同，若依法需要取得他人同意的，您已经取得充分授权；
+            二、您已经认真阅读并充分理解合同条款，并特别注意了其中有关责任承担、免除或限制兴业银行责任、以及加黑字体部分的内容；
+            三、贵公司及您已经充分理解合同条款的含义及相应的法律后果，并愿意接受这些条款约定；
+            四、兴业银行提供的合同文本仅为示范文本，合同相关条款后均留有空白行，并在合同尾部增设了“补充条款”，供各方对合同进行修改、增补或删减使用；
+            五、如果您对本合同还有疑问，请及时向兴业银行咨询。</pre> -->
+                <br>
+                <div class="row">
+                    <div class="text-center col-xs-12" id="">
+                        <a class="btn btn-default btn_query" href="javascript:void(0)" id="ldhtxz" style="display:none">下载</a>
+                        <a target="_blank" class="btn btn-default btn_query" href="javascript:void(0)" id="ldhtyl"
+                           style="display:none">预览</a>
+                        <a class="btn btn-default btn_query ldhtAdd" href="javascript:void(0)">生成合同</a>
+                        <a class="btn btn-default btn_query" href="javascript:void(0)" onclick="history.go(-1)">返回</a>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+        <form class="form-horizontal row" action="#" id="wjForm">
+            <div class="aleatF">
+                <div class="aleat">
+                    <img class="over" src="img/sc.png"/>
+                    <!--<input type="" name="" id="" value="" />-->
+                    <textarea class="textlist" name="" rows="2" cols="40" placeholder="请输入文件说明..."></textarea>
+                    <input id="file" name="file" type="file" multiple="multiple">
+                    <div class="text-center"><a class="btn btn-default" id="smbc">提交</a></div>
+                </div>
+            </div>
+        </form>
+        <form action="" id="dzheForm">
+            <input type="hidden" name="ywbh">
+            <input type="hidden" name="wjlx">
+            <input type="hidden" name="tzslx">
+            <input type="hidden" name="zt">
+        </form>
+        <form action="" id="ldhtFormSe">
+            <input type="hidden" name="ywbh">
+            <input type="hidden" name="wjlx">
+            <input type="hidden" name="tzslx">
+        </form>
+    </div>
+    <!--收款结算流水Modal-->
+    <div id="zhlsModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+            <div class="search_input m-content" >
+				<form class="form-horizontal row" id="zhlsFrom" role="form">
+							<div class="row form-group">
+								<div class="col-xs-6 warning">
+									<label for="" class="col-md-4 control-label">起始日期</label>
+									<div class="col-md-8">
+										<div class="input-group date form_date" data-date=""
+											data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+											data-link-format="yyyy-mm-dd">
+											<input type="text" class="form-control" name="qsrq">
+											<span class="input-group-addon"><span
+												class="glyphicon glyphicon-calendar"></span></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-6 warning">
+									<label for="" class="col-md-4 control-label">到期日期</label>
+									<div class="col-md-8">
+										<div class="input-group date form_date" data-date=""
+											data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+											data-link-format="yyyy-mm-dd">
+											<input type="text" class="form-control" name="dqrq">
+											<span class="input-group-addon"><span
+												class="glyphicon glyphicon-calendar"></span></span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="text-center col-xs-12">
+								<a id="zhlsBtn" class="btn_query btn btn-default">查询</a>
+							</div>
+							<input type="hidden" name="jszh" id="zhlsjszh">
+						</form>
+					</div>
+       <div class="container-fluid">
+              <div class="row search_result">
+	            <table class="table table-bordered table-hover skjsls" >
+	                <thead>
+	                    <tr>
+	                        <th>交易日期</th>
+	                        <th>交易时间</th>
+	                        <th dic-type="B1076">借贷标记</th>
+	                        <th>交易金额</th>
+	                        <th>账户余额</th>
+	                        <th>对方账户代号</th>
+	                        <th>对方账户名称</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                </tbody>
+            </table>
+        </div>
+         </div>
+            </div>
+        </div>
+    </div>
+    <!--Added-->
+<div id="glblhtModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"  aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" id="glblhtcss">
+            <!--<div class=""> -->
+                <form action="#" class="form form-horizontal" id="selectZh" style="padding-top:5px">
+                	<input type="hidden" id="selectZhKhh" name="khh">
+                </form>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+			            <h4 style="padding-bottom:15px">请选择账号</h4>
+                    <div class="search_result">
+                        <table class="table table-bordered table-hover blhtTable" style="width:100%;white-space: nowrap;">
+							<thead>
+								<tr>
+								    <th style="width:30px"></th>
+									<!-- <th style="width:40px">序号</th> -->
+									<th>账号</th>
+									<th>账号户名</th>
+									<th>账号开户行</th>
+									<th dic-type="B1057">账号类型</th>
+								</tr>
+							</thead>
+							<tbody>
+						</tbody>
+						</table>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <a href="javascript:void(0)" class="btn btn_query" id="saveId">确认</a>
+                            <a href="javascript:void(0)" class="btn btn_query " data-dismiss='modal'>返回</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+<!--/Added-->
+    <script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/content-list.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/fileinput.min.js"></script>
+    <script src="js/plugin/uploadify/jquery.uploadify.js"></script>
+    <script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/plugin/jquery.validate.js"></script>
+    <script src="js/plugin/validate-extend.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <script src="js/select2.min.js"></script>
+    <script>
+        $().ready(function () {
+            $("#blhtForm").validate({
+                rules: {
+                    xybh: {
+                        required: true,
+                        maxlength: 40
+                    },
+                    rzkhh: {
+                        required: true
+                    },
+                    hxqykhh: {
+                        required: true
+                    },
+                    ywpz: {
+                        required: true
+                    },
+                    edlx: {
+                        required: true
+                    },
+                    cpms: {
+                        required: true
+                    },
+                    rzbl: {
+                        required: true,
+                        range: [0, 100],
+                        rzjeYszk: true
+                    },
+                    zq: {
+                        required: true,
+                        maxlength: 9,
+                        number: true
+                    },
+                    kxq: {
+                        required: true,
+                        maxlength: 9,
+                        number: true
+                    },
+                    yszkzrje: {
+                        required: true,
+                        number: true,
+                        maxlength: 24,
+                        rzjeYszk: true
+                    },
+                    ckje: {
+                        required: true,
+                        number: true,
+                        rzjeYszk: true
+                    },
+                    jszh: {
+                        required: true,
+                        maxlength: 32
+                    },
+                    hkzh: {
+                        required: true,
+                        maxlength: 32
+                    },
+                    hkbzjzh: {
+                        required: true,
+                        maxlength: 32
+                    },
+                    htrq: {
+                        required: true,
+                        isDate: true,
+                        compareDate: true
+                    },
+                    htdqr: {
+                        required: true,
+                        isDate: true,
+                        compareDate: true
+                    },
+                    htzt: {
+                        required: true
+                    },
+                    crr: {
+                        required: true,
+                        maxlength: 16
+                    },
+                    sqfs: {
+                        required: true
+                    },
+                    kqfs: {
+                        required: true
+                    },
+                    blfjsfs: {
+                        required: true
+                    },
+                    blffl: {
+                        required: true,
+                        range: [0, 100]
+                    },
+                    gdfy: {
+                        required: true,
+                        number: true
+                    },
+                    qtfy: {
+                        required: true,
+                        number: true
+                    },
+                    lxsqfs: {
+                        required: true
+                    },
+                    rzlv: {
+                    	range: [0, 100]
+                    },
+                    blffl: {
+                    	range: [0, 100]
+                    },
+                    yqlvsfbl: {
+                    	range: [0, 100]
+                    }
+                },
+            });
+            $("#htysForm").validate({
+                rules: {
+                    tzsbh: {
+                        required: true,
+                        maxlength: 16
+                    },
+                    tzsbh1: {
+                        required: true,
+                        maxlength: 16
+                    },
+                    tzsbh2: {
+                        required: true,
+                        number: true
+                    },
+                    fxlv1: {
+                    	range: [0, 100]
+                    },
+                    fxlv2: {
+                    	range: [0, 100]
+                    }
+                },
+            });
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+        	autoHeight();
+            //初始化日期插件
+            dataPiker();
+            
+            var valid = locationObj.getParams().valid;
+            //融资客户下拉列表检索栏
+            var orgSel = $("#rzkhh");
+			orgSel.val(null).trigger("change");
+			orgSel.select({
+				url : requestObj.address.selectBlCustom
+			}, {
+				type : "00"
+			});
+			//核心企业下拉列表检索栏
+			function select(option) {
+				orgSel = $("#hxqykhh");
+				orgSel.val(null).trigger("change");
+				orgSel.select({
+					url : requestObj.address.selectBlhxqyCustom
+				}, {
+					type : "01",
+					id : option
+				});
+			}
+			$("#rzkhh").change(function () {
+	            select($("#rzkhh").val());
+	           /*  selectZh($("#rzkhh").val()); */
+	        })
+	        //初期化核心企业下拉列表
+	        select();
+
+			function selectZh(khh) {
+				orgSel = $("#jszh");
+				orgSel.val(null).trigger("change");
+				orgSel.select({
+					url : requestObj.address.jsyzhglSelect
+				}, {
+					q : khh
+				});
+			}
+
+			var type = locationObj.getParams().type;
+            var tab = locationObj.getParams().tab;
+            var valid = locationObj.getParams().valid;
+            if (tab) {
+                var i = parseInt(tab);
+                $(".ml-btn").removeClass("mlbtn-bg");
+                $(".ml-btn").eq(i).addClass("mlbtn-bg");
+                $(".biaodan").css("display", "none");
+                $(".biaodan").eq(i).css("display", "block");
+            }
+            if (type === "add") {
+                $(".clickZc").show();
+                //selectKhh();
+            }
+            if (type === "modify") {
+                var xydm = locationObj.getParams().xydm;
+                requestObj.ajaxServer(
+                        requestObj.address.findOneblht,
+                        {"xydm": xydm},
+                        function (data) {
+                            pluginObj.setFormValueById(data.body);
+                            $("[name=htrq]").val(formatDateStr(data.body.htrq));
+                            $("[name=htdqr]").val(formatDateStr(data.body.htdqr));
+                            $("#jszhkhh_htys").val(data.body.jszhkhh);
+                            $("#jszhhm_htys").val(data.body.jszh);
+                            $("#jszh_htys").val(data.body.jszhhm);
+                            $("#cdblf").val(data.body.hxqykhmc);
+                            $("#hkzhkhh_htys").val(data.body.hkzhkhh);
+                            $("#hkzhhm_htys").val(data.body.hkzhhm);
+                            $("#hkzh_htys").val(data.body.hkzh);
+                            $("#yszkzrje").val(numberToCurrency(data.body.yszkzrje));
+                            $("#gdfy").val(numberToCurrency(data.body.gdfy));
+                            $("#qtfy").val(numberToCurrency(data.body.qtfy));
+                            $("#ckje").val(numberToCurrency(data.body.ckje));
+                            $("#rzbl").val(data.body.rzbl);
+                            $("#blffl").val(data.body.blffl);
+                            $("#rzlv").val(data.body.rzlv);
+                            $("#yqlvsfbl").val(data.body.yqlvsfbl);
+                            $("#hkzhhm").val(data.body.hkzhhm);
+                            $("#hkzhkhh").val(data.body.hkzhkhh);
+                            var zxqyzt = data.body.zxqyzt;
+                            var dqzt = data.body.dqzt;
+                            // 如果不是未签约  不能修改
+                            if(zxqyzt != "1"){
+                            	valid = "sx";
+                            }
+                            // 如果复核通过  不能修改合同
+                            if(dqzt == "05"){
+                            	valid = "sx";
+                            }
+                            if (valid == "sx") {
+                                $(".clickZc").hide();
+                                $(".clickSave").hide();
+                                $(".jc :input").attr("disabled", "disabled");
+                                $(".zhls").removeAttr("disabled");
+                            }else if(valid == "fhsx"){
+                            	fy(data.body.sqfs);
+                            }else{
+                            	fy(data.body.sqfs);
+                            	$(".clickZc").show();
+                            }
+
+                            selectKhh(data.body.rzkhh, data.body.hxqykhh);
+
+                            $("#xydm").val(data.body.xydm);
+
+
+                        },
+                        function () {
+                        }
+                )
+                // 加载合同附件
+                showHtfjList(xydm);
+
+                showDzheList(xydm);
+
+                // 加载流贷合同
+                ldht(xydm);
+
+            }
+            // 点击按钮事件
+            $(".clickSave").click(function () {
+                if (!$('#blhtForm').valid()) {
+                    return;
+                }
+                $("[name='htzt']").val("02");
+                saveForm(type,"02");
+            });
+            // 点击按钮事件
+            $(".clickZc").click(function () {
+                if($("#rzkhh").val() == "glxx_glkhh"){
+                	$("#rzkhh").val("");
+                }
+                if(!$('#blhtForm').valid()) {
+                    return;
+                }
+
+                $("[name='htzt']").val("01");
+                saveForm(type,"01");
+            });
+
+
+            // 提交id为blhtForm表单的方法
+            var saveForm = function (modAdd,htzt) {
+            	var p = /[0-9a-z]/i; 
+            	var b = p.test($("#xybh").val());
+            	if(!b){
+            		pluginObj.alert("", "保理合同编号必须包含数字或字母");
+            		return;
+               	}
+                var urlDz = requestObj.address.blhtSave;
+                if (modAdd === "modify") {
+                    urlDz = requestObj.address.blhtUpdate;
+                }
+                requestObj.ajaxServer(
+                        urlDz,
+                        requestObj.packRequest(decodeURIComponent($("#blhtForm").serialize().replace(/\+/g," "), true)),
+                        function (data) {
+                            pluginObj.alert("", "操作成功");
+                            //location = "blht.html?type=modify&xydm=" + data.body.xydm;
+                            var v = locationObj.getParams().valid;
+                            //location = "blht.html?type=modify&xydm=" + data.body.xydm + "&valid=" + v;
+                            look(data.body.xydm,htzt,v);
+                           },
+                        function () {
+                        }
+                )
+            }
+            function look(xydm,htzt,v){
+        			// 01 未生效
+        			if(htzt == "01"){
+        				location = "blht.html?type=modify&xydm=" + xydm;
+        			}else{
+        				location = "blht.html?type=modify&xydm=" + xydm+ "&valid=" + v;
+        			}
+            }
+            function selectKhh(rzkhh, hxqy) {
+                // 加载融资客户
+                requestObj.ajaxServer(
+                        requestObj.address.findGlxxVo,
+                        {
+                            "glxx_gllx": "05",
+                            "pageSize": "10",
+                            "glxx_khh": "glxx_khh"
+                        },
+                        function (data) {
+                            $("[name='rzkhh']").empty();
+                            $("[name='rzkhh']").append(
+                                    "<option value='glxx_glkhh'></option>"
+                            )
+                            var rzkh = data.body.data;
+                            for (var i = 0; i < rzkh.length; i++) {
+                                $("[name='rzkhh']").append(
+                                        "<option value='" + rzkh[i].khh + "'>" + rzkh[i].qymc + "</option>"
+                                )
+                            }
+                            if (rzkhh) {
+                                $("[name='rzkhh']").val(rzkhh);
+                            }
+                        },
+                        function () {
+                        }
+                )
+                // 加载核心企业户
+                requestObj.ajaxServer(
+                        requestObj.address.findGlxxVo,
+                        {
+                            "glxx_gllx": "03",
+                            "pageSize": "10",
+                            "glxx_glkhh": "glxx_glkhh"
+                        },
+                        function (data) {
+                            $("[name='hxqykhh']").empty();
+                            $("[name='hxqykhh']").append(
+                                    "<option value=''></option>"
+                            )
+                            var hxqykhh = data.body.data;
+                            for (var i = 0; i < hxqykhh.length; i++) {
+                                $("[name='hxqykhh']").append(
+                                        "<option value='" + hxqykhh[i].khh + "'>" + hxqykhh[i].qymc + "</option>"
+                                )
+                            }
+                            if (hxqy) {
+                                $("[name='hxqykhh']").val(hxqy);
+                            }
+                        },
+                        function () {
+                        }
+                )
+            }
+
+            // 加载合同附件
+            function showHtfjList(xydm) {
+                // 点击合同附件后调用方法
+                //$(".jbxx").eq(2).click(function() {
+                scWj();
+                //});
+                function scWj() {
+                    $("#bcxxForm input[name='ywbh']").val(xydm);
+                    requestObj.searchServer(
+                            requestObj.address.wjscList,
+                            "bcxxForm",
+                            htfjFun
+                    );
+                }
+
+                function htfjFun(data) {
+                    requestObj.searchObj.totalPage = data.body.totalPageNo;//总页码
+                    requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+                    requestObj.initPager(
+                            requestObj.address.wjscList,
+                            htfjFun
+                    );
+                    var wjList = data.body.data;
+                    $(".htfj tbody").empty();
+                    for (var i = 0; i < wjList.length; i++) {
+                        $(".htfj tbody").append(
+                                "<tr>" +
+                                "<td>" + wjList[i].wjmc + "</td>" +
+                                "<td>" + wjList[i].ext1 + "</td>" +
+                                "<td>" + formatDateStr(wjList[i].crsj) + "</td>" +
+                                "<td><a href='" + requestObj.port + "common/file.do?q=" + wjList[i].id + "'>下载</a> <a href='javascript:void(0)' onclick='delwj(\"" + wjList[i].id + "\",this)'>删除</a></td>" +
+                                "</tr>"
+                        );
+                    }
+                }
+            }
+
+            // 加载电子合同
+            function showDzheList(xydm) {
+                // 点击电子合同调用方法
+                dzht();
+                function dzht() {
+                    $("#dzheForm input[name='ywbh']").val(xydm);
+                    $("#dzheForm input[name='wjlx']").val("0013");
+                    $("#dzheForm input[name='tzslx']").val("00");
+                    $("#dzheForm input[name='zt']").val("02");
+                    requestObj.searchServer(
+                            requestObj.address.dzhtList,
+                            "dzheForm",
+                            dzhtFun
+                    );
+                }
+
+                function dzhtFun(data) {
+                    requestObj.searchObj.totalPage = data.body.totalPageNo;//总页码
+                    requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+                    requestObj.initPager(
+                            requestObj.address.dzhtList,
+                            dzhtFun
+                    );
+                    var dzList = data.body.data;
+                    $(".dzht tbody").empty();
+                    for (var i = 0; i < dzList.length; i++) {
+                        $(".dzht tbody").append(
+                                "<tr>" +
+                                "<td>" + dzList[i].htmc + "</td>" +
+                                "<td>" + scsj(formatDateStr(dzList[i].scsj)) + "</td>" +
+                                "<td>" + dzList[i].zxqyzt + "</td>" +
+                                "<td> " + isXz(dzList[i].wjid) +
+                                //"<a href='javascript:void(0)' onclick='savewj(\"" + dzList[i].ywbh + "\",\"" + dzList[i].id + "\",\"" + dzList[i].htmc + "\")'>生成合同</a> " +
+                                isScht(dzList[i].ywbh,dzList[i].id,dzList[i].htmc,dzList[i].zxqyzt) +
+                                isQz(dzList[i].wjid, dzList[i].ywbh, dzList[i].id, dzList[i].zxqyzt) +
+                                isTb(dzList[i].wjid, dzList[i].tzsbh, dzList[i].zxqyzt) +
+                                "</tr>"
+                        );
+                    }
+                }
+            }
+
+            function scsj(scsj) {
+                if (scsj) {
+                    return scsj;
+                }
+                return "未生成合同";
+            }
+
+            function isScht(ywbh, id, htmc, zt) {
+                if (zt == 1) {
+                    return "<a href='javascript:void(0)' onclick='savewj(\"" + ywbh + "\",\"" + id + "\",\"" + htmc + "\")'>生成合同</a> ";
+                } else {
+                    return "";
+                }
+            }
+
+            function isXz(wjid) {
+                if (wjid) {
+                    return "<a href='" + requestObj.port + "common/file.do?q=" + wjid + "'>下载</a> <a target= '_blank' href='" + requestObj.port + "common/filePreview.do?q=" + wjid + "'>预览</a>";
+                } else {
+                    return "";
+                }
+            }
+
+            function isQz(wjid, ywbh, id, zt) {
+                if (wjid) {
+                    // 1 已录入 2 待客户签约  3 待银行签约 4 已签约 
+	            	if(zt == 1){
+	                 	return "<a href='javascript:void(0)' onclick='rzkhqz(\"" + "2" + "\",\"" + id + "\")'>发送客户签约</a>";
+	                }
+	                if(zt == 2){
+	                 	return "<a href='javascript:void(0)' onclick='rzkhqz(\"" + "1" + "\",\"" + id + "\")'>撤销</a>";
+	                }
+	                if(zt == 3){
+	                	return "<a href='javascript:void(0)' onclick='tzsqz(\"" + wjid + "\",\"" + ywbh + "\",\"" + id + "\")'>签章</a>";
+	                }
+	                if(zt == 4){
+						return "";
+		            }
+                } else {
+                    return "";
+                }
+            }
+            function isTb(wjid, tzsbh, zt) {
+                if (wjid) {
+                    // 1 已录入 2 待客户签约  3 待银行签约 4 已签约 
+	                if(zt == 3 || zt == 4){
+	                	return "<a href='javascript:void(0)' onclick='tzsUpdate(\"" + wjid + "\",\"" + tzsbh + "\")'>更新</a>";
+	                }else{
+						return "";
+		                }
+                } else {
+                    return "";
+                }
+            }
+
+            //文件上传
+            $("#file").upload(requestObj.address.bbxxuploadfile, {
+                ywlx: "0012"
+            }, function (file, id) {
+                if (file.type.toLowerCase() == '.jpg') {
+                    $("#dis").html("上传成功:<img src='" + requestObj.port + "common/file.do?q=" + id + "' width=100 height=100>");
+                } else {
+                    $("#dis").html("上传成功，文件名:" + file.name);
+                }
+            });
+            $("#smbc").click(function () {
+                var fs = [];
+                var files = $("#wjForm").getData().file;
+                if (!files) {
+                    pluginObj.alert("", "请选择文件！");
+                    return;
+                }
+                // 验证文件个数
+                if (!isArray(files)) {
+                    if (files == "") {
+                        pluginObj.alert("", "请等待文件上传完成！")
+                        return;
+                    }
+                    fs[0] = files;
+                } else {
+                    fs = files;
+                }
+                // 判断文件是否全部已上传
+                for (var i = 0; i < fs.length; i++) {
+                    if (fs[i] == "") {
+                        pluginObj.alert("", "请等待文件上传成功！")
+                        return;
+                    }
+                }
+                requestObj.ajaxServer(
+                        requestObj.address.saveHtfj,
+                        {
+                            "xydm": $("input[name='xydm']").val(),
+                            "files": fs,
+                            "xxsm": $(".textlist").val()
+                        },
+                        function (data) {
+                            pluginObj.alert("", "操作成功！");
+                            $("#file-queue").empty();
+                            $(".textList").val("");
+                            $(".aleatF").hide();
+                            location = "blht.html"+ location.search +"&tab=2&v=APP_VER";
+                        },
+                        function () {
+                        }
+                )
+            });
+
+            function isArray(arg) {
+                if (typeof arg === 'object') {
+                    return Object.prototype.toString.call(arg) === '[object Array]';
+                }
+                return false;
+            }
+
+
+            // 第二个标签页补充资料
+            $(".htysSave").click(function () {
+                var xydm = $("[name='xydm']").val();
+                if (!xydm) {
+                    pluginObj.alert("", "请先保存合同信息");
+                    return;
+                }
+                if (!$('#htysForm').valid()) {
+                    return;
+                }
+                xsFun();
+                $("#htys_xydm").val(xydm);
+                var urlHtys = requestObj.address.htysSave;
+                if (type === "modify") {
+                    urlHtys = requestObj.address.htysUpdate;
+                }
+                requestObj.ajaxServer(
+                        urlHtys,
+                        requestObj.packRequest(decodeURIComponent($("#htysForm").serialize().replace(/\+/g," "), true)),
+                        function (data) {
+                            pluginObj.alert("", "操作成功");
+                            location = "blht.html"+ location.search +"&tab=1&v=APP_VER";
+                        },
+                        function () {
+                        }
+                )
+            });
+
+            // 合同要素页面显示
+            function initHtys() {
+                htysPage("djjzlv", "rzlvqxdc");
+                htysPage("rzlv", "rzlvfdz");
+                htysPage("lxchfs", "hxfs");
+            }
+
+            initHtys();
+
+            if (type === "modify") {
+                var htysXydm = locationObj.getParams().xydm;
+                requestObj.ajaxServer(
+                        requestObj.address.findOnehtys,
+                        {"xydm": htysXydm},
+                        function (data) {
+                            var htys = data.body.data[0];
+                            pluginObj.setFormValueById(htys);
+                            initHtys();
+                            pluginObj.setFormValueByName(htys);
+                            if (htys) {
+                                xsfsModify(htys.xyxsfs, htys.xsfsmc);
+                            }
+
+                        },
+                        function () {
+                        }
+                )
+            }
+
+
+            $(".djjzlv").change(function () {
+                htysPage("djjzlv", "rzlvqxdc");
+            });
+            $(".rzlv").change(function () {
+                htysPage("rzlv", "rzlvfdz");
+            });
+            $(".lxchfs").change(function () {
+                htysPage("lxchfs", "hxfs");
+            });
+
+            // 合同要素页面
+            function htysPage(sel, name) {
+                var lx = parseInt($("." + sel).val());
+                $("." + sel + "_qx").attr("disabled", "disabled");
+                $("." + sel + "_qx").removeAttr("name");
+                $("." + sel + "_qx").eq(lx - 1).removeAttr("disabled");
+                $("." + sel + "_qx").eq(lx - 1).attr("name", name);
+            }
+
+            // 甲方拟采用信用销售方式向 公司
+            $("[name=a]").change(function () {
+                xsFun();
+            });
+
+            function xsFun() {
+                var fsName = document.getElementsByName("a");
+                for (var i = 0; i < fsName.length; i++) {
+                    if (fsName[i].checked) {
+                        $(".xyxsfs").attr("disabled", "disabled");
+                        $(".xyxsfs").eq(i).removeAttr("disabled");
+                        $("[name=xyxsfs]").val(i + 1);
+                        $("[name=xsfsmc]").val($(".xyxsfs").eq(i).val());
+                    }
+                }
+            }
+
+            // 获得信用方式值
+            function xsfsModify(xyxsfs, xsfsmc) {
+                var fs = parseInt(xyxsfs);
+                $("[name=a]").eq(fs - 1).attr("checked", "checked");
+                $(".xyxsfs").attr("disabled", "disabled");
+                $(".xyxsfs").eq(fs - 1).removeAttr("disabled");
+                $(".xyxsfs").eq(fs - 1).val(xsfsmc);
+            }
+
+            // 选中融资客户后 自动加载核心企业
+           /*  $("#rzkhh").change(function () {
+                var glxx = "01";
+                if ($(this).val() == "glxx_glkhh") {
+                    glxx = "03";
+                }
+                requestObj.ajaxServer(
+                        requestObj.address.findGlxxVo,
+                        {
+                            "glxx_gllx": glxx,
+                            "pageSize": "10",
+                            "glxx_glkhh": $(this).val()
+                        },
+                        function (data) {
+                            $("[name='hxqykhh']").empty();
+                            var hxqykhh = data.body.data;
+                            $("[name='hxqykhh']").append(
+                                    "<option value=''></option>"
+                            )
+                            for (var i = 0; i < hxqykhh.length; i++) {
+                                $("[name='hxqykhh']").append(
+                                        "<option value='" + hxqykhh[i].khh + "'>" + hxqykhh[i].qymc + "</option>"
+                                )
+                            }
+                        },
+                        function () {
+                        }
+                )
+            });*/
+
+            // 选中核心企业
+            $("#hxqykhh").change(function () {
+            	if(!$(this).val()){
+            		$("#rzbl").val("");
+					return;
+                }
+                requestObj.ajaxServer(
+                        requestObj.address.jsyfindCyfgl,
+                        {
+                            "khh": $(this).val()
+                        },
+                        function (data) {
+                            $("#rzbl").val(data.body.rzbl);
+                        },
+                        function () {
+                        }
+                )
+            }); 
+            // 选中收取方式
+            /**
+             保理费收取方式为免收时，其他不用填，若为先手或后收，则：保理费计算方式为按费率时，费率必输，为固定是，固定费用必输。
+             */
+            $("#sqfs").change(function () {
+                var sqfs = $(this).val();
+                fy(sqfs);
+            });
+            function fy(sqfs) {
+                if (sqfs == 02) {
+                    $(".ms").attr("disabled", "disabled");
+                    $(".ms").val("");
+                    $("#kqfs").rules("remove");
+                    $("#blfjsfs").rules("remove");
+                    $("#blffl").rules("remove");
+                    $("#gdfy").rules("remove");
+                    $("#qtfy").rules("remove");
+                } else {
+                    $(".ms").removeAttr("disabled");
+                    $("#kqfs").rules("add", {
+                        required: true,
+                    });
+                    $("#blfjsfs").rules("add", {
+                        required: true,
+                    });
+                    $("#qtfy").rules("add", {
+                        required: true,
+                        number: true
+                    });
+                    fl();
+                    $("#blfjsfs").change(function () {
+                        fl();
+                    });
+                    function fl() {
+                        if ($("#blfjsfs").val() == 00) {
+                            $("#blffl").removeAttr("disabled");
+                            $("#gdfy").attr("disabled", "disabled");
+                            $("#gdfy").val("");
+                            $("#blffl").rules("add", {
+                                required: true,
+                                range: [0, 100]
+                            });
+                            $("#gdfy").rules("remove");
+                        }
+                        if ($("#blfjsfs").val() == 01) {
+                            $("#gdfy").removeAttr("disabled");
+                            $("#blffl").attr("disabled", "disabled");
+                            $("#blffl").val("");
+                            $("#gdfy").rules("add", {
+                                required: true,
+                                number: true
+                            });
+                            $("#blffl").rules("remove");
+                        }
+                    }
+                }
+            }
+            // 流贷合同加载
+            function ldht(xydm) {
+                requestObj.ajaxServer(
+                        requestObj.address.jsyfindldht,
+                        {
+                            "xydm": xydm
+                        },
+                        function (data) {
+                            var obj = data.body;
+                            pluginObj.setFormValueByName(obj);
+                        },
+                        function () {
+                        }
+                )
+
+                // 生成流贷合同
+                $(".ldhtAdd").click(function () {
+                    $("#ldhtForm input[name=ldXydm]").val(xydm);
+                    requestObj.ajaxServer(
+                            requestObj.address.jsyLdhtAdd,
+                            requestObj.packRequest(decodeURIComponent($("#ldhtForm").serialize().replace(/\+/g," "), true)),
+                            function (data) {
+                                pluginObj.alert("", "操作成功");
+                                location = "blht.html"+ location.search +"&tab=4&v=APP_VER";
+                            },
+                            function () {
+                            }
+                    )
+                });
+
+                $("#ldhtFormSe input[name='ywbh']").val(xydm);
+                $("#ldhtFormSe input[name='wjlx']").val("0014");
+                $("#ldhtFormSe input[name='tzslx']").val("01");
+                requestObj.searchServer(
+                        requestObj.address.dzhtList,
+                        "ldhtFormSe",
+                        dzhtFun
+                );
+                function dzhtFun(data) {
+                    requestObj.searchObj.totalPage = data.body.totalPageNo;//总页码
+                    requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+                    requestObj.initPager(
+                            requestObj.address.dzhtList,
+                            dzhtFun
+                    );
+                    var dzList = data.body.data;
+                    if (dzList.length > 0 && dzList[0].wjid) {
+                        $("#ldhtxz").show();
+                        $("#ldhtxz").attr("href", requestObj.port + "common/file.do?q=" + dzList[0].wjid);
+                        $("#ldhtyl").show();
+                        $("#ldhtyl").attr("href", requestObj.port + "common/filePreview.do?q=" + dzList[0].wjid);
+                    }
+                }
+            }
+
+            // 账号流水
+            $("#zhls").click(function () {
+                var jszh = $("#jszh").val();
+                if(!jszh){
+                	pluginObj.alert("", "请输入需要查询的账号");
+                	return;
+                }
+            	$("#zhlsjszh").val(jszh);
+            	zhlsFun();
+            });
+            $("#zhlsHkzh").click(function () {
+            	 var hkzh = $("#hkzh").val();
+                 if(!hkzh){
+                 	pluginObj.alert("", "请输入需要查询的账号");
+                 	return;
+                 }
+            	$("#zhlsjszh").val(hkzh);
+            	zhlsFun();
+            });
+
+            $('#zhlsModal').on('shown.bs.modal', function () {
+
+            });
+            function zhlsFun(){
+            	//zhls账号流水模态框  modal
+                $("#zhlsModal").modal({
+                    remote: ""
+                });
+                $(".skjsls tbody").empty();
+                $("input[name=qsrq]").val(formatDate(new Date()));
+                $("input[name=dqrq]").val(formatDate(new Date()));
+            	requestObj.searchServer(
+    			        requestObj.address.jsyzhls,
+    			        "zhlsFrom",
+    			        zhlsFun
+    			);
+    			function zhlsFun(data){
+    				 requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+    		         requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+    		         requestObj.initPager(
+    		                 requestObj.address.jsyzhls,
+    		                 zhlsFun
+    		         );
+    		         $(".skjsls tbody").empty();
+    		         var list = data.body.data;
+    		         if(!list){
+    		        	 return;
+            		 }
+                     for (var i = 0; i < list.length; i++) {
+                         $(".skjsls tbody").append(
+                                 "<tr>" +
+                                 "<td>" + formatDateStr(list[i].jyrq) + "</td>" +
+                                 "<td>" + formatTime(list[i].jysj) + "</td>" +
+                                 "<td>" + list[i].jdbj + "</td>" +
+                                 "<td>" + numberToCurrency(list[i].jyje) + "</td>" +
+                                 "<td>" + numberToCurrency(list[i].zhye) + "</td>" +
+                                 "<td>" + list[i].dfzhdh + "</td>" +
+                                 "<td>" + list[i].dfzhmc + "</td>" +
+                                 "</tr>"
+                         );
+                     }
+    			}
+    			// 给查询按钮绑定查询事件
+    		    $("#zhlsBtn").click(function(){
+    		        requestObj.searchObj.postData.pageIndex = "1";
+    		        requestObj.searchServer(
+    		                requestObj.address.jsyzhls,
+    		                "zhlsFrom",
+    		                zhlsFun
+    		        );
+    		    });
+    		    function formatTime(value){
+					if(value.length == 6){
+						return value.substring(0, 2) + ":" + value.substring(2, 4) + ":" + value.substring(4, 6);
+					}else{
+						return value;
+					}
+        		}
+            }
+            function formatDate(d) {
+            	    month = '' + (d.getMonth() + 1),
+            	    day = '' + d.getDate(),
+            	    year = d.getFullYear();
+            	 
+            	  if (month.length < 2) month = '0' + month;
+            	  if (day.length < 2) day = '0' + day;
+            	 
+            	  return [year, month, day].join('-');
+            	}
+
+
+            $("#glblhtbu").click(function(){
+                var rzkhh = $("#rzkhh").val();
+                if(!rzkhh){
+                	pluginObj.alert("", "请选择融资客户");
+                	return;
+                }
+                $("#selectZhKhh").val(rzkhh);
+                selectZhFun("jszh");
+            });
+            $("#selectHkzh").click(function(){
+            	$("#selectZhKhh").val("");
+                selectZhFun("hkzh");
+            });
+            function selectZhFun(zhlx){
+            	$("#glblhtModal").modal("show");
+    	        requestObj.searchServer(
+    	    	        requestObj.address.jsyzhglFind,
+    	    	        "selectZh",
+    	    	        function successFun(data){
+    	    	        	requestObj.searchObj.totalPage = data.body.totalPageNo; //总页码
+    	    	    		requestObj.searchObj.recordsTotal = data.body.totalCount; //总记录数目
+    	    	    		requestObj.initPager(
+    	    	    			requestObj.address.jsyzhglFind,
+    	    	    			successFun
+    	    	    		);
+    	    	    		$(".blhtTable tbody").empty();
+    	    	    		var listVo = data.body.data;
+    	    	            for(var i = 0; i < listVo.length; i++){
+    	    	        	   $(".blhtTable tbody").append(
+    			        		  "<tr>" +
+    	          				 "<td><input type='radio' name='blhtzh' value='"+ listVo[i].zhlx +"'></td>" +
+    	                          "<td>" + listVo[i].zh + "</td>" +
+    	                          "<td>" + listVo[i].zhhm + "</td>" +
+    	                          "<td>" + listVo[i].zhkhh + "</td>" +
+    	                          "<td>" + listVo[i].zhlx + "</td>" +
+    	                          "</tr>"
+    	    			       );
+    	    	             }
+    	    	             $("[name='blhtzh']").eq(0).prop("checked","checked");
+    	    			}
+    	    	 );
+	            $("#saveId").click(function(){
+	            	var _input = $("input[name='blhtzh']:checked");
+	            	var _tr = _input.parent().parent();
+	            	var zh = _tr.find("td").eq(1).text();
+	            	var zhhm = _tr.find("td").eq(2).text();
+	            	var zhkhh = _tr.find("td").eq(3).text();
+	            	if(zh){
+		            	if(zhlx == "jszh"){
+		            		$("#jszh").val(zh);
+		            		$("#jszhhm").val(zhhm);
+		            		$("#jszhkhh").val(zhkhh);
+			            }
+		            	if(zhlx == "hkzh"){
+		            		$("#hkzh").val(zh);
+		            		$("#hkzhhm").val(zhhm);
+		            		$("#hkzhkhh").val(zhkhh);
+		            		$("#hkzhlx").val(_input.val());
+			            }
+			        }
+	            	$("#glblhtModal").modal("hide"); 
+	            });
+            }
+            $(".blhtTable tbody").on("click","tr",function(){
+    			$(this).find("[name='blhtzh']").prop("checked","checked");
+            });
+            
+            // 调整页面高度
+            $(".jbxx").click(function () {
+                autoHeight();
+                $(".aleatF").hide();
+            });
+            $(".add").click(function () {
+                if (!$("#xydm").val()) {
+                    pluginObj.alert("", "请先保存合同信息");
+                    return;
+                }
+                $(".aleatF").show();
+            })
+            $(".over").click(function () {
+                $(".aleatF").hide();
+            })
+
+        });
+
+        // 删除文件
+        function delwj(id, a) {
+            pluginObj.comfire("是否确认删除？", function () {
+                requestObj.ajaxServer(
+                        requestObj.address.deletewj,
+                        {
+                            "id": id
+                        },
+                        function (data) {
+                            //pluginObj.alert("","删除成功！");
+                            $(a).parent().parent().remove();
+                            pluginObj.alert("", "删除成功");
+                        },
+                        function () {
+                        }
+                )
+            }, function () {
+                return false
+            });
+        }
+        function savewj(ywbh, id, htmc) {
+            requestObj.ajaxServer(
+                    requestObj.address.jrjgsaveTzs,
+                    {
+                        "id": id,
+                        "ywbh": ywbh,
+                        "htmc": htmc + ".pdf",
+                        "tzsmc": "notice"
+                    },
+                    function (data) {
+                        pluginObj.alert("", "操作成功");
+                        location = "blht.html"+ location.search +"&tab=3&v=APP_VER";
+                    },
+                    function () {
+                    }
+            )
+        }
+        function rzkhqz(zt,id){
+        	   requestObj.ajaxServer(
+                       requestObj.address.updateTzsb,
+                       {
+                           "id": id,
+                           "zxqyzt": zt
+                       },
+                       function (data) {
+                          pluginObj.alert("", "操作成功");
+                          location = "blht.html"+ location.search +"&tab=3&v=APP_VER";
+                       },
+                       function () {
+                       }
+               )
+        }
+        function tzsqz(wjid, ywbh, id) {
+            requestObj.ajaxServer(
+                    requestObj.address.dzhtQz,
+                    {
+                        "id": id,
+                        "ywbh": ywbh,
+                        "wjid": wjid
+                    },
+                    function (data) {
+                        pluginObj.alert("", "操作成功");
+                       location = "blht.html"+ location.search +"&tab=3&v=APP_VER";
+                    },
+                    function () {
+                    }
+            )
+
+        }
+        function tzsUpdate(wjid, tzsbh) {
+            requestObj.ajaxServer(
+                    requestObj.address.updateTszByYTJ,
+                    {
+                        "tzsbh": tzsbh,
+                        "wjid": wjid
+                    },
+                    function (data) {
+                       pluginObj.alert("", "操作成功");
+                       location = "blht.html"+ location.search +"&tab=3&v=APP_VER";
+                    },
+                    function () {
+                    }
+            )
+
+        }
+    </script>
+
+</body>
+</html>

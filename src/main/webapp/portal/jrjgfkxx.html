@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-放款信息</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body style="padding-bottom: 70px">
+<div class="container" id="">
+				<div class="row search_result">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+							<th>企业名称</th>
+							<th>放款日期</th>
+							<th>放款金额</th>
+							<th>下柜编号</th>
+							<th>借据号</th>
+							<th dic-type="B1026">状态</th>
+							<th width="150">操作</th>
+						</tr>
+						</thead>
+						<tbody id="fkxx">
+                		</tbody>
+					</table>
+				<div id="kkpager"></div>
+				</div>
+		</div>
+	<div class="row">
+ 		<div class="text-center col-xs-12">
+			<a class="btn btn-default btn_query" href="javascript:void(0)" onclick="history.go(-1)">返回</a>
+		</div>
+	</div>
+	<!--信息确认-->
+	<div id="xgxxConfirm" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    	<div class="modal-dialog modal-lg" role="document">
+        	<div class="modal-content" id="xgxxcss"></div>
+    	</div>
+	</div>
+	<!-- 借据号补录 -->	
+	<div id="jjxxConfirm" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    	<div class="modal-dialog modal-lg" role="document">
+        	<div class="modal-content" id="jjxxcss">
+        	
+        	</div>
+    	</div>
+	</div>
+	<input type="hidden" name="id" id="jjID">	
+	<input type="hidden" id="fkje" name="fkje" data-type="currency">
+	<input type="hidden" id="xgbh">
+	<input type="hidden" id="khh">
+	<input type="hidden" id="qymc">
+	<input type="hidden" id="fkid">
+	<input type="hidden" id="glxybh">
+	<input type="hidden" id="mobile">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<script src="js/plugin/kkpager.min.js"></script>
+<script>
+//查询额度信息
+var sqbh = locationObj.getParams().sqbh;
+$(document).ready(function(){
+	 requestObj.ajaxServer(
+ 	        requestObj.address.jsyKhFkxxcxtwo,
+ 	        {
+ 	       	"pageSize":10,
+ 	 		"pageIndex":1,
+ 	        "rzsqrq":sqbh
+ 	        },
+ 	        function successFun(data){
+ 	        	requestObj.searchObj.totalPage = data.body.totalPageNo; //总页码
+ 	    		requestObj.searchObj.recordsTotal = data.body.totalCount; //总记录数目
+ 	    		requestObj.initPager(
+ 	    			requestObj.address.jsyKhFkxxcxtwo,
+ 	    			successFun
+ 	    		);
+ 	           var listVo = data.body.data;
+ 	           
+ 	           for(var i = 0; i < listVo.length; i++){
+ 	        	    var operation = "";
+ 	        		if(listVo[i].zt=='01' || listVo[i].zt=='03'){
+ 	        			operation += "<a href='javascript:void(0)' onclick='xsfk(\""+listVo[i].xgbh+"\",\""+listVo[i].qymc+"\",\""+listVo[i].khh+"\",\""+listVo[i].fkje+"\",\""+listVo[i].id+"\",\""+listVo[i].glxybh+"\")'>线上放款</a></td></tr>"
+ 	 	        	}else{
+ 	 	        		operation += "<a href='jrjgdkxxck.html?jjh="+ listVo[i].jjh +"'>贷款信息</a>"
+						if(!listVo[i].jjh){
+							operation += "<a href='javascript:void(0)' onclick='jjbl(\""+listVo[i].id+"\")'>借据补录</a>"
+						}
+ 	 	 	 	    }
+	 	           $("#fkxx").append(
+	 	              "<tr>" +
+	 	              "<td>" + noNull(listVo[i].qymc) + "</td>" +
+	 	              "<td>" + formatDateStr8(listVo[i].fkrq) + "</td>" +
+	 	              "<td>" + numberToCurrency(listVo[i].fkje) + "</td>" +
+	 	              "<td><a title='"+ listVo[i].xgbh +"' href='xgdetail.html?xgbh="+ listVo[i].xgbh +"'style='color: #0044CC;'>" + noNull(listVo[i].xgbh) + "</a></td>" +
+	 	              "<td>" + noNull(listVo[i].jjh) + "</td>" +
+	 	              "<td>" + noNull(listVo[i].zt) + "</td>" +
+	 	             "<td>" + operation + "</td></tr>"
+	 	              );
+ 	          }
+ 		}
+ 	 );
+
+//飞空验证
+function noNull(sj){
+	if(!sj){
+		return "";
+	}
+	return sj;
+}
+
+});
+// 借据补录
+function jjbl(id){
+	$("#jjxxConfirm").modal({
+        remote:'./jjxxConfirmModal.html?v=APP_VER',
+        backdrop:'static'
+    });
+    $("#jjID").val(id);
+	
+}
+$('#jjxxConfirm').on('shown.bs.modal', function () {
+	$("#synchronous").click(function(){
+	    requestObj.ajaxServer(
+	    		requestObj.address.jsyjjxxbl,
+	    		{
+					"id" : $("#jjID").val(),
+					"jjh" : $("#jjh").val()
+	        		},
+	    		function (data){
+	        		pluginObj.alert("", "操作成功");
+	        		//$('#jjxxConfirm').modal('hide');
+	        		location = "jrjgfkxx.html?v=APP_VER";
+	        	}
+	   	);
+		
+	});
+
+	
+});
+
+
+function xsfk(xgbh,qymc,khh,fkje,id,glxybh){
+	$("#xgxxConfirm").modal({
+        remote:'./xgxxConfirmModal.html?v=APP_VER',
+        backdrop:'static'
+    });
+	$("#fkje").val(fkje);
+	$("#qymc").val(qymc);
+	$("#xgbh").val(xgbh);
+	$("#khh").val(khh);
+	$("#fkid").val(id);
+	$("#glxybh").val(glxybh);
+}
+$('#xgxxConfirm').on('shown.bs.modal', function () {
+    var fkje = $("#fkje").val();
+    var qymc = $("#qymc").val();
+    var xgbh = $("#xgbh").val();
+    var rzkhh = $("#khh").val();
+    var fkid = $("#fkid").val();
+    var glxybh = $("#glxybh").val();
+    //获取当前登录人手机号
+    requestObj.ajaxServer(
+    		requestObj.address.getDlzh,
+    		{},
+    		function (data){
+				$("#mobile").val(data.body);
+        	}
+   	);
+    
+    //根据下柜编号获取支付方式
+    requestObj.ajaxServer(
+            requestObj.address.getXgxxDetail,
+            {
+                "id": xgbh
+            },
+            function (data) {
+                var xgVO = data.body;
+                $("#fkzflx").val(xgVO.fkzflx);
+            }
+    );
+    //根据申请编号获取保理合同信息
+    requestObj.ajaxServer(
+            requestObj.address.findOneblht,
+            {
+                "xydm": glxybh
+            },
+            function (data) {
+                var blhtVO = data.body;
+                $("#jszh").val(blhtVO.jszh);
+                $("#skrmc").val(blhtVO.skrmc);
+                $("#skrzh").val(blhtVO.skrzh);
+            }
+    );      
+    $("#xfkje").val(numberToCurrency(fkje));
+    $("#rzqy").val(qymc);
+    
+    $(this).find("form").validate({           
+        rules: {
+            verifyCode: {
+                required: true,
+                minlength: 6
+            },
+            picVC : {
+				required : true
+			}
+        },
+        messages: {
+            verifyCode: {
+                required: "请输入验证码",
+                minlength: "验证码长度是6位"
+            },
+            picVC : {
+				required : ""
+			}
+        }
+    });
+
+    //下柜信息确认
+    $("#submit").click(function () {
+        if (!$('#xgxxForm').valid()) {
+            return;
+        }
+        $("#fkzflx").val();
+        if(fkzflx==1){
+        	pluginObj.alert("","暂不支持委托支付");
+        	return;
+        }
+        requestObj.ajaxServer(
+                requestObj.address.jsySqRzsqfk,
+                {
+					"xgbh":xgbh,
+					"sqbh":sqbh,
+					"khh":rzkhh,
+					"fkje":fkje,
+					"fkid":fkid
+                },
+                function (data) {
+                    pluginObj.alert("", "放款成功");
+                    window.location = "jrjgfkxx.html?sqbh="+sqbh;
+                }
+        );
+    });
+    $("#cancel").click(function(){
+		window.location="jrjgfkxx.html?sqbh="+sqbh;
+    });
+    
+});
+//发送短信验证码
+function sendSmsRealName() {
+    var $this = $(this);
+    if ($this.data("disable")) {
+        return;
+    }
+    var mobile = $("#mobile").val();
+    var picVC = $("#picVC").val();
+    if (!picVC) {
+        pluginObj.alert("", "请输入图片验证码！")
+        return "";
+    }
+    var time = 30;
+    var origtext = $("#sendValidCode").text();
+    //发送等待
+    requestObj.ajaxServer(requestObj.address.sendSmsRealName, {dlzh: mobile}, function (data) {
+        $("#sendValidCode").text("发送成功(" + time + "秒)");
+        $("#sendValidCode").attr("disabled", true);
+        var t = setInterval(function () {
+            $("#sendValidCode").text("发送成功(" + (--time) + "秒)");
+        }, 1000);
+        setTimeout(function () {
+            clearInterval(t);
+            $("#sendValidCode").text(origtext);
+            $("#sendValidCode").attr("disabled", false);
+        }, time * 1000);
+    });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="zh-CN">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-核心企业-我的额度查询</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link href="css/new.css?v=APP_VER" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+		<link href="css/select2.min.css" rel="stylesheet">
+		<script src="js/select2.min.js"></script>
+		<link rel="stylesheet" href="js/plugin/kkpager_green.css" />
+		<script src="js/plugin/kkpager.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/new.css" />
+	</head>
+
+	<body>
+		<div class="container m-content">
+			<form class="form-horizontal row" id="searchFrom" role="form" onsubmit="return false;">
+				<div id="wrap_file" style="">
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">额度金额（元）</label>
+							<div class="col-md-8">
+								<div class="col-45">
+									<input class="form-control jeq" id="zje" name="sxzed" type="text" placeholder="">
+								</div>
+								<div class="col-10">
+									<p class="form-control-static">-</p>
+								</div>
+								<div class="col-45">
+									<input class="form-control jez" id="zje2" name="sxzed2" type="text" placeholder="">
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">状态</label>
+							<div class="col-md-8">
+								<select class="form-control" id="zt" name="zt" dic-type="B1019" dic-blank=" ">
+									<option vlaue=""></option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<label class="col-md-4 control-label">额度类型</label>
+							<div class="col-md-8">
+								<select class="form-control" id="edlx" dic-type="B10182" dic-blank=" " name="edlx" >
+								</select>
+							</div>
+						</div>
+					  <div class="col-xs-6">
+						<label class="col-md-4 control-label">额度编号</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="edbh" name="edbh">
+						</div>
+					   </div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<button id="searchBtn" class="btn_query btn btn-default">查询</button> &nbsp;&nbsp;
+						<!--<button class="button2">取消</button>-->
+					</div>
+				</div>
+			</form>
+		</div>
+		<!--额度列表-->
+		<div class="container" id="">
+			<form class="row form" action="#" id="FormId">
+				<div class="search_result">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>额度编号</th>
+								<th dic-type="B10182">额度类型</th>
+								<th>额度生效日期</th>
+								<th>额度结束日期</th>
+								<th>额度金额（元）</th>
+								<th>可用额度（元）</th>
+								<th dic-type="B1019">状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody class="data_table" id="edxx">
+						</tbody>
+					</table>
+					<div id="kkpager" style="padding-left: 30px"></div>
+				</div>
+			</form>
+		</div>
+		<script type="text/javascript">
+			//查询额度信息
+			$(document).ready(function() {
+				//初始化日期插件
+				dataPiker();
+				requestObj.searchServer(
+					requestObj.address.jsyKhEdxxFind,
+					"FormId",
+					successFun
+				);
+				//进入页面默认查询数据
+			});
+
+			function successFun(data) {
+				 requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+				 requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+				 requestObj.initPager(
+				 requestObj.address.jsyKhEdxxFind,
+				 successFun
+				 );
+				$("#edxx").empty();
+				var listVo = data.body.data;
+				for(var i = 0; i < listVo.length; i++) {
+					$("#edxx").append(
+						"<tr><td>" + noNull(listVo[i].edbh) + "</td>" +
+						"<td>" + listVo[i].edlx + "</td>" +
+						"<td>" + formatDateStr8(listVo[i].yxrq) + "</td>" +
+						"<td>" + formatDateStr8(listVo[i].sxrq) + "</td>" +
+						"<td>" + numberToCurrency(listVo[i].sxzed) + "</td>" +
+						"<td>" + numberToCurrency(listVo[i].syed) + "</td>" +
+						"<td>" + noNull(listVo[i].zt) + "</td>" +
+						"<td>" +
+						"<a href='hxqywdedxxck.html?id=" + listVo[i].id + "'>查看</td>" +
+						"</tr>")
+				}
+			}
+			//给查询按钮绑定查询事件
+			$("#searchBtn").click(function() {
+				if(!jeyz("form")){
+					return;
+		        }
+				requestObj.searchServer(
+					requestObj.address.jsyKhEdxxFind,
+					"searchFrom",
+					successFun)
+			});
+			//飞空验证
+		       function noNull(sj){
+		   		if(!sj){
+		   			return "";
+		   		}
+		   		return sj;
+		       }
+		       function jeyz(bqys){
+		           var jeq = "0";
+		           var jez = "0";
+		       	var yz = $(bqys+" .jeq");
+		   		for(var i = 0; i < yz.length; i++){
+		   			if(yz[i].value.length > 24){
+		   				pluginObj.alert("",'金额输入过大！');
+		   				return false;
+		   			}
+		   			jeq = yz[i].value;
+		   		}
+		   		var yz1 = $(bqys+" .jez");
+		   		for(var i = 0; i < yz1.length; i++){
+		   			if(yz1[i].value.length > 24){
+		   				pluginObj.alert("",'金额输入过大！');
+		   				return false;
+		   			}
+		   			jez = yz1[i].value
+		   		}
+		   		var jeqNum = Number(jeq);
+		   		var jezNum = Number(jez);
+		   		if(isNaN(jeqNum) || isNaN(jezNum)){
+		   			pluginObj.alert("",'输入金额必须是数字！');
+		   			return false;
+		   		}
+		   		if(jeqNum > jezNum){
+		   			pluginObj.alert("",'输入金额范围有误！');
+		   			return false;
+		   		}
+
+		   		yz = $(bqys + " .cd32");
+		   		for(var i = 0; i < yz.length; i++){
+		   			if(yz[i].value.length > 32){
+		   				pluginObj.alert("",'操作失败，输入的字符过长！');
+		   				return false;
+		   			}
+		   		}
+		   		return true;
+		       }
+		</script>
+
+	</body>
+
+</html>

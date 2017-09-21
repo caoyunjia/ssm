@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-额度管理-核心企业授信额度(元)查看</title>
+    <!-- Bootstrap -->
+    <link href="css/select2.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="container m-content">
+    <form class="form form-horizontal" action="#" id="formId">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">企业名称</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="qymc" name="qymc" dic-blank=" " />
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                    <select class="form-control " id="zt" name="zt" dic-type="B1019" dic-blank=" ">
+                        <option vlaue=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                 <label for="hyfl" class="col-md-4 control-label">授信额度(元)</label>
+                    <div class="col-md-8">
+                        <div class="col-45">
+                            <input class="form-control jeq" id="sxzed" data-type="currency" name="sxzed" type="text"  placeholder="">
+                            </select>
+                        </div>
+                        <div class="col-10" style="text-align: center"><p class="form-control-static">-</p></div>
+                        <div class="col-45">
+                            <input class="form-control jez" id="sxzed2" data-type="currency" name="sxzed2" type="text"  placeholder="">
+                        </div>
+                    </div>
+                </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">额度编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="edbh" name="edbh" placeholder="">
+                </div>
+            </div>
+        </div>
+		<input type="hidden" id="qylx" name="qylx">
+        <div class="row">
+            <div class="text-center col-xs-12">
+                <a id="searchBtn" class="btn btn-default btn_query">查询</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="search_result container">
+    <div class="row">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>企业名称</th>
+                <th>额度编号</th>
+                <th>额度生效日期</th>
+                <th>额度结束日期</th>
+                <th>授信额度(元)</th>
+                <th dic-type="B1019">状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div id="kkpager"></div>
+    </div>
+</div>
+<form id="searchFrom">
+    <input type="hidden" name="" id="cwbbLx" value="">
+</form>
+</body>
+ <script src="js/plugin/kkpager.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<script>
+    $(document).ready(function () {
+        //判断是否为超管
+        var postData1 = {}
+        requestObj.ajaxServer(requestObj.address.jsyqueryLx, postData1, function (data, postData1) {
+            if (data.body.data[0].lx == 1) {
+                $("#sp").prop("hidden", false);
+            } else {
+                $("#sp").prop("hidden", true);
+            }
+        })
+		requestObj.ajaxServer(
+		          requestObj.address.getHxqy,
+		            {"pageSize":10,
+		            "pageIndex":1,
+		            "khgxlx":'03'
+		            },
+		            function(data){
+		              var listVO = data.body.data;
+		              //alert(JSON.stringify(data.body));
+		              for(var i = 0; i < listVO.length; i++){
+		                 $("#qymc").append(
+							"<option>"+listVO[i].cyfVo.qymc+"</option>"
+		                 );
+		              }
+		             }
+		      );
+        var successFun = function (data, postData) {
+        	requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+            requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+            requestObj.initPager(
+            requestObj.address.jsyqueryLx,
+            successFun
+            );
+            var cwList = data.body.data;
+            $(".table-bordered tbody").empty();
+            for (var i = 0; i < cwList.length; i++) {
+                $(".table-bordered tbody").append(
+                        "<tr>" +
+                        "<td><a href='sxyzlck.html?khh=" + cwList[i].khh + "&type=2'>" + Tools.formatData(cwList[i].qymc) + "</a></td>" +
+                        "<td><a href='jrjgedglxxqysxedxq.html?id=" + cwList[i].id + "&type=2'>" + Tools.formatData(cwList[i].edbh) + "</a></td>" +
+                        "<td>" + Tools.formatData(cwList[i].yxrq, "date") + "</td>" +
+                        "<td>" + Tools.formatData(cwList[i].sxrq, "date") + "</td>" +
+                        "<td>" + numberToCurrency(cwList[i].sxzed) + "</td>" +
+                        "<td>" + Tools.formatData(cwList[i].zt) + "</td>" +
+                        czcd(cwList[i].zt,cwList[i].khh,cwList[i].id,cwList[i].edbh) +
+                        "</tr>"
+                        //<a style="color: #0044CC;" href="jrjgedglxxqysxedxq.html?v=APP_VER">查看</a>
+                        //<a style="color: #0044CC;" href="jrjgedglxxqysxedxq.html?v=APP_VER">审批</a>
+                        //<a style="color: #0044CC;" href="jrjgedglxxqysxededtz.html?v=APP_VER">调整</a>
+                );
+            }
+        }
+        function czcd(zt,khh,id,edbh){
+	        if(zt=='02'){
+		        return "<td><a href='edls.html?khh=" +khh + "&edbh=" +edbh + "'>流水</a> <a href='jrjgedglsxyxedededtz.html?id=" + id + "'>调整</a></td>";
+		        }else{
+		        return "<td><a href='edls.html?khh=" + khh + "&edbh=" +edbh + "'>流水</a></td>";
+			        }
+		        } 
+        var postData = {
+            "qylx": "01",
+            "pageSize": requestObj.searchObj.postData.pageSize,
+            "pageIndex": requestObj.searchObj.postData.pageIndex
+        }
+        //页面初始化
+        //页面初始化
+        $("#qylx").val("01");
+        requestObj.searchServer(
+			        requestObj.address.jsyQrySxed,
+			        "formId",
+			        successFun
+			);
+        //查询按钮点击事件
+        $("#searchBtn").click(function () {
+        	$("#formId").submit(false);
+			if(!$('#formId').valid()){
+				return;
+			}
+			requestObj.searchObj.postData.pageIndex = "1";
+			 requestObj.searchServer(
+				        requestObj.address.jsyQrySxed,
+				        "formId",
+				        successFun
+				);
+        });
+    })
+    //初始化日期插件
+    dataPiker();
+    //关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+    //    $(document).off('click.bs.dropdown.data-api');
+    //自动展开
+    $('.nav .dropdown').mouseenter(function () {
+        $(this).addClass('open');
+    });
+    //自动关闭
+    $('.nav .dropdown').mouseleave(function () {
+        $(this).removeClass('open');
+    });
+</script>
+
+<script>
+	$().ready(function() {
+		$("#formId").validate({
+			rules : {
+				sxed : {
+					number : true
+				},
+				edbh : {
+					maxlength : 32
+				}
+			},
+		});
+
+		});
+	</script>
+
+
+</html>

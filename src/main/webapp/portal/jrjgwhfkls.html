@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-付款维护-付款流水</title>
+    <link href="css/main.css?v=APP_VER" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <link rel="stylesheet" href="css/new.css">
+    <link href="css/select2.min.css" rel="stylesheet">
+</head>
+<body>
+    <!--放款信息查询-->
+    <form class="form-horizontal" id="searchForm">
+    <!-- <input type="hidden" id="fkid" name="fkid">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资申请编号</label>
+                <div class="col-md-8">
+                    <input name="sqbh" id="sqbh" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <button id="searchBtn" type="button" class="btn_query button1 btn btn-default">查询</button>
+            </div>
+        </div> -->
+		<input type="hidden" name="sqbh" id="sqbh">
+    </form>
+<div class="container m-content">
+    <form class="form row" action="#" id="FormId">
+        <!--还款流水-->
+        <div class="info_list search_result">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>融资申请编号</th>
+                    <th>付款金额(元)</th>
+                    <th>费用金额</th>
+                    <th dic-type="B1054">付款方式</th>
+                    <th dic-type="B1056">付款币种</th>
+                    <th>付款日期</th>
+                    <th dic-type="B1009">是否吊销</th>
+                    
+                </tr>
+                </thead>
+                <tbody class="data_table" id="lsxx">
+                </tbody>
+            </table>
+            <div id="kkpager"></div>
+        </div>
+    </form>
+</div>
+	<div class="row">
+ 	<div class="text-center col-xs-12">
+	 	<a class="btn btn-default btn_query" href="javascript:void(0)" onclick="history.go(-1)">返回</a>
+    </div>
+   </div>
+<script src="js/plugin/kkpager.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/html5shiv.min.js"></script>
+<script src="js/respond.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //  还款流水查询 
+    	dataPiker();
+    	var sqbh=locationObj.getParams().sqbh; 
+    	$("#sqbh").val(sqbh);
+    	requestObj.searchServer(
+        		 requestObj.address.findfkls,
+        		 "searchForm",
+        		 successFun
+         );
+        
+        //给查询按钮绑定查询事件
+        $("#searchBtn").click(function () {
+            requestObj.searchServer(
+                    requestObj.address.findfkls,
+                    "searchForm",
+                    successFun
+            );
+        });
+        function successFun(data) {
+            requestObj.searchObj.totalPage = data.body.totalPageNo;//总页码
+            requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+            requestObj.initPager(
+                    requestObj.address.findfkls,
+                    successFun
+            );
+            $("#lsxx").empty();
+            var listVo = data.body.data;
+            for (var i = 0; i < listVo.length; i++) {
+                $("#lsxx").append(
+                		"<tr>" + 
+                        "<td>" + noNull(listVo[i].sqbh) + "</td>" +
+                        "<td>" + numberToCurrency(listVo[i].fkje) + "</td>" +
+                        "<td>" + numberToCurrency(listVo[i].fyje) + "</td>" +
+                        "<td>" + noNull(listVo[i].fkfs) + "</td>" +
+                        "<td>" + noNull(listVo[i].bz) + "</td>" +
+                        "<td>" + formatDateStr8(listVo[i].fkrq) + "</td>" +
+                        "<td>" + noNull(listVo[i].sfdx) + "</td>" +
+                        "</tr>"
+                )
+            }
+        }
+    });
+    //飞空验证
+    function noNull(sj) {
+        if (!sj) {
+            return "";
+        }
+        return sj;
+    }
+</script>
+</body>
+</html>

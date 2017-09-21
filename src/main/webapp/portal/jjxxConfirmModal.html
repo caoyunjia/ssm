@@ -1,0 +1,41 @@
+<style>
+    label.error {
+        position: absolute;
+        left: 0;
+    }
+
+    #verifyCode + label.error {
+
+        margin-top: 34px;
+    }
+
+
+</style>
+<div class="smrz">
+    <form action="#" class="form form-horizontal" id="jjxxForm" style="margin-">
+        <div class="row form-group" style="margin-left:100px">
+            <div class="col-xs-6 text-center">
+                <label class="col-md-4 control-label"><nobr>借据号</nobr></label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" style="width:160px" id="jjh" name="jjh" maxlength="32" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <a href="javascript:void(0)" class="btn btn_query " data-dismiss="modal">取消</a>
+                <a class="btn btn_query" id="synchronous">同步</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="js/common.js?v=APP_VER"></script>
+<script>
+$(document).ready(function () {
+    $("#vcodeImg").click(function () {
+        getVertifyCode($(this));
+    }).trigger("click");
+});
+    
+</script>
+

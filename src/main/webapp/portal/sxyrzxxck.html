@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-上下游-放款信息查询-申请还款</title>
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <!-- HTML5 shim and Respond.js for IE6 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+</head>
+<body>
+<div id="container" class="container m-content">
+    <form class="form-horizontal load">
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">融资申请编号</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label" id="sqbh"></label>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">增信机构名称</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label" id="zxjgmc"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">当期状态</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label" id="dqzt"></label>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label class="col-md-4 control-label">申请日期</label>
+                    <div class="col-md-8">
+                        <label for="" class="control-label" id="sqrq"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">金融机构名称</label>
+                   <div class="col-md-8"> <label for="" class="control-label"id="jrjgmc"></label>
+                   </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">核心企业名称</label>
+              <div class="col-md-8"><label for="" class="control-label"id="hxqymc"></label></div>
+
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">电子保单号</label>
+                   <div class="col-md-8"> <label for="" class="control-label" id="dzbdh"></label>
+                   </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">承保比例(%)</label>
+              <div class="col-md-8"><label for="" class="control-label" id="cbbl"></label></div>
+                </div>
+            </div>
+           <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">是否意向保单</label>
+                   	<div class="col-md-8"> 
+                   		<label for="" class="control-label"id="sfyxbd"></label>
+                   </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">是否需要增信</label>
+              <div class="col-md-8"><label for="" class="control-label" id="sfxyzx"></label></div>
+                </div>
+            </div>
+             <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">融资金额(元)</label>
+                   <div class="col-md-8"> <label for="" class="control-label" id="rzje"></label>
+                   </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">融资产品</label>
+              <div class="col-md-8"><label for="" class="control-label" id="rzcp"></label></div>
+                </div>
+            </div>
+             <div class="row form-group">
+                <!-- <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">承保比例(%)</label>
+                   <div class="col-md-8"> <label for="" class="control-label" id="cbbl"></label>
+                   </div>
+                </div> -->
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">放款时间</label>
+                   <div class="col-md-8"> <label for="" class="control-label" id="fksj"></label>
+                   </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">融资期限(天)</label>
+              <div class="col-md-8"><label for="" class="control-label"id="rzqx"></label></div>
+                </div>
+            </div>
+             <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">申请金额(元)</label>
+                   <div class="col-md-8"> <label for="" class="control-label" id="sqje"></label>
+                   </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">融资类型</label>
+              <div class="col-md-8"><label for="" class="control-label" id="rzlx"></label></div>
+                </div>
+            </div>
+             <div class="row form-group">
+                <div class="col-xs-6">
+                    <label for="" class="col-md-4 control-label">放款金额(元)</label>
+              <div class="col-md-8"><label for="" class="control-label" id="fkje"></label></div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="javascript:history.go(-1);" id="searchBtn" class="btn_query btn btn-default">返回</a>
+            </div>
+        </div>
+    </form>
+
+  </div>
+<script>
+    $(document).ready(function () {
+    	  var id="";
+          id=locationObj.getParams().id;
+      	requestObj.ajaxServer(
+           		 requestObj.address.jsySqRzsqVOById,
+           		 {
+  						"sqbh" : id
+               		 },
+           		 function(data){
+           			$("#sqbh").html(data.body.sqbh);
+           			$("#zxjgmc").html(data.body.zxjgmc);
+           			$("#rzje").html(numberToCurrency(data.body.rzje));
+           			$("#fkje").html(numberToCurrency(data.body.fkje));
+           			$("#sqrq").html(formatDateStr8(data.body.crsj));
+           			$("#jrjgmc").html(data.body.jrjgmc);
+           			$("#hxqymc").html(data.body.hxqykhmc);
+           			$("#dqzt").html(dqztfun(data.body.dqzt));
+           			$("#cbbl").html(data.body.cbbl);
+           			$("#fksj").html(formatDateStr8(data.body.fksj));
+           			$("#sfyxbd").html(bdfun(data.body.sfyxbd));
+           			$("#sfxyzx").html(zxfun(data.body.sfxyzx));
+           			$("#rzcp").html(cpfun(data.body.rzcp));
+           			$("#sqje").html(numberToCurrency(data.body.sqje));
+           			$("#rzqx").html(data.body.rzqx);
+
+           			$("#rzlx").html(lxfun(data.body.rzlx));
+           			$("#dzbdh").html(data.body.dzbdh);
+  	             },
+           		 function(){}
+         )
+    });
+    function zxfun(sfxyzx){
+        if(sfxyzx==1){
+        	return "是";
+            }
+        if(sfxyzx==0){
+        	return "否";
+            }
+          }
+    function bdfun(sfyxbd){
+        if(sfyxbd==1){
+        	return "是";
+            }
+        if(sfyxbd==0){
+        	return "否";
+            }
+          }
+    function lxfun(rzlx){
+        if(rzlx==01){
+        	return "普通";
+            }
+        if(rzlx==02){
+        	return "随借随还";
+            }
+          }
+    function cpfun(rzcp){
+        if(rzcp==01){
+        	return "订单融资";
+            }
+        if(rzcp==02){
+        	return "应收账款融资";
+            }
+          }
+    function dqztfun(dqzt){
+        if(dqzt==00){
+        	return "已录入未提交";
+            }
+        if(dqzt==01){
+        	return "已提交待及时雨审批";
+            }
+        if(dqzt==02){
+        	return "及时雨审批退回";
+            }
+        if(dqzt==03){
+        	return "及时雨审批通过";
+            }
+        if(dqzt==04){
+        	return "及时雨拒绝";
+            }
+        if(dqzt==05){
+        	return "增信机构审批退回";
+            }
+        if(dqzt==06){
+        	return "增信机构审批通过";
+            }
+        if(dqzt==07){
+        	return "金融机构审批退回";
+            }
+        if(dqzt==08){
+        	return "金融机构审批通过";
+            }
+          }
+</script>
+</body>
+</html>

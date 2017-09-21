@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/favicon.ico">
+
+    <title>及时雨首页</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+
+    <!--bruce CSS-->
+    <link rel="stylesheet" href="css/animate.css">
+    <link href="css/main.css?v=APP_VER" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="fonts/iconfont.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        /* 小屏幕（小于 768px） */
+        @media (max-width: 768px) {
+            .login{display:none;}
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img class="logo" src="images/LOGO.png" height="">
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html?v=APP_VER" onclick="showLoading()">首页</a></li>
+                <li><a href="sxlc.html?v=APP_VER">授信流程</a></li>
+                <li><a href="rzlc.html?v=APP_VER">融资流程</a></li>
+                <li><a href="cjwt.html?v=APP_VER">常见问题</a></li>
+                <li class="user-center"><a href="myCenter.html?v=APP_VER">个人中心</a></li>
+                <li style="margin-top: 8px; text-align: center; width: 60px"><span><a href="notice.html?v=APP_VER"><img src="images/notice.jpg"></a></span></li>
+                <!--<li class="dropdown">-->
+                <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>-->
+                <!--<ul class="dropdown-menu" role="menu">-->
+                <!--<li><a href="#">Action</a></li>-->
+                <!--<li><a href="#">Another action</a></li>-->
+                <!--<li><a href="#">Something else here</a></li>-->
+                <!--<li class="divider"></li>-->
+                <!--<li class="dropdown-header">Nav header</li>-->
+                <!--<li><a href="#">Separated link</a></li>-->
+                <!--<li><a href="#">One more separated link</a></li>-->
+                <!--</ul>-->
+                <!--</li>-->
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="login">
+    <form class="form-signin" role="form">
+        <div class="log_title">
+            <img src="images/login.png">
+        </div>
+        <div><i class="iconfont icon-user"></i>
+        <input type="text" name="username" id="username" class="form-control zh" placeholder="请输入账号/手机号" autocomplete="off" autofocus maxlength="11"></div>
+        <div id="pwd"><i class="iconfont icon-mima"></i>
+        <input type="password" name="password" id="password" class="form-control mm" placeholder="请输入密码" autocomplete="off" maxlength="16"></div>
+        <div id="yzm" hidden="true"><i class="iconfont icon-yanzhengma" style="font-size: 18px; margin-top: 4px"></i><input type="text" id="vcode" name="vcode" class="form-control yzm" style="width: 50%" placeholder="验证码" autocomplete="off" maxlength="4"><img id="vcodeImg" style="float: right; margin-top: -38px; height: 27px; width: 100px;" src="img/checkNum.png" alt=""/></div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <div class="zc">
+            <label>
+                还没注册及时雨？<a class="register" href="register.html?v=APP_VER">立即注册</a>
+            </label>
+            <a class="wjmm" href="forgotPassword.html?v=APP_VER">忘记密码</a>
+        </div>
+    </form>
+</div>
+
+<div class="log-out" style="display: none">
+    <form class="form-logout" role="form">
+        <div class="khxx form-group">企业名称:&nbsp;<span class="qymc"></span></div>
+        <div class="khxx form-group">登录时间:&nbsp;<span class="dlsj"></span></div>
+        <button class="btn btn-lg btn-primary btn-block logout" type="button">退出</button>
+    </form>
+</div>
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="images/banner.jpg" alt="暂无图片">
+            <div class="carousel-caption">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <!--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">-->
+        <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+        <!--<span class="sr-only">Previous</span>-->
+    <!--</a>-->
+    <!--<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">-->
+        <!--<span class="glyphicon glyphicon-chevron-right"></span>-->
+        <!--<span class="sr-only">Next</span>-->
+    <!--</a>-->
+</div>
+<div class="body">
+    <div class="about container">
+        <div class="title">
+            <img src="images/about.png">
+        </div>
+        <div class="row wow fadeInUp">
+            <div class="col-sm-4">
+                <img src="images/kkfd.png">
+                <p>快速放贷</p>
+            </div>
+            <div class="col-sm-4">
+                <img src="images/aqkk.png">
+                <p>安全可控</p>
+            </div>
+            <div class="col-sm-4">
+                <img src="images/ycz.png">
+                <p>易操作</p>
+            </div>
+        </div>
+        <div class="row wow fadeInLeft">
+        <p class="text">
+            针对我国供应链金融中的中小微企业万亿级融资需求，解决融资难、融资贵的痛点，兴业数字金融普惠事业部推出“及时雨”供应链金融平台。将传统供应链金融环节整体线上化，直连核心企业、增信端以及资金端，并配合大数据风控模块、外部参考数据等，实现完全线上化的中小微企业融资渠道。中小微企业融资贵、融资难，“及时雨”如同天降甘霖，能高效满足企业的融资需求，降低其融资成本，解中小企业燃眉之急。
+        </p>
+        </div>
+    </div>
+
+    <div class="cop container">
+        <div class="title">
+            <img src="images/oprate.png">
+        </div>
+        <div class="row wow fadeInRight">
+           <div class="col-sm-6">
+           		<img src="images/csj.png">
+           </div>
+           <div class="col-sm-6">
+           		<img src="images/xyyh.png">
+           </div>
+        </div>
+    </div>
+
+    <div class="pru container">
+        <div class="title">
+            <img src="images/product.png">
+        </div>
+        <div class="row wow fadeInDown" style="padding-top: 50px">
+            <div class="col-sm-3" style="padding-top: 50px">
+                <img src="images/zjr.png">
+            </div>
+            <div class="col-sm-9">
+                <h3><b>01</b>执剑人见证代管系统</h3>
+                <p>执剑人见证代管系统是一款沟通交易信息流和资金流，确保资金流转与真实的交易场景相匹配的科技系统。执剑人票据流转见证业务是其第一个应用场景。面对产业互联网发展过程中交易信息流和资金流分立的经济金融现状，执剑人一方面通过自身的实力与背景为交易双方提供安全的交易场景，当交易一方出现道德风险后，能保证另一方有足够能力抵御风险挽回损失，并对违约方声</p>
+                <a href="cptjDetails.html?id=JSY01" target="_blank" class="detail">查看详情>></a>
+            </div>
+        </div>
+        <div class="row wow fadeInRight">
+            <div class="col-sm-3">
+                <img src="images/ytj.png" width="125">
+            </div>
+            <div class="col-sm-9">
+                <h3><b>02</b>倚天鉴电子合同服务平台</h3>
+                <p>倚天鉴基于联盟链存证和可靠电子签章的电子存鉴系统，具有有效数据电文、可靠认证方式及电子数据安全存证等多种功能。一方面优化流程银行业务效率，降低成本，另一方面，确保电子数据的真实性、有效性、合规性，有效应对恶意讹诈等行为。</p>
+                <a href="cptjDetails.html?id=JSY02" target="_blank" class="detail">查看详情>></a>
+            </div>
+        </div>
+        <div class="row wow fadeInLeft">
+            <div class="col-sm-3" style="padding-top: 20px">
+                <img src="images/mtj.png">
+            </div>
+            <div class="col-sm-9">
+                <h3><b>03</b>满天金金融资产信息平台</h3>
+                <p>“满天金”金融资产信息平台是为中小微企业提供融资与理财服务的平台，与集团内外 各 类金融机构的合作，为相关金融机构提供金融产品的信息展示与撮合交易服务。</p>
+                <a href="cptjDetails.html?id=JSY03" target="_blank" class="detail">查看详情>></a>
+            </div>
+        </div>
+        <div class="row wow fadeInUp" style="border: none; padding-bottom: 80px">
+            <div class="col-sm-3" style="padding-top: 20px">
+                <img src="images/zktx.png">
+            </div>
+            <div class="col-sm-9">
+                <h3><b>04</b>智控天下大数据风控平台</h3>
+                <p>智控天下志在为中小银行、贷款公司等资金贷款机构提供客户信用评级、客户分类画像等方面的风控合规服务。并结合及时雨完善客户分类及准入模型、业务存续期风控模型、风险预警监测等大数据智能风控模型，建设基于大数据的“数据聚合”、“智能引擎”和“智能风控模型”组合的数据智能风控系统。</p>
+                <a href="cptjDetails.html?id=JSY04" target="_blank" class="detail">查看详情>></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="js/ie10-viewport-bug-workaround.js"></script>
+  <script src="js/union-security-api.v2.2.min.js"></script>
+<script src="js/jquery.singlePageNav.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script>
+	$(function(){
+		function showCarousel(data) {
+			if (data.length == 0) return;
+			
+			var tpl = '<div class="item ${cls}">\
+		            <img src="${picUrl}" alt="${title}">\
+		            <div class="carousel-caption">\
+		                ${desc}\
+		            </div>\
+		        </div>'
+			for(var i=0;i<data.length;i++) {
+				 
+				data[i].index = i+1;
+				data[i].picUrl=requestObj.port+"common/file.do?q="+data[i].picUrl;
+			}
+			$(".carousel-inner").append(Tools.formatTpl(tpl, data));
+			
+			
+			tpl = '<li data-target="#carousel-example-generic" data-slide-to="${index}" class="${cls}"></li>'
+			$(".carousel-indicators").append(Tools.formatTpl(tpl, data));
+			$("#carousel-example-generic").addClass("carousel").carousel();
+		}
+	
+		function showRecommend(data) {
+			var animate = ['fadeInLeft','fadeInRight','fadeInUp','fadeInDown'];
+			var tpl = '<div class="row wow-lazy ${ani}">\
+				            <div class="col-sm-3">\
+			            <img src="${picUrl}" alt="暂无图片">\
+			        </div>\
+			        <div class="col-sm-9">\
+			            <h3><b>${no}</b>${title}</h3>\
+			            <p>${desc}</p>\
+			            <a href="cptjDetails.html?id=${id}" target="_blank" class="detail">查看详情>></a>\
+			        </div>\
+			    </div>';
+			for(var i in data) {
+				var row = "00" + (i+1);
+				data[i].picUrl=requestObj.port+"common/file.do?q="+data[i].picUrl;
+				data[i].ani = animate[i%animate.length];
+				data[i].no = row.substring(row.length-2);
+			}
+			
+			$(".pru").children(".row").remove();
+			$(".pru").append(Tools.formatTpl(tpl, data));
+		}
+		function showSummation(data) {
+		}
+		function showPartner(data) {
+			var tpl = '<div class="col-sm-4">\
+	            		<img src="${picUrl}" alt="暂无图片">\
+		            </div>';
+			for(var i in data) {
+				data[i].picUrl=requestObj.port+"common/file.do?q="+data[i].picUrl;
+			}
+			
+			$(".cop>.row").prepend(Tools.formatTpl(tpl, data));
+		}
+		requestObj.ajaxServer(requestObj.address.home, {}, function(result) {
+			showCarousel(result.body.carousel);//产品轮播
+			//showSummation(result.body.summation);//撮合统计
+			showPartner(result.body.partner);//合作方
+			//showRecommend(result.body.recommend);//产品推荐
+			new WOW({boxClass: 'wow-lazy'}).init();
+		});
+		
+	})
+	
+	function onUserCheck(logined, user) {
+		if (logined) {
+			$(".form-signin").hide();
+			if (user) {
+				$(".log-out .qymc").text(user.entName||'');
+				$(".log-out .dlsj").text(new Date().format("yyyy-MM-dd HH:mm:ss"));
+			}
+			$(".log-out").show();
+		} else {
+			$(".form-signin").show();
+			$(".log-out").hide();
+			$(".user-center").hide();
+		}
+	}
+    $(function(){
+    	new WOW().init();
+    	
+//        /*小屏幕点击切换菜单*/
+//        $(".navbar-collapse a").click(function(){
+//            $(".navbar-collapse").collapse('hide');
+//        });
+//
+        
+        $("#vcodeImg").click(function() {
+            if(!$("#vcodeImg").is(":hidden")){
+            	getVertifyCode($(this),$("#username").val());
+             }
+        }).trigger("click");
+        
+		$(".form-signin").validate({
+            submitHandler:function(form){
+            	$(".form-signin button").text("登录中...").prop("disabled", true);
+            	requestObj.ajaxServer(requestObj.address.login, {username:$("#username").val(),password:pwdEncrypt($("#password").val()),vcode:$("#vcode").val()}, function(data) {
+
+            		
+            		alert(data.head._rd);
+		    			window.location.href="myCenter.html?v=APP_VER";
+                //    }
+    			}, function(data){
+        			//alert(JSON.stringify(data));
+        			if(data.head._rd=='USER10020'){
+        				getVertifyCode($("#vcodeImg"),$("#username").val());
+        				$("#yzm").attr("hidden",false);
+                	}
+        			if(!$("#vcodeImg").is(":hidden")){
+                		getVertifyCode($("#vcodeImg"),$("#username").val());
+                    }
+                	$(".form-signin button").text("登录").prop("disabled", false);
+    				$("[name=vcode]").val("");
+    				top.onUserCheck(false);
+    			})
+            },
+            errorPlacement: function(error, element){
+            },
+            onkeyup: false,
+            rules: {
+                username: {
+                    required: true
+                },
+                password: {
+                    required: true,
+                    minlength:8
+                },
+                vcode: {
+                    required: true
+                }
+            }
+        })
+    });
+    
+
+	$(".logout").click(function(){
+        requestObj.ajaxServer(requestObj.address.logout,{},function(d){
+            //请求成功处理逻辑
+        	top.onUserCheck(false);
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-订单维护</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+    <link href="css/new.css?v=APP_VER" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!-- <script src="js/jquery.js"></script> -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+</head>
+<body>
+
+  <div class="container m-content" >
+    <form class="form-horizontal" action="#" id="formId" style="padding: 40px">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-xs-4 control-label">发票号</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="fph"  name="fph" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-xs-4 control-label">发票代码</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="fpdm" name="fpdm" dic-type="B1023" placeholder="" readonly="readonly">
+                </div>
+            </div>
+
+        </div>
+        <div class="row form-group">
+             <div class="col-xs-6">
+                <label class="col-xs-4 control-label">核心企业客户号</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="hxqykhh" name="hxqykhh" placeholder="" readonly="readonly">
+                </div>
+            </div>
+           <div class="col-xs-6">
+                <label class="col-md-4 control-label">融资方角色</label>
+                <div class="col-md-8">
+                    <select type="text" class="form-control" id="rzfjs" name="rzfjs" dic-type="B1022" placeholder="" readonly="readonly"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+               <div class="col-xs-6">
+                <label class="col-xs-4 control-label">融资客户名称</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="rzfkhh" name="rzfkhh"  dic-type="B1022" placeholder="" readonly="readonly">
+                </div>
+            </div>
+               <div class="col-xs-6">
+                <label class="col-xs-4 control-label">交易对手名称</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="jydsmc" name="jydsmc" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+        <div class="col-xs-6">
+                <label class="col-xs-4 control-label">发票日期</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="kprq" name="kprq" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-xs-4 control-label">合同编号</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="htbh" name="htbh" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-xs-4 control-label">税额(元)</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="se" name="se" placeholder="" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-xs-4 control-label">税率</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="sl" name="sl" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+        <div class="col-xs-6">
+                <label class="col-xs-4 control-label">发票金额(元)</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="fpje" name="fpje" placeholder="" readonly="readonly">
+                </div>
+            </div>
+        <div class="col-xs-6">
+                <label class="col-xs-4 control-label">纳税识别码</label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="nssbm" name="nssbm" placeholder="" readonly="readonly">
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+        <div class="col-xs-6">
+                <label class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                    <select type="text" class="form-control" id="zt" name="zt" placeholder="" dic-type="B1023" readonly="readonly">
+                    </select> 
+                   
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <!--  <a id="save"  class="btn btn-default">确认保存</a> -->
+                <a id=""  href="hxqyzhcx.html?v=APP_VER" class="btn_query btn btn-default">返回</a>
+            </div>
+        </div>
+
+
+                    <input type="hidden"  id="khddxxid" name="id" >
+    </form>
+</div>
+
+<script>
+$(document).ready(function(){
+        //初始化日期插件
+        dataPiker();
+    var vo= locationObj.getParams();
+    var id= vo.id;
+    //去除页面空值
+    function noNull(sj){
+		if(!sj){
+			return "";
+		}
+		return sj;
+    }
+        requestObj.ajaxServer(
+                requestObj.address.jsyKhyszkSearchone,
+                {
+					"id":id
+                    },
+                function(data,postData){
+                    	$("#khddxxid").val(noNull(data.body.id)),
+                    	$("#rzfkhh").val(noNull(data.body.rzfkhh)),
+                    	$("#rzfjs").val(noNull(data.body.rzfjs)),
+						$("#jydsmc").val(noNull(data.body.jydsmc)),
+						$("#hxqykhh").val(noNull(data.body.hxqykhh)),
+						$("#zt").val(data.body.zt),
+						$("#fph").val(noNull(data.body.fph)),
+						$("#fpje").val(noNull(data.body.fpje)),
+						$("#fpdm").val(noNull(data.body.fpdm)),
+						$("#nssbm").val(noNull(data.body.nssbm)),
+						$("#kprq").val(noNull(data.body.kprq)),
+						$("#sl").val(noNull(data.body.sl)),
+						$("#se").val(noNull(data.body.se)),
+						$("#htbh").val(noNull(data.body.htbh)),
+						$("#crr").val(noNull(data.body.crr)),
+						$("#gxr").val(noNull(data.body.gxr)),
+						$("#gxsj").val(noNull(data.body.gxsj)),
+						$("#crsj").val(noNull(data.body.crsj))
+                },
+                function fail(){}
+        );
+
+//修改
+$("#").click(function(){
+	  pluginObj.alert("","修改khddxx");
+	 requestObj.ajaxServer(
+      		 requestObj.address.jsyKhDdxxUpdate,
+      		 requestObj.packRequest(decodeURIComponent($("#formId").serialize(),true)),
+      		 function(data){
+      			//$("#jbSave").html("编辑");
+      			//$(".jbclwh input").attr("readonly","readonly");
+      			pluginObj.alert("","修改成功")
+			location="ddlb.html?v=APP_VER";
+            },
+            successFun
+    )
+	//requestObj.searchObj.postData.pageIndex = "1";
+});
+var successFun = function(data,postData){
+  pluginObj.alert("","成功");
+};
+});
+
+    //关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+    //    $(document).off('click.bs.dropdown.data-api');
+    //自动展开
+    $('.nav .dropdown').mouseenter(function(){
+        $(this).addClass('open');
+    });
+    //自动关闭
+    $('.nav .dropdown').mouseleave(function(){
+        $(this).removeClass('open');
+    });
+</script>
+</body>
+</html>

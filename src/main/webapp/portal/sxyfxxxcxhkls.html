@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-上下游-放款信息查询-还款流水</title>
+    <link href="css/main.css?v=APP_VER" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <link rel="stylesheet" href="css/new.css">
+    <script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <script src="js/html5shiv.min.js"></script>
+    <link href="css/select2.min.css" rel="stylesheet">
+    <script src="js/respond.min.js"></script>
+</head>
+<body>
+<!--     放款信息查询 -->
+    <form class="" id="searchForm">
+    <input type="hidden" id="fkid" name="fkid">
+       <!--  <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">金融机构</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="jrjg" name="jrjgkhh">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">核心企业名称</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="hxqykhh" name="hxqykhh">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <a id="searchBtn" class="btn_query button1 btn btn-default">查询</a>
+            </div>
+        </div> -->
+
+    </form>
+<div class="container m-content">
+    <form class="form row" action="#" id="FormId">
+        <!--还款流水-->
+        <div class="info_list search_result">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                	<th>核心企业名称</th>
+                    <th>金融机构名称</th>
+                    <th>放款金额(元)</th>
+                    <th>放款日期</th>
+                    <th>还款金额(元)</th>
+                    <th dic-type="B1027">状态</th>
+                </tr>
+                </thead>
+                <tbody class="data_table" id="lsxx">
+                </tbody>
+            </table>
+            <ul class="news_list"></ul>
+            <div id="kkpager"></div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        //  还款流水查询 
+        var id = "";
+        id = locationObj.getParams().fkid;
+        $("#fkid").val(id);
+        $("#fkid1").val(id);
+        requestObj.searchServer(
+                requestObj.address.jsyKhhkls,
+                "searchForm",
+                successFun
+        );
+        //进入页面默认查询数据
+        requestObj.ajaxServer(
+                requestObj.address.getHxqy,
+                {
+                    "pageSize": 10,
+                    "pageIndex": 1,
+                    "khgxlx": '01'
+                },
+                function (data) {
+                    var listVO = data.body.data;
+                    //alert(JSON.stringify(data.body));
+                    for (var i = 0; i < listVO.length; i++) {
+                        $("#hxqykhh").append(
+                                "<option value='" + listVO[i].khh + "'>" + listVO[i].cyfVo.qymc + "</option>"
+                        );
+                    }
+                }
+        );
+        //进入页面默认查询数据
+        requestObj.ajaxServer(
+                requestObj.address.getHxqy,
+                {
+                    "pageSize": 10,
+                    "pageIndex": 1,
+                    "khgxlx": '05'
+                },
+                function (data) {
+                    var listVO = data.body.data;
+                    //alert(JSON.stringify(data.body));
+                    for (var i = 0; i < listVO.length; i++) {
+                        $("#jrjg").append(
+                                "<option value='" + listVO[i].khh + "'>" + listVO[i].cyfVo.qymc + "</option>"
+                        );
+                    }
+                }
+        );
+        //给查询按钮绑定查询事件
+        $("#searchBtn").click(function () {
+            // alert("123");
+
+            requestObj.searchObj.postData.pageIndex = "1";
+            requestObj.searchServer(
+                    requestObj.address.jsyKhhkls,
+                    "searchForm",
+                    successFun
+            );
+        });
+        function successFun(data) {
+            requestObj.searchObj.totalPage = data.body.totalPageNo;//总页码
+            requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+            requestObj.initPager(
+                    requestObj.address.jsyKhhkls,
+                    successFun
+            );
+            $("#lsxx").empty();
+            var listVo = data.body.data;
+            for (var i = 0; i < listVo.length; i++) {
+                $("#lsxx").append(
+                		"<tr>" + 
+                		"<td>" + noNull(listVo[i].hxqykhmc) + "</td>" +
+                        "<td>" + noNull(listVo[i].jrjgmc) + "</td>" +
+                        "<td>" + numberToCurrency(listVo[i].fkxxVo.fkje) + "</td>" +
+                        "<td>" + formatDateStr8(listVo[i].fkxxVo.fkrq) + "</td>" +
+                        "<td>" + numberToCurrency(listVo[i].je) + "</td>" +
+                        "<td>" + noNull(listVo[i].zt) + "</td>" +
+                        "</tr>"
+                )
+            }
+        }
+    });
+    //飞空验证
+    function noNull(sj) {
+        if (!sj) {
+            return "";
+        }
+        return sj;
+    }
+</script>
+</body>
+</html>

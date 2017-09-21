@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mapper.AuthMapper" >
+
+    <select id="findByCondition" parameterType="authVo" resultType="authVo">
+        select * from auth
+        <where>
+            <if test="username!=null and username!=''">
+                and   username=#{username};
+            </if>
+            <if test="telephone!=null and telephone!=''">
+                and   telephone=#{telephone};
+            </if>
+        </where>
+    </select>
+
+    <select id="findTodayCount" parameterType="authVo" resultType="java.lang.Integer">
+        select authCount from auth
+        <where>
+            <if test="username!=null and username!=''">
+                and  username=#{username}
+            </if>
+            <if test="telephone!=null and telephone!=''">
+                and  telephone=#{telephone}
+            </if>
+            <if test="authDate!=null and authDate!=''">
+                and   authDate !=#{authDate}
+            </if>
+        </where>
+    </select>
+    <insert id="insertAuth" parameterType="authVo">
+        INSERT into auth (username,status,authCount,authDate,telephone)
+        VALUES (#{username},#{status},#{authCount},#{authDate},#{telephone});
+    </insert>
+    <update id="updateAuth" parameterType="authVo">
+        update auth
+        <trim prefix="set" suffixOverrides=",">
+            <if test="status!=null and status!=''">status=#{status},</if>
+            <if test="authCount!=null ">authCount=#{authCount},</if>
+            <if test="authDate!=null  and authDate!='' ">authDate=#{authDate},</if>
+        </trim>
+        WHERE username = #{username};
+    </update>
+
+
+
+</mapper>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/favicon.ico">
+    <title>及时雨-个人中心</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+
+    <!--bruce CSS-->
+    <link href="css/main.css?v=APP_VER" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="css/right-aside.css">
+    <link rel="stylesheet" type="text/css" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="css/rmfont.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <style>
+            .dropdown-menu>li>a {
+                                    color:#333;
+                                }
+</style>
+<nav class="nav_center navbar navbar-default" role="navigation">
+    <div class="container container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#menu">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html?v=APP_VER"><img class="center-logo1" src="images/logo_black.png"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="menu" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="time_bar">
+    <div class="container">
+        <div id="dateStr" class="word_grey"></div>
+        <div class="admin_oprate">
+            <a class="admin_name dropdown-toggle admin_head" data-toggle="dropdown" href="">客户,</a></i>
+            <ul class="dropdown-menu modify_key" role="menu">
+                <li><a href="hxqyzhwhxgmm.html?v=APP_VER" target="mainFrame">修改密码</a></li>
+                <li><a href="hxqyzhwhzhxg.html?v=APP_VER" target="mainFrame">修改手机号</a></li>
+                <!-- <li><a href="javascript:void(0)" onclick="smrz()">实名认证</a></li> -->
+            </ul>
+            <a class="logout" href="javascript:void(0)">退出</a>
+        </div>
+    </div>
+</div>
+<iframe id="mainFrame" name="mainFrame" scrolling="no" src="about:blank" width="100%"
+        style="min-height: 500px;"></iframe>
+
+<!--右侧菜单-->
+<!--<div class="cblan aside-menu" id="aside-menu">-->
+<!--</div>-->
+<!-- 交易信息展开 -->
+<!--<div class="cblan-detail detail-yyi" id="detail-jyi"></div>-->
+<!-- 交易信息展开 -->
+<!--<div class="cblan-detail detail-yjing" id="detail-yjing"></div>-->
+<!-- 向导信息展开 -->
+<!--<div class="cblan-detail detail-xdao" id="detail-xdao"></div>-->
+<!-- 向导信息展开 end -->
+<!--<div class="zkcblan">-->
+    <!--<span class="rmgyl rmgyl-add" id="clzkcblan"></span>-->
+<!--</div>-->
+<!--右侧菜单结束-->
+<div class="footer"></div>
+<!--实名认证-->
+<div id="smrz" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" id="smrzcss"></div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugin/jquery.validate.js"></script>
+<script src="js/plugin/validate-extend.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="js/ie10-viewport-bug-workaround.js"></script>
+<script src="js/common.js?v=APP_VER"></script>
+<script src="js/right-aside.js"></script>
+<script>
+    //实名认证
+    function smrz() {
+        $("#smrz").modal({
+            remote:"./smrzModal.html?v=APP_VER"
+        });
+    };
+    $('#smrz').on('shown.bs.modal', function () {
+        $(this).find("form").validate({
+            onkeyup: false,
+            rules: {
+                lxfs: {
+                    required: true,
+                    isMobile: true
+                },
+                verifyCode: {
+                    required: true,
+                    minlength: 6
+                },
+                sfzh: {
+                    required: true,
+                    isIdCardNo: true
+                },
+                hm: {
+                    required: true
+                },
+                zh: {
+                    required: true,
+                    isBankCard: true
+                }
+            },
+            messages: {
+                mobile: {
+                    required: "请输入联系人手机",
+                    mobile: true
+                },
+                verifyCode: {
+                    required: "请输入验证码",
+                    minlength: "验证码长度是6位"
+                },
+                sfzh: {
+                    required: "请输入身份证号",
+                    minlength: "身份证长度为18位"
+                },
+                zh: {
+                    isBankCard: "请输入正确的银行卡号"
+                }
+            }
+        });
+      
+        //实名认证提交
+        $("#submit").click(function () {
+            if (!$('#smrzForm').valid()) {
+                return;
+            }
+            requestObj.ajaxServer(
+                    requestObj.address.saveRealName,
+                    requestObj.packRequest(decodeURIComponent($("#smrzForm").serialize(), true)),
+                    function (data) {
+                        pluginObj.alert("", "认证成功");
+                        $('#smrz').modal("hide");
+                        $(".isAcc").hide();
+                        $(".admin_name").removeClass("admin_head").addClass("admin_head2");
+                    },
+                    function () {
+                        pluginObj.alert("", "验证失败！")
+                    }
+            );
+        });
+        // 银行卡格式  四位数字后加一个空格
+        $(function () {
+            var oT = document.getElementById('zh');
+            oT.onkeyup = function () {
+                this.value = this.value.replace(/\s/g, '').replace(/(\d{4})(?=\d)/g, "$1 ");
+            };
+        });
+
+        // 是否实名认证,弹出框显示信息
+        requestObj.ajaxServer(
+                  requestObj.address.isRealName,
+                  {},
+                  function (data) {
+                      var acc = data.body;
+                      if(!acc){
+                          $(".isAcc").show();
+    					  return;
+                      }
+                      $("#smrzForm :input").attr("disabled","disabled");
+                      pluginObj.setFormValueById(data.body);
+                  },
+                  function () {
+                  }
+          );
+        
+    });
+    function sendSmsRealName() {
+        var $this = $(this);
+        if ($this.data("disable")) {
+            return;
+        }
+        var mobile = $("#lxfs").val();
+        if (!mobile) {
+            pluginObj.alert("", "请输入手机号！")
+        }
+        if (!mobile || mobile.length < 11) {
+            return;
+        }
+        var time = 30;
+        var origtext = $("#sendValidCode").text();
+        //发送等待
+        requestObj.ajaxServer(requestObj.address.sendSmsRealName, {dlzh: mobile}, function (data) {
+            $("#sendValidCode").text("发送成功(" + time + "秒)");
+            $("#sendValidCode").attr("disabled", true);
+            var t = setInterval(function () {
+                $("#sendValidCode").text("发送成功(" + (--time) + "秒)");
+            }, 1000);
+            setTimeout(function () {
+                clearInterval(t);
+                $("#sendValidCode").text(origtext);
+                $("#sendValidCode").attr("disabled", false);
+            }, time * 1000);
+        });
+    }
+
+	function userRole(entName){
+		var role = "";
+	//  查询企业岗位权限
+        requestObj.ajaxServer(
+                requestObj.address.userRolerSelect,
+                {},
+                successFunOne
+                )
+	
+
+        //根据权限显示对应页面div;
+        function successFunOne(data){
+        	var list = data.body.data;
+        	if(list && list.length > 0){
+	        	role = role + "("
+	        	for(var i = 0; i <　list.length; i++){
+					role = role + list[i].roleName + "/";
+	            }
+	        	role=role.substring(0,role.length-1)
+	            role = role + ")";
+        	}
+            $(".admin_name").text(entName ? entName + role +","  : "");
+        }
+	}
+
+    function onUserCheck(logined, user) {
+        if (!logined) {
+            //window.location.href="index.html?v=APP_VER";
+        } else {
+           // $(".admin_name").text(user.entName ? user.entName  : "");
+            /* if (user.shouldChangePassword) {
+             showForceChangePassword(user, function(){
+             if (user.shouldAcceptAgreement) {
+             showAcceptAgreement(user);
+             }
+             });
+             } else if (user.shouldAcceptAgreement) {
+             showAcceptAgreement(user);
+             } */
+             userRole(user.entName);
+            if (user.shouldAcceptAgreement) {
+                showAcceptAgreement(user);
+            }
+        }
+    }
+
+
+    $(function () {
+	// 实名认证，更换标志
+	requestObj.ajaxServer(
+          requestObj.address.isRealName,
+          {},
+          function (data) {
+              // 未实名认证
+              if(!data.body){
+				  return;
+              }
+              // 已经实名认证
+             $(".admin_name").removeClass("admin_head").addClass("admin_head2");
+          },
+          function () {
+          }
+      );
+
+        var showCurDate_interval;
+
+        function showCurDate() {
+            $("#dateStr").html("欢迎您登录兴业数金及时雨管理系统&nbsp&nbsp" + new Date().format("yyyy年MM月dd日 HH:mm:ss"));
+        }
+
+        var menu = $("#menu");
+        menu.on("click", "[url]", function () {
+            var $this = $(this);
+            var url = $this.attr("url");
+            if (url && $this.attr('src') != url) {
+                main.attr("src", url);
+            }
+            $(".active", menu).removeClass("active");
+            $this.parent().addClass("active").parent().parent().addClass("active");
+        });
+
+
+        var main = $("#mainFrame");
+        main.on("load", function () {
+            autoHeight();
+            var ifr = main[0];
+            var titles = $.makeArray(menu.find(".active>a").map(function (i, a) {
+                return $(a).text();
+            }));
+            showCurDate_interval && clearInterval(showCurDate_interval);
+            if (titles.length == 1 && titles[0] == "个人中心") {
+                showCurDate_interval = setInterval(showCurDate, 1000);
+            } else {
+                if (ifr.contentWindow.getTitle) {
+                    showCurDate_interval && clearInterval(showCurDate_interval);
+                    titles = ifr.contentWindow.getTitle();
+                }
+                if (titles) {
+                    $("#dateStr").html("主页 > " + titles.join(" > "));
+                }
+            }
+            //解决myCenter下拉菜单不消失
+            var mainFrame = main[0];
+            var subDocument = mainFrame.contentDocument || mainFrame.contentWindow.document;
+            $(subDocument).on("click", function () {
+                //            console.log(mainFrame.contentWindow.parent==top);
+                $(mainFrame.contentWindow.parent.document).find("li.open,.admin_oprate.open").removeClass("open");
+            });
+        }).on("resize", autoHeight);
+
+        $(".logout").click(function () {
+            requestObj.ajaxServer(requestObj.address.logout, {}, function (d) {
+                //请求成功处理逻辑
+                window.location.href = "index.html?v=APP_VER";
+            });
+        })
+
+        function initMenu(data, root) {
+            var html = [];
+            var cls = root ? 'nav nav-pills' : 'dropdown-menu';
+            var role = root ? 'tablist' : 'menu';
+            html.push('<ul class="' + cls + '" role="' + role + '">');
+            for (var i in data) {
+                html.push('<li role="presentation" class="' + ((root && i == '0') ? 'active' : '') + '">');
+                var sub = data[i].items;
+                if (sub && sub.length) {
+                    html.push('<a class="dropdown-toggle" data-toggle="dropdown" href="#">\
+                           ' + data[i].label + '<span class="caret"></span>\
+                      	   </a>');
+                    html.push(initMenu(sub, false));
+                } else {
+                    html.push('<a url="' + data[i].url + '?v=APP_VER" href="javascript:void(0)" target="mainFrame">' + data[i].label + '</a>');
+                }
+                html.push('</li>');
+            }
+            html.push('</ul>');
+            return html.join("");
+        }
+
+        requestObj.ajaxServer(requestObj.address.queryMenu, {}, function (data) {
+            menu.html(initMenu(data.body, true)).find("[url]:first").trigger("click");
+        });
+    });
+
+
+
+
+
+</script>
+</body>
+</html>

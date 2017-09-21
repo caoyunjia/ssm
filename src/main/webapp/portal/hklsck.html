@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>及时雨-还款流水查看</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="js/plugin/kkpager_green.css" />
+		<link rel="stylesheet" href="css/new.css">
+		<link rel="stylesheet" href="fonts/iconfont.css">
+		<script src="js/plugin/kkpager.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="js/common.js?v=APP_VER"></script>
+		<script src="js/plugin/jquery.validate.js"></script>
+		<script src="js/plugin/validate-extend.js"></script>
+	</head>
+
+	<body>
+		<div class="search_input container m-content">
+			<form class="form-horizontal form" id="formId" role="form" onsubmit="return false;">
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">融资申请编号</label>
+						<div class="col-md-8">
+							<input class="form-control" id="rzsqrq" name="rzsqrq" type="text" maxlength="25" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">还款流水号</label>
+						<div class="col-md-8">
+							<input class="form-control" id="id" name="id" type="text" maxlength="25" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">还款金额（元）</label>
+						<div class="col-md-8">
+							<input class="form-control" id="je" name="je" type="text" maxlength="25" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">还款日期</label>
+						<div class="col-md-8">
+							<input class="form-control" id="hkrq" name="hkrq" type="text" maxlength="25" placeholder="">
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<div class="col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">本次还款归还本金金额(元)</label>
+						<div class="col-md-8">
+							<input class="form-control" id="ghbjje" name="ghbjje" type="text" maxlength="25" placeholder="">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">本次还款归还利息金额(元)</label>
+						<div class="col-md-8">
+							<input class="form-control" id="ghlxje" name="ghlxje" type="text" maxlength="25" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">还款币种</label>
+						<div class="col-md-8">
+							<select class="form-control" id="hkbz" name="hkbz" type="text" maxlength="25"  placeholder="" dic-type="B1056" disabled="disabled"></select>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<label for="qymc" class="col-md-4 control-label">还款方式</label>
+						<div class="col-md-8">
+							<select class="form-control" id="hkfs" name="hkfs" type="text" maxlength="25" dic-type="B1054" placeholder="" disabled="disabled"></select>
+						</div>
+					</div>
+				</div>
+				<input class="form-control" id="khh" name="khh" type="hidden" maxlength="25" placeholder="">
+				<div class="row">
+					<div class="col-xs-12">
+						<a href="#" id="goback" class="btn btn-default btn_query">返回</a>
+					</div>
+				</div>
+			</form>
+		</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+	$(":input").attr("disabled","disabled");
+	 //判断非空
+	 function noNull(sj){
+			if(!sj){
+				return "";
+			}
+			return sj;
+	    }
+	 $("#goback").click(function(){
+			location="hxqyzhcx.html?id=" + $("#khh").val();
+	//requestObj.searchObj.postData.pageIndex = "1";
+});
+    var vo= locationObj.getParams();
+    var id= vo.id;
+        requestObj.ajaxServer(
+                requestObj.address.jsyKhHkxxxq,
+                {
+					"id":id
+                    },
+                function(data,postData){
+                    	$("#rzsqrq").val(noNull(data.body.rzsqrq)),
+                    	$("#id").val(noNull(data.body.id)),
+                    	$("#je").val(numberToCurrency(data.body.je)),
+                    	$("#hkrq").val(formatDateStr8(data.body.hkrq)),
+                    	$("#hkbz").val(noNull(data.body.hkbz)),
+                    	$("#hkfs").val(noNull(data.body.hkfs)),
+                    	$("#ghbjje").val(numberToCurrency(data.body.bcghbjje)),
+                    	$("#khh").val(noNull(data.body.khh)),
+                    	$("#ghlxje").val(numberToCurrency(data.body.bcghlxje))
+                },
+                function fail(){}
+        );
+});
+
+</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-订单维护</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+    <link rel="stylesheet" type="text/css" href="css/new.css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!-- <script src="js/jquery.js"></script> -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <style type="text/css">
+    	p{
+    		 text-indent:35px
+    	}
+    	.black{
+    		font-weight: 600;
+    	}
+    	body .container{
+    		padding-left: 30px;
+    		padding-right: 30px;
+    	}
+    	.biaoti{
+    		text-align: center;
+    	}
+    </style>
+</head>
+<body>
+  <div class="container m-content">
+  	<h3>第十五条  融资利率与计结息</h3>
+  	<h4>（一）相关解释条款</h4>
+	<p class="black">1、“央行人民币贷款基准利率”指中国人民银行公布的当日人民币贷款基准利率。</p>
+	<p class="black">2、“央行人民币存款基准利率”指中国人民银行公布的当日人民币存款基准利率。</p>
+	<p>3、“LPR”指由全国银行间同业拆借中心基于报价行自主报出的最优贷款利率计算并发布的当日贷款基础利率。</p>
+	<p>4、“SHIBOR”指由全国银行间同业拆借中心计算并发布的当日上海银行间同业拆放利率。</p>
+	<p>5、“LIBOR”指T-2日伦敦金融市场银行间拆借利率,币种包括美元、欧元、日元等。其中，“T”为融资实际发放日，“T-2”为融资实际发放日的前二个工作日，下同。</p>
+	<p>6、“HIBOR”指T-2日香港金融市场银行间港币拆借利率。</p>
+	
+	<h4>（二）关于融资利率与利息计收条款</h4>
+	<p>1、融资利率</p>
+	<p>（1）定价基准利率按下列第 
+		<select name="">
+			<option value="1">壹</option>
+			<option value="2">贰</option>
+			<option value="3">叁</option>
+			<option value="4">肆</option>
+			<option value="5">伍</option>
+			<option value="6">陆</option>
+		</select>
+	种约定执行：
+	</p>
+	<p>（壹）央行人民币贷款基准利率  <input type="text" /> 期限档次。</p>
+	<p>（贰）央行人民币存款基准利率  <input type="text" />       期限档次。</p>
+	<p>（叁）LPR  <input type="text" />       期限档次。</p>
+	<p>（肆）SHIBOR  <input type="text" />       期限档次。</p>
+	<p>（伍）LIBOR <input type="text" />      期限档次。</p>
+	<p>（陆）HIBOR <input type="text" />      期限档次。</p>
+	<p>（2）融资利率定价公式按下列第
+		<select name="">
+			<option value="1">壹</option>
+			<option value="2">贰</option>
+		</select>
+		      执行：
+	</p>
+	<p>（壹）融资利率=定价基准利率+ <input type="text" />     %。</p>
+	<p>（贰）融资利率=定价基准利率× <input type="text" />     。</p>
+
+	<p>（3）融资利率（指年利率，下同）按下列第   
+		<select name="">
+			<option value="1">壹</option>
+			<option value="2">贰</option>
+		</select>
+		   种约定执行：
+	</p>
+	<p>（壹）固定利率。根据实际发放日定价基准利率和定价公式确定融资利率，融资期间利率不变。</p>
+	<p>（贰）浮动利率。根据实际发放日和利率调整日定价基准利率和定价公式确定融资利率。利率调整日按以下第 
+		<select name="">
+			<option value="1">壹</option>
+			<option value="2">贰</option>
+		</select>    
+		种方式执行：
+		<p>A、浮动周期为      （月/季/半年/年/其他周期），自融资实际发放日起每满一个周期的对应日为合同利率调整日，当月无对应日的以该月最后一天为对应日；</p>
+		<p>B、 融资期间，如遇基准利率调整，不再通知甲方。</p>
+	</p>
+	<p>（叁）其他利率方式：  </p>
+	<p>&nbsp;&nbsp;（4）本合同项下分次使用的融资对应的定价基准利率，应以每次融资实际发放日（或利率调整日，如有）的基准利率为确定标准。</p>
+	<p>&nbsp;&nbsp;（5）本合同项下发放的融资，如遇国家取消基准利率或者市场不再公布基准利率，乙方有权根据同期的国家利率政策，按照公平诚信的原则，并参照行业惯例、利率状况等因素，重新确定融资利率后通知甲方。甲方有异议的，应与乙方协商。自乙方发出通知之日起五个工作日内协商不成的，乙方有权提前收贷，甲方应当立即清偿剩余的融资本息。  </p>
+	
+	<p>2、融资利息偿还方式</p>
+	<p>（1）融资利息的计算。本外币融资本金自乙方根据本合同约定划至甲方账户之日起开始计息。融资每日应计利息=当日融资余额×日利率。日利率与年利率的换算按照中国人民银行规定和国际惯例执行。</p>
+	<p>（2）融资利息偿还方式按下列第  
+		<select name="">
+			<option value="1">壹</option>
+			<option value="2">贰</option>
+		</select>
+		   种约定执行：
+	</p>
+	<p>（壹）本合同融资约定每     <input type="" name="" id="" value="" />　 （月/季末月/半年末月/年末月/其他周期）的20日为结息日，甲方应在结息日次日向乙方支付当期融资利息，在融资到期日结清其余本息。</p>
+	<p>（贰）自融资实际发放日起每满    <input type="" name="" id="" value="" /> （月/季/半年/年/其他周期）的对应日（当月无对应日的以该月最后一天为对应日）的前一日为结息日，甲方应在结息日次日向乙方支付当期融资利息，在融资到期日支付最后一期利息。</p>
+	<p>（叁）其他偿还方式：<input type="text" /></p>
+	
+	<p>3、罚息和复利</p>
+	<p>（1）如甲方未按本合同约定的用途使用融资，乙方有权对被挪用的融资计收罚息，罚息利率为融资利率上浮  <input type="" name="" id="" value="" />  ％；甲方未按期还款且又未就展期事宜与乙方达成协议，即融资逾期的，乙方有权对逾期的融资计收罚息，罚息利率为融资利率上浮  <input type="" name="" id="" value="" />  ％；对未按时支付的利息，乙方有权按本合同约定的融资逾期罚息利率计收复利。同一笔融资既逾期又未按合同约定用途使用的，罚息利率按较高者计算。</p>
+	<p>（2）融资利率采用固定利率的，则罚息利率也为固定利率；融资利率采用浮动利率的，则罚息利率也为浮动利率，其浮动周期与融资利率浮动周期一致。</p>
+	<p>（3）罚息和复利的计收方式按照本合同约定的融资利息偿还方式执行。</p>
+	<p>4、保理费</p>
+	<p>本合同保理费按根据应收账款净额的  <input type="" name="" id="" value="" />  ％收取。</p>
+	
+	<p>5、利息及费用支付方式</p>
+
+	<p>（1）甲方支付利息及费用
+		<select name="">
+			<option value="">乙方向甲方发放融资款项时，逐笔扣收融资利息和费用；</option>
+			<option value="">乙方在收到买方付款时，逐笔扣收融资利息和费用；</option>
+			<option value="">乙方从甲方下述账户中主动扣收：</option>
+		</select>
+	</p>
+
+	<p>开户银行</p>
+ 	<p>户名：<input type="text" /></p>
+	<p>账号： <input type="text" name="" id="" /></p>
+     <p> （2）买方支付：即       
+     		<select name="">
+				<option value="">买方到期向乙方支付保理费；</option>
+				<option value="">买方授权乙方从下述账户中主动扣收：</option>
+				<option value="">乙方从甲方下述账户中主动扣收：</option>
+			</select>
+     	        承担保理费
+     </p>                                   
+                                       
+	<p><label for="">开户银行：</label><input type="" name="" id="" value="" /></p>
+	<p><label for="">户名：</label><input type="" name="" id="" value="" /></p>
+	<p><label for="">账号：  </label><input type="" name="" id="" value="" /></p>
+ 	
+	<p>6、实际业务操作中，如果上述融资金额、期限、利率与借款借据、凭证不一致的，以借款借据、凭证记载的为准。</p>
+    <p>7、乙方向甲方提供除流动资金贷款外融资方式的，融资款的发放及计息方式由双方另行签订具体融资合同进行约定，具体融资合同为本合同的分合同。</p>          	                        
+
+	<!--28 29 30条-->
+	<h3 class="biaoti">法律适用、争议解决</h3>
+	<p>第二十八条  本合同的订立、效力、解释、履行及争议的解决均适用中华人民共和国法律。</p>
+	<p>第二十九条  在合同履行过程中发生争议，可以通过协商解决；协商不成，按以下第 
+		<select name="">
+			<option value="">（壹）</option>
+			<option value="">（贰）</option>
+		</select>  
+		种方式解决；
+	</p>
+	<p>（壹）向甲方所在地人民法院起诉。</p>
+	<p>（贰）提交           <input type="" name="" id="" value="" />            仲裁委员会（仲裁地点为        <input type="" name="" id="" value="" />         ），按照申请仲裁时该会现行有效的仲裁规定进行仲裁。仲裁裁决是终局的，对双方均有约束力。</p>
+	<p>第三十条  在争议期间，本合同不涉及争议部分的条款仍须履行。</p>
+
+  </div>
+</div>
+</body>
+</html>

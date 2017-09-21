@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-核心企业-</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/new.css?v=APP_VER"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+</head>
+
+<body>
+<div class="container m-content">
+    <form class="form-horizontal row">
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">客户号</label>
+                <div class="col-md-8">
+                    <label for="" class="control-label" id="khh"></label>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">企业名称</label>
+                <div class="col-md-8">
+                    <label for="" class="control-label" id="qymc"></label>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">额度编号</label>
+                <div class="col-md-8">
+                    <label for="" class="control-label" id="edbh"></label>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">额度失效日期</label>
+                <div class="col-md-8">
+                    <label for="" class="control-label" id="sxrq"></label>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="" class="col-md-4 control-label">额度有效日期</label>
+                <div class="col-md-8"><label for="" class="control-label" id="yxrq"></label>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="" class="col-md-4 control-label">总额度（元）</label>
+                <div class="col-md-8"><label for="" class="control-label" id="sxzed"></label></div>
+
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="" class="col-md-4 control-label">已用额度（元）</label>
+                <div class="col-md-8"><label for="" class="control-label" id="yyed"></label>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="" class="col-md-4 control-label">剩余额度（元）</label>
+                <div class="col-md-8"><label for="" class="control-label" id="syed"></label></div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="" class="col-md-4 control-label">授信机构代码</label>
+                <div class="col-md-8"><label for="" class="control-label" id="sxkhh"></label>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="" class="col-md-4 control-label">额度类型</label>
+                <div class="col-md-8"><label for="" class="control-label" id="edlx" dic-type="B10182"></label>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="" class="col-md-4 control-label">授信机构名称</label>
+                <div class="col-md-8"><label for="" class="control-label" id="sxjgmc"></label>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label for="" class="col-md-4 control-label">状态</label>
+                <div class="col-md-8"><label for="" class="control-label" id="zt" dic-type="B1019"></label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="javascript:history.go(-1);" class="btn_query btn btn-default">返回</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        var id = "";
+        id = locationObj.getParams().id;
+        requestObj.ajaxServer(
+                requestObj.address.jsykhedxxById, {
+                    "id": id
+                },
+                function (data) {
+                    $("#khh").html(data.body.khh);
+                    $("#qymc").html(data.body.qymc);
+                    $("#edbh").html(data.body.edbh);
+                    $("#sxrq").html(Tools.formatData(data.body.sxrq,"date"));
+                    $("#yxrq").html(Tools.formatData(data.body.yxrq,"date"));
+                    $("#sxzed").html(numberToCurrency(data.body.sxzed));
+                    $("#yyed").html(numberToCurrency(data.body.yyed));
+                    $("#syed").html(numberToCurrency(data.body.syed));
+                    $("#sxkhh").html(data.body.sxkhh);
+                    $("#edlx").html(edlx(data.body.edlx));
+                    $("#sxjgmc").html(data.body.sxjgmc);
+                    $("#zt").html(data.body.zt == "01" ? "未生效" : "已生效");
+                },
+                function () {
+                }
+        )
+	/*01：金融机构总授信、02：承保机构总承保额度03：金融机构上下游客户授信、04：承包机构上下游客户授信*/
+        function edlx(edlx){
+			if(edlx == "01"){
+				return "金融机构总授信";
+			}
+			if(edlx == "02"){
+				return "承保机构总承保额度";
+			}
+			if(edlx == "03"){
+				return "金融机构上下游客户授信";
+			}
+			if(edlx == "04"){
+				return "承包机构上下游客户授信";
+			}
+			return "";
+        }
+    });
+</script>
+</body>
+
+</html>

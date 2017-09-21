@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-上下游融资申请查看</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/select2.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/new.css?v=APP_VER"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <script src="js/select2.min.js"></script>
+</head>
+
+<body>
+
+<div class="container m-content">
+    <ul id="myTab" class="nav nav-tabs" style="width: 100%;">
+        <li class="active">
+            <a href="#ddxxcx" onclick="successFun1()" data-toggle="tab" style="padding: 10px;">订单信息查询</a>
+        </li>
+        <li>
+            <a href="#yszkxxcx" onclick="successFun2()" data-toggle="tab" style="padding: 10px;">应收账款信息查询</a>
+        </li>
+        <li>
+            <a href="#cbedcx" onclick="successFun3()" data-toggle="tab" style="padding: 10px;">承保额度查询</a>
+        </li>
+        <li>
+            <a href="#sxedcx" onclick="successFun4()" data-toggle="tab" style="padding: 10px;">授信额度查询</a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="ddxxcx">
+            <div class="  container ">
+                <form class="form-horizontal" action="#" id="searchFrom1">
+                    <div class="row form-group">
+                        <!--  <div class="col-xs-6">
+                             <label class="col-xs-5 control-label">订单号</label>
+                             <div class="col-xs-7">
+                                 <input type="text" class="form-control" id="ddbh" name="ddbh" placeholder="">
+                             </div>
+                         </div> -->
+                        <div class="col-xs-6">
+                            <label for="fph" class="col-md-4 control-label">订单号</label>
+                            <div class="col-md-8">
+                                <input class="form-control" id="ddbh" name="ddbh" type="text" maxlength="8" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label class="col-md-4 control-label">货品名称</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="hpmc" name="hpmc" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-6">
+                            <label for="hyfl" class="col-md-4 control-label">金额(元)</label>
+                            <div class="col-md-8">
+                                <div class="col-45">
+                                    <input class="form-control" id="zje" name="zje" type="text" maxlength="8" placeholder="">
+                                </div>
+                                <div class="col-10"><p class="form-control-static">-</p></div>
+                                <div class="col-45">
+                                    <input class="form-control" id="zje2" name="zje2" type="text" maxlength="8" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="rzfkhh1" name="rzfkhh">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a id="searchBtn1" class="btn_query btn btn-default">查询</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="search_result">
+                <form class="" id="formId1">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>订单号</th>
+                            <th>货品名称</th>
+                            <th>总金额(元)</th>
+                            <th>订单发起时间</th>
+                            <th>订单确认时间</th>
+                            <th>交易对手</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tbody1">
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="yszkxxcx">
+            <div class=" container ">
+                <form class="form-horizontal" action="#" id="searchFrom2">
+                    <div class="row form-group">
+                        <div class="col-xs-6">
+                            <label for="fph" class="col-md-4 control-label">发票号</label>
+                            <div class="col-md-8">
+                                <input class="form-control" id="fph" name="fph" type="text" maxlength="8"
+                                       placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label for="hyfl" class="col-md-4 control-label">发票日期</label>
+                            <div class="col-md-8">
+                                <div class="col-45">
+                                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+                                         data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        <input class="form-control" size="16" type="text" id="kprq" name="kprq"/>
+                                        <span class="input-group-addon"><span
+                                                class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                                <div class="col-10"><p class="form-control-static">-</p></div>
+                                <div class="col-45">
+                                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+                                         data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        <input class="form-control" size="16" type="text" id="kprqEnd" name="kprqEnd"/>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-6">
+                            <label for="hyfl" class="col-md-4 control-label">发票金额(元)</label>
+                            <div class="col-md-8">
+                                <div class="col-45">
+                                    <input class="form-control" id="zje" name="zje" type="text" maxlength="8" placeholder="">
+                                </div>
+                                <div class="col-10"><p class="form-control-static">-</p></div>
+                                <div class="col-45">
+                                    <input class="form-control" id="zje2" name="zje2" type="text" maxlength="8" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="rzfkhh2" name="rzfkhh">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a id="searchBtn1" class="btn_query btn btn-default">查询</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="search_result  magtop">
+                <form action="" id="formId2">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>发票号</th>
+                            <th>发票代码</th>
+                            <th>发票金额(元)</th>
+                            <th>发票日期</th>
+                            <th>交易对手名称</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tbody2">
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="tab-pane fade " id="cbedcx">
+            <div class="container">
+                <form class="form-horizontal" action="#" id="searchFrom3">
+                    <!--   <div class="row form-group">
+                          <div class="col-xs-6">
+                              <label class="col-md-4 control-label">企业名称</label>
+                              <div class="col-md-8">
+                                  <select class="form-control" id="qymc" name="qymc">
+                                      <option vlaue=""></option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div> -->
+                    <div class="row form-group">
+                        <div class="col-xs-6">
+                            <label class="col-md-4 control-label">状态</label>
+                            <div class="col-md-8">
+                                <select class="form-control" id="zt" name="zt" dic-type="B1019">
+                                    <option vlaue=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label class="col-md-4 control-label">承购额度(元)</label>
+                            <div class="col-md-8">
+                                <div class="col-45">
+                                    <input class="form-control" id="zje" name="zje" type="text" maxlength="8" placeholder="">
+                                </div>
+                                <div class="col-10"><p class="form-control-static">-</p></div>
+                                <div class="col-45">
+                                    <input class="form-control" id="zje2" name="zje2" type="text" maxlength="8" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="khh1" name="khh">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a id="searchBtn1" class="btn_query btn btn-default">查询</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="search_result  magtop">
+                <form action="" id="formId3">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>企业名称名称</th>
+                            <th>额度生效日期</th>
+                            <th>额度结束日期</th>
+                            <th>承保额度(元)</th>
+                            <th>已使用额度(元)</th>
+                            <th>增信机构名称</th>
+                            <th>可用额度(元)</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tbody3">
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="tab-pane fade " id="sxedcx">
+            <div class="container">
+                <form class="form-horizontal" action="#" id="searchFrom4">
+                    <!--  <div class="row form-group">
+                         <div class="col-xs-6">
+                             <label class="col-md-4 control-label">企业名称</label>
+                             <div class="col-md-8">
+                                 <select class="form-control" id="qymc1" name="qymc" >
+                                     <option vlaue=""></option>
+                                 </select>
+                             </div>
+                         </div>
+                     </div> -->
+                    <div class="row form-group">
+                        <div class="col-xs-6">
+                            <label class="col-md-4 control-label">状态</label>
+                            <div class="col-md-8">
+                                <select class="form-control" id="zt" name="zt" dic-type="B1019">
+                                    <option vlaue=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label class="col-md-4 control-label">授信额度(元)</label>
+                            <div class="col-md-8">
+                                <div class="col-45">
+                                    <input class="form-control" size="16" type="text" id="sxzed" name="sxzed"/>
+                                </div>
+                                <div class="col-10"><p class="form-control-static">-</p></div>
+                                <div class="col-45">
+                                    <input class="form-control" size="16" type="text" id="sxzed2" name="sxzed2"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="khh2" name="khh">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a id="searchBtn4" class="btn_query btn btn-default">查询</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="search_result  magtop">
+                <form class="" action="" id="formId4">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>企业名称</th>
+                            <th>额度生效日期</th>
+                            <th>额度结束日期</th>
+                            <th>授信额度(元)</th>
+                            <th>已使用额度(元)</th>
+                            <th>金融机构名称</th>
+                            <th>可用额度(元)</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tbody4">
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script>
+    //初始化日期插件
+    $(document).ready(function () {
+
+        var vo = locationObj.getParams();
+        var id = vo.id;
+        $("#rzfkhh1").val(id);
+        $("#rzfkhh2").val(id);
+        $("#khh1").val(id);
+        $("#khh2").val(id);
+
+        //初始化日期插件
+        dataPiker();
+        requestObj.searchServer(
+            requestObj.address.jsyKhDdxxQuerysxy,
+            "searchFrom1",
+            successFunone
+        );
+
+        //去除页面空值
+        function noNull(sj){
+            if(!sj){
+                return "";
+            }
+            return sj;
+        }
+        /*  requestObj.ajaxServer(
+         requestObj.address.jsyKhedxxquery,
+         {	"pageIndex":1,
+         "pageSize":10,
+         "khh":id
+         },
+         function(data,postData){
+         for (var i = 0; i < data.body.data.length; i++) {
+         $("#qymc").append("<option vlaue="+data.body.data[i].khh+">"+data.body.data[i].qymc+"</option>")
+         }
+         },
+         function fail(){
+
+         }
+         ); */
+
+
+    });
+    //进入页面默认查询数据
+    function successFun1() {
+        requestObj.searchServer(
+            requestObj.address.jsyKhDdxxQuerysxy,
+            "searchFrom1",
+            successFunone
+        )
+    }
+    function successFun2() {
+        requestObj.searchServer(
+            requestObj.address.jsyKhYszkquerysxy,
+            "searchFrom2",
+            successFuntwo
+        )
+    }
+    function successFun3() {
+        requestObj.searchServer(
+            requestObj.address.jsyKhedxxquery,
+            "searchFrom3",
+            successFunthree
+        )
+    }
+    function successFun4() {
+        requestObj.searchServer(
+            requestObj.address.jsyKhedxxquery1,
+            "searchFrom4",
+            successFunfour
+        )
+    }
+
+    //状态：00：已录入未提交01：已提交未生效；02：已提交生效03：已失效04：已使用
+    function ztfun1(zt) {
+        if (zt == 00) {
+            return "已录入未提交";
+        }
+        if (zt == 01) {
+            return "已提交未生效";
+        }
+        if (zt == 02) {
+            return "已提交生效";
+        }
+        if (zt == 03) {
+            return "已失效";
+        }
+        if (zt == 04) {
+            return "已使用";
+        }
+    }
+    function ztfun2(zt) {
+        if (zt == 01) {
+            return "暂存";
+        }
+        if (zt == 02) {
+            return "生效";
+        }
+        if (zt == 03) {
+            return "已融资";
+        }
+        if (zt == 04) {
+            return "已核销";
+        }
+    }
+    //状态 ：01:未生效\02:已生效\03:已冻结
+    function ztfun3(zt) {
+        if (zt == 01) {
+            return "未生效";
+        }
+        if (zt == 02) {
+            return "已生效";
+        }
+        if (zt == 03) {
+            return "已冻结";
+        }
+    }
+    function successFunone(body) {
+        $(".table-bordered .tbody1").empty();
+        var listVo = body.body.data;
+        for (var i = 0; i < listVo.length; i++) {
+            $(".table-bordered .tbody1").append(
+                "<tr><td>" + noNull(listVo[i].ddbh) + "</td>" +
+                "<td>" + noNull(listVo[i].hpmc) + "</td>" +
+                "<td>" + noNull(listVo[i].zje) + "</td>" +
+                "<td>" + noNull(listVo[i].ddfqsj) + "</td>" +
+                "<td>" + noNull(listVo[i].ddqrsj) + "</td>" +
+                "<td>" + noNull(listVo[i].jydsmc) + "</td>" +
+                "<td>" + ztfun1(listVo[i].zt) + "</td>" +
+                "<td>"
+                + "<a href=khddxxxq1.html?id=" + listVo[i].id + ">查看</a>" + "&nbsp;&nbsp;"
+                + "</td>" +
+                "</tr>"
+            )
+        }
+    }
+    ;
+    function successFuntwo(body) {
+        $(".table-bordered .tbody2").empty();
+        var listVo = body.body.data;
+        for (var i = 0; i < listVo.length; i++) {
+            $(".table-bordered .tbody2").append(
+                "<tr><td>" + noNull(listVo[i].fph) + "</td>" +
+                "<td>" + noNull(listVo[i].fpdm) + "</td>" +
+                "<td>" + noNull(listVo[i].fpje) + "</td>" +
+                "<td>" + noNull(listVo[i].kprq) + "</td>" +
+                "<td>" + noNull(listVo[i].jydsmc) + "</td>" +
+                "<td>" + ztfun2(listVo[i].zt) + "</td>" +
+                "<td>"
+                + "<a href=khyszkxq1.html?id=" + listVo[i].id + ">查看</a>" + "&nbsp;&nbsp;"
+                + "</td>" +
+                "</tr>"
+            )
+        }
+    }
+    ;
+    function successFunthree(body) {
+        $(".table-bordered .tbody3").empty();
+        var listVo = body.body.data;
+        for (var i = 0; i < listVo.length; i++) {
+            $(".table-bordered .tbody3").append(
+                "<tr><td>" + noNull(listVo[i].qymc) + "</td>" +
+                "<td>" + noNull( listVo[i].sxrq) + "</td>" +
+                "<td>" + noNull( listVo[i].yxrq) + "</td>" +
+                "<td>" + noNull( listVo[i].sxzed) + "</td>" +
+                "<td>" + noNull( listVo[i].yyed) + "</td>" +
+                "<td>" + noNull( listVo[i].sxjgmc)  + "</td>" +
+                "<td>" + noNull( listVo[i].syed) + "</td>" +
+                "<td>" + ztfun3(listVo[i].zt) + "</td>" +
+                "<td>"
+                + "<a href=cbedxqxx.html?id=" + listVo[i].id + ">查看</a>" + "&nbsp;&nbsp;"
+                + "</td>" +
+                "</tr>"
+            )
+        }
+    }
+    ;
+    function successFunfour(body) {
+        $(".table-bordered .tbody4").empty();
+        var listVo = body.body.data;
+        for (var i = 0; i < listVo.length; i++) {
+            $(".table-bordered .tbody4").append(
+                "<tr><td>" + noNull( listVo[i].qymc) + "</td>" +
+                "<td>" + noNull(listVo[i].sxrq) + "</td>" +
+                "<td>" + noNull(listVo[i].yxrq)+ "</td>" +
+                "<td>" + noNull(listVo[i].sxzed) + "</td>" +
+                "<td>" + noNull(listVo[i].yyed) + "</td>" +
+                "<td>" + noNull(listVo[i].sxjgmc) + "</td>" +
+                "<td>" + noNull(listVo[i].syed) + "</td>" +
+                "<td>" + ztfun3(listVo[i].zt) + "</td>" +
+                "<td>"
+                + "<a href=sxedxqxx.html?id=" + listVo[i].id + ">查看</a>" + "&nbsp;&nbsp;"
+                + "</td>" +
+                "</tr>"
+            )
+        }
+    }
+    ;
+
+    //关闭click.bs.dropdown.data-api事件，使顶级菜单可点击
+    //    $(document).off('click.bs.dropdown.data-api');
+    //自动展开
+    $('.nav .dropdown').mouseenter(function () {
+        $(this).addClass('open');
+    });
+    //自动关闭
+    $('.nav .dropdown').mouseleave(function () {
+        $(this).removeClass('open');
+    });
+    //给查询按钮绑定查询事件
+    $("#searchBtn1").click(function () {
+        requestObj.searchServer(
+            requestObj.address.jsyKhDdxxQuerysxy,
+            "searchFrom1",
+            successFunone)
+    });
+    $("#searchBtn2").click(function () {
+        requestObj.searchServer(
+            requestObj.address.jsyKhYszkquerysxy,
+            "searchFrom2",
+            successFuntwo)
+    });
+    $("#searchBtn3").click(function () {
+        requestObj.searchServer(
+            requestObj.address.jsyKhedxxquery,
+            "searchFrom3",
+            successFunthree)
+    });
+    $("#searchBtn4").click(function () {
+        requestObj.searchServer(
+            requestObj.address.jsyKhedxxquery1,
+            "searchFrom4",
+            successFunfour)
+    });
+
+    //		$('#myTab li:eq(1) a').tab('show');
+</script>
+
+</html>

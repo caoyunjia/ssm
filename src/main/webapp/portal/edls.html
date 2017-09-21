@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>额度流水</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/new.css?v=APP_VER"/>
+    <link rel="stylesheet" type="text/css" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="js/plugin/kkpager_green.css"/>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/plugin/kkpager.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/plugin/jquery.validate.js"></script>
+    <script src="js/plugin/validate-extend.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+    <style>
+		     .search_result {
+   		overflow: fixed;
+    }
+     .search_result table {
+     	table-layout:fixed;
+    }
+ </style>
+</head>
+<body>
+	
+	<div class="container" id="" style="width:1040px;">
+			<form class="row form" action="#" id="formId">
+				<input type="hidden" name = "khh" id="khh">
+				<input type="hidden" name = "edbh" id="edbh">
+			</form>
+				<div class="row search_result">
+					<table class="table table-bordered table-hover" style="width:100%">
+						<thead>
+							<tr>
+		                        <th>总额度(元)</th>
+		                        <th>调整时间</th>
+		                        <th dic-type="B1020">业务类型</th>
+		                        <th dic-type="B1021">额度操作类型</th>
+		                        <th>前可用额度(元)</th>
+		                        <th>前已使用额度(元)</th>
+		                        <th>本次额度(元)</th>
+		                        <th>后可用额度(元)</th>
+		                        <th>后已使用额度(元)</th>
+		                    </tr>
+						</thead>
+						<tbody id="edxx">
+                		</tbody>
+					</table>
+				<div id="kkpager"></div>
+				</div>
+		</div>
+	    <div class="row">
+		    <div class="text-center col-xs-12">
+					<a id="save"  class="btn_query btn btn-default">返回</a>
+		    </div>
+		</div>
+</body>
+<script type="text/javascript">
+//查询额度信息
+$(document).ready(function(){
+    //初始化日期插件
+    dataPiker();
+    var khh= locationObj.getParams().khh;
+    $("#khh").val(khh);
+    var edbh= locationObj.getParams().edbh;
+    $("#edbh").val(edbh);
+    requestObj.searchServer(
+            requestObj.address.jsyKhEdxxls,
+           "formId",
+            successFun
+    );
+  //进入页面默认查询数据
+    function successFun(data){
+    	requestObj.searchObj.totalPage =  data.body.totalPageNo;//总页码
+        requestObj.searchObj.recordsTotal = data.body.totalCount;//总记录数目
+        requestObj.initPager(
+            requestObj.address.jsyKhEdxxls,
+            successFun
+        );
+		$("#edxx").empty();
+		var listVo = data.body.data;
+        for(var i = 0 ; i < listVo.length; i++){
+            $("#edxx").append(
+                    "<tr>"+
+                    "<td>" + numberToCurrency(listVo[i].sxzed) + "</td>" +
+                    "<td>" + formatDateStr8(listVo[i].crsj) + "</td>" +
+                    "<td>" + noNull(listVo[i].ywlx) + "</td>" +
+                    "<td>" + noNull(listVo[i].czlx) + "</td>" +
+                    "<td>" + numberToCurrency(listVo[i].qkyed) + "</td>" +
+                    "<td>" + numberToCurrency(listVo[i].qysyed) + "</td>" +
+                    "<td>" + numberToCurrency(listVo[i].bced) + "</td>" +
+                    "<td>" + numberToCurrency(listVo[i].hkyed) + "</td>" +
+                    "<td>" + numberToCurrency(listVo[i].hysyed) + "</td>" +
+                    "</tr>");
+        }
+    }
+
+
+//飞空验证
+function noNull(sj){
+	if(!sj){
+		return "";
+	}
+	return sj;
+}	
+
+});
+    $("#save").click(function(){
+		history.go(-1);
+    });
+</script>
+
+</body>
+</html>

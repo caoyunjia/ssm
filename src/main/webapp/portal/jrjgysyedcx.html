@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>及时雨-金融机构-客户已使用额度查询</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/common.js?v=APP_VER"></script>
+</head>
+<body>
+<div class="container m-content">
+    <form class="form form-horizontal" action="#" id="formId">
+        <div class="row form-group">
+            <div class=" col-xs-6">
+                <label class="col-md-4 control-label">客户号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="khh" name="khh" placeholder="客户号" readonly="true">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">核心企业客户号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="hxqykhh" name="hxqykhh" placeholder="核心企业客户号"
+                           readonly="true">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">企业名称</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="qymc" name="qymc" placeholder="企业名称" readonly="true">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">总额度(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="sxzed" name="sxzed" placeholder="总额度" readonly="true">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">已用额度(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="yyed" name="yyed" placeholder="已用额度" readonly="true">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">剩余额度(元)</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="syed" name="syed" placeholder="剩余额度" readonly="true">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">授信机构代码</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="sxkhh" name="sxkhh" placeholder="授信机构代码"
+                           readonly="true">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">额度类型</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="edlx" name="edlx" placeholder="额度类型" readonly="true">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">授信机构名称</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="sxjgmc" name="sxjgmc" placeholder="授信机构名称"
+                           readonly="true">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">状态</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="zt" name="zt" placeholder="状态" readonly="true">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-md-4 control-label">创建时间</label>
+                <div class="col-md-8">
+                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+                         data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" id="crsj" name="crsj"/>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <!--  <input type="hidden" id="dtp_input3" value="" /> -->
+                </div>
+            </div>
+            <div class=" col-xs-6">
+                <label class="col-md-4 control-label">创建人</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="crr" name="crr" placeholder="创建人" readonly="true">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label for="CLRQ" class="col-md-4 control-label">更新时间</label>
+                <div class="col-md-8">
+                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+                         data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" id="gxsj" name="gxsj"/>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <!--  <input type="hidden" id="dtp_input3" value="" /> -->
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">更新人</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="gxr" name="gxr" placeholder="更新人" readonly="true">
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-6">
+                <label class="col-md-4 control-label">额度编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="edbh" name="edbh" placeholder="额度编号" readonly="true">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center col-xs-12">
+                <a id="save" class="btn btn-default btn_query">保存</a>
+            </div>
+        </div>
+    </form>
+</div>
+<form id="searchFrom">
+    <input type="hidden" name="" id="cwbbLx" value="">
+</form>
+
+
+<script>
+    $(document).ready(function () {
+        //初始化日期插件
+
+        dataPiker();
+        requestObj.ajaxServer(
+                requestObj.address.jsyKhEdxx,
+                {"id": "1"},
+                function (data) {
+                    $("#khh").val(data.body.khh);
+                    $("#hxqykhh").val(data.body.hxqykhh);
+                    $("#qymc").val(data.body.qymc);
+                    $("#sxzed").val(data.body.sxzed);
+                    $("#yyed").val(data.body.yyed);
+                    $("#syed").val(data.body.syed);
+                    $("#sxkhh").val(data.body.sxkhh);
+                    $("#edlx").val(data.body.edlx);
+                    $("#sxjgmc").val(data.body.sxjgmc);
+                    $("#zt").val(data.body.zt);
+                    $("#crsj").val(data.body.crsj);
+                    $("#crr").val(data.body.crr);
+                    $("#gxsj").val(data.body.gxsj);
+                    $("#gxr").val(data.body.gxr);
+                    $("#edbh").val(data.body.edbh);
+                },
+                function () {
+                }
+        );
+    });
+</script>
+</body>
+</html>
